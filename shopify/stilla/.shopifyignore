@@ -1,0 +1,6 @@
+install/
+scripts/
+stores/
+README.md
+LICENSE.md
+.gitignore

@@ -1,0 +1,17 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "s-header",
+      "settings": {
+        "menu": "main-menu"
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

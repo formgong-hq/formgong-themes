@@ -1,0 +1,6 @@
+{% doc %}
+  A variant's price, with the old price struck through when it is on sale.
+
+  @param {object} variant - the variant
+{% enddoc %}
+{%- if variant.compare_at_price > variant.price -%}<s><span class="s-sr">{{ 'products.product.price.regular' | t }}</span>{{ variant.compare_at_price | money }}</s><span class="s-sr">{{ 'products.product.price.sale' | t }}</span>{%- endif -%}{{ variant.price | money }}

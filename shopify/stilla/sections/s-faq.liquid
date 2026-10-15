@@ -1,0 +1,27 @@
+{%- comment -%} Stilla FAQ: a heading beside a list of questions that open one by one. {%- endcomment -%}
+<section class="s-faq" id="{{ section.settings.anchor | default: 'faq' | handleize }}" aria-labelledby="faq-{{ section.id }}">
+  <h2 id="faq-{{ section.id }}">{{ section.settings.heading }}</h2>
+  <div>
+    {%- for block in section.blocks -%}
+      <details {{ block.shopify_attributes }}><summary>{{ block.settings.question }}</summary>{{ block.settings.answer }}</details>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently asked questions" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "faq" }
+  ],
+  "blocks": [
+    { "type": "question", "name": "Question", "settings": [
+      { "type": "text", "id": "question", "label": "Question", "default": "How long does delivery take?" },
+      { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Write how long orders take to arrive and where you ship.</p>" }
+    ] }
+  ],
+  "presets": [{ "name": "FAQ", "blocks": [{ "type": "question" }, { "type": "question" }] }]
+}
+{% endschema %}

@@ -1,0 +1,33 @@
+{%- comment -%} Stilla split: a photo half and a text half; the photo can sit on either side, on white or tinted. {%- endcomment -%}
+<section class="s-split{% if section.settings.reverse %} s-rev{% endif %}{% if section.settings.tint %} s-tint{% endif %}"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handleize }}"{% endif %} aria-labelledby="split-{{ section.id }}">
+  <div class="s-split-img">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '480, 960, 1600', sizes: '(max-width: 900px) 100vw, 50vw', loading: 'lazy', alt: section.settings.image.alt | default: '' }}
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 's-placeholder' }}
+    {%- endif -%}
+  </div>
+  <div class="s-split-tx">
+    <h2 id="split-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {{ section.settings.text }}
+    {%- if section.settings.button_label != blank %}<a class="s-btn s-ghost" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>{% endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Our fabric" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>What it is made of, how it feels and why it lasts.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "checkbox", "id": "reverse", "label": "Image on the right", "default": false },
+    { "type": "checkbox", "id": "tint", "label": "Tinted background", "default": false },
+    { "type": "text", "id": "anchor", "label": "Anchor", "info": "Lets a menu link jump here, for example #journal." }
+  ],
+  "presets": [{ "name": "Image with text" }]
+}
+{% endschema %}

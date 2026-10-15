@@ -1,0 +1,14 @@
+{%- comment -%} Stilla quote: one customer quote on a tinted band. {%- endcomment -%}
+<section class="s-quote" aria-label="{{ section.settings.eyebrow | escape }}"><p>{{ section.settings.eyebrow }}</p><blockquote>{{ section.settings.quote }}</blockquote></section>
+
+{% schema %}
+{
+  "name": "Quote",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small line above", "default": "From a customer" },
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "Paste a real quote from a customer here." }
+  ],
+  "presets": [{ "name": "Quote" }]
+}
+{% endschema %}

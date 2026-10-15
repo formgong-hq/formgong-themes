@@ -1,0 +1,32 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "s-footer",
+      "settings": {
+        "signup_heading": "Newsletter",
+        "signup_text": "News, new products and early access to sales.",
+        "signup_note": "<p>By signing up you agree to our <a href=\"/policies/privacy-policy\">privacy policy</a>. Unsubscribe any time.</p>",
+        "bottom_text": "",
+        "show_payment": false,
+        "show_credit": true
+      },
+      "blocks": {
+        "menu": {
+          "type": "menu",
+          "settings": {
+            "heading": "Help",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "menu"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

@@ -1,0 +1,59 @@
+{%- comment -%} Stilla footer: newsletter, up to three menus, and a bottom line. {%- endcomment -%}
+<footer class="s-foot">
+  <div class="s-foot-grid">
+    <div>
+      <h2>{{ section.settings.signup_heading }}</h2>
+      {%- if section.settings.signup_text != blank %}<p>{{ section.settings.signup_text }}</p>{% endif -%}
+      {% render 's-signup', id: 'signup-footer', inline: true, note: section.settings.signup_note %}
+    </div>
+    {%- for block in section.blocks -%}
+      <div {{ block.shopify_attributes }}>
+        <h2>{{ block.settings.heading | default: block.settings.menu.title }}</h2>
+        <ul>{% for link in block.settings.menu.links %}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{% endfor %}</ul>
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="s-foot-bottom">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}{% if section.settings.bottom_text != blank %}. {{ section.settings.bottom_text }}{% endif %}</span>
+    {%- if section.settings.show_payment -%}
+      <span class="s-pay">{%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 's-pay-icon' }}{%- endfor -%}</span>
+    {%- endif -%}
+    {%- liquid
+      assign show_country = false
+      assign show_language = false
+      if section.settings.show_country and localization.available_countries.size > 1
+        assign show_country = true
+      endif
+      if section.settings.show_language and localization.available_languages.size > 1
+        assign show_language = true
+      endif
+    -%}
+    {%- if show_country or show_language -%}<span class="s-local">{% render 'localization-form', show_country: show_country, show_language: show_language, id: 'FooterLocalization' %}</span>{%- endif -%}
+    {%- if section.settings.show_credit -%}<span>{{ 'stilla.footer.credit_html' | t }}</span>{%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "div",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "signup_heading", "label": "Newsletter heading", "default": "Newsletter" },
+    { "type": "text", "id": "signup_text", "label": "Newsletter text", "default": "New colours, studio classes and early access to sales." },
+    { "type": "richtext", "id": "signup_note", "label": "Note under the form", "default": "<p>Unsubscribe any time.</p>" },
+    { "type": "text", "id": "bottom_text", "label": "Bottom line text" },
+    { "type": "checkbox", "id": "show_payment", "label": "Show payment icons", "default": false },
+    { "type": "checkbox", "id": "show_country", "label": "Show country/region selector", "default": true, "info": "Shows when you sell in more than one country." },
+    { "type": "checkbox", "id": "show_language", "label": "Show language selector", "default": true, "info": "Shows when your store has more than one language." },
+    { "type": "checkbox", "id": "show_credit", "label": "Show \"Theme by Formgong\"", "default": true }
+  ],
+  "blocks": [
+    { "type": "menu", "name": "Menu", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+    ] }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

@@ -1,0 +1,20 @@
+{% doc %}
+  Newsletter signup with Shopify's customer form: subscribers land in Shopify admin as customers who accept email marketing.
+
+  @param {string} id - a unique id for the form and its field
+  @param {string} [note] - small text under the form (rich text)
+  @param {boolean} [inline] - field and button on one row (footer)
+{% enddoc %}
+{%- form 'customer', id: id, class: 's-fg s-native' -%}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  {%- if form.posted_successfully? -%}
+    <p class="s-ok-native" tabindex="-1" role="status">{{ 'stilla.signup.thanks' | t }}</p>
+  {%- else -%}
+    {%- if inline %}<div class="s-inline">{% endif -%}
+      <div class="s-field"><label for="{{ id }}-email">{{ 'stilla.signup.email' | t }}</label><input id="{{ id }}-email" type="email" name="contact[email]" autocomplete="email" required{% if form.errors %} aria-invalid="true" aria-describedby="{{ id }}-error"{% endif %}></div>
+      <button class="s-btn" type="submit">{% if inline %}{{ 'stilla.signup.join' | t }}{% else %}{{ 'stilla.signup.subscribe' | t }}{% endif %}</button>
+    {%- if inline %}</div>{% endif -%}
+    {%- if note != blank %}<div class="s-note">{{ note }}</div>{% endif -%}
+    <p class="s-status{% if form.errors %} s-err{% endif %}" id="{{ id }}-error" role="status">{% if form.errors %}{{ 'newsletter.error' | t }}{% endif %}</p>
+  {%- endif -%}
+{%- endform -%}

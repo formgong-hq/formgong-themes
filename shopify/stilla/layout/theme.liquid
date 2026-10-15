@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    {% render 'meta-tags' %}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+    {%- endif -%}
+
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {{ settings.type_heading_font | font_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
+    {{ settings.type_body_font | font_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
+
+    {% render 'css-variables' %}
+    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'stilla.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.classList.add('js');
+      window.Scamper = {
+        routes: {
+          root: {{ routes.root_url | json }},
+          cart: {{ routes.cart_url | json }},
+          cartAdd: {{ routes.cart_add_url | json }},
+          cartChange: {{ routes.cart_change_url | json }},
+          cartUpdate: {{ routes.cart_update_url | json }},
+          search: {{ routes.search_url | json }},
+          predictiveSearch: {{ routes.predictive_search_url | json }},
+          productRecommendations: {{ routes.product_recommendations_url | json }}
+        },
+        cartType: "page",
+        reveal: {{ settings.show_reveal | json }},
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }},
+          cartError: {{ 'cart.general.error' | t | json }},
+          added: {{ 'cart.general.added' | t | json }}
+        }
+      };
+    </script>
+    <script src="{{ 'theme.js' | asset_url }}" type="module" defer></script>
+    <script>
+      window.StillaStrings = {
+        added: {{ 'stilla.product.added' | t | json }},
+        addToBag: {{ 'stilla.product.add' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        cartError: {{ 'cart.general.error' | t | json }},
+        sending: {{ 'stilla.form.sending' | t | json }},
+        formError: {{ 'stilla.form.error' | t | json }},
+        formOffline: {{ 'stilla.form.offline' | t | json }}
+      };
+    </script>
+    <script src="{{ 'stilla.js' | asset_url }}" defer></script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="color-{{ settings.color_schemes.first.id }}{% if settings.show_reveal %} scroll-fx{% endif %}">
+    <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    <div class="visually-hidden" role="status" aria-live="polite" id="LiveRegion"></div>
+    <p class="s-toast" role="status" aria-live="polite"></p>
+  </body>
+</html>

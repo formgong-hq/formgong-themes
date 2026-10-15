@@ -1,0 +1,156 @@
+{
+  "sections": {
+    "hero": {
+      "type": "s-hero",
+      "settings": {
+        "eyebrow": "Autumn collection",
+        "heading": "Made for the slow, strong hour",
+        "button_label": "Shop the collection"
+      }
+    },
+    "intro": {
+      "type": "s-intro",
+      "settings": {
+        "heading": "Move with us",
+        "text": "<p>Tell people who you are and why you make what you make. Two short paragraphs are enough: where it started and what you care about now.</p><p>Then say what is different about your pieces, in plain words a customer would use.</p>",
+        "button_label": "Explore the shop",
+        "anchor": "studio"
+      },
+      "blocks": {
+        "l0": {
+          "type": "link",
+          "settings": {
+            "label": "All products"
+          }
+        },
+        "l1": {
+          "type": "link",
+          "settings": {
+            "label": "Tops"
+          }
+        },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "Tights"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "Accessories"
+          }
+        }
+      },
+      "block_order": [
+        "l0",
+        "l1",
+        "l2",
+        "l3"
+      ]
+    },
+    "split": {
+      "type": "s-split",
+      "settings": {
+        "heading": "What makes it different",
+        "text": "<p>Use this space for the one thing that sets your products apart: a fabric, a maker or a way of working. Say what it does for the person wearing it.</p>",
+        "button_label": "Shop Sculpt Tights"
+      }
+    },
+    "products": {
+      "type": "s-products",
+      "settings": {
+        "heading": "Most loved",
+        "limit": 4,
+        "link_label": "View all"
+      }
+    },
+    "journal": {
+      "type": "s-split",
+      "settings": {
+        "heading": "Meet us in person",
+        "text": "<p>Tell people about a class, an event or a place where they can meet you. Add the dates, or point to the newsletter below.</p>",
+        "button_label": "Get the dates",
+        "button_link": "#newsletter",
+        "reverse": true,
+        "tint": true,
+        "anchor": "journal"
+      }
+    },
+    "quote": {
+      "type": "s-quote",
+      "settings": {
+        "eyebrow": "From a customer",
+        "quote": "“Add a few words a customer wrote to you. Short and real works best.”"
+      }
+    },
+    "faq": {
+      "type": "s-faq",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "anchor": "faq"
+      },
+      "blocks": {
+        "q0": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Say when orders leave and how long delivery takes to the places you ship to.</p>"
+          }
+        },
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return or exchange?",
+            "answer": "<p>Explain your return and exchange rules: how many days, in what condition, and who pays for shipping.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I find my size?",
+            "answer": "<p>Each product page has a size question form. Customers tell you their usual size and height, and the question arrives in your Formgong inbox.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "How should I care for my order?",
+            "answer": "<p>Add washing and care notes that apply to most of your products.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "What do you do with my email?",
+            "answer": "<p>Say what you send to subscribers and how often, and that they can unsubscribe from every letter.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ]
+    },
+    "newsletter": {
+      "type": "s-newsletter",
+      "settings": {
+        "heading": "Sign up for our newsletter",
+        "note": "<p>By signing up you agree to our <a href=\"/policies/privacy-policy\">privacy policy</a>. Unsubscribe any time.</p>"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "intro",
+    "split",
+    "products",
+    "journal",
+    "quote",
+    "faq",
+    "newsletter"
+  ]
+}

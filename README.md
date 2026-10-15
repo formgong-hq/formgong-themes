@@ -8,6 +8,7 @@ email and Telegram.
 | Template | WordPress | Shopify |
 |---|---|---|
 | [Craftline](https://formgong.com/en/website-templates/craftline/) (trades) | [craftline-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/craftline-wordpress-1.0.0) | in progress |
+| [Stilla](https://formgong.com/en/website-templates/stilla/) (activewear shop) | in progress | [Stilla-1.0.0.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/stilla-shopify-1.0.0) |
 
 More templates are on the way.
 
@@ -20,11 +21,22 @@ More templates are on the way.
 4. Optional: download `<template>-wordpress-pages.xml` from the same release and import it under
    Tools → Import → WordPress to get the template's demo pages and menu.
 
-Each theme was checked on the latest WordPress with Theme Check, WP_DEBUG on, the Site Editor and a real form
-submission. The checks are listed in each release.
+## Install a Shopify theme
+
+1. Download `<Template>-<version>.zip` from the template's release. Don't unzip it.
+2. In Shopify admin, open Online Store → Themes → Add theme → Upload zip file.
+3. Create a free Formgong key at https://formgong.com/new and paste it in the theme editor under
+   Theme settings → Formgong, so the theme's forms reach your Formgong inbox.
+
+The theme starts with placeholders: Shopify never copies products, photos or menus with a theme.
+
+Each WordPress theme was checked on the latest WordPress with Theme Check, WP_DEBUG on, the Site Editor and a real form
+submission. Each Shopify theme was checked with Theme Check, on a store with its demo
+content and as a clean install, with a real form submission. The checks are listed in each release.
 
 ## License
 
-Each theme has the license of its template; Craftline is MIT. Fonts and other credits are in each theme's readme.txt.
+WordPress themes have the license of their template; Craftline is MIT. Shopify themes are free to use on any
+number of stores but not to resell; see each theme's LICENSE.md. Fonts and other credits are in each theme's readme.txt.
 
 Something broken or missing? Open an issue or write to support@formgong.com. We'd like to hear what you think.

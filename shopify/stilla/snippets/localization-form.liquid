@@ -1,0 +1,35 @@
+{% doc %}
+  Country/region and language selectors, kept together as Shopify's UX guidelines ask.
+  Native selects submit on change (theme.js); a button covers the no-JS case.
+
+  @param {boolean} show_country - Show the country/region selector
+  @param {boolean} show_language - Show the language selector
+  @param {string} id - Unique id prefix
+{% enddoc %}
+{%- form 'localization', class: 'localization-form' -%}
+  {%- if show_country -%}
+    <div class="field">
+      <label for="{{ id }}Country">{{ 'localization.country_label' | t }}</label>
+      <select class="select" id="{{ id }}Country" name="country_code" data-localization-select>
+        {%- for country in localization.available_countries -%}
+          <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>
+            {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+          </option>
+        {%- endfor -%}
+      </select>
+    </div>
+  {%- endif -%}
+  {%- if show_language -%}
+    <div class="field">
+      <label for="{{ id }}Language">{{ 'localization.language_label' | t }}</label>
+      <select class="select" id="{{ id }}Language" name="locale_code" data-localization-select>
+        {%- for language in localization.available_languages -%}
+          <option value="{{ language.iso_code }}" lang="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} selected{% endif %}>
+            {{ language.endonym_name | capitalize }}
+          </option>
+        {%- endfor -%}
+      </select>
+    </div>
+  {%- endif -%}
+  <noscript><button class="button button--secondary" type="submit">{{ 'localization.update_country' | t }}</button></noscript>
+{%- endform -%}

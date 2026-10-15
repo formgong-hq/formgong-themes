@@ -1,0 +1,48 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "s-footer",
+      "settings": {
+        "signup_heading": "Newsletter",
+        "signup_text": "New colours, studio classes and early access to sales.",
+        "signup_note": "<p>By signing up you agree to our <a href=\"/#faq\">privacy policy</a>. One letter a month, unsubscribe any time.</p>",
+        "bottom_text": "A demo store; the brand and products are fictional.",
+        "show_payment": false,
+        "show_credit": true
+      },
+      "blocks": {
+        "shop": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop",
+            "menu": "stilla-shop"
+          }
+        },
+        "help": {
+          "type": "menu",
+          "settings": {
+            "heading": "Help",
+            "menu": "stilla-help"
+          }
+        },
+        "about": {
+          "type": "menu",
+          "settings": {
+            "heading": "Stilla",
+            "menu": "stilla-about"
+          }
+        }
+      },
+      "block_order": [
+        "shop",
+        "help",
+        "about"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

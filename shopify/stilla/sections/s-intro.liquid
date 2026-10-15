@@ -1,0 +1,35 @@
+{%- comment -%} Stilla intro: a centred heading and text, a row of collection links and a button. {%- endcomment -%}
+<section class="s-intro"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handleize }}"{% endif %}>
+  {%- if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif -%}
+  {{ section.settings.text }}
+  {%- if section.blocks.size > 0 -%}
+    <nav class="s-tabs" aria-label="{{ 'stilla.intro.links' | t }}">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link | default: routes.all_products_collection_url }}"{% if forloop.first %} aria-current="page"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+      {%- endfor -%}
+    </nav>
+  {%- endif -%}
+  {%- if section.settings.button_label != blank %}<a class="s-btn s-ghost" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>{% endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Intro",
+  "tag": "div",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Move with us" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Tell your story in two or three sentences: who you are, what you make and why.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Explore the shop" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "info": "Lets a menu link jump here, for example #studio." }
+  ],
+  "blocks": [
+    { "type": "link", "name": "Collection link", "settings": [
+      { "type": "text", "id": "label", "label": "Label", "default": "All products" },
+      { "type": "url", "id": "link", "label": "Link" }
+    ] }
+  ],
+  "presets": [{ "name": "Intro", "blocks": [{ "type": "link" }] }]
+}
+{% endschema %}

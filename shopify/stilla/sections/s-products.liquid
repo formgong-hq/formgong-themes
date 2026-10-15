@@ -1,0 +1,30 @@
+{%- comment -%} Stilla product row: a heading with a "View all" link over a grid of product cards. {%- endcomment -%}
+{%- liquid
+  assign collection = section.settings.collection
+  if collection == blank
+    assign collection = collections.all
+  endif
+  assign limit = section.settings.limit
+-%}
+<div class="s-row-head"><h2>{{ section.settings.heading }}</h2>{% if section.settings.link_label != blank %}<a class="s-link" href="{{ collection.url | default: routes.all_products_collection_url }}">{{ section.settings.link_label }}</a>{% endif %}</div>
+<div class="s-grid">
+  {%- for product in collection.products limit: limit -%}
+    {% render 's-card', product: product %}
+  {%- else -%}
+    {%- for i in (1..limit) -%}{% render 's-card' %}{%- endfor -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Product row",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Most loved" },
+    { "type": "collection", "id": "collection", "label": "Collection", "info": "Empty shows products from the whole catalog." },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 4, "max": 12, "step": 4, "default": 4 },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "View all" }
+  ],
+  "presets": [{ "name": "Product row" }]
+}
+{% endschema %}

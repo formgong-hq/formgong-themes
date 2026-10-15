@@ -1,0 +1,168 @@
+{
+  "sections": {
+    "hero": {
+      "type": "s-hero",
+      "settings": {
+        "image": "shopify://shop_images/stilla-hero.webp",
+        "eyebrow": "Autumn collection",
+        "heading": "Made for the slow, strong hour",
+        "button_label": "Shop the collection",
+        "button_link": "shopify://collections/stilla"
+      }
+    },
+    "intro": {
+      "type": "s-intro",
+      "settings": {
+        "heading": "Move with us",
+        "text": "<p>Stilla began as a small pilates studio with a simple wish: clothes that disappear while you move. Today we design a short, considered range of activewear in a handful of colours that work together.</p><p>Everything is knitted in Portugal from recycled yarns, tested in our own classes and made to last for years rather than seasons.</p>",
+        "button_label": "Explore the shop",
+        "button_link": "shopify://collections/stilla",
+        "anchor": "studio"
+      },
+      "blocks": {
+        "l0": {
+          "type": "link",
+          "settings": {
+            "label": "All products",
+            "link": "shopify://collections/stilla"
+          }
+        },
+        "l1": {
+          "type": "link",
+          "settings": {
+            "label": "Tops",
+            "link": "shopify://collections/tops"
+          }
+        },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "Tights",
+            "link": "shopify://collections/tights"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "Accessories",
+            "link": "shopify://collections/accessories"
+          }
+        }
+      },
+      "block_order": [
+        "l0",
+        "l1",
+        "l2",
+        "l3"
+      ]
+    },
+    "split": {
+      "type": "s-split",
+      "settings": {
+        "image": "shopify://shop_images/stilla-life-studio.webp",
+        "heading": "The Sculpt fabric",
+        "text": "<p>A dense, matte knit that holds without squeezing. Squat-proof, quick to dry and soft enough to wear all day. Our tights, shorts and long sleeves are all cut from it.</p>",
+        "button_label": "Shop Sculpt Tights",
+        "button_link": "shopify://products/sculpt-tights-espresso"
+      }
+    },
+    "products": {
+      "type": "s-products",
+      "settings": {
+        "heading": "Most loved",
+        "collection": "stilla",
+        "limit": 4,
+        "link_label": "View all"
+      }
+    },
+    "journal": {
+      "type": "s-split",
+      "settings": {
+        "image": "shopify://shop_images/stilla-life-stretch.webp",
+        "heading": "Outdoor sessions",
+        "text": "<p>Every Sunday from May to September we roll out the mats in the park. Bring a friend, borrow a mat, stay for coffee. Sign up to the letter below to get the dates.</p>",
+        "button_label": "Get the dates",
+        "button_link": "#newsletter",
+        "reverse": true,
+        "tint": true,
+        "anchor": "journal"
+      }
+    },
+    "quote": {
+      "type": "s-quote",
+      "settings": {
+        "eyebrow": "From a customer",
+        "quote": "“The first tights I forget I am wearing. Two years in and they still look new.”"
+      }
+    },
+    "faq": {
+      "type": "s-faq",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "anchor": "faq"
+      },
+      "blocks": {
+        "q0": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Orders leave our warehouse within one working day. Delivery in the Nordics takes 1–3 days, the rest of the EU 3–6 days.</p>"
+          }
+        },
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return or exchange?",
+            "answer": "<p>Yes, within 30 days if the item is unworn and the tags are on. Exchanges for another size are free.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I find my size?",
+            "answer": "<p>Each product page has a size question form. Tell us your usual size and height and we reply within a day.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "How should I wash Stilla pieces?",
+            "answer": "<p>Wash at 30 °C inside out, no fabric softener, and let them dry flat. They will keep their shape for years.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "What do you do with my email?",
+            "answer": "<p>We use it only to send the newsletter or answer your question. You can unsubscribe from every letter.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ]
+    },
+    "newsletter": {
+      "type": "s-newsletter",
+      "settings": {
+        "image": "shopify://shop_images/stilla-newsletter.webp",
+        "heading": "Sign up for our newsletter",
+        "note": "<p>By signing up you agree to our <a href=\"/#faq\">privacy policy</a>. One letter a month, unsubscribe any time.</p>"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "intro",
+    "split",
+    "products",
+    "journal",
+    "quote",
+    "faq",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "main": {
+      "type": "s-product",
+      "settings": {
+        "related_heading": "You may also like"
+      },
+      "blocks": {
+        "perks": {
+          "type": "perks",
+          "settings": {
+            "perk_1": "Free delivery over $80",
+            "perk_2": "30-day returns",
+            "perk_3": "Recycled yarns"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "heading": "Description"
+          }
+        },
+        "fit": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Fit and care",
+            "text": "<p>True to size. Wash at 30 °C inside out and dry flat. No fabric softener.</p>"
+          }
+        },
+        "delivery": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Delivery and returns",
+            "text": "<p>Ships within one working day. Free returns and size exchanges within 30 days.</p>"
+          }
+        },
+        "ask": {
+          "type": "ask",
+          "settings": {
+            "heading": "Not sure about the size?",
+            "text": "Tell us your usual size and height. A stylist answers by email within one working day.",
+            "request": "Size question",
+            "thanks": "Thanks. We will reply to your email within one working day."
+          }
+        }
+      },
+      "block_order": [
+        "perks",
+        "description",
+        "fit",
+        "delivery",
+        "ask"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

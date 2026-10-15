@@ -1,0 +1,27 @@
+{% doc %}
+  The colour of a colour option value: Shopify's own swatch when the merchant set one, else the
+  "name: #hex" list in Theme settings → Product cards, else a neutral stone.
+
+  @param {object} value - a product option value or a filter value
+{% enddoc %}
+{%- liquid
+  assign colour = ''
+  if value.swatch.color
+    assign colour = value.swatch.color
+  else
+    assign wanted = value.name | default: value.label | downcase | strip
+    assign lines = settings.card_swatches | newline_to_br | split: '<br />'
+    for line in lines
+      assign pair = line | split: ':'
+      assign key = pair.first | downcase | strip
+      if key == wanted and pair.size > 1
+        assign colour = pair.last | strip
+        break
+      endif
+    endfor
+  endif
+  if colour == blank
+    assign colour = '#d9d5d1'
+  endif
+  echo colour
+-%}

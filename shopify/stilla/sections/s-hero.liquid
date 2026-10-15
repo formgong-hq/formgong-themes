@@ -1,0 +1,28 @@
+{%- comment -%} Stilla hero: a full-width photo with a line, a heading and a button over its lower corner. {%- endcomment -%}
+<section class="s-hero{% if section.settings.image == blank %} s-hero-empty{% endif %}" aria-labelledby="hero-{{ section.id }}">
+  {%- if section.settings.image != blank -%}
+    {{ section.settings.image | image_url: width: 2400 | image_tag: widths: '480, 960, 1600, 2400', sizes: '100vw', fetchpriority: 'high', loading: 'eager', alt: section.settings.image.alt | default: '' }}
+  {%- else -%}
+    {{ 'lifestyle-1' | placeholder_svg_tag: 's-placeholder' }}
+  {%- endif -%}
+  <div class="s-hero-tx">
+    {%- if section.settings.eyebrow != blank %}<p>{{ section.settings.eyebrow }}</p>{% endif -%}
+    <h1 id="hero-{{ section.id }}">{{ section.settings.heading }}</h1>
+    {%- if section.settings.button_label != blank %}<a class="s-btn s-light" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>{% endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Landscape, at least 2000 px wide. The text sits over the lower part." },
+    { "type": "text", "id": "eyebrow", "label": "Small line above the heading", "default": "New collection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made for the slow, strong hour" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop the collection" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

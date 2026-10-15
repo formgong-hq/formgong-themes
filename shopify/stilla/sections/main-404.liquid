@@ -1,0 +1,41 @@
+<div class="section color-{{ section.settings.color_scheme }}">
+  <div class="page-width not-found">
+    <p class="not-found__code" aria-hidden="true">404</p>
+    <h1 class="h2">{{ 'templates.404.title' | t }}</h1>
+    <p>{{ 'templates.404.text' | t }}</p>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-page__form">
+      <label class="visually-hidden" for="NotFoundSearch">{{ 'search.placeholder' | t }}</label>
+      <input class="input" id="NotFoundSearch" type="search" name="q" placeholder="{{ 'search.placeholder' | t }}">
+      <button class="button" type="submit">{{ 'search.submit' | t }}</button>
+    </form>
+    <a class="button button--secondary" href="{{ routes.root_url }}">{{ 'general.back_home' | t }}</a>
+  </div>
+</div>
+
+{% stylesheet %}
+  .not-found {
+    display: grid;
+    justify-items: center;
+    gap: 18px;
+    padding-block: 72px 96px;
+    text-align: center;
+  }
+
+  .not-found__code {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: clamp(5rem, 16vw, 11rem);
+    line-height: 0.9;
+    color: var(--color-accent);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Page not found",
+  "class": "section-404",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

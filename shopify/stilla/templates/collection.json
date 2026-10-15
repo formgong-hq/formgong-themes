@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "main": {
+      "type": "s-collection",
+      "settings": {
+        "image": "shopify://shop_images/stilla-collection.webp",
+        "menu": "stilla-collections",
+        "per_page": 24
+      },
+      "blocks": {
+        "t0": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/stilla-life-park.webp",
+            "caption": "Morning walks, Södermalm",
+            "after": 4,
+            "right": false
+          }
+        },
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/stilla-life-stretch.webp",
+            "caption": "Park session",
+            "after": 8,
+            "right": true
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

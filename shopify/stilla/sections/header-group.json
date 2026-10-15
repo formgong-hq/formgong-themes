@@ -1,0 +1,37 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "s-header",
+      "settings": {
+        "wordmark": "STILLA",
+        "menu": "stilla-main"
+      },
+      "blocks": {
+        "studio": {
+          "type": "switch",
+          "settings": {
+            "label": "Studio",
+            "link": "/#studio"
+          }
+        },
+        "shop": {
+          "type": "switch",
+          "settings": {
+            "label": "Shop",
+            "link": "shopify://collections/stilla",
+            "current": true
+          }
+        }
+      },
+      "block_order": [
+        "studio",
+        "shop"
+      ]
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

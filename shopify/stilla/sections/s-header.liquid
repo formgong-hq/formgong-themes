@@ -1,0 +1,57 @@
+{%- comment -%} Stilla header: the optional section switch above, then wordmark, centred menu and icons. {%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <nav class="s-switch" aria-label="{{ 'stilla.header.switch' | t }}">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.link | default: routes.root_url }}"{% if block.settings.current %} aria-current="true"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+    {%- endfor -%}
+  </nav>
+{%- endif -%}
+<header class="s-hdr">
+  <div class="s-hdr-in">
+    <button class="s-ico s-burger" type="button" aria-expanded="false" aria-controls="s-nav"><span class="s-sr">{{ 'stilla.header.menu' | t }}</span>{% render 's-icon', name: 'menu' %}</button>
+    <a class="s-logo" href="{{ routes.root_url }}">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 600 | image_tag: width: settings.logo_width, alt: shop.name, loading: 'eager' }}
+      {%- else -%}
+        {{ section.settings.wordmark | default: shop.name }}
+      {%- endif -%}
+    </a>
+    <nav class="s-nav" id="s-nav" aria-label="{{ 'stilla.header.main' | t }}">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    <div class="s-icons">
+      <a class="s-ico s-hide-m" href="{{ routes.search_url }}"><span class="s-sr">{{ 'stilla.header.search' | t }}</span>{% render 's-icon', name: 'search' %}</a>
+      <a class="s-ico" href="{{ routes.cart_url }}"><span class="s-sr">{{ 'stilla.header.bag' | t }}</span>{% render 's-icon', name: 'bag' %}<span class="s-n" data-bag-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span></a>
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="s-ico s-hide-m" href="{{ routes.account_url }}"><span class="s-sr">{{ 'stilla.header.account' | t }}</span>{% render 's-icon', name: 'account' %}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "s-section-contents",
+  "tag": "div",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "wordmark", "label": "Wordmark", "info": "Shown when no logo is set in Theme settings. Leave empty to show the store name." },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ],
+  "blocks": [
+    {
+      "type": "switch",
+      "name": "Switch link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "checkbox", "id": "current", "label": "Show as the current part of the site", "default": false }
+      ]
+    }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

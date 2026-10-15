@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "main": {
+      "type": "s-collection",
+      "settings": {
+        "per_page": 24
+      },
+      "blocks": {
+        "t0": {
+          "type": "tile",
+          "settings": {
+            "caption": "Morning walks, Södermalm",
+            "after": 4,
+            "right": false
+          }
+        },
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "caption": "Park session",
+            "after": 8,
+            "right": true
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
