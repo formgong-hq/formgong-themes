@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"layout": { "contentSize": "680px", "wideSize": "1200px" },
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{ "slug": "bg", "color": "#1c1c1c", "name": "Background" },
+				{ "slug": "line", "color": "#404040", "name": "Line" },
+				{ "slug": "text", "color": "#fafafa", "name": "Text" },
+				{ "slug": "soft", "color": "#dadadc", "name": "Soft text" },
+				{ "slug": "muted", "color": "#b0b0b7", "name": "Muted text" },
+				{ "slug": "dim", "color": "#909094", "name": "Dim text" },
+				{ "slug": "accent", "color": "#43cabc", "name": "Accent" }
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{ "name": "Montserrat", "slug": "montserrat", "fontFamily": "\"Montserrat\", -apple-system, system-ui, \"Segoe UI\", sans-serif" },
+				{ "name": "IBM Plex Mono", "slug": "ibm-plex-mono", "fontFamily": "\"IBM Plex Mono\", ui-monospace, monospace" }
+			]
+		},
+		"spacing": { "units": [ "px", "rem", "%", "vw" ] }
+	},
+	"styles": {
+		"color": { "background": "var(--wp--preset--color--bg)", "text": "var(--wp--preset--color--text)" },
+		"typography": { "fontFamily": "var(--wp--preset--font-family--montserrat)" },
+		"spacing": { "blockGap": "1.25rem" }
+	},
+	"templateParts": [
+		{ "name": "header", "area": "header", "title": "Header" },
+		{ "name": "footer", "area": "footer", "title": "Footer" }
+	]
+}

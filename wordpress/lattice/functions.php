@@ -1,0 +1,70 @@
+<?php
+/**
+ * Lattice theme setup: styles, the page script, editor styles, the pattern category and small front-end helpers.
+ *
+ * @package Lattice
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Editor styles, so the Site Editor shows the theme as visitors see it.
+ */
+function lattice_setup() {
+	add_editor_style( array( 'assets/css/fonts.css', 'assets/css/lattice.css', 'assets/css/wordpress.css' ) );
+}
+add_action( 'after_setup_theme', 'lattice_setup' );
+
+/**
+ * Front-end styles (the fonts, the Lattice stylesheet, then the WordPress additions) and the page script
+ * (grid layout, intro, line drawing, orb, project switcher, rotator, quotes, clock; it honours reduced motion).
+ */
+function lattice_assets() {
+	$version = wp_get_theme()->get( 'Version' );
+	wp_enqueue_style( 'lattice-fonts', get_theme_file_uri( 'assets/css/fonts.css' ), array(), $version );
+	wp_enqueue_style( 'lattice', get_theme_file_uri( 'assets/css/lattice.css' ), array( 'lattice-fonts' ), $version );
+	wp_enqueue_style( 'lattice-wordpress', get_theme_file_uri( 'assets/css/wordpress.css' ), array( 'lattice' ), $version );
+	wp_enqueue_script( 'lattice', get_theme_file_uri( 'assets/js/lattice.js' ), array(), $version, true );
+	wp_add_inline_script( 'lattice', 'var LATTICE_IMG = ' . wp_json_encode( get_theme_file_uri( 'assets/img/' ) ) . ';', 'before' );
+}
+add_action( 'wp_enqueue_scripts', 'lattice_assets' );
+
+/**
+ * As the original, before the first paint: the layout mode (L = pinned screens, F = flowing page), the line drawing,
+ * and the intro (home page only, once per tab session, never for reduced motion). Then the two main font files.
+ */
+function lattice_head() {
+	$intro = is_front_page() ? 'if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !sessionStorage.getItem("lattice-intro")) root.classList.add("js-intro");' : '';
+	wp_print_inline_script_tag(
+		'(function () { var root = document.documentElement; root.classList.add("js", innerWidth > 860 ? "L" : "F");'
+		. ' try { ' . $intro . ' } catch (e) {}'
+		. ' if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) root.classList.add("lines"); })();'
+	);
+	foreach ( array( 'montserrat-latin.woff2', 'ibm-plex-mono-latin.woff2' ) as $font ) {
+		printf(
+			'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+			esc_url( get_theme_file_uri( 'assets/fonts/' . $font ) )
+		);
+	}
+}
+add_action( 'wp_head', 'lattice_head', 1 );
+
+/**
+ * Pattern category for the Lattice sections.
+ */
+function lattice_pattern_category() {
+	register_block_pattern_category( 'lattice', array( 'label' => __( 'Lattice', 'lattice' ) ) );
+}
+add_action( 'init', 'lattice_pattern_category' );
+
+/**
+ * Mark the menu link of the page being viewed (aria-current), as Orrery does. The menu links are custom URLs,
+ * which WordPress does not mark as current itself. The demo menu links to sections of the home page, which the
+ * original marks with no colour, so only a link to another page (added by the site owner) gets the accent.
+ */
+function lattice_current_menu_link() {
+	wp_print_inline_script_tag( "document.querySelectorAll('.lt-nav a[href]').forEach(function(a){if(a.origin===location.origin&&a.pathname===location.pathname&&!a.hash){a.setAttribute('aria-current','page');}});" );
+}
+add_action( 'wp_footer', 'lattice_current_menu_link' );
