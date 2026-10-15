@@ -15,6 +15,7 @@ email and Telegram.
 | [Lattice Estate](https://formgong.com/en/website-templates/lattice-estate/) (luxury home builder) | [lattice-estate-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/lattice-estate-wordpress-1.0.0) | in progress |
 | [Lattice Atelier](https://formgong.com/en/website-templates/lattice-atelier/) (windows and doors maker) | [lattice-atelier-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/lattice-atelier-wordpress-1.0.0) | in progress |
 | [Soglia](https://formgong.com/en/website-templates/soglia/) (designer windows and doors) | [soglia-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/soglia-wordpress-1.0.0) | in progress |
+| [Halftone](https://formgong.com/en/website-templates/halftone/) (architecture studio) | [halftone-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/halftone-wordpress-1.0.0) | in progress |
 
 More templates are on the way.
 
@@ -42,7 +43,7 @@ content and as a clean install, with a real form submission. The checks are list
 
 ## License
 
-WordPress themes have the license of their template; Craftline, Orrery, Shoal, Lattice, Lattice Estate, Lattice Atelier and Soglia are MIT. Shopify themes are free to use on any
+WordPress themes have the license of their template; Craftline, Orrery, Shoal, Lattice, Lattice Estate, Lattice Atelier, Soglia and Halftone are MIT. Shopify themes are free to use on any
 number of stores but not to resell; see each theme's LICENSE.md. Fonts and other credits are in each theme's readme.txt.
 
 Something broken or missing? Open an issue or write to support@formgong.com. We'd like to hear what you think.
