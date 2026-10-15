@@ -1,0 +1,396 @@
+/*
+ * WordPress additions to the Soglia stylesheet (assets/css/soglia.css, the template's own CSS as it is).
+ * This file styles what WordPress renders itself (the Navigation block, the Formgong plugin form, pages, posts,
+ * lists, search and 404) and resets the gaps WordPress adds between blocks.
+ */
+
+/* Template parts, <main> and the patterns follow each other with no gap, as in the original. */
+.wp-site-blocks > * { margin-block-start: 0; }
+.sg-part { display: contents; }
+.sg-main.sg-main > *, .contacts.contacts > *, .top.top > * { margin-block: 0; }
+.sg-page:focus, .sg-main:focus { outline: none; }
+
+/* WordPress's global link style underlines links; the template's links have no underline. */
+body a:where(:not(.wp-element-button)) { color: inherit; text-decoration: none; }
+
+/* The footer is a template part after <main>: on the home page it belongs to the Contacts view, as the original. */
+html.on-home footer.foot { display: none; }
+
+/* ---------- Header ---------- */
+
+/* Pages and posts: the bar keeps the paper strip of the Contacts view; the crumb belongs to Contacts only. */
+.on-page .top::before { content: ""; position: absolute; inset: 0; background: var(--paper); border-bottom: 1px solid var(--line); z-index: -1; }
+.menu-open.on-page .top::before { display: none; }
+.on-page .crumb { display: none; }
+
+/* The admin bar pushes the fixed bar and the open menu down for signed-in editors. */
+.admin-bar .top { top: var(--wp-admin--admin-bar--height, 32px); }
+
+/* The "Menu" square holds the Navigation block; its button fills the square and reads "Menu". */
+.sg-menu-cell .sg-nav { position: static; width: 100%; height: 100%; }
+.sg-menu-cell .sg-nav .wp-block-navigation__responsive-container-open {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--paper);
+	font: inherit;
+	letter-spacing: inherit;
+	text-transform: inherit;
+	cursor: pointer;
+}
+.sg-nav :is(.wp-block-navigation__responsive-container-open, .wp-block-navigation__responsive-container-close) svg { display: none; }
+/* Without the script the buttons still read "Menu" and "Close". */
+.sg-nav .wp-block-navigation__responsive-container-open:not([data-sg])::before { content: "Menu"; }
+.sg-nav .wp-block-navigation__responsive-container-close:not([data-sg])::before { content: "Close"; }
+
+/* ---------- The open menu = the original nav.menu.open ----------
+   Measured on soglia.formgong.com (2026-10-15) at 1440x900 and 390x844. Wide: the whole screen in #222, three
+   columns (26.5vw | the rest | 18.5vw) split by hairlines; the five big links from the top of column 1, "Write to us"
+   and "Info" at its foot; the three product blocks share column 2 in thirds; "Follow" at the top of column 3,
+   "Languages" and "Info" at its foot. Narrow (< 900 px): one scrolling column in the same order, first link at
+   (16, 72), links 26 px with 31.2 px rows, no underline. "Close" sits in the "Menu" square, the name and "Write" fade.
+   The doubled classes (.wp-block-navigation, .is-menu-open.is-menu-open) beat WordPress's own overlay rules, which carry
+   up to five classes (:not(.disable-default-overlay), .has-child) and set colours with !important inherit. */
+.sg-nav.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open:not(.disable-default-overlay) {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	display: block;
+	padding: 0;
+	overflow: hidden;
+	background: #222;
+	color: var(--paper);
+	font: 500 max(12px, var(--r))/1.5 var(--font);
+	letter-spacing: normal;
+	text-transform: none;
+	animation: sg-menu-open .9s var(--ease) both;
+}
+.admin-bar .sg-nav.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open:not(.disable-default-overlay) { top: var(--wp-admin--admin-bar--height, 32px); }
+@keyframes sg-menu-open { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open :is(.wp-block-navigation__responsive-close, .wp-block-navigation__responsive-dialog, .wp-block-navigation__responsive-container-content) {
+	position: static;
+	display: block;
+	width: auto;
+	max-width: none;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	flex-wrap: nowrap;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	gap: 0;
+}
+/* Column lines: after column 1 and before column 3. */
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__container::before,
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__container::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line-ink); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__container::before { left: 26.5vw; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__container::after { left: calc(100% - 18.5vw); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation-item { display: block; margin: 0; padding: 0; color: var(--paper); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation-item__content { padding: 0; color: inherit; text-decoration: none; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__submenu-icon { display: none; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__submenu-container {
+	position: static;
+	display: block;
+	width: auto;
+	min-width: 0;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	opacity: 1;
+	visibility: visible;
+	overflow: visible;
+}
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item { display: block; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content { display: inline; padding: 0; }
+
+/* Column 1 (the original .m-a): the big links, then "Write to us" and "Info" at the foot. */
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open :is(li.sg-mlink, li.sg-mfoot) { flex: none; width: 26.5vw; padding-inline: calc(var(--r) * 2.75); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mlink:first-child { padding-top: calc(var(--sq) + var(--r) * .5); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mlink > .wp-block-navigation-item__content { display: block; width: fit-content; font-size: var(--t); font-weight: 500; line-height: 1.05; letter-spacing: -.02em; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mlink > a[aria-current="page"] { color: rgba(255, 255, 255, .45); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-write { margin-top: auto; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-info { margin-top: calc(var(--r) * 3); padding-bottom: calc(var(--r) * 2.75); }
+/* Box titles ("Write to us", "Info", "Follow", ...): the original <p class="caps">, not links. */
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open :is(li.sg-mfoot, li.sg-mside) > .wp-block-navigation-item__content {
+	display: block;
+	margin-bottom: calc(var(--r) * 1.2);
+	font-size: var(--caps);
+	font-weight: 500;
+	line-height: 1.05;
+	letter-spacing: .02em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, .55);
+	pointer-events: none;
+}
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-write .wp-block-navigation__submenu-container .wp-block-navigation-item__content { font-size: var(--t); font-weight: 500; line-height: 1.05; letter-spacing: -.02em; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-info .wp-block-navigation__submenu-container { font-size: max(10px, calc(var(--r) * .85)); line-height: 1.6; }
+
+/* Column 2 (the original .m-mid): three product blocks in thirds, the small line above the title is the item's
+   description, the links in the right half, "View all" at the foot. */
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock {
+	position: absolute;
+	top: 0;
+	left: calc(26.5vw + 1px);
+	right: 18.5vw;
+	height: calc((100% - 2px) / 3);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto 1fr;
+	padding: calc(var(--r) * 1.5) calc(var(--r) * 5.25) calc(var(--r) * 1.5 + max(10px, calc(var(--r) * .85)) * 1.5 + 5px);
+}
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock + li.sg-mblock { top: calc((100% - 2px) / 3); height: calc((100% - 2px) / 3 + 1px); border-top: 1px solid var(--line-ink); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock + li.sg-mblock + li.sg-mblock { top: calc((100% - 2px) * 2 / 3 + 1px); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock > .wp-block-navigation-item__content { display: contents; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock .wp-block-navigation-item__description {
+	display: block;
+	grid-row: 1;
+	grid-column: 1;
+	margin-bottom: calc(var(--r) * 1.2);
+	font-size: var(--caps);
+	font-weight: 500;
+	line-height: 1.05;
+	letter-spacing: .02em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, .55);
+}
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock > a > .wp-block-navigation-item__label { grid-row: 2; grid-column: 1 / -1; font-size: var(--t); font-weight: 500; line-height: 1.05; letter-spacing: -.02em; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock > .wp-block-navigation__submenu-container { grid-row: 3; grid-column: 2; align-self: center; font-size: max(10px, calc(var(--r) * .85)); line-height: 1.7; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock li.sg-view { position: absolute; left: calc(var(--r) * 5.25); bottom: calc(var(--r) * 1.5); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock li.sg-view > .wp-block-navigation-item__content { display: block; width: fit-content; padding-bottom: 4px; border-bottom: 1px solid currentColor; line-height: 1.5; }
+
+/* Column 3 (the original .m-side): "Follow" at the top, "Languages" and "Info" at the foot. */
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mside {
+	position: absolute;
+	left: calc(100% - 18.5vw + 1px);
+	right: 0;
+	padding: calc(var(--r) * 1.5) calc(var(--r) * 3.5);
+	font-size: max(10px, calc(var(--r) * .85));
+	line-height: 1.7;
+}
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-follow { top: 0; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-legal { bottom: 0; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-lang { bottom: calc(var(--r) * 4.2 + var(--caps) * 1.05 + max(10px, calc(var(--r) * .85)) * 3.4); }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-lang li.sg-on > .wp-block-navigation-item__content { border-bottom: 1px solid currentColor; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open :is(li.sg-mblock li, li.sg-mside li, li.sg-info li) > a:hover { color: rgba(255, 255, 255, .6); }
+
+/* The columns rise in, as the original replays them on every opening. */
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open :is(li.sg-mlink, li.sg-mfoot) { animation: m-in .9s var(--ease) both; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock { animation: m-in .9s var(--ease) .08s both; }
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mside { animation: m-in .9s var(--ease) .16s both; }
+
+/* "Close": where "Menu" was, in the same square, over the menu. */
+.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__responsive-container-close {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: auto;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(var(--r) * 7.25);
+	height: var(--sq);
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--paper);
+	font-size: var(--caps);
+	font-weight: 500;
+	line-height: 1.05;
+	letter-spacing: .02em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.admin-bar .sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__responsive-container-close { top: var(--wp-admin--admin-bar--height, 32px); }
+
+@media (max-width: 899px) {
+	.sg-nav.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open:not(.disable-default-overlay) { overflow-y: auto; overscroll-behavior: contain; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open :is(.wp-block-navigation__responsive-close, .wp-block-navigation__responsive-dialog, .wp-block-navigation__responsive-container-content) { height: auto; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__container { display: block; height: auto; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__container::before,
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__container::after { display: none; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open :is(li.sg-mlink, li.sg-mfoot) { width: auto; padding-inline: 16px; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mlink:first-child { padding-top: calc(var(--sq) + 16px); }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-write { margin-top: 28px; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-info { margin-top: 30px; padding-bottom: 28px; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open :is(li.sg-mblock, li.sg-mblock + li.sg-mblock, li.sg-mblock + li.sg-mblock + li.sg-mblock, li.sg-mside) { position: static; height: auto; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock { grid-template-columns: 1fr; grid-template-rows: none; gap: 6px; padding: 22px 16px; border-top: 1px solid var(--line-ink); }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock > .wp-block-navigation__submenu-container { grid-column: 1; grid-row: 3; align-self: auto; margin: 10px 0 0; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mblock li.sg-view { position: static; margin-top: 20px; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-mside { padding: 22px 16px; }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open li.sg-follow { border-top: 1px solid var(--line-ink); }
+	.sg-nav.wp-block-navigation .is-menu-open.is-menu-open .wp-block-navigation__responsive-container-close { width: 56px; }
+}
+
+/* ---------- The Formgong plugin form, set like the original rows (Contacts view) ---------- */
+/* The original form is a stack of rows under hairlines: the small label in the first 27 units (a line after it),
+   the field in big type, then the ink "Send request" box at the right. The plugin's form keeps that look. */
+.sg-form .formgong-form.formgong-form {
+	display: block;
+	max-width: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--ink);
+	font: 500 max(12px, var(--r))/1.5 var(--font);
+}
+.sg-form .formgong-form.formgong-form > * { margin: 0; }
+/* The view already has its heading, so the form's own heading is visually hidden. */
+.sg-form .formgong-form.formgong-form > h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.sg-form .formgong-form.formgong-form .formgong-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.sg-form .formgong-form.formgong-form > label {
+	position: relative;
+	display: grid;
+	grid-template-columns: calc(var(--r) * 15.75) 1fr;
+	align-items: center;
+	min-height: calc(var(--r) * 10);
+	padding: 0 0 0 calc(var(--r) * 11.25);
+	border-top: 1px solid var(--line);
+	font-size: max(10px, calc(var(--r) * .85));
+	font-weight: 500;
+	line-height: 1.5;
+}
+.sg-form .formgong-form.formgong-form > label::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--r) * 27 - 1px); width: 1px; background: var(--line); }
+.sg-form .formgong-form.formgong-form > label:focus-within { color: var(--mute); }
+.sg-form .formgong-form.formgong-form :is(input:not([type="hidden"]):not([type="checkbox"]), select, textarea) {
+	grid-column: 2;
+	align-self: stretch;
+	width: 100%;
+	min-width: 0;
+	margin: 0;
+	padding: 0 calc(var(--r) * 2) 0 calc(var(--r) * 3.5);
+	border: 0;
+	border-radius: 0;
+	outline: none;
+	background: transparent;
+	color: var(--ink);
+	font: 500 var(--t)/1.05 var(--font);
+	letter-spacing: -.02em;
+	box-shadow: none;
+}
+.sg-form .formgong-form.formgong-form > label:has(textarea) { align-items: start; padding-top: calc(var(--r) * 3.6); }
+.sg-form .formgong-form.formgong-form textarea { min-height: calc(var(--r) * 20); margin-top: calc(var(--r) * -3.6); padding-top: calc(var(--r) * 3); resize: vertical; }
+.sg-form .formgong-form.formgong-form ::placeholder { color: var(--ph); }
+.sg-form .formgong-form.formgong-form button[type="submit"] {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(var(--r) * 18);
+	height: calc(var(--r) * 5.25);
+	min-height: 44px;
+	margin: calc(var(--r) * 4) calc(var(--r) * 11.25) calc(var(--r) * 4) auto;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: var(--ink);
+	color: var(--paper);
+	font-size: var(--caps);
+	font-weight: 500;
+	line-height: 1.05;
+	letter-spacing: .02em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.sg-form .formgong-form.formgong-form > button[type="submit"] { position: relative; }
+.sg-form .formgong-form.formgong-form > label:last-of-type { border-bottom: 1px solid var(--line); }
+.sg-form .formgong-form.formgong-form .formgong-note { padding: var(--r) calc(var(--r) * 11.25) 0; font-size: max(12px, var(--r)); color: var(--mute); }
+.sg-form .formgong-missing { margin: 0; padding: calc(var(--r) * 2.4) calc(var(--r) * 11.25); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--mute); }
+@media (max-width: 899px) {
+	.sg-form .formgong-form.formgong-form > label { grid-template-columns: 1fr; min-height: 0; padding: 16px 0 0 16px; }
+	.sg-form .formgong-form.formgong-form > label::before { display: none; }
+	.sg-form .formgong-form.formgong-form :is(input:not([type="hidden"]):not([type="checkbox"]), select, textarea) { grid-column: 1; margin-left: -16px; width: calc(100% + 16px); padding: 8px 16px 18px; font-size: 22px; }
+	.sg-form .formgong-form.formgong-form > label:has(textarea) { padding-top: 16px; }
+	.sg-form .formgong-form.formgong-form textarea { min-height: 160px; margin-top: 0; padding-top: 8px; }
+	.sg-form .formgong-form.formgong-form button[type="submit"] { width: calc(100% - 32px); margin: 24px 16px; }
+	.sg-form .formgong-form.formgong-form .formgong-note, .sg-form .formgong-missing { padding-left: 16px; padding-right: 16px; }
+}
+
+/* ---------- Pages, posts, lists, search, 404: the Contacts view's type, rows and hairlines ---------- */
+
+.sg-page { padding-top: var(--sq); }
+.sg-title { margin: 0 0 calc(var(--r) * 5); padding: calc(var(--r) * 5) calc(var(--r) * 2.75) 0 calc(var(--r) * 10.7); font-size: min(var(--huge), calc(var(--r) * 7)); font-weight: 500; line-height: 1.05; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.sg-title a:hover { color: var(--mute); }
+
+/* One row of the Contacts view: the small meta cell (date, categories) and the content. */
+.sg-body { display: grid; grid-template-columns: calc(var(--r) * 27) 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.sg-meta { padding: calc(var(--r) * 1.4) var(--r) calc(var(--r) * 4) calc(var(--r) * 11.25); border-right: 1px solid var(--line); font-size: max(10px, calc(var(--r) * .85)); }
+.sg-meta > * { margin: 0; }
+.sg-meta a:hover { color: var(--mute); }
+.sg-content { min-width: 0; padding: calc(var(--r) * 2.4) calc(var(--r) * 11.25) calc(var(--r) * 4) calc(var(--r) * 8.75); }
+.sg-content > * { margin-block: 0; }
+.sg-img { margin: 0 0 calc(var(--r) * 3); }
+.sg-img img { display: block; width: 100%; height: auto; }
+
+.sg-prose { max-width: 44em; font-size: max(15px, calc(var(--r) * 1.25)); font-weight: 400; line-height: 1.55; }
+.sg-prose > * + * { margin-block-start: 1em; }
+.sg-prose > :first-child { margin-top: 0; }
+.sg-prose :is(h2, h3, h4) { margin-block: 1.6em .5em; font-weight: 500; line-height: 1.1; letter-spacing: -.02em; }
+.sg-prose h2 { font-size: max(24px, calc(var(--t) * .8)); }
+.sg-prose h3 { font-size: max(19px, calc(var(--r) * 1.8)); }
+.sg-prose :is(ul, ol) { padding-left: 1.2em; }
+.sg-prose ul { list-style: square; }
+.sg-prose a { border-bottom: 1px solid currentColor; }
+.sg-prose a:hover { color: var(--mute); }
+.sg-prose blockquote { margin-inline: 0; padding-left: calc(var(--r) * 2); border-left: 1px solid var(--line); color: var(--mute); }
+.sg-prose figure { margin: 0; }
+.sg-prose img { max-width: 100%; height: auto; }
+.sg-prose :is(code, pre) { font-size: .875em; }
+
+/* Comments under the row; the group renders empty when comments are closed, then it keeps no margin. */
+.sg-page > .sg-comments { padding: calc(var(--r) * 4) calc(var(--r) * 11.25) 0; }
+.sg-comments:empty { display: none; }
+.sg-comments :is(input:not([type="submit"]), textarea) { width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: 0; background: var(--paper); color: var(--ink); font: 500 16px/1.5 var(--font); }
+.sg-comments .wp-block-post-comments-form input[type="submit"] { height: 44px; padding: 0 calc(var(--r) * 3); border: 0; border-radius: 0; background: var(--ink); color: var(--paper); font-size: var(--caps); font-weight: 500; letter-spacing: .02em; text-transform: uppercase; cursor: pointer; }
+
+/* Lists: one row per post (date | title and summary). */
+.sg-posts { margin: 0; padding: 0; list-style: none; }
+.sg-posts > li { margin: 0; }
+.sg-posts > li + li .sg-body { border-top: 0; }
+.sg-card-title { margin: 0; font-size: var(--t); font-weight: 500; line-height: 1.05; letter-spacing: -.02em; }
+.sg-card-title a:hover { color: var(--mute); }
+.sg-card-sum { margin: var(--r) 0 0; max-width: 44em; font-size: max(13px, var(--r)); color: var(--mute); }
+.sg-card-sum p { margin: 0; }
+.sg-card-sum .wp-block-post-excerpt__more-text { display: none; }
+.sg-pagination { gap: calc(var(--r) * 1.6); padding: calc(var(--r) * 3) calc(var(--r) * 11.25) 0; font-size: max(10px, calc(var(--r) * .85)); }
+.sg-pagination a:hover { color: var(--mute); }
+.sg-pagination .current { color: var(--mute); }
+.sg-empty { margin: 0; padding: 0 calc(var(--r) * 11.25); }
+
+/* Search: a field under a hairline in big type and the ink box, like the form. */
+.sg-searchbar { padding: 0 calc(var(--r) * 2.75) calc(var(--r) * 4) calc(var(--r) * 10.7); }
+.sg-search { max-width: calc(var(--r) * 60); margin: 0; }
+.sg-content .sg-search { margin-top: calc(var(--r) * 3); }
+.sg-search .wp-block-search__inside-wrapper { padding: 0; border: 0; border-bottom: 1px solid var(--ink); background: none; }
+.sg-search input { min-width: 0; height: calc(var(--r) * 5.25); padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--ink); font: 500 max(18px, calc(var(--r) * 1.8))/1.05 var(--font); letter-spacing: -.02em; }
+.sg-search input::placeholder { color: var(--ph); }
+.sg-search button { min-height: 44px; margin: 0; padding: 0 calc(var(--r) * 3); border: 0; border-radius: 0; background: var(--ink); color: var(--paper); font-size: var(--caps); font-weight: 500; letter-spacing: .02em; text-transform: uppercase; }
+
+@media (max-width: 899px) {
+	.sg-title { padding: 40px 16px 0; margin-bottom: 32px; font-size: 40px; }
+	.sg-body { grid-template-columns: 1fr; }
+	.sg-meta { padding: 18px 16px 6px; border-right: 0; }
+	.sg-content { padding: 6px 16px 24px; }
+	.sg-page > .sg-comments { padding: 32px 16px 0; }
+	.sg-card-title { font-size: 22px; }
+	.sg-pagination, .sg-empty { padding-left: 16px; padding-right: 16px; }
+	.sg-searchbar { padding: 0 16px 32px; }
+}
