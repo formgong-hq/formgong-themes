@@ -1,0 +1,339 @@
+/*
+ * WordPress additions to the Lattice Estate stylesheet (assets/css/lattice-estate.css).
+ * Its CSS is plain (no layers); this file styles what WordPress renders itself (the Navigation block, the
+ * Formgong plugin form, pages, posts, lists, search and 404) and resets the gaps WordPress adds between blocks.
+ */
+
+/* Template parts and <main> follow each other with no gap, as in the original. */
+.wp-site-blocks > * { margin-block-start: 0; }
+.le-part { display: contents; }
+.le-main > * { margin-block: 0; }
+.le-main:focus { outline: none; }
+
+/* WordPress's global link style underlines links; the template's links have no underline. */
+body a:where(:not(.wp-element-button)) { color: inherit; text-decoration: none; }
+
+/* ---------- Header: the bar of the original (logo, menu button, clock) ---------- */
+
+/* The admin bar pushes the fixed bar down for signed-in editors. */
+.admin-bar .bar { top: var(--wp-admin--admin-bar--height, 32px); }
+
+/* The bar's boxes keep the template's -1px right and bottom margins (WordPress's block-gap reset would undo them). */
+.bar > .b { margin: 0 -1px -1px 0; }
+
+/* The logo and the clock stay above the open menu, as the original bar (z-index 25) over its menu (20). */
+.bar > .logo, .bar > .bar-cta, .bar > .clock { z-index: 1; }
+
+/* The menu box holds the Navigation block; its button fills the box and shows the original "M". It is not a .b box
+   (the slide-in would give it a transform, and WordPress's fixed overlay would open inside it), so it draws the same
+   frame itself: the .b border and lines, drawn in with the template's "draw" animation, without the slide. */
+.bar > .le-menu-cell { position: relative; padding: 0; border: 1px solid transparent; border-top: 0; margin: 0 -1px -1px 0; min-width: 0; }
+/* The bar's boxes are frosted glass (backdrop-filter). On the menu box that would make it the containing block of
+   WordPress's fixed overlay, which would then open inside the box; so the glass is painted by ::before instead. */
+.bar > .le-menu-cell { isolation: isolate; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.bar > .le-menu-cell::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: rgba(19, 17, 15, 0.82);
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+	pointer-events: none;
+}
+.bar > .le-menu-cell::after {
+	content: "";
+	position: absolute;
+	inset: -1px;
+	pointer-events: none;
+	background:
+		linear-gradient(var(--line), var(--line)) 0 0 / 100% 1px no-repeat,
+		linear-gradient(var(--line), var(--line)) 0 0 / 1px 100% no-repeat,
+		linear-gradient(var(--line), var(--line)) 100% 0 / 1px 100% no-repeat,
+		linear-gradient(var(--line), var(--line)) 0 100% / 100% 1px no-repeat;
+}
+@media (prefers-reduced-motion: no-preference) {
+	html.lines .bar > .le-menu-cell { animation: le-fade 1s var(--ease) both; }
+	html.lines .bar > .le-menu-cell::after { animation: draw 1.1s cubic-bezier(.65, 0, .35, 1) 0.35s both; }
+}
+@keyframes le-fade { from { opacity: 0; } }
+.bar .le-nav { width: 100%; height: 100%; }
+.bar .le-nav .wp-block-navigation__responsive-container-open {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--muted);
+	font: 400 18.5px/1.5 var(--font);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+.bar .le-nav .wp-block-navigation__responsive-container-open:hover { color: var(--text); }
+.bar .le-nav .wp-block-navigation__responsive-container-open svg { display: none; }
+.bar .le-nav .wp-block-navigation__responsive-container-open::before { content: "M"; }
+
+/* The open menu = the original .menu.open, measured on estate.formgong.com at 390x844 (2026-10-15): the whole screen,
+   the page grid behind, the first link at (gut + one cell, mt cells from the top) = (83, 280), one link per cell row
+   (56 px on phones, 75 px on wide screens), Cormorant Garamond 300 at 0.7 cell, uppercase, letter-spacing 0.03em,
+   no underline, the number in front at 14 px from the top of its row; the bar (logo, menu box with "x", clock)
+   stays over it. At 1440x900 the first link sits at (120, 300). --u, --gut and --mt come from the template's script.
+   .wp-block-navigation doubles the specificity: WordPress's own overlay rules tie with a single class and load later. */
+.bar .le-nav.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	display: flex;
+	flex-direction: column;
+	padding: calc(var(--u) * var(--mt, 3)) 0 0 calc(var(--gut) + var(--u));
+	background-color: var(--bg);
+	background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px), linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+	background-size: var(--u) var(--u);
+	background-position: var(--gut) 0;
+	color: var(--text);
+	font: 200 16.5px/1.5 var(--font);
+	animation: le-menu-open 0.8s var(--ease) both;
+}
+.admin-bar .bar .le-nav.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open { top: var(--wp-admin--admin-bar--height, 32px); }
+@keyframes le-menu-open { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-close,
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-dialog {
+	position: static;
+	width: auto;
+	max-width: none;
+	margin: 0;
+	padding: 0;
+}
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-container-content {
+	display: block;
+	padding: 0;
+}
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation__container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0;
+	margin: 0;
+	padding: 0;
+	counter-reset: le-menu;
+}
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation-item { counter-increment: le-menu; }
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation-item__content {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	width: fit-content;
+	height: var(--u);
+	padding: 0;
+	font-family: var(--serif);
+	font-size: calc(var(--u) * 0.7);
+	font-weight: 300;
+	line-height: 1.5;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: var(--text);
+	transition: color 0.3s;
+	animation: le-menu-link 0.8s var(--ease) both;
+	animation-delay: calc(0.15s + var(--i, 0) * 0.06s);
+}
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation-item__content:hover { color: var(--accent); }
+/* The number in front of each link (the original <b>01</b>). */
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation-item__content::before {
+	content: counter(le-menu, decimal-leading-zero);
+	align-self: flex-start;
+	margin-top: 14px;
+	font-family: var(--font);
+	font-size: 12.5px;
+	font-weight: 300;
+	line-height: 1.5;
+	color: var(--dim);
+}
+.bar .le-nav .is-menu-open .wp-block-navigation-item:nth-child(2) > a { --i: 1; }
+.bar .le-nav .is-menu-open .wp-block-navigation-item:nth-child(3) > a { --i: 2; }
+.bar .le-nav .is-menu-open .wp-block-navigation-item:nth-child(4) > a { --i: 3; }
+.bar .le-nav .is-menu-open .wp-block-navigation-item:nth-child(5) > a { --i: 4; }
+.bar .le-nav .is-menu-open .wp-block-navigation-item:nth-child(6) > a { --i: 5; }
+.bar .le-nav .is-menu-open .wp-block-navigation-item:nth-child(n+7) > a { --i: 6; }
+@keyframes le-menu-link { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+/* The current page (a menu link to another page; the demo menu's section links get none, as in the original). */
+.bar .le-nav.wp-block-navigation .is-menu-open [aria-current="page"] { color: var(--accent); }
+
+/* Close button: the original's menu button showing "×", in the same box of the bar (57 x 57 px at 390 px). */
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-container-close {
+	position: fixed;
+	top: 0;
+	left: calc(var(--gut) + 3 * var(--u));
+	right: auto;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(var(--u) + 1px);
+	height: calc(var(--u) + 1px);
+	padding: 0;
+	border: 1px solid var(--line);
+	border-top: 0;
+	background: rgba(19, 17, 15, 0.82);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	color: var(--muted);
+	font: 400 18.5px/1.5 var(--font);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+.admin-bar .bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-container-close { top: var(--wp-admin--admin-bar--height, 32px); }
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-container-close:hover { color: var(--text); }
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-container-close svg { display: none; }
+.bar .le-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-container-close::before { content: "×"; }
+
+/* ---------- The Formgong plugin form, set like the original fields (contact section) ---------- */
+/* The original form is a column of glass panels on grid rows over the team photo; the plugin's form keeps that look:
+   a mono label in each panel, the field below it, and the full-width gold "send" row. */
+.c-form.le-form { display: block; margin: 0 -1px -1px 0; overflow-y: auto; scrollbar-width: none; }
+html.F .c-form.le-form { overflow: visible; }
+.le-form .formgong-form.formgong-form {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 0;
+	gap: 0;
+	border: 0;
+	background: transparent;
+	color: var(--text);
+	font: 200 16.5px/1.5 var(--font);
+}
+/* The section already has its heading, so the form's own heading is visually hidden. */
+.le-form .formgong-form.formgong-form > h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.le-form .formgong-form.formgong-form label {
+	display: grid;
+	gap: 4px;
+	margin: 0 -1px -1px 0;
+	padding: 9px 14px 0;
+	border: 1px solid var(--line-on-photo);
+	background: var(--panel);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	font: 11px/1.4 var(--mono);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--dim);
+	transition: color 0.3s, border-color 0.3s;
+}
+.le-form .formgong-form.formgong-form label:focus-within { position: relative; z-index: 1; border-color: rgba(244, 239, 230, 0.7); color: var(--accent); }
+.le-form .formgong-form.formgong-form input:not([type="hidden"]):not([type="checkbox"]),
+.le-form .formgong-form.formgong-form select,
+.le-form .formgong-form.formgong-form textarea {
+	display: block;
+	width: 100%;
+	min-height: 40px;
+	padding: 4px 0 10px;
+	border: 0;
+	border-radius: 0;
+	outline: none;
+	background: transparent;
+	color: var(--text);
+	font: 200 16.5px/1.5 var(--font);
+	letter-spacing: 0;
+	text-transform: none;
+	appearance: none;
+}
+.le-form .formgong-form.formgong-form textarea { min-height: calc(var(--u) * 1.6); resize: none; }
+.le-form .formgong-form.formgong-form ::placeholder { color: rgba(186, 176, 161, 0.5); }
+.le-form .formgong-form.formgong-form button[type="submit"] {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: calc(var(--u) + 1px);
+	margin: 0 -1px -1px 0;
+	padding: 0 24px;
+	border: 1px solid var(--line-on-photo);
+	border-radius: 0;
+	background: var(--accent);
+	color: var(--bg);
+	font: 400 16.5px/1.5 var(--font);
+	text-transform: none;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+}
+.le-form .formgong-form.formgong-form button[type="submit"]::after { content: "→"; transition: transform 0.4s var(--ease); }
+.le-form .formgong-form.formgong-form button[type="submit"]:hover { background: var(--soft); color: var(--bg); }
+.le-form .formgong-form.formgong-form button[type="submit"]:hover::after { transform: translateX(6px); }
+.le-form .formgong-form.formgong-form .formgong-note { padding: 10px 0 0; font-size: 13px; color: var(--muted); }
+.le-form .formgong-missing { padding: 18px 20px; border: 1px solid var(--line-on-photo); background: var(--panel); font-size: 15px; color: var(--soft); }
+
+/* ---------- Pages, posts, lists, search, 404: the template's grid, type and colours ---------- */
+
+/* One column of whole cells, under the bar, on the same grid lines as the home page. */
+.le-page {
+	width: calc(var(--cols) * var(--u));
+	margin-left: var(--gut);
+	padding-top: calc(var(--u) * 2);
+	min-height: calc(100vh - var(--u) * 3);
+}
+.le-page .le-head { min-height: calc(var(--u) * 2); }
+.le-page .le-head > * { margin: 0; }
+.le-title { margin-top: 6px; font-family: var(--serif); font-size: clamp(34px, 3.4vw, 52px); font-weight: 300; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text); }
+.le-sub { gap: 0.4em; }
+.le-sub a:hover { color: var(--text); }
+
+/* The content box: a bordered box like the home's text boxes, its text in the template's light weight. */
+.le-page .b { margin: 0 -1px -1px 0; }
+.le-box { padding: 28px 32px; }
+.le-img { margin: -28px -32px 28px; }
+.le-img img { display: block; width: 100%; height: auto; }
+.le-prose { max-width: 70ch; font-size: 16.5px; font-weight: 300; line-height: 1.6; color: var(--soft); }
+.le-prose > * + * { margin-block-start: 1em; }
+.le-prose > :first-child { margin-top: 0; }
+.le-prose h2, .le-prose h3, .le-prose h4 { margin-block: 1.6em 0.5em; font-family: var(--serif); font-weight: 300; line-height: 1.1; color: var(--text); }
+.le-prose h2 { font-size: 30px; }
+.le-prose h3 { font-size: 24px; }
+.le-prose ul, .le-prose ol { padding-left: 1.2em; }
+.le-prose ul { list-style: square; }
+.le-prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.le-prose blockquote { padding-left: 20px; border-left: 1px solid var(--line); color: var(--muted); }
+.le-prose figure { margin: 0; }
+.le-prose img { max-width: 100%; height: auto; }
+.le-prose code, .le-prose pre { font: 13px/1.6 var(--mono); }
+
+/* Comments: under the box; the group renders empty when comments are closed, then it must keep no margin. */
+.le-page > .le-comments { margin-top: var(--u); }
+.le-comments { font-weight: 300; color: var(--soft); }
+.le-comments:empty { display: none; }
+.le-comments input, .le-comments textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--line); background: transparent; color: var(--text); font: 200 16.5px/1.5 var(--font); }
+.le-comments .wp-block-post-comments-form input[type="submit"] { width: auto; padding: 0 24px; height: var(--u); cursor: pointer; }
+
+/* Lists: one box per post, four cells wide and three tall on wide screens, the full width on phones. */
+.le-posts { display: grid; grid-template-columns: repeat(var(--cols), var(--u)); grid-auto-rows: var(--u); margin: 0; padding: 0; list-style: none; }
+.le-posts > li { grid-column: span 4; grid-row: span 3; margin: 0; }
+html.F .le-posts > li { grid-column: 1 / -1; }
+.le-card { display: flex; flex-direction: column; gap: 8px; height: calc(100% + 1px); padding: 20px 24px; overflow: hidden; }
+.le-card-date { margin: 0; }
+.le-card-title { margin: 0; font-family: var(--serif); font-size: 26px; font-weight: 300; line-height: 1.1; }
+.le-card-title a:hover { color: var(--accent); }
+.le-card-sum { margin: 0; font-size: 15px; color: var(--muted); }
+.le-card-sum p { margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.le-card-sum .wp-block-post-excerpt__more-text { display: none; }
+.le-pagination { gap: 1rem; margin-top: var(--u); font-weight: 300; color: var(--muted); }
+.le-pagination a:hover, .le-pagination .current { color: var(--accent); }
+.le-empty { color: var(--muted); }
+
+/* Search box: a field and a button on the grid, like the form. */
+.le-search { margin-top: 20px; max-width: calc(var(--u) * 6); }
+.le-search .wp-block-search__inside-wrapper { border: 1px solid var(--line); padding: 0; }
+.le-search input { height: var(--u); padding: 0 14px; border: 0; background: transparent; color: var(--text); font: 200 16.5px/1.5 var(--font); }
+.le-search button { margin: 0; padding: 0 20px; border: 0; border-left: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--text); font: 300 15px/1.5 var(--font); transition: background-color 0.3s, color 0.3s; }
+.le-search button:hover { background: var(--soft); color: var(--bg); }
+
+/* Footer of pages and posts: the home's footer row, on the grid (on the home page it sits inside the contact section). */
+html .foot.le-foot { display: grid; grid-template-columns: repeat(var(--cols), var(--u)); grid-auto-rows: var(--u); margin: calc(var(--u) * 2) 0 calc(var(--u) * 2) var(--gut); }
+.le-foot > * { grid-column: span 3; }
+html.L .le-foot > [data-le="f-priv"], html.L .le-foot > [data-le="f-terms"] { grid-column: span 2; }
+html.L .le-foot > [data-le="f-credit"] { grid-column: -4 / -1; }
+html.F .le-foot > * { grid-column: span 3; }

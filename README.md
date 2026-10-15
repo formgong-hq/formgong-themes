@@ -12,6 +12,7 @@ email and Telegram.
 | [Orrery](https://formgong.com/en/website-templates/orrery/) (analytics firm, consultancy) | [orrery-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/orrery-wordpress-1.0.0) | in progress |
 | [Shoal](https://formgong.com/en/website-templates/shoal/) (real estate agent) | [shoal-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/shoal-wordpress-1.0.0) | in progress |
 | [Lattice](https://formgong.com/en/website-templates/lattice/) (developer or studio portfolio) | [lattice-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/lattice-wordpress-1.0.0) | in progress |
+| [Lattice Estate](https://formgong.com/en/website-templates/lattice-estate/) (luxury home builder) | [lattice-estate-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/lattice-estate-wordpress-1.0.0) | in progress |
 
 More templates are on the way.
 
@@ -39,7 +40,7 @@ content and as a clean install, with a real form submission. The checks are list
 
 ## License
 
-WordPress themes have the license of their template; Craftline, Orrery, Shoal and Lattice are MIT. Shopify themes are free to use on any
+WordPress themes have the license of their template; Craftline, Orrery, Shoal, Lattice and Lattice Estate are MIT. Shopify themes are free to use on any
 number of stores but not to resell; see each theme's LICENSE.md. Fonts and other credits are in each theme's readme.txt.
 
 Something broken or missing? Open an issue or write to support@formgong.com. We'd like to hear what you think.

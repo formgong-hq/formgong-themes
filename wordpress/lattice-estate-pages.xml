@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- WordPress eXtended RSS: Lattice Estate demo Home page and menu. Tools → Import → WordPress. -->
+<rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/">
+  <channel>
+<title>Veranthe Homes</title>
+<link>https://example.com</link>
+<description/>
+<pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+<language>en-US</language>
+<wp:wxr_version>1.2</wp:wxr_version>
+<wp:base_site_url>https://example.com</wp:base_site_url>
+<wp:base_blog_url>https://example.com</wp:base_blog_url>
+<generator>https://wordpress.org/?v=7.1.3</generator>
+<item>
+  <title><![CDATA[Main]]></title>
+  <link>https://example.com/navigation/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/navigation/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:navigation-link {"label": "The home", "url": "/#top", "kind": "custom", "className": "le-go-0"} /--><!-- wp:navigation-link {"label": "The build", "url": "/#top", "kind": "custom", "className": "le-go-1"} /--><!-- wp:navigation-link {"label": "The drawing", "url": "/#top", "kind": "custom", "className": "le-go-3"} /--><!-- wp:navigation-link {"label": "Your idea", "url": "/#contact", "kind": "custom"} /-->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>4</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>navigation</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>wp_navigation</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+</item>
+<item>
+  <title><![CDATA[Home]]></title>
+  <link>https://example.com/home/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/home/</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>5</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>home</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+</item>
+  </channel>
+</rss>

@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"layout": { "contentSize": "680px", "wideSize": "1200px" },
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{ "slug": "bg", "color": "#13110f", "name": "Background" },
+				{ "slug": "line", "color": "#3d372f", "name": "Line" },
+				{ "slug": "text", "color": "#f4efe6", "name": "Text" },
+				{ "slug": "soft", "color": "#e6ddce", "name": "Soft text" },
+				{ "slug": "muted", "color": "#bab0a1", "name": "Muted text" },
+				{ "slug": "dim", "color": "#8e8576", "name": "Dim text" },
+				{ "slug": "accent", "color": "#c8a46a", "name": "Accent" }
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{ "name": "Montserrat", "slug": "montserrat", "fontFamily": "\"Montserrat\", -apple-system, system-ui, \"Segoe UI\", sans-serif" },
+				{ "name": "Cormorant Garamond", "slug": "cormorant-garamond", "fontFamily": "\"Cormorant Garamond\", Georgia, serif" },
+				{ "name": "IBM Plex Mono", "slug": "ibm-plex-mono", "fontFamily": "\"IBM Plex Mono\", ui-monospace, monospace" }
+			]
+		},
+		"spacing": { "units": [ "px", "rem", "%", "vw" ] }
+	},
+	"styles": {
+		"color": { "background": "var(--wp--preset--color--bg)", "text": "var(--wp--preset--color--text)" },
+		"typography": { "fontFamily": "var(--wp--preset--font-family--montserrat)" },
+		"spacing": { "blockGap": "1.25rem" }
+	},
+	"templateParts": [
+		{ "name": "header", "area": "header", "title": "Header" },
+		{ "name": "footer", "area": "footer", "title": "Footer" }
+	]
+}
