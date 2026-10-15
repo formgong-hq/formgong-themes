@@ -1,0 +1,396 @@
+/*
+ * WordPress additions to the Lattice Atelier stylesheet (assets/css/lattice-atelier.css).
+ * Its CSS is plain (no layers); this file styles what WordPress renders itself (the Navigation block, the
+ * Formgong plugin form, pages, posts, lists, search and 404) and resets the gaps WordPress adds between blocks.
+ */
+
+/* Template parts and <main> follow each other with no gap, as in the original. */
+.wp-site-blocks > * { margin-block-start: 0; }
+.la-part { display: contents; }
+.la-main > * { margin-block: 0; }
+.la-main:focus { outline: none; }
+
+/* WordPress's global link style underlines links; the template's links have no underline. */
+body a:where(:not(.wp-element-button)) { color: inherit; text-decoration: none; }
+
+/* The footer is a template part after <main> (in the original it is the last section inside it). */
+html.F footer.foot { margin-top: calc(var(--u) * 2); }
+
+/* ---------- Header: the bar of the original ("Menu" box, the name, "Write" box) ---------- */
+
+/* The admin bar pushes the fixed bar, the name and the open menu down for signed-in editors. */
+.admin-bar .bar, .admin-bar .logo { top: var(--wp-admin--admin-bar--height, 32px); }
+
+/* The bar's boxes keep the template's -1px right and bottom margins (WordPress's block-gap reset would undo them). */
+.bar > .b { margin: 0 -1px -1px 0; }
+
+/* The menu box (grid cell 1, as the original's A("b-menu", 1, 1, 2, 2)) holds the Navigation block. It is not a
+   .b box: the slide-in would give it a transform and the ink fill a clip-path, and WordPress's fixed overlay would
+   then open inside the box. So the ink fill is painted by ::before and slides in like the original box. */
+.bar > .la-menu-cell { grid-area: 1 / 1 / 2 / 2; position: relative; padding: 0; border: 1px solid transparent; margin: 0 -1px -1px 0; min-width: 0; color: var(--paper); }
+.bar > .la-menu-cell::before { content: ""; position: absolute; inset: -1px; background: var(--ink); pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+	html.lines .bar > .la-menu-cell::before { animation: slide-in 1s var(--ease) both, fill-in 1.1s var(--ease) .1s both; --sx: -56px; }
+	html.lines .bar > .la-menu-cell .wp-block-navigation__responsive-container-open { animation: slide-in 1s var(--ease) both; --sx: -56px; }
+}
+.bar .la-nav { position: static; width: 100%; height: 100%; }
+.bar .la-nav .wp-block-navigation__responsive-container-open {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--paper);
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.bar .la-nav :is(.wp-block-navigation__responsive-container-open, .wp-block-navigation__responsive-container-close) svg { display: none; }
+/* Without the script the buttons still read "Menu" and "Close". */
+.bar .la-nav .wp-block-navigation__responsive-container-open:not([data-la])::before { content: "Menu"; }
+.bar .la-nav .wp-block-navigation__responsive-container-close:not([data-la])::before { content: "Close"; }
+
+/* The open menu = the original .menu.open, measured on atelier.formgong.com (2026-10-15) at 390x844 and 1440x900:
+   the whole screen in ink with its own grid; the five links in one bordered box from the second grid row (phones: the
+   full width, link rows 56 px, first link at (28, 57); wide: --split cells, rows 75 px, first link at (46, 76)), Inter
+   Tight 500 at 0.44 cell, the number in front, a line under every link but the last, no underline; the boxes "Ateliers"
+   and "Follow" (phones: rows 8-9 and 10-11 full width; wide: rows 2-4 and 5-6 right of the links); the "Close" box
+   where "Menu" was, the name and the "Write" box stay over it. --u, --gut, --cols and --split come from the script.
+   .wp-block-navigation doubles the specificity: WordPress's own overlay rules tie with a single class and load later. */
+.bar .la-nav.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	display: block;
+	padding: 0 0 0 var(--gut);
+	overflow: auto;
+	background-color: var(--ink);
+	background-image: linear-gradient(to right, var(--grid-ink) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-ink) 1px, transparent 1px);
+	background-size: var(--u) var(--u);
+	background-position: var(--gut) 0;
+	color: var(--paper);
+	font: 400 16px/1.5 var(--font);
+	--line: var(--line-ink);
+	animation: la-menu-open .9s var(--ease) both;
+}
+.admin-bar .bar .la-nav.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open { top: var(--wp-admin--admin-bar--height, 32px); }
+@keyframes la-menu-open { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+/* Once the page is scrolled past the hero the original's bar strip (dark while the menu is open) covers row 1. */
+html.bar-on .bar .la-nav .is-menu-open::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: var(--u); border-bottom: 1px solid var(--line-ink); background: var(--ink); }
+.bar .la-nav.wp-block-navigation .is-menu-open :is(.wp-block-navigation__responsive-close, .wp-block-navigation__responsive-dialog, .wp-block-navigation__responsive-container-content) {
+	position: static;
+	display: block;
+	width: auto;
+	max-width: none;
+	margin: 0;
+	padding: 0;
+}
+.bar .la-nav.wp-block-navigation .is-menu-open .wp-block-navigation__container {
+	position: relative;
+	display: block;
+	width: calc(var(--cols) * var(--u));
+	margin: 0;
+	padding: var(--u) 0 var(--u);
+	gap: 0;
+	counter-reset: la-menu;
+}
+.bar .la-nav.wp-block-navigation .is-menu-open .wp-block-navigation-item { display: block; margin: 0; padding: 0; }
+
+/* The five links: one box (the original ul.b.mn-links), each link one cell row tall. */
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mlink {
+	width: calc(var(--split) * var(--u) + 1px);
+	border-left: 1px solid var(--line-ink);
+	border-right: 1px solid var(--line-ink);
+	counter-increment: la-menu;
+}
+html.F .bar .la-nav.wp-block-navigation .is-menu-open li.la-mlink { width: calc(var(--cols) * var(--u) + 1px); }
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mlink:not(.la-mlink + .la-mlink) { border-top: 1px solid var(--line-ink); }
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mlink:not(:has(+ .la-mlink)) { border-bottom: 1px solid var(--line-ink); }
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mlink > .wp-block-navigation-item__content {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	height: var(--u);
+	padding: 0 19px;
+	border-bottom: 1px solid var(--line-ink);
+	font-size: calc(var(--u) * .44);
+	font-weight: 500;
+	line-height: 1.5;
+	letter-spacing: -.02em;
+	text-decoration: none;
+	color: var(--paper);
+}
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mlink:not(:has(+ .la-mlink)) > .wp-block-navigation-item__content { border-bottom: 0; }
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mlink > .wp-block-navigation-item__content::before {
+	content: counter(la-menu, decimal-leading-zero);
+	flex: none;
+	width: 24px;
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: .06em;
+	color: rgba(255, 255, 255, .5);
+}
+/* The current page (a menu link to another page; the demo menu's section links get none, as in the original). */
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mlink > [aria-current="page"] { color: rgba(255, 255, 255, .5); }
+
+/* The boxes "Ateliers" and "Follow" (the original .mn-box): submenus of the same menu, shown only in the open menu. */
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 18px 20px;
+	border: 1px solid var(--line-ink);
+	font-size: 15px;
+}
+html.L .bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox { left: calc((var(--split) + 1) * var(--u)); width: calc((var(--cols) - var(--split) - 1) * var(--u) + 1px); }
+html.L .bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox-a { top: var(--u); height: calc(var(--u) * 3 + 1px); }
+html.L .bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox-b { top: calc(var(--u) * 4); height: calc(var(--u) * 2 + 1px); }
+html.F .bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox { left: 0; width: calc(var(--cols) * var(--u) + 1px); height: calc(var(--u) * 2 + 1px); }
+html.F .bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox-a { top: calc(var(--u) * 7); }
+html.F .bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox-b { top: calc(var(--u) * 9); }
+html.F .bar .la-nav.wp-block-navigation .is-menu-open .wp-block-navigation__container { min-height: calc(var(--u) * 12); }
+/* The box title: the original <p class="small"> (not a link). */
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox > .wp-block-navigation-item__content {
+	display: block;
+	margin-bottom: 8px;
+	padding: 0;
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, .5);
+	pointer-events: none;
+}
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox .wp-block-navigation__submenu-icon { display: none; }
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox > .wp-block-navigation__submenu-container {
+	position: static;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	width: 100%;
+	min-width: 0;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	opacity: 1;
+	visibility: visible;
+	overflow: visible;
+}
+.bar .la-nav.wp-block-navigation .is-menu-open li.la-mbox > .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	display: block;
+	width: auto;
+	padding: 0;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--paper);
+}
+
+/* The links and boxes slide in and their frames draw, as the original replays them on every opening. */
+@media (prefers-reduced-motion: no-preference) {
+	.bar .la-nav .is-menu-open :is(li.la-mlink, li.la-mbox) { animation: slide-in 1s var(--ease) .25s both; --sx: -56px; }
+	.bar .la-nav .is-menu-open li.la-mbox { --sx: 56px; }
+	.bar .la-nav .is-menu-open li.la-mbox-a { animation-delay: .34s; }
+	.bar .la-nav .is-menu-open li.la-mbox-b { animation-delay: .43s; }
+}
+
+/* Close button: the original's menu box showing "Close", in the same place (57 x 57 px at 390 px, 76 x 76 at 1440). */
+.bar .la-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-container-close {
+	position: fixed;
+	top: 0;
+	left: var(--gut);
+	right: auto;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(var(--u) + 1px);
+	height: calc(var(--u) + 1px);
+	padding: 0;
+	border: 0;
+	background: var(--ink);
+	color: var(--paper);
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.admin-bar .bar .la-nav.wp-block-navigation .is-menu-open .wp-block-navigation__responsive-container-close { top: var(--wp-admin--admin-bar--height, 32px); }
+
+/* ---------- The Formgong plugin form, set like the original fields (contact section) ---------- */
+/* The original form is a stack of bordered rows on the grid: a small label in the first two cells, the field after
+   a line, and the ink "Send request" box at the right. The plugin's form keeps that look. */
+.k-form.la-form { display: block; margin: 0; }
+.la-form .formgong-form.formgong-form {
+	display: grid;
+	grid-template-columns: 1fr calc(var(--u) * 3);
+	grid-auto-rows: minmax(var(--u), auto);
+	max-width: none;
+	margin: 0;
+	padding: 0;
+	gap: 0;
+	border: 0;
+	background: transparent;
+	color: var(--ink);
+	font: 400 16px/1.5 var(--font);
+}
+.la-form .formgong-form.formgong-form > * { grid-column: 1 / -1; margin: 0; }
+/* The section already has its heading, so the form's own heading is visually hidden. */
+.la-form .formgong-form.formgong-form > h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.la-form .formgong-form.formgong-form > label {
+	position: relative;
+	display: grid;
+	grid-template-columns: calc(var(--u) * 2) 1fr;
+	align-items: center;
+	min-height: calc(var(--u) + 1px);
+	margin: 0 -1px -1px 0;
+	padding: 0 0 0 20px;
+	border: 1px solid var(--line);
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.la-form .formgong-form.formgong-form > label::before { content: ""; position: absolute; top: -1px; bottom: -1px; left: calc(var(--u) * 2 - 1px); width: 1px; background: var(--line); }
+.la-form .formgong-form.formgong-form > label:focus-within { z-index: 1; border-color: var(--ink); }
+.la-form .formgong-form.formgong-form > label:focus-within::before { background: var(--ink); }
+.la-form .formgong-form.formgong-form > label:has(textarea) { align-items: start; min-height: calc(var(--u) * 3 + 1px); padding-top: 27px; }
+.la-form .formgong-form.formgong-form input:not([type="hidden"]):not([type="checkbox"]),
+.la-form .formgong-form.formgong-form select,
+.la-form .formgong-form.formgong-form textarea {
+	grid-column: 2;
+	display: block;
+	width: 100%;
+	height: calc(var(--u) - 1px);
+	margin: 0;
+	padding: 0 20px;
+	border: 0;
+	border-radius: 0;
+	outline: none;
+	background: transparent;
+	color: var(--ink);
+	font: 500 calc(var(--u) * .3)/1.3 var(--font);
+	letter-spacing: -.01em;
+	text-transform: none;
+	appearance: none;
+}
+.la-form .formgong-form.formgong-form textarea { height: calc(var(--u) * 3 - 1px); margin-top: -27px; padding-top: 18px; resize: none; }
+.la-form .formgong-form.formgong-form ::placeholder { color: var(--faint); }
+.la-form .formgong-form.formgong-form button[type="submit"] {
+	grid-column: 2;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: auto;
+	height: calc(var(--u) + 1px);
+	margin: 0 -1px -1px 0;
+	padding: 0 20px;
+	border: 0;
+	border-radius: 0;
+	background: var(--ink);
+	color: var(--paper);
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: background-color .3s;
+}
+.la-form .formgong-form.formgong-form button[type="submit"]::after { content: "→"; }
+.la-form .formgong-form.formgong-form button[type="submit"]:hover { background: #000; }
+.la-form .formgong-form.formgong-form .formgong-note { padding: 12px 20px; font-size: 13px; color: var(--muted); }
+.la-form .formgong-missing { margin: 0; padding: 18px 20px; border: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+html.F .la-form .formgong-form.formgong-form > label { padding-left: 14px; }
+html.F .la-form .formgong-form.formgong-form :is(input:not([type="hidden"]):not([type="checkbox"]), textarea) { padding-left: 14px; padding-right: 14px; font-size: 17px; }
+html.F .la-form .formgong-form.formgong-form textarea { padding-top: 16px; margin-top: -21px; }
+html.F .la-form .formgong-form.formgong-form > label:has(textarea) { padding-top: 21px; }
+/* Wide screens: the form fills its grid area from row 2 to the bottom row, as the original, the message box taking
+   the rows left between the fields and the "Send" row. */
+html.L .la-form .formgong-form.formgong-form { display: flex; flex-direction: column; height: 100%; }
+html.L .la-form .formgong-form.formgong-form > label { flex: none; height: calc(var(--u) + 1px); }
+html.L .la-form .formgong-form.formgong-form > label:has(textarea) { flex: 1 1 auto; height: auto; min-height: calc(var(--u) * 2 + 1px); }
+html.L .la-form .formgong-form.formgong-form textarea { position: absolute; top: 0; bottom: 0; right: 0; left: calc(var(--u) * 2); width: auto; height: auto; margin: 0; }
+html.L .la-form .formgong-form.formgong-form button[type="submit"] { flex: none; align-self: flex-end; width: calc(var(--u) * 3 + 1px); }
+/* "Powered by Formgong" stays under the form, outside its rows, as the original (.credit, absolute at top: 100%). */
+
+/* ---------- Pages, posts, lists, search, 404: the template's grid, type and colours ---------- */
+
+/* One column of whole cells, under the bar, on the same grid lines as the home page. */
+.la-page {
+	width: calc(var(--cols) * var(--u));
+	margin-left: var(--gut);
+	padding-top: calc(var(--u) * 2);
+	min-height: calc(100vh - var(--u) * 2);
+}
+.la-page .la-head { min-height: calc(var(--u) * 2); padding-left: 14px; }
+.la-page .la-head > * { margin: 0; }
+.la-head .sub, .la-sub { font-size: 10px; font-weight: 500; line-height: 1.2; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.la-title { margin-top: 8px; font-size: min(calc(var(--u) * 1.1), calc(var(--cols) * var(--u) * .1)); font-weight: 500; line-height: .95; letter-spacing: -.045em; color: var(--ink); }
+.la-sub { gap: .4em; }
+.la-sub a:hover { color: var(--ink); }
+
+/* The content box: a bordered paper box like the home's boxes. */
+.la-page .b { margin: 0 -1px -1px 0; }
+.la-box { padding: 28px 20px; background: var(--paper); }
+.la-img { margin: -28px -20px 28px; }
+.la-img img { display: block; width: 100%; height: auto; }
+.la-prose { max-width: 70ch; font-size: 17px; line-height: 1.6; color: var(--ink); }
+.la-prose > * + * { margin-block-start: 1em; }
+.la-prose > :first-child { margin-top: 0; }
+.la-prose h2, .la-prose h3, .la-prose h4 { margin-block: 1.6em .5em; font-weight: 500; line-height: 1.1; letter-spacing: -.02em; }
+.la-prose h2 { font-size: 30px; }
+.la-prose h3 { font-size: 24px; }
+.la-prose ul, .la-prose ol { padding-left: 1.2em; }
+.la-prose ul { list-style: square; }
+.la-prose a { border-bottom: 1px solid currentColor; }
+.la-prose a:hover { color: var(--muted); }
+.la-prose blockquote { margin-inline: 0; padding-left: 20px; border-left: 1px solid var(--line); color: var(--muted); }
+.la-prose figure { margin: 0; }
+.la-prose img { max-width: 100%; height: auto; }
+.la-prose code, .la-prose pre { font-size: 14px; }
+
+/* Comments: under the box; the group renders empty when comments are closed, then it must keep no margin. */
+.la-page > .la-comments { margin-top: var(--u); }
+.la-comments:empty { display: none; }
+.la-comments input, .la-comments textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.5 var(--font); }
+.la-comments .wp-block-post-comments-form input[type="submit"] { width: auto; height: var(--u); padding: 0 20px; border: 0; background: var(--ink); color: var(--paper); font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+
+/* Lists: one box per post, four cells wide and three tall on wide screens, the full width on phones. */
+.la-posts { display: grid; grid-template-columns: repeat(var(--cols), var(--u)); grid-auto-rows: var(--u); margin: 0; padding: 0; list-style: none; }
+.la-posts > li { grid-column: span 4; grid-row: span 3; margin: 0; }
+html.F .la-posts > li { grid-column: 1 / -1; }
+.la-card { display: flex; flex-direction: column; gap: 8px; height: calc(100% + 1px); padding: 16px 20px; overflow: hidden; background: var(--paper); }
+.la-card-date { margin: 0; color: var(--muted); }
+.la-card-title { margin: 0; font-size: calc(var(--u) * .34); font-weight: 500; line-height: 1.15; letter-spacing: -.02em; }
+.la-card-title a:hover { color: var(--muted); }
+.la-card-sum { margin: 0; font-size: 14px; color: var(--muted); }
+.la-card-sum p { margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.la-card-sum .wp-block-post-excerpt__more-text { display: none; }
+.la-pagination { gap: 1rem; margin-top: var(--u); color: var(--muted); }
+.la-pagination a:hover, .la-pagination .current { color: var(--ink); }
+.la-empty { padding-left: 14px; color: var(--muted); }
+
+/* Search box: a field and an ink button on the grid, like the form. */
+.la-search { margin-top: 20px; max-width: calc(var(--u) * 6); }
+.la-search .wp-block-search__inside-wrapper { border: 1px solid var(--line); padding: 0; background: var(--paper); }
+.la-search input { height: var(--u); padding: 0 14px; border: 0; background: transparent; color: var(--ink); font: 500 17px/1.3 var(--font); }
+.la-search button { margin: 0; padding: 0 20px; border: 0; border-radius: 0; background: var(--ink); color: var(--paper); font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: background-color .3s; }
+.la-search button:hover { background: #000; }

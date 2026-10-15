@@ -1,0 +1,23 @@
+<!-- wp:html -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- /wp:html -->
+<!-- wp:template-part {"slug":"header","tagName":"div","className":"la-part"} /-->
+<!-- wp:group {"tagName":"main","anchor":"main","className":"la-main la-page","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+<main id="main" class="wp-block-group la-main la-page">
+<!-- wp:group {"className":"head la-head","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group head la-head"><!-- wp:paragraph {"className":"sub"} --><p class="sub">Notes from the atelier</p><!-- /wp:paragraph --><!-- wp:heading {"level":1,"className":"la-title"} --><h1 class="wp-block-heading la-title">Journal</h1><!-- /wp:heading --></div>
+<!-- /wp:group -->
+<!-- wp:query {"queryId":1,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"layout":{"type":"default"}} -->
+<div class="wp-block-query"><!-- wp:post-template {"className":"la-posts"} -->
+<!-- wp:group {"className":"b la-card","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group b la-card"><!-- wp:post-date {"className":"small la-card-date"} /--><!-- wp:post-title {"level":2,"isLink":true,"className":"la-card-title"} /--><!-- wp:post-excerpt {"className":"la-card-sum","excerptLength":24} /--></div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+<!-- wp:query-pagination {"className":"la-pagination"} --><!-- wp:query-pagination-previous /--><!-- wp:query-pagination-numbers /--><!-- wp:query-pagination-next /--><!-- /wp:query-pagination -->
+<!-- wp:query-no-results -->
+<!-- wp:paragraph {"className":"la-empty"} --><p class="la-empty">Nothing here yet.</p><!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","tagName":"div","className":"la-part"} /-->

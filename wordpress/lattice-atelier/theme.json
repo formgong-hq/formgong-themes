@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"layout": { "contentSize": "680px", "wideSize": "1200px" },
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{ "slug": "paper", "color": "#ffffff", "name": "Paper" },
+				{ "slug": "ink", "color": "#262626", "name": "Ink" },
+				{ "slug": "slate", "color": "#2f4c68", "name": "Slate" },
+				{ "slug": "line", "color": "#d5d5d5", "name": "Line" },
+				{ "slug": "muted", "color": "#6e6e6e", "name": "Muted text" },
+				{ "slug": "faint", "color": "#b0b0b0", "name": "Faint text" }
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{ "name": "Inter Tight", "slug": "inter-tight", "fontFamily": "\"Inter Tight\", \"Helvetica Neue\", Arial, system-ui, sans-serif" }
+			]
+		},
+		"spacing": { "units": [ "px", "rem", "%", "vw" ] }
+	},
+	"styles": {
+		"color": { "background": "var(--wp--preset--color--paper)", "text": "var(--wp--preset--color--ink)" },
+		"typography": { "fontFamily": "var(--wp--preset--font-family--inter-tight)" },
+		"spacing": { "blockGap": "1.25rem" }
+	},
+	"templateParts": [
+		{ "name": "header", "area": "header", "title": "Header" },
+		{ "name": "footer", "area": "footer", "title": "Footer" }
+	]
+}
