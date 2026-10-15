@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- WordPress eXtended RSS: Shoal demo pages, notes and menu. Tools → Import → WordPress. -->
+<rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/">
+  <channel>
+<title>Dana Whitlock</title>
+<link>https://example.com</link>
+<description/>
+<pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+<language>en-US</language>
+<wp:wxr_version>1.2</wp:wxr_version>
+<wp:base_site_url>https://example.com</wp:base_site_url>
+<wp:base_blog_url>https://example.com</wp:base_blog_url>
+<generator>https://wordpress.org/?v=7.1.3</generator>
+<wp:category><wp:category_nicename>buying</wp:category_nicename><wp:category_parent></wp:category_parent><wp:cat_name><![CDATA[Buying]]></wp:cat_name></wp:category>
+<wp:category><wp:category_nicename>inspections</wp:category_nicename><wp:category_parent></wp:category_parent><wp:cat_name><![CDATA[Inspections]]></wp:cat_name></wp:category>
+<wp:category><wp:category_nicename>selling</wp:category_nicename><wp:category_parent></wp:category_parent><wp:cat_name><![CDATA[Selling]]></wp:cat_name></wp:category>
+<item>
+  <title><![CDATA[Main]]></title>
+  <link>https://example.com/navigation/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/navigation/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:navigation-link {"label":"Dana Whitlock","url":"/","kind":"custom","className":"sh-only-open sh-nav-mark"} /--><!-- wp:navigation-link {"label":"Home","url":"/","kind":"custom","className":"sh-only-open"} /--><!-- wp:navigation-link {"label":"Meet Dana","url":"/about/","kind":"custom","className":"sh-only-open"} /--><!-- wp:navigation-link {"label":"Buying","url":"/buying/","kind":"custom"} /--><!-- wp:navigation-link {"label":"Selling","url":"/selling/","kind":"custom"} /--><!-- wp:navigation-link {"label":"Areas","url":"/#areas","kind":"custom","className":"sh-only-bar"} /--><!-- wp:navigation-link {"label":"Teal Harbor","url":"/areas/teal-harbor/","kind":"custom","className":"sh-only-open"} /--><!-- wp:navigation-link {"label":"Brannock Island","url":"/areas/brannock-island/","kind":"custom","className":"sh-only-open"} /--><!-- wp:navigation-link {"label":"Larkspur Point","url":"/areas/larkspur-point/","kind":"custom","className":"sh-only-open"} /--><!-- wp:navigation-link {"label":"Fennick Island","url":"/areas/fennick-island/","kind":"custom","className":"sh-only-open"} /--><!-- wp:navigation-link {"label":"Notes","url":"/#notes","kind":"custom"} /--><!-- wp:navigation-link {"label":"Contact","url":"/contact/","kind":"custom","className":"sh-only-open"} /--><!-- wp:navigation-link {"label":"Let's Connect","url":"/contact/","kind":"custom","className":"sh-only-bar sh-open-contact"} /--><!-- wp:navigation-link {"label":"(555) 555-0142","url":"tel:+15555550142","kind":"custom","className":"sh-only-bar"} /--><!-- wp:navigation-link {"label":"(555) 555-0142","url":"tel:+15555550142","kind":"custom","className":"sh-only-open sh-nav-foot"} /--><!-- wp:navigation-link {"label":"dana@example.com","url":"mailto:dana@example.com","kind":"custom","className":"sh-only-open sh-nav-foot"} /-->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>4</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>navigation</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>wp_navigation</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+</item>
+<item>
+  <title><![CDATA[Buying]]></title>
+  <link>https://example.com/buying/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/buying/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<article class="prose-page" data-astro-cid-h3xj43oc><header class="prose-head" data-astro-cid-h3xj43oc><p class="pretitle" data-reveal data-astro-cid-h3xj43oc>Buying</p><h1 class="h-big" data-reveal style="--delay:.1s" data-astro-cid-h3xj43oc>Buying a home on the islands</h1><p class="lead prose-lead" data-reveal style="--delay:.2s" data-astro-cid-h3xj43oc>Island houses are bought on ferry time. Here is how a purchase goes, and what to check that a mainland buyer might miss.</p></header><img class="prose-img" src="/wp-content/themes/shoal/assets/img/tile-living.webp" alt="A living room with a stone fireplace and glass doors open to a deck over the bay" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><h2>How a purchase goes</h2><ol><li><strong>A first call.</strong> Which island, how you will live there, and what you want to spend. Twenty minutes.</li><li><strong>A viewing day.</strong> Four to six houses planned around the ferry schedule, with lunch in Teal Harbor.</li><li><strong>The offer.</strong> Island sales usually include well, septic and bluff inspections as conditions. Dana writes them in.</li><li><strong>Inspections and closing.</strong> Thirty to forty-five days, with the inspectors booked the day the offer is accepted.</li></ol><h2>What to inspect</h2><p>Wells, septic systems, bluffs and anything metal near salt water. Ask for the well flow test and a water quality report, a septic inspection with a pump-out, and a geotechnical report for any home near a bank.</p><h2 id="second-homes">Second homes</h2><p>About a third of island homes are second homes. If you plan to rent yours out in summer, check the island's short-term rental rules before you make an offer, and budget for a caretaker who checks the house after winter storms.</p><button type="button" class="btn btn-solid" data-open-contact>Plan a viewing day</button></div></article>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>5</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>buying</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Selling]]></title>
+  <link>https://example.com/selling/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/selling/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<article class="prose-page" data-astro-cid-h3xj43oc><header class="prose-head" data-astro-cid-h3xj43oc><p class="pretitle" data-reveal data-astro-cid-h3xj43oc>Selling</p><h1 class="h-big" data-reveal style="--delay:.1s" data-astro-cid-h3xj43oc>Selling an island home</h1><p class="lead prose-lead" data-reveal style="--delay:.2s" data-astro-cid-h3xj43oc>Island buyers ask hard questions about wells, septic and bluffs. A sale goes faster when the answers are ready before the first viewing.</p></header><img class="prose-img" src="/wp-content/themes/shoal/assets/img/tile-aerial.webp" alt="A shingled waterfront house on a wooded point, seen from above" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><h2>Before the listing</h2><ul><li>A price based on island sales from the last two years, not mainland averages.</li><li>A well test and septic inspection done in advance, so buyers see the reports with the listing.</li><li>Photos and a drone flight on the first clear day, even if that means waiting a week.</li></ul><h2>While it is listed</h2><p>Viewings are grouped around the ferry so buyers from the mainland can see your home and two others in one trip. You get a short note after every viewing: who came, what they liked, and what worried them.</p><h2 id="moving">Moving help</h2><p>Moving off an island takes planning: ferry reservations for the truck, a storage unit on the mainland, an estate sale for the furniture that will not fit. Dana keeps a list of movers, cleaners and caretakers who work on the islands, and books them for you.</p><button type="button" class="btn btn-solid" data-open-contact>Ask what your home is worth</button></div></article>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>6</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>selling</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Meet Dana]]></title>
+  <link>https://example.com/about/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/about/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<article class="prose-page" data-astro-cid-h3xj43oc><header class="prose-head" data-astro-cid-h3xj43oc><p class="pretitle" data-reveal data-astro-cid-h3xj43oc>Meet</p><h1 class="h-big" data-reveal style="--delay:.1s" data-astro-cid-h3xj43oc>Dana Whitlock</h1><p class="lead prose-lead" data-reveal style="--delay:.2s" data-astro-cid-h3xj43oc>Dana grew up on Brannock Island and has sold homes on the Kestrel Sound islands for nineteen years. She knows which roads wash out in March, which wells run low in August and which ferry the commuters really catch.</p></header><img class="prose-img" src="/wp-content/themes/shoal/assets/img/agent.webp" alt="A hand holding a house key at an open front door" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><p>Dana's parents ran the hardware store in Teal Harbor, so she grew up hearing which houses had bad wells and which roofs leaked. She sold her first house on Brannock Island in 2007 and has worked only on the Kestrel Sound islands since.</p><p>Most of her clients are buying their first island home, or selling the one their family has owned for decades. Both need someone who explains the island details plainly: wells and septic, shared roads, bluffs, and the ferry.</p><h2>How Dana works</h2><ul><li>One agent from the first call to the keys: you never get passed to an assistant.</li><li>Calls and messages answered the same day, seven days a week in summer.</li><li>A written list of what to inspect for every house you are serious about.</li></ul><h2 id="stories">Client stories</h2><p><strong>A family moving from the city</strong> wanted a house within walking distance of the Teal Harbor school. Dana showed them six houses in one weekend, timed around the ferry, and they moved in before the school year.</p><p><strong>Two sisters selling their parents' farmhouse</strong> on Brannock lived on different continents. Dana handled the well test, the septic pump-out and the estate sale, and sent photos after every step.</p><p class="sr-only">These stories are sample content for the Shoal demo.</p><button type="button" class="btn btn-solid" data-open-contact>Let's Connect</button></div></article>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>7</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>about</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Contact]]></title>
+  <link>https://example.com/contact/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/contact/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<section class="contact-page container" data-astro-cid-6bfsojfh><div data-astro-cid-6bfsojfh><h1 class="h-big" data-reveal data-astro-cid-6bfsojfh>Get In Touch</h1><p class="intro" data-reveal style="--delay:.1s" data-astro-cid-6bfsojfh>Tell me which island you are thinking about and when. I reply the same day.</p><div class="contact-card" data-astro-cid-vekgkm42><!-- /wp:html -->
+<!-- wp:formgong/form {"template":"shoal"} /-->
+<!-- wp:html --></div></div><aside class="contact-aside" data-astro-cid-6bfsojfh><p class="h-card" data-astro-cid-6bfsojfh>Dana Whitlock</p><p data-astro-cid-6bfsojfh><a href="tel:+15555550142" data-astro-cid-6bfsojfh>(555) 555-0142</a><br data-astro-cid-6bfsojfh><a href="mailto:dana@example.com" data-astro-cid-6bfsojfh>dana@example.com</a></p><p data-astro-cid-6bfsojfh>Kestrel Sound Realty<br data-astro-cid-6bfsojfh>14 Ferry Street<br data-astro-cid-6bfsojfh>Teal Harbor, WA 98000</p></aside></section>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>8</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>contact</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Thanks]]></title>
+  <link>https://example.com/thanks/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/thanks/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<section class="done" data-astro-cid-hr5lgue2><h1 class="h-big" data-astro-cid-hr5lgue2>Thank you, your message is in.</h1><p data-astro-cid-hr5lgue2>Dana replies the same day, usually within a few hours. If it can't wait, call <a href="tel:+15555550142" data-astro-cid-hr5lgue2>(555) 555-0142</a>.</p><a class="btn btn-solid" href="/" data-astro-cid-hr5lgue2>Back to the home page</a></section>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>9</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>thanks</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Areas]]></title>
+  <link>https://example.com/areas/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/areas/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<section class="areas dark" id="areas" data-key="areasHead" data-astro-cid-h5slglmj><div class="areas-head" data-astro-cid-h5slglmj><h2 class="h-section" data-reveal style="--delay:.1s" data-key="areas.h2" data-astro-cid-h5slglmj>Islands</h2><p data-reveal style="--delay:.2s" data-key="areas.p" data-astro-cid-h5slglmj>Four islands, four ways of living. Read the guide before you book a viewing.</p></div><div class="area-wrap" data-key="areas" data-astro-cid-h5slglmj><div class="area-grid" data-astro-cid-h5slglmj><article class="area" data-key="area0" data-astro-cid-h5slglmj><a class="area-img" href="/areas/teal-harbor/" tabindex="-1" aria-hidden="true" data-key="area0.img" data-astro-cid-h5slglmj><img src="/wp-content/themes/shoal/assets/img/area-harbor.webp" alt="" width="1216" height="736" loading="lazy" decoding="async" data-astro-cid-h5slglmj></a><div class="area-text" data-reveal style="--delay:.3s" data-astro-cid-h5slglmj><h3 class="h-card" data-key="area0.title" data-astro-cid-h5slglmj><a href="/areas/teal-harbor/" data-astro-cid-h5slglmj>Teal Harbor</a></h3><p class="lead" data-key="area0.blurb" data-astro-cid-h5slglmj>The island town: school, clinic and the busiest ferry dock.</p></div></article><article class="area" data-key="area1" data-astro-cid-h5slglmj><a class="area-img" href="/areas/brannock-island/" tabindex="-1" aria-hidden="true" data-astro-cid-h5slglmj><img src="/wp-content/themes/shoal/assets/img/area-ferry.webp" alt="" width="1216" height="736" loading="lazy" decoding="async" data-astro-cid-h5slglmj></a><div class="area-text" data-reveal style="--delay:.3s" data-astro-cid-h5slglmj><h3 class="h-card" data-astro-cid-h5slglmj><a href="/areas/brannock-island/" data-astro-cid-h5slglmj>Brannock Island</a></h3><p class="lead" data-astro-cid-h5slglmj>Forest, farms and long gravel roads. Quiet all winter.</p></div></article><article class="area" data-key="area2" data-astro-cid-h5slglmj><a class="area-img" href="/areas/larkspur-point/" tabindex="-1" aria-hidden="true" data-astro-cid-h5slglmj><img src="/wp-content/themes/shoal/assets/img/area-lighthouse.webp" alt="" width="1216" height="736" loading="lazy" decoding="async" data-astro-cid-h5slglmj></a><div class="area-text" data-reveal style="--delay:.3s" data-astro-cid-h5slglmj><h3 class="h-card" data-astro-cid-h5slglmj><a href="/areas/larkspur-point/" data-astro-cid-h5slglmj>Larkspur Point</a></h3><p class="lead" data-astro-cid-h5slglmj>The lighthouse, rocky shore and the deepest moorage.</p></div></article><article class="area" data-key="area3" data-astro-cid-h5slglmj><a class="area-img" href="/areas/fennick-island/" tabindex="-1" aria-hidden="true" data-astro-cid-h5slglmj><img src="/wp-content/themes/shoal/assets/img/area-meadow.webp" alt="" width="1216" height="736" loading="lazy" decoding="async" data-astro-cid-h5slglmj></a><div class="area-text" data-reveal style="--delay:.3s" data-astro-cid-h5slglmj><h3 class="h-card" data-astro-cid-h5slglmj><a href="/areas/fennick-island/" data-astro-cid-h5slglmj>Fennick Island</a></h3><p class="lead" data-astro-cid-h5slglmj>Sea thrift on the bluffs, pebble beaches, open water.</p></div></article></div></div></section>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>10</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>areas</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Teal Harbor]]></title>
+  <link>https://example.com/areas/teal-harbor/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/areas/teal-harbor/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<article class="prose-page" data-astro-cid-h3xj43oc><header class="prose-head" data-astro-cid-h3xj43oc><p class="pretitle" data-reveal data-astro-cid-h3xj43oc>Island guide</p><h1 class="h-big" data-reveal style="--delay:.1s" data-astro-cid-h3xj43oc>Teal Harbor</h1><p class="lead prose-lead" data-reveal style="--delay:.2s" data-astro-cid-h3xj43oc>The island town: school, clinic and the busiest ferry dock.</p></header><img class="prose-img" src="/wp-content/themes/shoal/assets/img/area-harbor.webp" alt="Sailboats and motor yachts in a calm marina at dusk" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><p>Teal Harbor is where the islands do their errands. The marina, the clinic, the K–8 school and the Saturday market are all within a ten-minute walk of the ferry dock.</p><p>Most homes are 1920s cottages and 1990s family houses on small lots. Waterfront here usually means a view across the marina rather than a private beach.</p><p>Buyers who work on the mainland like it because the first ferry leaves at 5:40 and the walk from the door to the dock is short.</p><dl><dt>Ferry to the mainland</dt><dd>35 minutes</dd><dt>Typical home</dt><dd>3-bed cottage on a 5,000 sq ft lot</dd><dt>Good for</dt><dd>Year-round living, families, commuters</dd></dl><button type="button" class="btn btn-solid" data-open-contact>Ask about Teal Harbor</button></div></article>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>11</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>teal-harbor</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>10</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Brannock Island]]></title>
+  <link>https://example.com/areas/brannock-island/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/areas/brannock-island/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<article class="prose-page" data-astro-cid-h3xj43oc><header class="prose-head" data-astro-cid-h3xj43oc><p class="pretitle" data-reveal data-astro-cid-h3xj43oc>Island guide</p><h1 class="h-big" data-reveal style="--delay:.1s" data-astro-cid-h3xj43oc>Brannock Island</h1><p class="lead prose-lead" data-reveal style="--delay:.2s" data-astro-cid-h3xj43oc>Forest, farms and long gravel roads. Quiet all winter.</p></header><img class="prose-img" src="/wp-content/themes/shoal/assets/img/area-ferry.webp" alt="A ferry entering the harbour between two stone breakwaters" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><p>Brannock is the biggest island and the least built up. Many properties are five acres or more, with wells and septic systems, so inspections matter more than the listing photos.</p><p>The north shore has the sunsets and the steep driveways. The south end has the farms, the flat land and the best soil for a garden.</p><p>Internet is good along the main road and patchy in the hills. Ask for a speed test before you fall in love with a view.</p><dl><dt>Ferry to the mainland</dt><dd>50 minutes</dd><dt>Typical home</dt><dd>Farmhouse or cabin on 5+ acres</dd><dt>Good for</dt><dd>Space, gardens, working from home</dd></dl><button type="button" class="btn btn-solid" data-open-contact>Ask about Brannock Island</button></div></article>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>12</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>brannock-island</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>10</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Larkspur Point]]></title>
+  <link>https://example.com/areas/larkspur-point/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/areas/larkspur-point/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<article class="prose-page" data-astro-cid-h3xj43oc><header class="prose-head" data-astro-cid-h3xj43oc><p class="pretitle" data-reveal data-astro-cid-h3xj43oc>Island guide</p><h1 class="h-big" data-reveal style="--delay:.1s" data-astro-cid-h3xj43oc>Larkspur Point</h1><p class="lead prose-lead" data-reveal style="--delay:.2s" data-astro-cid-h3xj43oc>The lighthouse, rocky shore and the deepest moorage.</p></header><img class="prose-img" src="/wp-content/themes/shoal/assets/img/area-lighthouse.webp" alt="A red and white lighthouse on a cliff above the sea" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><p>Larkspur Point is a peninsula at the south end of Fennick Island, joined to it by a single causeway. Its rocky shore and deep water make it the place for boat owners.</p><p>Homes are few and change hands rarely. Most sales happen before they are listed, so tell me early if this is the place you want.</p><p>Wind is part of the deal. Houses here are built low, with storm shutters, and the gardens are grass and rock.</p><dl><dt>Ferry to the mainland</dt><dd>45 minutes via Fennick</dd><dt>Typical home</dt><dd>Waterfront house with deep-water moorage</dd><dt>Good for</dt><dd>Boat owners, people who like weather</dd></dl><button type="button" class="btn btn-solid" data-open-contact>Ask about Larkspur Point</button></div></article>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>13</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>larkspur-point</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>10</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Fennick Island]]></title>
+  <link>https://example.com/areas/fennick-island/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/areas/fennick-island/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<article class="prose-page" data-astro-cid-h3xj43oc><header class="prose-head" data-astro-cid-h3xj43oc><p class="pretitle" data-reveal data-astro-cid-h3xj43oc>Island guide</p><h1 class="h-big" data-reveal style="--delay:.1s" data-astro-cid-h3xj43oc>Fennick Island</h1><p class="lead prose-lead" data-reveal style="--delay:.2s" data-astro-cid-h3xj43oc>Sea thrift on the bluffs, pebble beaches, open water.</p></header><img class="prose-img" src="/wp-content/themes/shoal/assets/img/area-meadow.webp" alt="Pink sea thrift on a cliff above the ocean" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><p>Fennick faces east, towards the mountains, and its bluffs are covered in wildflowers from May to July. Many homes here are second homes that the owners let in summer.</p><p>The bluffs are beautiful and they move. Before buying near the edge, read the geotechnical report and ask how far the bank has retreated in the last twenty years.</p><p>Beach access is public at four points, so a home a street back from the water often costs half as much and loses little.</p><dl><dt>Ferry to the mainland</dt><dd>40 minutes</dd><dt>Typical home</dt><dd>Bluff-top house or beach cabin</dd><dt>Good for</dt><dd>Second homes, summer rentals, retirement</dd></dl><button type="button" class="btn btn-solid" data-open-contact>Ask about Fennick Island</button></div></article>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>14</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>fennick-island</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>10</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Home]]></title>
+  <link>https://example.com/home/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/home/</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>15</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>home</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[page-full]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[Notes]]></title>
+  <link>https://example.com/notes/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/notes/</guid>
+  <description/>
+  <content:encoded><![CDATA[]]></content:encoded>
+  <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+  <wp:post_id>16</wp:post_id>
+  <wp:post_date>2026-10-15 12:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-10-15 12:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-10-15 12:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-10-15 12:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>notes</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>page</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <wp:postmeta>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value><![CDATA[default]]></wp:meta_value>
+  </wp:postmeta>
+</item>
+<item>
+  <title><![CDATA[How the ferry schedule shows up in house prices]]></title>
+  <link>https://example.com/notes/ferry-schedule-and-house-prices/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/notes/ferry-schedule-and-house-prices/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<img class="prose-img" src="/wp-content/themes/shoal/assets/img/blog-ferry.webp" alt="A ferry crossing the sound at dusk" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><p>On the islands, distance is measured in sailings, not miles. A buyer who commutes to the mainland three days a week will pay for a house that makes the 5:40 boat without a car.</p><p>Look at the sold prices of the last two years and you will see it: homes within a ten-minute walk of the Teal Harbor dock sell for more per square foot than larger homes on Brannock&#39;s north shore.</p><p>If you do not commute, that premium is money you can keep. If you do, check the winter schedule, not the summer one. It has fewer boats.</p><button type="button" class="btn btn-solid" data-open-contact>Ask Dana</button></div>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[Why a house ten minutes from the first boat can cost more than a bigger one with a better view.]]></excerpt:encoded>
+  <wp:post_id>17</wp:post_id>
+  <wp:post_date>2026-09-18 09:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-09-18 09:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-09-18 09:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-09-18 09:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>ferry-schedule-and-house-prices</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>post</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <category domain="category" nicename="buying"><![CDATA[Buying]]></category>
+</item>
+<item>
+  <title><![CDATA[What an island home inspection should cover]]></title>
+  <link>https://example.com/notes/inspecting-an-island-home/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/notes/inspecting-an-island-home/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<img class="prose-img" src="/wp-content/themes/shoal/assets/img/blog-inspection.webp" alt="A small wooden house model next to a magnifying glass" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><p>A general inspection is a good start. On the islands, add four checks: a well flow and water quality test, a septic inspection with a pump-out, a bluff report for any home near a bank, and a look at metal that salt air has eaten.</p><p>The well test is the one buyers skip most often and regret most. A shared well needs a written agreement; ask to see it before you make an offer.</p><p>Book inspectors early in summer. There are few of them, and they work on ferry time too.</p><button type="button" class="btn btn-solid" data-open-contact>Ask Dana</button></div>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[Wells, septic systems, bluffs and salt air: the four checks that a mainland inspector may skip.]]></excerpt:encoded>
+  <wp:post_id>18</wp:post_id>
+  <wp:post_date>2026-08-27 09:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-08-27 09:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-08-27 09:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-08-27 09:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>inspecting-an-island-home</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>post</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <category domain="category" nicename="inspections"><![CDATA[Inspections]]></category>
+</item>
+<item>
+  <title><![CDATA[Selling in the off-season]]></title>
+  <link>https://example.com/notes/selling-in-the-off-season/</link>
+  <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+  <guid isPermaLink="false">https://example.com/notes/selling-in-the-off-season/</guid>
+  <description/>
+  <content:encoded><![CDATA[<!-- wp:html -->
+<img class="prose-img" src="/wp-content/themes/shoal/assets/img/blog-market.webp" alt="A pile of red apples" width="1920" height="1072" loading="eager" decoding="async" data-astro-cid-h3xj43oc><div class="prose-body" data-astro-cid-h3xj43oc><p>Summer brings visitors who fall for the islands on a sunny day. Winter brings people who have already decided to move. They make fewer offers, and fewer of those offers fall through.</p><p>Show the house the way it will be lived in: heat on, lamps lit, firewood stacked, the drive clear. Photograph it on the one clear day of the week, even if you wait for it.</p><p>Price for the market you are in, not for July. A winter listing that sits for two months looks stale by spring.</p><button type="button" class="btn btn-solid" data-open-contact>Ask Dana</button></div>
+<!-- /wp:html -->]]></content:encoded>
+  <excerpt:encoded><![CDATA[Fewer buyers come in November, but the ones who come are serious. How to price and show a home in winter.]]></excerpt:encoded>
+  <wp:post_id>19</wp:post_id>
+  <wp:post_date>2026-07-30 09:00:00</wp:post_date>
+  <wp:post_date_gmt>2026-07-30 09:00:00</wp:post_date_gmt>
+  <wp:post_modified>2026-07-30 09:00:00</wp:post_modified>
+  <wp:post_modified_gmt>2026-07-30 09:00:00</wp:post_modified_gmt>
+  <wp:comment_status>closed</wp:comment_status>
+  <wp:ping_status>closed</wp:ping_status>
+  <wp:post_name>selling-in-the-off-season</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_parent>0</wp:post_parent>
+  <wp:menu_order>0</wp:menu_order>
+  <wp:post_type>post</wp:post_type>
+  <wp:post_password/>
+  <wp:is_sticky>0</wp:is_sticky>
+  <category domain="category" nicename="selling"><![CDATA[Selling]]></category>
+</item>
+  </channel>
+</rss>
