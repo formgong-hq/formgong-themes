@@ -1,0 +1,262 @@
+/*
+ * WordPress additions to the Orrery build (assets/css/orrery.css).
+ * Orrery's own utility rules sit in CSS layers (Tailwind), and WordPress's global styles do not, so anything WordPress
+ * renders (site title, Navigation block, the Formgong plugin form, post content) is styled here, unlayered.
+ */
+
+/* The original sets these on <body> with utility classes WordPress's body does not carry. */
+body { background: var(--c-bg); color: var(--c-ink); font-family: var(--font-sans); }
+
+/* WordPress gives every <figure> a bottom margin (:where(figure) in wp-block-library, unlayered, so it beats
+   Tailwind's layered reset). Orrery's figures carry no margin classes, so the theme's sections reset it. */
+main section figure { margin: 0; }
+
+/* <main> starts below the fixed header, as the original's pt-(--header-h). */
+.or-main { padding-top: var(--header-h); }
+.or-main.or-content { padding-top: calc(var(--header-h) + 4rem); }
+
+/* Orrery pages: the page's sections follow each other with no gap, as in the original (WordPress puts the
+   block gap between the top-level blocks of post content). */
+.or-flush > * { margin-block: 0; }
+
+/* Template parts and <main> follow each other with no gap, as in the original. */
+.wp-site-blocks > * { margin-block-start: 0; }
+
+/* The header part's wrapper must not become the fixed header's box. */
+.or-part { display: contents; }
+
+/* Logo mark + site title, sized like the original two-line name. */
+.site-header .header-logo.or-mark { width: auto; flex: none; margin-inline-end: 0.75rem; }
+.site-header .header-logo.or-mark svg { width: 2.25rem; height: 2.25rem; }
+.site-header .or-brand { margin: 0 auto 0 0; min-width: 0; display: flex; flex-direction: column; position: relative; z-index: 100001; }
+.site-header .or-site-title {
+	margin: 0;
+	min-width: 0;
+	font-size: 1.0625rem;
+	line-height: 1;
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.site-header .or-site-title a { color: var(--c-ink); text-decoration: none; }
+.site-header .or-brand > .or-site-sub {
+	margin: 0.25rem 0 0;
+	font-size: 0.6875rem;
+	line-height: 1;
+	letter-spacing: 0.32em;
+	text-transform: uppercase;
+	color: var(--c-muted);
+}
+/* The logo stays visible above the open phone menu, as in the original. */
+.site-header .header-logo.or-mark { position: relative; z-index: 100001; }
+.site-header .header-inner { gap: 0; }
+
+/* Navigation block, styled like the original .nav-link. */
+.site-header .or-nav { font-size: 16px; line-height: 1.6; }
+.site-header .or-nav .wp-block-navigation-item__content {
+	display: block;
+	padding-block: 7px;
+	color: var(--c-white);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+.site-header .or-nav .wp-block-navigation-item__content:hover,
+.site-header .or-nav .current-menu-item > .wp-block-navigation-item__content,
+.site-header .or-nav [aria-current="page"] { color: var(--accent); }
+
+/* Menu toggle: the original round accent button, last in the row below 1001px. */
+.site-header .or-nav .wp-block-navigation__responsive-container-open {
+	display: grid;
+	place-items: center;
+	width: 48px;
+	height: 48px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--accent);
+	color: var(--accent-text);
+}
+.site-header .or-nav .wp-block-navigation__responsive-container-open svg { width: 22px; height: 22px; }
+@media (max-width: 1000.98px) {
+	.site-header .header-inner > .or-nav { order: 10; margin-inline-start: 0.75rem; }
+}
+@media (min-width: 1001px) {
+	.site-header .header-inner { width: min(1296px, 100% - 32px); }
+	.site-header .header-logo.or-mark svg { width: 2.5rem; height: 2.5rem; }
+	/* The links sit where the original puts them: absolutely, from the middle of the row. */
+	.site-header .header-inner > .or-nav { position: absolute; left: calc(50% - 114px); }
+	.site-header .or-brand { margin-inline-end: 0; flex: 1 1 auto; }
+	.site-header .or-nav .wp-block-navigation__responsive-container-open { display: none; }
+	.site-header .or-nav .wp-block-navigation__responsive-container.hidden-by-default:not(.is-menu-open) {
+		display: block;
+		position: relative;
+		inset: auto;
+		width: auto;
+		padding: 0;
+		background: transparent;
+		z-index: auto;
+	}
+	.site-header .or-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-container-close { display: none; }
+	.site-header .or-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-close,
+	.site-header .or-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-dialog,
+	.site-header .or-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-container-content { display: contents; }
+	.site-header .or-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__container { display: flex; flex-direction: row; gap: 48px; }
+}
+/* Below 1001px the original hides the call button too. */
+@media (max-width: 1000.98px) {
+	.site-header .header-cta { display: none; }
+}
+
+/* The open menu, like the original full-screen mobile menu: big light links with lines under them. */
+/* .wp-block-navigation doubles the specificity: WordPress's own white overlay rule ties with a single class and loads later. */
+.site-header .or-nav.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open {
+	background: var(--c-bg);
+	color: var(--c-ink);
+	padding: 1.25rem 5% 2rem;
+}
+.site-header .or-nav .is-menu-open .wp-block-navigation__responsive-container-content { padding-top: calc(var(--header-h) + 0.25rem); }
+.site-header .or-nav .is-menu-open .wp-block-navigation__container { width: 100%; gap: 0; border-top: 1px solid var(--c-line); }
+.site-header .or-nav .is-menu-open .wp-block-navigation-item { width: 100%; }
+.site-header .or-nav .is-menu-open .wp-block-navigation-item__content {
+	display: block;
+	width: 100%;
+	padding: 1.125rem 0.25rem;
+	border-bottom: 1px solid var(--c-line);
+	font-size: 2rem;
+	font-weight: 250;
+	letter-spacing: -0.02em;
+	color: var(--c-ink);
+}
+.site-header .or-nav .wp-block-navigation__responsive-container-close {
+	display: grid;
+	place-items: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: var(--accent);
+	color: var(--accent-text);
+	top: calc((var(--header-h) - 48px) / 2 - 1.25rem);
+	right: 0;
+}
+
+/* Home, the call button and the contact line: only in the open phone menu. */
+.site-header .or-nav .wp-block-navigation__responsive-container:not(.is-menu-open) .or-only-open { display: none; }
+.site-header .or-nav .is-menu-open .or-nav-cta { margin-top: 2.5rem; }
+.site-header .or-nav .is-menu-open .or-nav-cta .wp-block-navigation-item__content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 70px;
+	padding: 0 1.5rem;
+	border: 0;
+	border-radius: 12px;
+	background: var(--accent);
+	color: var(--accent-text);
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 0;
+}
+.site-header .or-nav .is-menu-open .or-nav-contact { margin-top: 1.5rem; }
+.site-header .or-nav .is-menu-open .or-nav-contact .wp-block-navigation-item__content {
+	padding: 0;
+	border: 0;
+	font-size: 0.875rem;
+	line-height: 1.43;
+	font-weight: 400;
+	letter-spacing: 0;
+	color: var(--c-muted);
+}
+.site-header .or-nav .is-menu-open .or-nav-contact u { text-underline-offset: 4px; }
+
+/* The Formgong plugin form inside Orrery's form card, styled like the original fields. */
+.form-card .formgong-form.formgong-form {
+	max-width: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 1.25rem;
+	border: 0;
+	background: transparent;
+	color: var(--c-ink);
+	font: inherit;
+}
+/* The card already has the page's heading (and a screen-reader "Contact form" heading), so the form's own heading is visually hidden. */
+.form-card .formgong-form.formgong-form > h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.form-card .formgong-form.formgong-form label { display: grid; gap: 0.5rem; font-size: 0.875rem; line-height: 1.43; color: var(--c-ink); }
+.form-card .formgong-form.formgong-form input:not([type="hidden"]):not([type="checkbox"]),
+.form-card .formgong-form.formgong-form select,
+.form-card .formgong-form.formgong-form textarea {
+	display: block;
+	width: 100%;
+	min-height: 3.25rem;
+	padding: 0.75rem 1rem;
+	border: 1px solid #fff3;
+	border-radius: 0.75rem;
+	background: var(--c-bg);
+	color: var(--c-ink);
+	font: inherit;
+	font-size: 1rem;
+	transition: border-color 0.2s;
+}
+.form-card .formgong-form.formgong-form textarea { min-height: 7.5rem; resize: vertical; }
+.form-card .formgong-form.formgong-form input:hover,
+.form-card .formgong-form.formgong-form select:hover,
+.form-card .formgong-form.formgong-form textarea:hover { border-color: #fff6; }
+.form-card .formgong-form.formgong-form ::placeholder { color: var(--c-dim); }
+.form-card .formgong-form.formgong-form input:focus-visible,
+.form-card .formgong-form.formgong-form select:focus-visible,
+.form-card .formgong-form.formgong-form textarea:focus-visible {
+	outline: 2px solid color-mix(in oklab, var(--accent) 45%, transparent);
+	outline-offset: 0;
+	border-color: var(--accent);
+}
+.form-card .formgong-form.formgong-form button[type="submit"] {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	width: 100%;
+	height: 70px;
+	margin-top: 0.25rem;
+	padding-inline: 24px;
+	border: 0;
+	border-radius: var(--radius);
+	background: var(--accent);
+	color: var(--accent-text);
+	font: inherit;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.4;
+	cursor: pointer;
+	transition: transform 0.25s var(--ease-out), background-color 0.2s;
+}
+.form-card .formgong-form.formgong-form button[type="submit"]:hover { background: color-mix(in oklab, var(--accent) 86%, white); }
+.form-card .formgong-form.formgong-form button[type="submit"]:active { transform: scale(0.98); }
+.form-card .formgong-form.formgong-form .formgong-note { color: var(--c-muted); font-size: 0.875rem; text-align: center; }
+.form-card .formgong-missing { color: var(--c-muted); }
+
+/* Pages, posts and lists that WordPress renders. */
+.or-content { display: grid; gap: 1.5rem; }
+.or-content .wp-block-post-title a { color: inherit; text-decoration: none; }
+.or-meta, .or-meta a { color: var(--c-muted); font-size: 0.9375rem; }
+.or-prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.or-prose h2, .or-prose h3 { color: var(--c-white); font-weight: 400; letter-spacing: -0.01em; margin-top: 2rem; }
+.or-prose h2 { font-size: 2rem; line-height: 1.3; }
+.or-prose h3 { font-size: 1.5rem; line-height: 1.3; }
+.or-prose ul { list-style: disc; padding-left: 1.25rem; }
+.or-prose ol { list-style: decimal; padding-left: 1.25rem; }
+.or-posts { display: grid; gap: 1rem; list-style: none; padding: 0; }
+.or-post { padding: 1.5rem; }
+.or-post-title { font-size: 1.5rem; font-weight: 400; margin: 0.25rem 0 0.5rem; }
+.or-pagination { margin-top: 2rem; gap: 1rem; color: var(--c-muted); }
+.or-search input { min-height: 3.25rem; padding: 0.75rem 1rem; border: 1px solid #fff3; border-radius: 0.75rem; background: var(--c-bg); color: var(--c-ink); }
+.or-search button { min-height: 3.25rem; padding: 0 1.5rem; border: 0; border-radius: var(--radius); background: var(--accent); color: var(--accent-text); font-weight: 700; }
+.or-comments input, .or-comments textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid #fff3; border-radius: 0.75rem; background: var(--c-bg); color: var(--c-ink); }
+.or-comments .wp-block-button__link, .or-comments input[type="submit"] { width: auto; background: var(--accent); color: var(--accent-text); border-radius: var(--radius); font-weight: 700; }
+.or-media img { border-radius: var(--radius-media); }
+
+/* The admin bar pushes the fixed header down for signed-in editors. */
+.admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 32px); }
