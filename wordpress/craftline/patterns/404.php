@@ -1,0 +1,14 @@
+<?php
+/**
+ * Title: 404 content
+ * Slug: craftline/404
+ * Categories: craftline
+ * Inserter: no
+ *
+ * @package Craftline
+ */
+
+?>
+<!-- wp:html -->
+<section class="relative overflow-x-clip" data-astro-cid-ibpinaeu><div class="container-x grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-2" data-astro-cid-ibpinaeu><div data-astro-cid-ibpinaeu><p class="text-sm font-bold text-accent-ink" data-astro-cid-ibpinaeu>Error 404</p><h1 class="h-display mt-4" data-astro-cid-ibpinaeu>This pipe <span class="hl" data-astro-cid-ibpinaeu>leads nowhere</span></h1><p class="lead mt-6 max-w-lg" data-astro-cid-ibpinaeu>The page has moved or never existed. Try one of these instead.</p><div class="mt-9 flex flex-col gap-3 sm:flex-row" data-astro-cid-ibpinaeu><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-primary btn-lg" data-astro-cid-ibpinaeu>Home <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="icon icon-shift" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" class="btn btn-secondary btn-lg" data-astro-cid-ibpinaeu>Services</a><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn-secondary btn-lg" data-astro-cid-ibpinaeu>Contact</a></div></div><svg viewBox="0 0 420 300" class="mx-auto block h-auto w-full max-w-md" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-ibpinaeu><path d="M20 70h150a30 30 0 0 1 30 30v40" stroke="var(--accent)" stroke-width="22" data-astro-cid-ibpinaeu></path><rect x="186" y="132" width="28" height="18" rx="4" fill="var(--c-ink)" data-astro-cid-ibpinaeu></rect><path d="M400 230H290a30 30 0 0 1-30-30v-24" stroke="var(--accent)" stroke-width="22" stroke-opacity=".4" data-astro-cid-ibpinaeu></path><rect x="246" y="158" width="28" height="18" rx="4" fill="var(--c-ink)" fill-opacity=".4" data-astro-cid-ibpinaeu></rect><g fill="var(--accent)" data-astro-cid-ibpinaeu><path class="fall" style="--d:0s" d="M200 160c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z" data-astro-cid-ibpinaeu></path><path class="fall" style="--d:.6s" d="M200 160c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z" data-astro-cid-ibpinaeu></path><path class="fall" style="--d:1.2s" d="M200 160c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z" data-astro-cid-ibpinaeu></path></g><ellipse cx="200" cy="262" rx="56" ry="9" fill="var(--accent-soft)" data-astro-cid-ibpinaeu></ellipse></svg></div></section>
+<!-- /wp:html -->

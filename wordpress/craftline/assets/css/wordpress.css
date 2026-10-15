@@ -1,0 +1,206 @@
+/*
+ * WordPress additions to the Craftline build (assets/css/craftline.css).
+ * Craftline's own rules sit in CSS layers (Tailwind), and WordPress's global styles do not, so anything WordPress
+ * renders (site title, Navigation block, the Formgong plugin form, post content) is styled here, unlayered.
+ */
+
+/* WordPress gives every <figure> a bottom margin (:where(figure) in wp-block-library, unlayered, so it beats
+   Tailwind's layered reset). Craftline's figures carry no margin classes, so the theme's sections reset it. */
+main section figure { margin: 0; }
+
+/* Craftline pages: the page's sections follow each other with no gap, as in the original (WordPress puts the
+   block gap between the top-level blocks of post content). */
+.cl-flush > * { margin-block: 0; }
+
+/* Template parts and <main> follow each other with no gap, as in the original. */
+.wp-site-blocks > * { margin-block-start: 0; }
+
+/* The header stays sticky across the whole page: its template-part wrapper must not be the sticky box's parent. */
+.cl-part { display: contents; }
+
+/* Site title next to the logo mark, sized like the original name. */
+.site-header .cl-site-title {
+	margin: 0;
+	min-width: 0;
+	font-size: 1.125rem;
+	line-height: 1;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.site-header .cl-site-title a { color: var(--c-ink); text-decoration: none; }
+.site-header .header-logo { flex: none; }
+/* Logo, title, menu, buttons: the menu sits centred in the free space, as with the original's space-between. */
+.site-header .container-x { justify-content: flex-start; }
+.site-header .container-x > .cl-nav { margin-inline: auto; }
+
+/* Navigation block, styled like the original .nav-link. */
+.site-header .cl-nav { gap: 0.25rem; font-size: 1.0625rem; line-height: 1.5; }
+.site-header .cl-nav .wp-block-navigation-item__content {
+	position: relative;
+	display: inline-flex;
+	padding: 0.625rem 0.875rem;
+	border-radius: 0.625rem;
+	color: var(--c-muted);
+	font-weight: 600;
+	text-decoration: none;
+	transition: color 0.2s;
+}
+.site-header .cl-nav .wp-block-navigation-item__content::after {
+	content: "";
+	position: absolute;
+	left: 0.875rem;
+	right: 0.875rem;
+	bottom: 0.3rem;
+	height: 2px;
+	border-radius: 2px;
+	background: var(--accent);
+	transform: scaleX(0);
+	transform-origin: 0;
+	transition: transform 0.3s var(--ease-out);
+}
+.site-header .cl-nav .wp-block-navigation-item__content:hover,
+.site-header .cl-nav .current-menu-item > .wp-block-navigation-item__content,
+.site-header .cl-nav [aria-current="page"] { color: var(--c-ink); }
+.site-header .cl-nav .wp-block-navigation-item__content:hover::after,
+.site-header .cl-nav .current-menu-item > .wp-block-navigation-item__content::after,
+.site-header .cl-nav [aria-current="page"]::after { transform: scaleX(1); }
+/* Menu: the Navigation block in "always" overlay mode. Below 1024px (Tailwind lg, where the original hides its links)
+   the toggle is the original round accent button, last in the row; from 1024px the links show inline. */
+.site-header .cl-nav .wp-block-navigation__responsive-container-open {
+	display: inline-grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	background: var(--accent);
+	color: var(--accent-text);
+	transition: transform 0.25s var(--ease-out);
+}
+.site-header .cl-nav .wp-block-navigation__responsive-container-open:hover { transform: scale(1.06); }
+.site-header .cl-nav .wp-block-navigation__responsive-container-open svg { width: 1.375rem; height: 1.375rem; }
+@media (max-width: 1023.98px) {
+	.site-header .container-x > .cl-nav { order: 10; margin-inline: 0; }
+	.site-header .container-x > .cl-site-title { margin-inline-end: auto; }
+}
+@media (min-width: 1024px) {
+	.site-header .cl-nav .wp-block-navigation__responsive-container-open { display: none; }
+	.site-header .cl-nav .wp-block-navigation__responsive-container.hidden-by-default:not(.is-menu-open) {
+		display: block;
+		position: relative;
+		inset: auto;
+		width: auto;
+		padding: 0;
+		background: transparent;
+		z-index: auto;
+	}
+	.site-header .cl-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-container-close { display: none; }
+	.site-header .cl-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-close,
+	.site-header .cl-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-dialog,
+	.site-header .cl-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-container-content { display: contents; }
+	.site-header .cl-nav .hidden-by-default:not(.is-menu-open) .wp-block-navigation__container { display: flex; flex-direction: row; gap: 0.25rem; }
+}
+/* The open menu, like the original full-screen mobile menu: big light links with lines between them. */
+/* .wp-block-navigation doubles the specificity: WordPress's own white overlay rule ties with a single class and loads later. */
+.site-header .cl-nav.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open {
+	background: var(--c-bg);
+	color: var(--c-ink);
+	padding: 1.25rem 1rem 2rem;
+}
+.site-header .cl-nav .is-menu-open .wp-block-navigation__responsive-container-content { padding-top: 3.5rem; }
+.site-header .cl-nav .is-menu-open .wp-block-navigation__container { width: 100%; gap: 0; border-block: 1px solid var(--c-line); }
+.site-header .cl-nav .is-menu-open .wp-block-navigation-item { width: 100%; border-top: 1px solid var(--c-line); }
+.site-header .cl-nav .is-menu-open .wp-block-navigation-item:first-child { border-top: 0; }
+.site-header .cl-nav .is-menu-open .wp-block-navigation-item__content {
+	display: flex;
+	width: 100%;
+	padding: 1.125rem 0.25rem;
+	font-size: 1.75rem;
+	font-weight: 300;
+	letter-spacing: -0.02em;
+	color: var(--c-ink);
+}
+.site-header .cl-nav .is-menu-open .wp-block-navigation-item__content::after { display: none; }
+.site-header .cl-nav .wp-block-navigation__responsive-container-close { color: var(--c-ink); width: 2.75rem; height: 2.75rem; }
+
+/* The Formgong plugin form inside Craftline's quote card, styled like the original fields. */
+.quote-card .formgong-form.formgong-form {
+	max-width: none;
+	margin: 0;
+	padding: 0;
+	gap: 1.25rem;
+	border: 0;
+	background: transparent;
+	color: var(--c-ink);
+	font: inherit;
+}
+/* The quote card sits next to its own heading, so the form's "Contact us" heading is visually hidden (kept for screen readers). */
+.quote-card .formgong-form.formgong-form > h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.quote-card .formgong-form.formgong-form label { display: grid; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--c-ink); }
+.quote-card .formgong-form.formgong-form input:not([type="hidden"]):not([type="checkbox"]),
+.quote-card .formgong-form.formgong-form select,
+.quote-card .formgong-form.formgong-form textarea {
+	width: 100%;
+	min-height: 3rem;
+	padding: 0.75rem 1rem;
+	border: 1px solid var(--c-line);
+	border-radius: 0.75rem;
+	background: var(--c-surface);
+	color: var(--c-ink);
+	font: inherit;
+	font-size: 1rem;
+	font-weight: 450;
+	transition: border-color 0.2s;
+}
+.quote-card .formgong-form.formgong-form textarea { min-height: 7.5rem; resize: vertical; }
+.quote-card .formgong-form.formgong-form input:focus-visible,
+.quote-card .formgong-form.formgong-form select:focus-visible,
+.quote-card .formgong-form.formgong-form textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-color: var(--accent); }
+.quote-card .formgong-form.formgong-form button[type="submit"] {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	min-height: 3.5rem;
+	margin-top: 0.25rem;
+	padding: 0.75rem 1.75rem;
+	border: 0;
+	border-radius: 0.625rem;
+	background: var(--accent);
+	color: var(--accent-text);
+	font: inherit;
+	font-size: 1.0625rem;
+	font-weight: 650;
+	cursor: pointer;
+	transition: background-color 0.2s, transform 0.25s var(--ease-out);
+}
+.quote-card .formgong-form.formgong-form button[type="submit"]:hover { background: color-mix(in oklab, var(--accent) 88%, white); }
+.quote-card .formgong-form.formgong-form .formgong-note { color: var(--c-muted); font-size: 0.875rem; }
+.quote-card .formgong-missing { color: var(--c-muted); }
+
+/* Pages, posts and lists that WordPress renders. */
+.cl-content { display: grid; gap: 1.5rem; }
+.cl-content .wp-block-post-title a { color: inherit; text-decoration: none; }
+.cl-meta, .cl-meta a { color: var(--c-muted); font-size: 0.9375rem; }
+.cl-prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.cl-prose h2, .cl-prose h3 { color: var(--c-ink); font-weight: 600; letter-spacing: -0.02em; margin-top: 2rem; }
+.cl-prose h2 { font-size: 1.75rem; }
+.cl-prose h3 { font-size: 1.375rem; }
+.cl-prose ul { list-style: disc; padding-left: 1.25rem; }
+.cl-prose ol { list-style: decimal; padding-left: 1.25rem; }
+.cl-posts { display: grid; gap: 1rem; list-style: none; padding: 0; }
+.cl-post { padding: 1.5rem; }
+.cl-post-title { font-size: 1.5rem; font-weight: 600; margin: 0.25rem 0 0.5rem; }
+.cl-pagination { margin-top: 2rem; gap: 1rem; color: var(--c-muted); }
+.cl-search input { min-height: 3rem; padding: 0.75rem 1rem; border: 1px solid var(--c-line); border-radius: 0.75rem; background: var(--c-surface); color: var(--c-ink); }
+.cl-search button { min-height: 3rem; padding: 0 1.25rem; border: 0; border-radius: 0.625rem; background: var(--accent); color: var(--accent-text); font-weight: 650; }
+.cl-comments input, .cl-comments textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--c-line); border-radius: 0.75rem; background: var(--c-surface); color: var(--c-ink); }
+.cl-comments .wp-block-button__link, .cl-comments input[type="submit"] { width: auto; background: var(--accent); color: var(--accent-text); border-radius: 0.625rem; font-weight: 650; }
+.cl-media img { border-radius: 1.25rem; }
+
+/* The admin bar pushes the sticky header down for signed-in editors. */
+.admin-bar .site-header { top: calc(var(--wp-admin--admin-bar--height, 32px) - 0.5rem); }
