@@ -1,9 +1,9 @@
 === Craftline ===
 Contributors: formgong
-Requires at least: 6.5
+Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: MIT
 License URI: https://opensource.org/license/mit
 
@@ -32,7 +32,20 @@ Install and activate the Formgong plugin, then paste your access key under Setti
 
 Yes. Remove the form block, or replace it with another form plugin's block.
 
+== Privacy ==
+
+Craftline collects no data, sets no cookies and loads nothing from other sites: its fonts are in the theme folder.
+
+The quote form is not part of the theme. It is the block of the Formgong plugin. When that plugin is active and a visitor sends the form, the entry goes to Formgong (formgong.com), which stores it and emails it to the site owner. Without the plugin, no form is shown and nothing is sent. Formgong's privacy policy: https://formgong.com/en/privacy/
+
 == Changelog ==
+
+= 1.1.0 =
+* Every text in the patterns is translatable (text domain craftline).
+* The sections that hold the quote form are group blocks, so no Custom HTML block is left with an unclosed tag.
+* craftline.css is shipped readable (not minified).
+* Requires WordPress 6.6 (theme.json version 3).
+* Privacy and resource notes in this readme.
 
 = 1.0.0 =
 * First WordPress release, from the Craftline website template 1.0.0.
@@ -42,5 +55,9 @@ Yes. Remove the form block, or replace it with another form plugin's block.
 Craftline WordPress theme, Copyright 2026 Formgong.
 Craftline is distributed under the terms of the MIT License.
 
-Urbanist font, Copyright 2021 The Urbanist Project Authors (https://github.com/coreyhu/Urbanist).
-License: SIL Open Font License 1.1, https://openfontlicense.org
+== Resources ==
+
+* Urbanist font (assets/fonts/urbanist-latin-wght-normal.D69JTELx.woff2), Copyright 2021 The Urbanist Project Authors, SIL Open Font License 1.1 (https://openfontlicense.org), source: https://github.com/coreyhu/Urbanist
+* Illustrations and icons (inline SVG in the patterns: the house, the van, the map, the service icons), Copyright 2026 Formgong, MIT License, drawn for the Craftline template: https://github.com/formgong/craftline-astro-theme
+* screenshot.png, Copyright 2026 Formgong, MIT License, a capture of this theme's home page.
+* assets/css/craftline.css, Copyright 2026 Formgong, MIT License, built from the Craftline template (https://github.com/formgong/craftline-astro-theme) with Tailwind CSS 4 (Copyright Tailwind Labs, Inc., MIT License, https://github.com/tailwindlabs/tailwindcss).

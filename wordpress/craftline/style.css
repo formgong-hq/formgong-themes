@@ -1,17 +1,17 @@
 /*
 Theme Name: Craftline
-Theme URI: https://formgong.com/en/website-templates/craftline/
+Theme URI: https://formgong.com/en/website-templates/craftline/#wordpress
 Author: Formgong
 Author URI: https://formgong.com
 Description: A dark theme for a plumber, electrician, cleaner or another trade: a scroll story on the home page, service pages with prices, and a quote form that sends to Formgong (install the free Formgong plugin). Built from the Craftline website template.
-Requires at least: 6.5
+Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Version: 1.0.0
+Version: 1.1.0
 License: MIT
 License URI: https://opensource.org/license/mit
 Text Domain: craftline
 Tags: one-column, block-patterns, full-site-editing, wide-blocks, custom-menu, threaded-comments
 */
 
-/* The theme's styles are in assets/css (the Craftline build and the WordPress additions). */
+/* The theme's styles are in assets/css: craftline.css (the Craftline template's styles, unminified) and wordpress.css (the WordPress additions). */

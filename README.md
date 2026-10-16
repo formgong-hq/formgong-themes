@@ -7,7 +7,7 @@ the plugin holds, so messages reach your Formgong inbox, email and Telegram.
 
 | Template | WordPress | Shopify |
 |---|---|---|
-| [Craftline](https://formgong.com/en/website-templates/craftline/) (trades) | [craftline-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/craftline-wordpress-1.0.0) | in progress |
+| [Craftline](https://formgong.com/en/website-templates/craftline/) (trades) | [craftline-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/craftline-wordpress-1.1.0) | in progress |
 | [Stilla](https://formgong.com/en/website-templates/stilla/) (activewear shop) | in progress | [Stilla-1.0.0.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/stilla-shopify-1.0.0) |
 | [Orrery](https://formgong.com/en/website-templates/orrery/) (analytics firm, consultancy) | [orrery-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/orrery-wordpress-1.0.0) | in progress |
 | [Shoal](https://formgong.com/en/website-templates/shoal/) (real estate agent) | [shoal-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/shoal-wordpress-1.0.0) | in progress |

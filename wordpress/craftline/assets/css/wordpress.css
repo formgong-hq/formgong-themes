@@ -12,6 +12,11 @@ main section figure { margin: 0; }
    block gap between the top-level blocks of post content). */
 .cl-flush > * { margin-block: 0; }
 
+/* The groups the build puts around the quote form (class cl-keep): their children keep the Craftline build's margins.
+   WordPress's flow layout sets those margins unlayered, which beats Tailwind's layered utilities; revert-layer drops
+   the unlayered value again. */
+.wp-block-group.cl-keep > * { margin-block: revert-layer; }
+
 /* Template parts and <main> follow each other with no gap, as in the original. */
 .wp-site-blocks > * { margin-block-start: 0; }
 
