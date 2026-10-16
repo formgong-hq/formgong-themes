@@ -1,0 +1,99 @@
+/*
+ * WordPress additions to the Ocra stylesheet (assets/css/ocra.css, the template's own CSS as it is).
+ * This file styles what WordPress renders itself (the Navigation block, pages, posts, lists, search and 404) and
+ * resets the gaps WordPress adds between blocks.
+ */
+
+/* Template parts, <main> and the patterns follow each other with no gap, as in the original. */
+.wp-site-blocks > * { margin-block-start: 0; }
+.oc-part { display: contents; }
+.oc-main.oc-main > *, .rows.rows > *, .top.top > *, .bar.bar > * { margin-block: 0; }
+/* ...but the original's own top margins (band, studio facts, visit, newsletter) stay, set again here at the reset's
+   strength. */
+.oc-main.oc-main > .band { margin-top: var(--gut); }
+.oc-main.oc-main > :is(.split, .visit, .letter) { margin-top: clamp(80px, 10vw, 140px); }
+.oc-page:focus { outline: none; }
+
+/* ---------- Header: the logo and the Navigation block in the original .bar ---------- */
+/* The original <nav class="nav">: links side by side with a 4px gap, the last one the black "Order" pill (menu item
+   class oc-order). Below 760px only "Order" stays, as in the original; there is no menu button and no overlay. */
+.top .nav.nav { flex-wrap: nowrap; gap: 4px; }
+.top .nav .wp-block-navigation__container { flex-wrap: nowrap; align-items: center; gap: 4px; }
+.top .nav .wp-block-navigation-item { margin: 0; padding: 0; }
+.top .nav .wp-block-navigation-item__content.wp-block-navigation-item__content { display: block; padding: 7px 12px; border-radius: 999px; color: inherit; font-size: 14px; line-height: 1.45; text-decoration: none; transition: background .2s; }
+.top .nav .wp-block-navigation-item__content.wp-block-navigation-item__content:hover { background: var(--sand); }
+.top .nav li.oc-order > .wp-block-navigation-item__content.wp-block-navigation-item__content { margin-left: 6px; color: #fff; background: var(--ink); }
+.top .nav li.oc-order > .wp-block-navigation-item__content.wp-block-navigation-item__content:hover { background: var(--orange); }
+@media (max-width: 760px) {
+	.top .nav li.wp-block-navigation-item:not(.oc-order) { display: none; }
+}
+
+/* The forms take their key from the Formgong plugin; without one, admins see this line in the card. */
+.oc-nokey { margin: 0; padding: 12px 16px; background: #fff; border: 1px dashed var(--orange); border-radius: 10px; font-size: 14px; color: var(--ink); }
+
+/* ---------- Pages, posts, lists, search, 404: the template's type, gutter and colours ---------- */
+/* The title as the section heads (Inter Tight 600, tight), then a sand card with the rounded corners of the home
+   page: the meta (date, categories) in the first quarter, the text across the rest. */
+.oc-page { padding: clamp(60px, 8vw, 110px) 0 0; }
+.oc-title { margin: 0; padding: 0 var(--gut) clamp(32px, 4vw, 56px); font-family: "Inter Tight", "Inter", sans-serif; font-size: clamp(40px, 5.4vw, 80px); font-weight: 600; line-height: .95; letter-spacing: -.045em; overflow-wrap: anywhere; }
+.oc-title a { text-decoration: none; }
+.oc-title a:hover { color: var(--orange); }
+.oc-body { display: grid; grid-template-columns: 1fr 3fr; gap: var(--gut); margin: 0 var(--gut); padding: clamp(28px, 4vw, 56px); background: var(--sand); border-radius: var(--r); }
+.oc-meta { font-size: 15px; line-height: 1.45; color: var(--muted); }
+.oc-meta > * { margin: 0; }
+.oc-meta a { text-decoration: none; }
+.oc-meta a:hover { color: var(--orange); }
+.oc-content { min-width: 0; }
+.oc-content > * { margin-block: 0; }
+.oc-img { margin: 0 0 28px; overflow: hidden; border-radius: 18px; }
+.oc-img img { display: block; width: 100%; height: auto; }
+
+.oc-prose { max-width: 40em; font-size: 17px; line-height: 1.5; }
+.oc-prose > * + * { margin-block-start: 1em; }
+.oc-prose > :first-child { margin-top: 0; }
+.oc-prose :is(h2, h3, h4) { margin-block: 1.6em .5em; font-family: "Inter Tight", "Inter", sans-serif; font-weight: 600; line-height: 1.05; letter-spacing: -.035em; }
+.oc-prose h2 { font-size: clamp(26px, 3.2vw, 40px); }
+.oc-prose h3 { font-size: clamp(22px, 2.2vw, 30px); }
+.oc-prose :is(ul, ol) { padding-left: 1.2em; }
+.oc-prose a { text-decoration: underline; text-underline-offset: 2px; }
+.oc-prose a:hover { color: var(--orange); }
+.oc-prose blockquote { margin-inline: 0; padding-left: 20px; border-left: 3px solid var(--orange); font-size: clamp(20px, 2.2vw, 26px); line-height: 1.2; letter-spacing: -.02em; }
+.oc-prose figure { margin: 0; }
+.oc-prose img { max-width: 100%; height: auto; border-radius: 18px; }
+.oc-prose :is(code, pre) { font-size: .875em; }
+
+/* Comments under the card; the group renders empty when comments are closed, then it keeps no margin. */
+.oc-page > .oc-comments { margin: var(--gut) var(--gut) 0; padding: clamp(28px, 4vw, 56px); background: var(--sand); border-radius: var(--r); }
+.oc-comments:empty { display: none; }
+.oc-comments :is(input:not([type="submit"]), textarea) { width: 100%; padding: 11px 12px; font: inherit; font-size: 15px; color: var(--ink); background: #fff; border: 1px solid #e2d9cd; border-radius: 10px; box-shadow: 0 1px 2px rgba(60, 40, 20, .05); }
+.oc-comments .wp-block-post-comments-form input[type="submit"] { padding: 12px 16px; font: inherit; font-size: 15px; font-weight: 500; color: #fff; background: var(--ink); border: 0; border-radius: 10px; cursor: pointer; }
+.oc-comments .wp-block-post-comments-form input[type="submit"]:hover { background: #3a3129; }
+
+/* Lists: one card per post (date | title and summary). */
+.oc-posts { display: grid; gap: var(--gut); margin: 0; padding: 0; list-style: none; }
+.oc-posts > li { margin: 0; }
+.oc-card-title { margin: 0; font-size: clamp(22px, 2.2vw, 30px); font-weight: 500; line-height: 1.15; letter-spacing: -.025em; }
+.oc-card-title a { text-decoration: none; }
+.oc-card-title a:hover { color: var(--orange); }
+.oc-card-sum { margin: 8px 0 0; max-width: 40em; font-size: 17px; line-height: 1.4; color: var(--muted); }
+.oc-card-sum p { margin: 0; }
+.oc-card-sum .wp-block-post-excerpt__more-text { display: none; }
+.oc-pagination { gap: 4px; margin: var(--gut) var(--gut) 0; font-size: 14px; }
+.oc-pagination :is(a, .current) { padding: 7px 12px; border-radius: 999px; text-decoration: none; }
+.oc-pagination a:hover { background: var(--sand); }
+.oc-pagination .current { color: #fff; background: var(--ink); }
+.oc-empty { margin: 0; padding: 0 var(--gut); font-size: 17px; }
+
+/* Search: the newsletter pill (white field, black button). */
+.oc-searchbar { padding: 0 var(--gut) clamp(32px, 4vw, 56px); }
+.oc-search { max-width: 420px; margin: 0; }
+.oc-content .oc-search { margin-top: 28px; }
+.oc-search .wp-block-search__inside-wrapper { align-items: center; gap: 8px; padding: 5px 5px 5px 16px; background: #fff; border: 1px solid #e2d9cd; border-radius: 999px; }
+.oc-search input { flex: 1; min-width: 0; padding: 8px 0; font: inherit; font-size: 15px; color: var(--ink); background: transparent; border: 0; outline: none; }
+.oc-search button { flex: none; margin: 0; padding: 9px 18px; font: inherit; font-size: 15px; font-weight: 500; color: #fff; background: var(--ink); border: 0; border-radius: 999px; cursor: pointer; }
+.oc-search button:hover { background: var(--orange); }
+
+@media (max-width: 760px) {
+	.oc-body { grid-template-columns: 1fr; gap: 12px; }
+	.oc-prose, .oc-card-sum { font-size: 16px; }
+}

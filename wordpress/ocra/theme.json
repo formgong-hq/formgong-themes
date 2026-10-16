@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"layout": { "contentSize": "760px", "wideSize": "1200px" },
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{ "slug": "accent", "color": "#ef7a2e", "name": "Orange" },
+				{ "slug": "accent-soft", "color": "#fde2c4", "name": "Orange soft" },
+				{ "slug": "ink", "color": "#1e1a16", "name": "Ink" },
+				{ "slug": "paper", "color": "#fbf8f3", "name": "Paper" },
+				{ "slug": "sand", "color": "#f2ece4", "name": "Sand" },
+				{ "slug": "muted", "color": "#8b8176", "name": "Muted" }
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{ "name": "Inter", "slug": "inter", "fontFamily": "\"Inter\", system-ui, -apple-system, \"Segoe UI\", sans-serif" },
+				{ "name": "Inter Tight", "slug": "inter-tight", "fontFamily": "\"Inter Tight\", \"Inter\", sans-serif" }
+			]
+		},
+		"spacing": { "units": [ "px", "rem", "%", "vw" ] }
+	},
+	"styles": {
+		"color": { "background": "var(--wp--preset--color--paper)", "text": "var(--wp--preset--color--ink)" },
+		"typography": { "fontFamily": "var(--wp--preset--font-family--inter)" },
+		"spacing": { "blockGap": "1.25rem" }
+	},
+	"templateParts": [
+		{ "name": "header", "area": "header", "title": "Header" },
+		{ "name": "footer", "area": "footer", "title": "Footer" }
+	]
+}
