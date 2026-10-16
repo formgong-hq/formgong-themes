@@ -17,6 +17,7 @@ the plugin holds, so messages reach your Formgong inbox, email and Telegram.
 | [Soglia](https://formgong.com/en/website-templates/soglia/) (designer windows and doors) | [soglia-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/soglia-wordpress-1.0.0) | in progress |
 | [Halftone](https://formgong.com/en/website-templates/halftone/) (architecture studio) | [halftone-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/halftone-wordpress-1.0.0) | in progress |
 | [Lucerna](https://formgong.com/en/website-templates/lucerna/) (lighting maker) | [lucerna-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/lucerna-wordpress-1.0.0) | in progress |
+| [Marrow](https://formgong.com/en/website-templates/marrow/) (raw pet-food kitchen) | [marrow-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/marrow-wordpress-1.0.0) | in progress |
 
 More templates are on the way.
 
@@ -44,7 +45,7 @@ content and as a clean install, with a real form submission. The checks are list
 
 ## License
 
-WordPress themes have the license of their template; Craftline, Orrery, Shoal, Lattice, Lattice Estate, Lattice Atelier, Soglia, Halftone and Lucerna are MIT. Shopify themes are free to use on any
+WordPress themes have the license of their template; Craftline, Orrery, Shoal, Lattice, Lattice Estate, Lattice Atelier, Soglia, Halftone, Lucerna and Marrow are MIT. Shopify themes are free to use on any
 number of stores but not to resell; see each theme's LICENSE.md. Fonts and other credits are in each theme's readme.txt.
 
 Something broken or missing? Open an issue or write to support@formgong.com. We'd like to hear what you think.

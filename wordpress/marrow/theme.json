@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"layout": { "contentSize": "760px", "wideSize": "1282px" },
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{ "slug": "ink", "color": "#1c2a6b", "name": "Navy" },
+				{ "slug": "ink-2", "color": "#4a5590", "name": "Navy soft" },
+				{ "slug": "accent", "color": "#ff6b2c", "name": "Orange" },
+				{ "slug": "accent-dark", "color": "#c2410c", "name": "Orange dark" },
+				{ "slug": "hero", "color": "#74adfd", "name": "Sky" },
+				{ "slug": "cream", "color": "#fff3e3", "name": "Cream" },
+				{ "slug": "mist", "color": "#eef2fb", "name": "Mist" },
+				{ "slug": "white", "color": "#ffffff", "name": "White" }
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{ "name": "Figtree", "slug": "figtree", "fontFamily": "\"Figtree\", \"Helvetica Neue\", Arial, sans-serif" },
+				{ "name": "Unbounded", "slug": "unbounded", "fontFamily": "\"Unbounded\", \"Arial Black\", sans-serif" }
+			]
+		},
+		"spacing": { "units": [ "px", "rem", "%", "vw" ] }
+	},
+	"styles": {
+		"color": { "background": "#ffffff", "text": "var(--wp--preset--color--ink)" },
+		"typography": { "fontFamily": "var(--wp--preset--font-family--figtree)" },
+		"spacing": { "blockGap": "1.25rem" }
+	},
+	"templateParts": [
+		{ "name": "header", "area": "header", "title": "Header" },
+		{ "name": "footer", "area": "footer", "title": "Footer" }
+	]
+}

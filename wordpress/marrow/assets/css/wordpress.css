@@ -1,0 +1,130 @@
+/*
+ * WordPress additions to the Marrow stylesheet (assets/css/marrow.css, the template's own CSS as it is).
+ * This file styles what WordPress renders itself (the two Navigation blocks, pages, posts, lists, search and 404) and
+ * resets the gaps WordPress adds between blocks.
+ */
+
+/* Template parts, <main> and the patterns follow each other with no gap, as in the original. */
+.wp-site-blocks > * { margin-block-start: 0; }
+.mw-part { display: contents; }
+.mw-main.mw-main > *, .hdr.hdr > *, .menu.menu > * { margin-block-start: 0; }
+.mw-part > dialog { margin: auto; }
+@media (max-width: 600px) {
+	.mw-part > dialog { margin: auto 0 0; }
+}
+.mw-skip { position: fixed; z-index: 200; top: 8px; left: 8px; padding: 10px 18px; border-radius: 50px; background: var(--ink); color: #fff; font: 700 13px/1 var(--sans); letter-spacing: 1px; text-transform: uppercase; transform: translateY(-200%); }
+.mw-skip:focus { transform: none; }
+main:focus { outline: none; }
+
+/* ---------- Header bar: the Navigation block in the place of <nav class="hnav"> ---------- */
+/* The bar shows the menu items without a class (Recipes, Treats, Raw feeding, Contact); items with the class
+   mw-menu-only (Reviews, Questions) and mw-mc (the contact line) are only in the open menu. */
+.hdr .hnav.hnav, .hdr .hnav .wp-block-navigation__container { flex-wrap: nowrap; align-items: center; gap: clamp(18px, 2.4vw, 34px); }
+.hdr .hnav li.wp-block-navigation-item { margin: 0; padding: 0; }
+.hdr .hnav li.mw-menu-only, .hdr .hnav li.mw-mc { display: none; }
+.hdr .hnav .wp-block-navigation-item__content.wp-block-navigation-item__content { position: relative; display: block; padding: 8px 0; color: inherit; font: 700 13px/1 var(--sans); letter-spacing: 1px; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+@media (max-width: 1100px) {
+	.hdr .hnav.hnav, .hdr .hnav .wp-block-navigation__container { gap: 18px; }
+}
+@media (max-width: 980px) {
+	.hdr .hnav.hnav { display: none; }
+}
+
+/* ---------- The full-screen orange menu: the same Navigation menu ---------- */
+/* The original panel holds <nav> (the big links, 4px apart) and, 40px under it, the contact line (.mc: 8px 36px
+   gaps, 600 weight). Here both are items of one list: the big links take a whole row, the mw-mc items wrap side by
+   side; the margins give the original's gaps. */
+.menu .mw-mnav.mw-mnav { display: block; width: min(var(--wrap), 100%); margin: 0 auto; }
+.menu .mw-mnav .wp-block-navigation__container.wp-block-navigation__container { display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start; justify-content: flex-start; gap: 8px 36px; margin: 0; padding: 0; }
+.menu .mw-mnav li.wp-block-navigation-item.wp-block-navigation-item { display: flex; margin: 0; padding: 0; }
+.menu .mw-mnav li.wp-block-navigation-item:not(.mw-mc) { flex: 0 0 100%; margin-bottom: -4px; }
+.menu .mw-mnav li.wp-block-navigation-item:not(.mw-mc):has(+ .mw-mc) { margin-bottom: 32px; }
+.menu .mw-mnav li:not(.mw-mc) > .wp-block-navigation-item__content.wp-block-navigation-item__content { display: block; padding: 0; color: inherit; font: 700 clamp(34px, 6vw, 72px)/1.15 var(--display); letter-spacing: -.02em; text-decoration: none; transition: transform .4s var(--ease); }
+.menu .mw-mnav li:not(.mw-mc) > .wp-block-navigation-item__content.wp-block-navigation-item__content:hover { transform: translateX(14px); }
+.menu .mw-mnav li.mw-mc > .wp-block-navigation-item__content.wp-block-navigation-item__content { display: block; padding: 0; color: inherit; font-family: var(--sans); font-size: inherit; font-weight: 600; line-height: inherit; letter-spacing: normal; text-decoration: none; transform: none; }
+.menu .mw-mnav li.mw-mc > .wp-block-navigation-item__content:not([href]) { cursor: text; }
+
+/* ---------- Pages other than the home page: the header in its scrolled look (no hero under it) ---------- */
+.mw-inner .hdr { height: 84px; padding-top: 0; color: var(--ink); }
+html:not(.menu-open) .mw-inner .hdr::before { transform: none; }
+.mw-inner .h-mark { clip-path: inset(0 50% 0 50%); opacity: 0; }
+.mw-inner .h-word { clip-path: inset(0 0 0 0); opacity: 1; }
+@media (max-width: 980px) {
+	.mw-inner .hdr { height: 70px; }
+}
+
+/* The forms take their key from the Formgong plugin; without one, admins see this line in the form's place. */
+.mw-nokey { width: min(var(--wrap), 100%); margin: 24px auto 0; padding: 14px 20px; border: 2px dashed var(--accent); border-radius: 16px; background: #fff; color: var(--ink); font-size: 15px; font-weight: 600; text-align: center; }
+dialog .mw-nokey { margin-top: 20px; }
+
+/* ---------- Pages, posts, lists, search, 404: the template's type, wrap and colours ---------- */
+/* The title in Unbounded like the section heads, then a cream card with the hero's round corners: the meta (date,
+   categories) in the first column, the text across the rest; comments in a mist card. */
+.mw-page { padding: calc(84px + clamp(40px, 6vw, 80px)) 0 clamp(80px, 10vw, 120px); }
+.mw-page > * { width: min(var(--wrap), 100% - 2 * var(--pad)); margin-inline: auto; }
+.mw-page > * + * { margin-block-start: 0; }
+.mw-title { margin-block: 0; padding-bottom: clamp(28px, 4vw, 48px); font: 700 clamp(34px, 4.6vw, 60px)/1.15 var(--display); letter-spacing: -.02em; color: var(--ink); overflow-wrap: anywhere; }
+.mw-title a { text-decoration: none; }
+.mw-title a:hover { color: var(--accent-dark); }
+.mw-body { display: grid; grid-template-columns: 1fr 3fr; gap: 40px; padding: clamp(28px, 4vw, 56px); background: var(--cream); border-radius: 40px; }
+.mw-meta { font: 700 13px/1.6 var(--sans); letter-spacing: 1px; text-transform: uppercase; color: var(--ink-2); }
+.mw-meta > * { margin: 0 0 6px; }
+.mw-meta a { text-decoration: none; }
+.mw-meta a:hover { color: var(--accent-dark); }
+.mw-content { min-width: 0; }
+.mw-content > * { margin-block: 0; }
+.mw-img { margin: 0 0 28px; overflow: hidden; border-radius: 28px; }
+.mw-img img { display: block; width: 100%; height: auto; }
+
+.mw-prose { max-width: 44em; font-size: 17px; line-height: 1.6; }
+.mw-prose > * + * { margin-block-start: 1em; }
+.mw-prose > :first-child { margin-top: 0; }
+.mw-prose :is(h2, h3, h4) { margin-block: 1.6em .5em; font-family: var(--display); font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
+.mw-prose h2 { font-size: clamp(24px, 2.6vw, 32px); }
+.mw-prose h3 { font-size: clamp(20px, 2vw, 24px); }
+.mw-prose :is(ul, ol) { padding-left: 1.2em; }
+.mw-prose ul { list-style: disc; }
+.mw-prose a { text-decoration: underline; text-underline-offset: 2px; }
+.mw-prose a:hover { color: var(--accent-dark); }
+.mw-prose blockquote { margin-inline: 0; padding-left: 20px; border-left: 4px solid var(--accent); font: 500 clamp(19px, 2vw, 24px)/1.4 var(--display); }
+.mw-prose figure { margin: 0; }
+.mw-prose img { max-width: 100%; height: auto; border-radius: 28px; }
+.mw-prose :is(code, pre) { font-size: .875em; }
+
+/* Comments under the card; the group renders empty when comments are closed, then it keeps no margin. */
+.mw-page > .mw-comments { margin-top: 24px; padding: clamp(28px, 4vw, 56px); background: var(--mist); border-radius: 40px; }
+.mw-page > .mw-comments:empty { display: none; }
+.mw-comments :is(input:not([type="submit"]), textarea) { width: 100%; padding: 12px 16px; border: 2px solid var(--line); border-radius: 16px; background: #fff; font: inherit; font-size: 16px; color: var(--ink); }
+.mw-comments .wp-block-post-comments-form input[type="submit"] { height: 48px; padding: 0 35px; border: 0; border-radius: 50px; background: var(--accent); color: var(--ink); font: 700 13px/1 var(--sans); letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
+.mw-comments .wp-block-post-comments-form input[type="submit"]:hover { background: var(--ink); color: #fff; }
+
+/* Lists: one card per post (date | title and summary). */
+.mw-posts { display: grid; gap: 24px; margin: 0; padding: 0; list-style: none; }
+.mw-posts > li { margin: 0; }
+.mw-card-title { margin: 0; font: 600 clamp(20px, 2.2vw, 28px)/1.25 var(--display); letter-spacing: -.01em; }
+.mw-card-title a { text-decoration: none; }
+.mw-card-title a:hover { color: var(--accent-dark); }
+.mw-card-sum { margin: 10px 0 0; max-width: 44em; font-size: 17px; line-height: 1.6; color: var(--ink-2); }
+.mw-card-sum p { margin: 0; }
+.mw-card-sum .wp-block-post-excerpt__more-text { display: none; }
+.mw-pagination { gap: 6px; margin-top: 24px; font: 700 13px/1 var(--sans); letter-spacing: 1px; text-transform: uppercase; }
+.mw-pagination :is(a, .current) { display: inline-grid; place-items: center; min-width: 48px; height: 48px; padding: 0 18px; border-radius: 50px; text-decoration: none; }
+.mw-pagination a:hover { background: var(--mist); }
+.mw-pagination .current { background: var(--accent); color: var(--ink); }
+.mw-empty { margin: 0; font-size: 17px; }
+
+/* Search: the meal finder's e-mail row (white field, orange pill). */
+.mw-searchbar { padding-bottom: clamp(28px, 4vw, 48px); }
+.mw-search { max-width: 520px; margin: 0; }
+.mw-content .mw-search { margin-top: 28px; }
+.mw-search .wp-block-search__inside-wrapper { align-items: center; gap: 10px; padding: 0; border: 0; }
+.mw-search input { flex: 1; min-width: 0; height: 52px; padding: 0 20px; border: 2px solid var(--line); border-radius: 50px; background: #fff; font: inherit; font-size: 16px; color: var(--ink); outline: none; }
+.mw-search input:focus { border-color: var(--ink); }
+.mw-search button { flex: none; height: 52px; margin: 0; padding: 0 30px; border: 0; border-radius: 50px; background: var(--accent); color: var(--ink); font: 700 13px/1 var(--sans); letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
+.mw-search button:hover { background: var(--ink); color: #fff; }
+
+@media (max-width: 760px) {
+	.mw-body { grid-template-columns: 1fr; gap: 12px; border-radius: 28px; }
+	.mw-page > .mw-comments { border-radius: 28px; }
+	.mw-prose, .mw-card-sum { font-size: 16px; }
+}
