@@ -1,0 +1,46 @@
+{%- comment -%} Values: stacked cards, one open at a time; the earlier cards slide up and leave their titles in a bar. {%- endcomment -%}
+<section class="sec3" id="{{ section.settings.anchor | default: 'values' | handleize }}" aria-label="{{ section.settings.label | escape }}">
+  <div class="tabs" id="tabs">
+    <div class="top-nav" hidden></div>
+    {%- for block in section.blocks -%}
+      <div class="tab" style="--i:{{ forloop.index0 }};background:{{ block.settings.bg }}" {{ block.shopify_attributes }}>
+        <div class="tab-content"><div class="tab-top">
+          <div class="tab-images"><div class="tiw b">{% render 'lc-img', image: block.settings.image_1, width: 800, alt: '' %}</div><div class="tiw t">{% render 'lc-img', image: block.settings.image_2, width: 800, alt: '' %}</div></div>
+          <div class="tab-text"><p class="small">{{ block.settings.title }}</p><h3 class="main">{{ block.settings.heading }}</h3><p class="secondary">{{ block.settings.text }}</p></div>
+        </div><button class="tab-bottom" type="button"><span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}.</span><b>{{ block.settings.title }}</b></button></div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Value cards",
+  "tag": "div",
+  "class": "lc-section-contents",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Name for screen readers", "default": "Our values" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "values" }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Value" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "A heading for this value" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "A short paragraph about this value." },
+        { "type": "image_picker", "id": "image_1", "label": "Back photo" },
+        { "type": "image_picker", "id": "image_2", "label": "Front photo" },
+        { "type": "color", "id": "bg", "label": "Card colour", "default": "#1d2230" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Value cards", "blocks": [
+    { "type": "tab", "settings": { "bg": "#1d2230" } }, { "type": "tab", "settings": { "bg": "#232b45" } },
+    { "type": "tab", "settings": { "bg": "#27345e" } }, { "type": "tab", "settings": { "bg": "#2a3d7d" } },
+    { "type": "tab", "settings": { "bg": "#1f4fe0" } }
+  ] }]
+}
+{% endschema %}

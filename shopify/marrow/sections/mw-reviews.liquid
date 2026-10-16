@@ -1,0 +1,112 @@
+{%- comment -%}
+  Marrow reviews: a ribbon of running text, review cards with arrows and "Leave a review" (a Formgong form in a
+  dialog). Reviews approved in Formgong (https://formgong.com/reviews/<key>.json) replace the cards below.
+{%- endcomment -%}
+{%- assign key = settings.formgong_key -%}
+<section class="mw-reviews" id="{{ section.settings.anchor | default: 'reviews' | handle }}" aria-labelledby="reviews-h-{{ section.id }}" data-fade-bg>
+  <div class="mw-wrap mw-top">
+    {%- if section.settings.label != blank or key != blank -%}<p class="mw-label" data-rv-label>{{ section.settings.label }}</p>{%- endif -%}
+    <h2 class="mw-h2" id="reviews-h-{{ section.id }}"><span>{{ section.settings.heading_1 }}</span> <span>{{ section.settings.heading_2 }}</span> <span><b>{{ section.settings.heading_3 }}</b></span></h2>
+  </div>
+  {%- if section.settings.ribbon != blank -%}
+    <svg class="mw-ribbon" viewBox="0 0 1440 360" aria-hidden="true" data-ribbon>
+      <path id="ribbon-path-{{ section.id }}" d="M-40 250C200 330 400 110 720 170S1180 330 1480 100"/>
+      <text dy="12"><textPath href="#ribbon-path-{{ section.id }}" startOffset="-50%" data-ribbon-text>{% for i in (1..8) %}✱ {{ section.settings.ribbon }} {% endfor %}</textPath></text>
+    </svg>
+  {%- endif -%}
+  <svg class="mw-down mw-dp" viewBox="0 0 28 70" aria-hidden="true"><path pathLength="1" d="M14 2v64" style="--d:0s"/><path pathLength="1" d="M3 55l11 12 11-12" style="--d:.35s"/></svg>
+  <div class="mw-wrap mw-rv-wrap">
+    <ul class="mw-rv-track" data-rv-track aria-label="{{ section.settings.heading_1 | escape }}">
+      {%- for block in section.blocks -%}
+        {%- assign n = block.settings.rating -%}
+        <li class="mw-rcard" {{ block.shopify_attributes }}><div class="mw-stars" aria-label="{{ 'marrow.reviews.stars' | t: count: n }}">
+          {%- for i in (1..5) -%}<svg aria-hidden="true"{% if i > n %} style="opacity:.25"{% endif %}><use href="#mw-i-star"/></svg>{%- endfor -%}
+        </div><p>{{ block.settings.text }}</p><div class="mw-who"><span class="mw-av" aria-hidden="true">{{ block.settings.initials }}</span><div><b>{{ block.settings.name }}</b><span>{{ block.settings.when }}</span></div></div></li>
+      {%- endfor -%}
+    </ul>
+    <div class="mw-rv-ctl">
+      {%- if key != blank -%}
+        <button class="mw-pill mw-big" type="button" data-review-open>{{ section.settings.button_label }}</button>
+      {%- elsif request.design_mode -%}
+        <p class="mw-hint">{{ 'marrow.form.needs_key' | t }}</p>
+      {%- else -%}
+        <span></span>
+      {%- endif -%}
+      <div class="mw-arrows"><button class="mw-circ mw-prev" type="button" aria-label="{{ 'marrow.reviews.previous' | t }}" data-rv-prev><svg aria-hidden="true"><use href="#mw-i-arrow"/></svg></button><button class="mw-circ" type="button" aria-label="{{ 'marrow.reviews.next' | t }}" data-rv-next><svg aria-hidden="true"><use href="#mw-i-arrow"/></svg></button></div>
+    </div>
+  </div>
+</section>
+
+{%- if key != blank -%}
+<dialog class="mw-dialog" id="d-review" aria-labelledby="review-title-{{ section.id }}">
+  <div class="mw-dlg" tabindex="-1" autofocus>
+    <button class="mw-x" type="button" aria-label="{{ 'marrow.dialog.close' | t }}" data-close>×</button>
+    <h2 id="review-title-{{ section.id }}">{{ section.settings.form_heading }}</h2>
+    {%- if section.settings.form_intro != blank -%}<p class="mw-intro">{{ section.settings.form_intro }}</p>{%- endif -%}
+    <form class="mw-form" id="f-review" action="https://formgong.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="{{ key | escape }}" data-reviews-key>
+      <input type="hidden" name="subject" value="{{ section.settings.subject | escape }}">
+      <div class="mw-hp" aria-hidden="true"><label>{{ 'marrow.form.leave_empty' | t }}<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+      <fieldset class="mw-rate">
+        <legend>{{ section.settings.rating_label }}</legend>
+        <div class="mw-pick">
+          {%- for i in (1..5) reversed -%}
+            <input type="radio" id="r{{ i }}-{{ section.id }}" name="rating" value="{{ i }}"{% if i == 5 %} required{% endif %}><label for="r{{ i }}-{{ section.id }}" aria-label="{{ 'marrow.reviews.stars' | t: count: i }}"><svg aria-hidden="true"><use href="#mw-i-star"/></svg></label>
+          {%- endfor -%}
+        </div>
+      </fieldset>
+      <label class="mw-f mw-full"><span>{{ section.settings.name_label }}</span><input name="name" autocomplete="name" required maxlength="100"></label>
+      <label class="mw-f mw-full"><span>{{ section.settings.review_label }}</span><textarea name="review" required maxlength="2000" placeholder="{{ section.settings.review_placeholder | escape }}"></textarea></label>
+      <label class="mw-f mw-full"><span>{{ section.settings.email_label }}</span><input type="email" name="email" autocomplete="email" maxlength="160"></label>
+      <button class="mw-pill mw-big" type="submit">{{ section.settings.submit_label }}</button>
+      <p class="mw-status" data-status role="status" aria-live="polite"></p>
+      <p class="mw-credit">Reviews powered by <a href="https://formgong.com" rel="noopener">Formgong</a></p>
+      <div class="mw-thanks" tabindex="-1">{% render 'mw-thanks-heading', text: section.settings.thanks_heading %}{{ section.settings.thanks_text }} <button type="button" data-again>{{ 'marrow.form.again' | t }}</button></div>
+    </form>
+  </div>
+</dialog>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Reviews",
+  "class": "mw-sec",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label above the heading", "info": "With a Formgong key and approved reviews, it shows the average and the count." },
+    { "type": "text", "id": "heading_1", "label": "Heading, line 1", "default": "What our customers" },
+    { "type": "text", "id": "heading_2", "label": "Heading, line 2", "default": "say about" },
+    { "type": "text", "id": "heading_3", "label": "Heading, bold line 3", "default": "the food." },
+    { "type": "text", "id": "ribbon", "label": "Running ribbon text", "default": "Your store name ✱ your tagline" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "reviews" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Leave a review" },
+    { "type": "header", "content": "Review form (Formgong)", "info": "Shown once a Formgong access key is set in Theme settings → Formgong. Turn on Reviews for that key in the Formgong dashboard: approved reviews then replace the cards." },
+    { "type": "text", "id": "form_heading", "label": "Heading", "default": "Leave a review" },
+    { "type": "textarea", "id": "form_intro", "label": "Text", "default": "Tell other customers how it went. Your review appears here once we have read it." },
+    { "type": "text", "id": "subject", "label": "Email subject", "default": "New review" },
+    { "type": "text", "id": "rating_label", "label": "Rating", "default": "Your rating" },
+    { "type": "text", "id": "name_label", "label": "Name", "default": "Name" },
+    { "type": "text", "id": "review_label", "label": "Review", "default": "Your review" },
+    { "type": "text", "id": "review_placeholder", "label": "Review placeholder", "default": "What does your pet think? What could be better?" },
+    { "type": "text", "id": "email_label", "label": "Email", "default": "Email (optional, not shown)" },
+    { "type": "text", "id": "submit_label", "label": "Send button", "default": "Send review" },
+    { "type": "text", "id": "thanks_heading", "label": "Thanks heading", "default": "Thank you, [name].", "info": "[name] is the first name from the form." },
+    { "type": "text", "id": "thanks_text", "label": "Thanks text", "default": "Your review will appear here once we have read it." }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review card",
+      "settings": [
+        { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Review", "default": "Add a review a customer sent you, with their permission." },
+        { "type": "text", "id": "name", "label": "Name", "default": "Customer name" },
+        { "type": "text", "id": "initials", "label": "Initials", "default": "CN" },
+        { "type": "text", "id": "when", "label": "When" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Reviews" }],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

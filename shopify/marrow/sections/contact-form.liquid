@@ -1,0 +1,79 @@
+<div class="section color-{{ section.settings.color_scheme }}">
+  <div class="page-width contact" style="--pad-top: {{ section.settings.padding_top }}px; --pad-bottom: {{ section.settings.padding_bottom }}px;">
+    {%- if section.settings.heading != blank -%}<h2 class="contact__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+    {%- form 'contact', id: 'ContactForm', class: 'contact__form' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="form-message" role="status">{{ 'contact.success' | t }}</p>
+      {%- elsif form.errors -%}
+        <div class="form-message form-message--error" role="alert">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <div class="contact__row">
+        <div class="field">
+          <label for="ContactName">{{ 'contact.name' | t }}</label>
+          <input class="input" id="ContactName" type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="ContactEmail">{{ 'contact.email' | t }}</label>
+          <input class="input" id="ContactEmail" type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="ContactPhone">{{ 'contact.phone' | t }}</label>
+        <input class="input" id="ContactPhone" type="tel" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="ContactBody">{{ 'contact.message' | t }}</label>
+        <textarea class="textarea" id="ContactBody" name="contact[body]" required>{{ form.body }}</textarea>
+      </div>
+      <button class="button" type="submit">{{ 'contact.send' | t }}</button>
+    {%- endform -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .contact {
+    max-width: 920px;
+    padding-block: var(--pad-top, 0) var(--pad-bottom, 72px);
+  }
+
+  .contact__heading {
+    margin-bottom: 20px;
+    font-size: calc(1.9rem * var(--heading-scale));
+  }
+
+  .contact__form {
+    display: grid;
+    gap: 14px;
+    max-width: 680px;
+  }
+
+  .contact__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .contact__form .button {
+    justify-self: start;
+  }
+
+  @media (max-width: 599px) {
+    .contact__row {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact form",
+  "class": "section-contact",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Send us a message" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [{ "name": "Contact form" }]
+}
+{% endschema %}

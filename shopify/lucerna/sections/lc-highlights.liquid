@@ -1,0 +1,90 @@
+{%- comment -%} Highlights: the text, then a bento of photo cards, product cards and number cards. {%- endcomment -%}
+<section class="sec2" id="{{ section.settings.anchor | default: 'highlights' | handleize }}">
+  <div class="sec2-in">
+    <div class="sec2-text">
+      {%- if section.settings.small != blank -%}<p class="small">{{ section.settings.small }}</p>{%- endif -%}
+      <h2 class="primary">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="secondary">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    <div class="grid">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'card' -%}
+            <a class="card-img {{ block.settings.span }}{% if block.settings.bottom %} bottom{% endif %}{% if block.settings.tall_text %} dealers{% endif %}" href="{{ block.settings.link | default: '#highlights' }}" style="--ratio:{{ block.settings.ratio | default: '460/250' | escape }}" {{ block.shopify_attributes }}>
+              {% render 'lc-img', image: block.settings.image, width: 1600, alt: '' %}
+              <span class="ct"><span class="ct-main">{{ block.settings.title }}</span><span class="ct-desc">{{ block.settings.text }}</span></span>
+              <span class="arrow-btn" aria-hidden="true"><svg class="ic"><use href="#arrow"/></svg></span>
+            </a>
+          {%- when 'product' -%}
+            <a class="prod span3{% if block.settings.tablet_full %} tablet-full{% endif %}" href="{{ block.settings.link | default: '#projects' }}" {{ block.shopify_attributes }}>
+              {% render 'lc-img', image: block.settings.image, width: 800, alt: '' %}
+              <span class="pt"><span class="pt-name">{{ block.settings.name }}</span><span class="pt-desc">{% if block.settings.spec_1 != blank %}<i>{{ block.settings.spec_1 }}</i>{% endif %}{% if block.settings.spec_2 != blank %}<i>{{ block.settings.spec_2 }}</i>{% endif %}</span></span>
+            </a>
+          {%- when 'stat' -%}
+            <div class="stat span2{% if block.settings.bottom %} bottom{% endif %}" style="--ratio:240/160" {{ block.shopify_attributes }}>
+              <canvas class="silk" data-silk="{{ block.settings.palette }}" aria-hidden="true"></canvas>
+              <div class="stat-in"><b>{{ block.settings.number }}</b><span>{{ block.settings.label }}</span></div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Highlights",
+  "tag": "div",
+  "class": "lc-section-contents",
+  "settings": [
+    { "type": "text", "id": "small", "label": "Small line", "default": "Highlights" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The right file, right when you need it." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "A short paragraph about your documents, catalogues and news." },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "highlights" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Photo card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Technical sheets" },
+        { "type": "text", "id": "text", "label": "Text on hover", "default": "A short line." },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "select", "id": "span", "label": "Width (of 12 columns, 6 per row on wide screens)", "default": "span4", "options": [
+          { "value": "span3", "label": "3" }, { "value": "span4", "label": "4" }, { "value": "span6", "label": "6" } ] },
+        { "type": "text", "id": "ratio", "label": "Shape (width/height)", "default": "460/250" },
+        { "type": "checkbox", "id": "bottom", "label": "Align to the bottom of the row", "default": false },
+        { "type": "checkbox", "id": "tall_text", "label": "Two-line text on hover", "default": false }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Product name" },
+        { "type": "text", "id": "spec_1", "label": "Spec 1", "default": "Spec" },
+        { "type": "text", "id": "spec_2", "label": "Spec 2" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "checkbox", "id": "tablet_full", "label": "Full width on tablets", "default": false }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Number card",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "100" },
+        { "type": "text", "id": "label", "label": "Label", "default": "A short label" },
+        { "type": "select", "id": "palette", "label": "Light", "default": "sun", "options": [ { "value": "sun", "label": "Sun" }, { "value": "ink", "label": "Ink" } ] },
+        { "type": "checkbox", "id": "bottom", "label": "Align to the bottom of the row", "default": true }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Highlights", "blocks": [
+    { "type": "card", "settings": { "bottom": true } }, { "type": "product" }, { "type": "stat" },
+    { "type": "card", "settings": { "span": "span3", "ratio": "340/250", "bottom": true, "tall_text": true } }, { "type": "product" },
+    { "type": "card", "settings": { "span": "span6", "ratio": "710/340" } }, { "type": "product", "settings": { "tablet_full": true } }
+  ] }]
+}
+{% endschema %}

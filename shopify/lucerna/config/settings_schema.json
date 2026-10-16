@@ -1,0 +1,323 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Lucerna",
+    "theme_version": "1.0.0",
+    "theme_author": "Formgong",
+    "theme_documentation_url": "https://formgong.com/en/website-templates/lucerna/",
+    "theme_support_url": "https://github.com/formgong-hq/formgong-themes/issues"
+  },
+  {
+    "name": "Logo and favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Logo width",
+        "min": 60,
+        "max": 300,
+        "step": 5,
+        "unit": "px",
+        "default": 130
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "32 x 32px .png recommended"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color_scheme_group",
+        "id": "color_schemes",
+        "definition": [
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Background",
+            "default": "#F7F6F3"
+          },
+          {
+            "type": "color",
+            "id": "text",
+            "label": "Text",
+            "default": "#1D2230"
+          },
+          {
+            "type": "color",
+            "id": "muted",
+            "label": "Secondary text",
+            "default": "#6B7080"
+          },
+          {
+            "type": "color",
+            "id": "surface",
+            "label": "Card background",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "surface_text",
+            "label": "Card text",
+            "default": "#1D2230"
+          },
+          {
+            "type": "color",
+            "id": "button",
+            "label": "Button background",
+            "default": "#1F4FE0"
+          },
+          {
+            "type": "color",
+            "id": "button_label",
+            "label": "Button label",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "accent",
+            "label": "Accent",
+            "default": "#1F4FE0"
+          },
+          {
+            "type": "color",
+            "id": "border",
+            "label": "Border",
+            "default": "#E4E2DC"
+          }
+        ],
+        "role": {
+          "text": "text",
+          "background": "background",
+          "links": "accent",
+          "icons": "text",
+          "primary_button": "button",
+          "on_primary_button": "button_label",
+          "primary_button_border": "button",
+          "secondary_button": "background",
+          "on_secondary_button": "text",
+          "secondary_button_border": "border"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "label": "Heading font",
+        "default": "inter_n4"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "label": "Heading size",
+        "min": 80,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "default": 100
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body font",
+        "default": "cabin_n4"
+      },
+      {
+        "type": "range",
+        "id": "body_scale",
+        "label": "Body text size",
+        "min": 90,
+        "max": 120,
+        "step": 5,
+        "unit": "%",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "select",
+        "id": "page_width",
+        "label": "Page width",
+        "options": [
+          {
+            "value": "1200px",
+            "label": "Narrow"
+          },
+          {
+            "value": "1320px",
+            "label": "Standard"
+          },
+          {
+            "value": "1600px",
+            "label": "Wide"
+          }
+        ],
+        "default": "1320px"
+      },
+      {
+        "type": "range",
+        "id": "corner_radius",
+        "label": "Card corner radius",
+        "min": 0,
+        "max": 36,
+        "step": 2,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "select",
+        "id": "button_shape",
+        "label": "Button shape",
+        "options": [
+          {
+            "value": "999px",
+            "label": "Pill"
+          },
+          {
+            "value": "12px",
+            "label": "Rounded"
+          },
+          {
+            "value": "0px",
+            "label": "Square"
+          }
+        ],
+        "default": "0px"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_show_note",
+        "label": "Show cart note",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Product cards",
+    "settings": [
+      {
+        "type": "select",
+        "id": "card_image_ratio",
+        "label": "Image shape",
+        "options": [
+          {
+            "value": "1",
+            "label": "Square"
+          },
+          {
+            "value": "0.8",
+            "label": "Portrait"
+          },
+          {
+            "value": "1.25",
+            "label": "Landscape"
+          }
+        ],
+        "default": "1"
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_second_image",
+        "label": "Show second image on hover",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_rating",
+        "label": "Show product rating",
+        "info": "Shows stars when a reviews app fills the standard product rating fields.",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_quick_add",
+        "label": "Show quick add button",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "card_swatches",
+        "label": "Colour swatches",
+        "info": "One per line, name: colour, for colour option values without a swatch of their own in Shopify admin.",
+        "default": "Black: #151313\nEspresso: #3b2a24\nCharcoal: #4a4a4c\nOat: #d8cbb6\nGrey: #a7a5a3\nWhite: #f4f2f0\nSand: #e3d5c0"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "https://instagram.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok",
+        "info": "https://tiktok.com/@shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https://facebook.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest",
+        "info": "https://pinterest.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube",
+        "info": "https://youtube.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_x_link",
+        "label": "X (Twitter)",
+        "info": "https://x.com/shopify"
+      }
+    ]
+  },
+  {
+    "name": "Formgong",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "The trade-account form in the header and the contact drawer send to Formgong: messages reach your Formgong inbox, email and Telegram. Create a free access key at formgong.com/new. While no key is set, both forms stay hidden on the storefront."
+      },
+      {
+        "type": "text",
+        "id": "formgong_key",
+        "label": "Formgong access key",
+        "info": "Starts with fk_. It is public by design: it can send to your form, not read it."
+      }
+    ]
+  }
+]

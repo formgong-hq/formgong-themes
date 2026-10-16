@@ -1,0 +1,59 @@
+{%- comment -%} Projects: the turning badge (click: next photo), the text and the strip of photos you drag. Each photo can carry dots that name products. {%- endcomment -%}
+<section class="sec4" id="{{ section.settings.anchor | default: 'projects' | handleize }}">
+  <div class="info">
+    <svg class="circ-text" viewBox="0 0 150 150" width="150" height="150" role="button" tabindex="0" aria-label="{{ 'lucerna.projects.next' | t }}">
+      <defs><path id="ring" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs>
+      <g class="circ-rot"><text font-size="11" letter-spacing="3.6" fill="#8a8f9c" font-family="Poppins, sans-serif"><textPath href="#ring">{{ section.settings.badge | escape }}</textPath></text></g>
+      <path d="M52 75h46M88 65l10 10-10 10" fill="none" stroke="#8a8f9c" stroke-width="1.2"/>
+    </svg>
+    <div class="info-text">
+      {%- if section.settings.small != blank -%}<p class="small">{{ section.settings.small }}</p>{%- endif -%}
+      <h2 class="primary">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="secondary">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+  </div>
+  <div class="track-wrap">
+    <div class="track" id="track">
+      {%- for block in section.blocks -%}
+        <div class="pslide" {{ block.shopify_attributes }}>{% render 'lc-img', image: block.settings.image, width: 1400, alt: block.settings.alt, draggable: false %}
+          <div class="goo" data-stop-drag>
+            {%- assign dots = block.settings.dots | newline_to_br | split: '<br />' -%}
+            {%- for d in dots -%}
+              {%- assign p = d | strip | split: '|' -%}
+              {%- if p.size >= 3 -%}
+                <button class="ptr" style="left:{{ p[0] | strip }}%;top:{{ p[1] | strip }}%" type="button" aria-label="{{ p[2] | strip | escape }}"><span class="tip"><b>{{ p[2] | strip }}</b>{% if p[3] %}<small>{{ p[3] | strip }}</small>{% endif %}</span></button>
+              {%- endif -%}
+            {%- endfor -%}
+          </div></div>
+      {%- endfor -%}
+    </div>
+    <div class="track-progress" aria-hidden="true"><span></span></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Projects strip",
+  "tag": "div",
+  "class": "lc-section-contents",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Turning badge text", "default": "DRAG TO SEE MORE GREAT PROJECTS ·" },
+    { "type": "text", "id": "small", "label": "Small line", "default": "Projects" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Ideas that light the way." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "A short paragraph about your projects." },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "projects" }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Project photo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "alt", "label": "Description of the photo" },
+        { "type": "textarea", "id": "dots", "label": "Product dots", "info": "One per line: left % | top % | name | small line. Example: 30 | 16 | VEGA 3CCT | Linear profile" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Projects strip", "blocks": [{ "type": "slide" }, { "type": "slide" }, { "type": "slide" }] }]
+}
+{% endschema %}

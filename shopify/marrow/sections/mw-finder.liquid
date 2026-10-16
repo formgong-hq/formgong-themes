@@ -1,0 +1,105 @@
+{%- comment -%}
+  Marrow meal finder: age, weight, activity and neutered in one bar. "See my plan" works out the daily amount and the
+  pack size and suggests the first recipe of the dog or cat collection; the plan can be emailed through Formgong.
+{%- endcomment -%}
+{%- liquid
+  assign dog_pick = section.settings.dog_collection.products.first
+  assign cat_pick = section.settings.cat_collection.products.first
+  assign key = settings.formgong_key
+-%}
+<section class="mw-finder" aria-labelledby="finder-h-{{ section.id }}" data-next>
+  <div class="mw-wrap" id="{{ section.settings.anchor | default: 'finder' | handle }}">
+    <h2 class="mw-h2" id="finder-h-{{ section.id }}">{{ section.settings.heading_before }} <span class="mw-uline"><b>{{ section.settings.heading_mark }}</b><svg class="mw-dp mw-one" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 13C48 5 128 3 197 11"/></svg></span> {{ section.settings.heading_after }} <span data-pet-word data-dog="{{ section.settings.dog_word | escape }}" data-cat="{{ section.settings.cat_word | escape }}">{{ section.settings.dog_word }}</span></h2>
+    <form class="mw-plan" id="f-plan" action="https://formgong.com/submit" method="POST" novalidate
+      data-suggest-dog="{{ dog_pick.title | default: section.settings.fallback_dog | escape }}" data-suggest-dog-url="{{ dog_pick.url }}"
+      data-suggest-cat="{{ cat_pick.title | default: section.settings.fallback_cat | escape }}" data-suggest-cat-url="{{ cat_pick.url }}"
+      data-about="{{ section.settings.result_about | escape }}" data-one="{{ section.settings.result_one | escape }}" data-many="{{ section.settings.result_many | escape }}">
+      {%- if key != blank -%}
+        <input type="hidden" name="access_key" value="{{ key | escape }}">
+        <input type="hidden" name="subject" value="{{ section.settings.subject | escape }}">
+        <div class="mw-hp" aria-hidden="true"><label>{{ 'marrow.form.leave_empty' | t }}<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+      {%- endif -%}
+      <input type="hidden" name="pet" value="dog" data-pet-field>
+      <input type="hidden" name="daily_grams" value="" data-grams-field>
+      <input type="hidden" name="suggested" value="" data-suggest-field>
+      <div class="mw-bar">
+        <label class="mw-fld"><span>{{ section.settings.age_label }}</span><input name="age_months" type="number" inputmode="numeric" min="1" max="300" step="1" placeholder="{{ section.settings.age_placeholder | escape }}" required></label>
+        <label class="mw-fld"><span>{{ section.settings.weight_label }}</span><input name="weight_kg" type="number" inputmode="decimal" min="0.5" max="100" step="0.1" placeholder="{{ section.settings.weight_placeholder | escape }}" required></label>
+        <label class="mw-fld"><span>{{ section.settings.activity_label }}</span><select name="activity"><option value="low">{{ section.settings.activity_low }}</option><option value="medium" selected>{{ section.settings.activity_medium }}</option><option value="high">{{ section.settings.activity_high }}</option></select></label>
+        <label class="mw-fld"><span>{{ section.settings.neutered_label }}</span><select name="neutered"><option value="yes" selected>{{ section.settings.yes }}</option><option value="no">{{ section.settings.no }}</option></select></label>
+        <button class="mw-see" type="button" data-see>{{ section.settings.see_label }}<span class="mw-circ" aria-hidden="true"><svg><use href="#mw-i-arrow"/></svg></span></button>
+      </div>
+      <div class="mw-res-wrap" data-res>
+        <div>
+          <div class="mw-res">
+            <div>
+              <p class="mw-res-txt" data-res-txt aria-live="polite"></p>
+              {%- if section.settings.note != blank -%}<p class="mw-note">{{ section.settings.note }}</p>{%- endif -%}
+            </div>
+            {%- if key != blank -%}
+              <div class="mw-res-row">
+                <label for="plan-email-{{ section.id }}"><span>{{ section.settings.email_label }}</span></label>
+                <div class="mw-inline">
+                  <input id="plan-email-{{ section.id }}" type="email" name="email" autocomplete="email" placeholder="{{ section.settings.email_placeholder | escape }}" required maxlength="160">
+                  <button class="mw-pill" type="submit">{{ section.settings.email_button }}</button>
+                </div>
+              </div>
+              <p class="mw-status" data-status role="status" aria-live="polite"></p>
+              <div class="mw-thanks" tabindex="-1">{%- assign thanks = section.settings.thanks_text | split: '[email]' -%}<strong>{{ section.settings.thanks_heading }}</strong>{{ thanks[0] }}{% if section.settings.thanks_text contains '[email]' %}<span data-mail>{{ 'marrow.finder.you' | t }}</span>{{ thanks[1] }}{% endif %} <button type="button" data-again>{{ 'marrow.form.again' | t }}</button></div>
+            {%- elsif request.design_mode -%}
+              <p class="mw-hint">{{ 'marrow.form.needs_key' | t }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+      {%- if key != blank -%}<p class="mw-plan-credit mw-credit">Powered by <a href="https://formgong.com" rel="noopener">Formgong</a></p>{%- endif -%}
+    </form>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Meal finder",
+  "class": "mw-sec",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "heading_before", "label": "Heading, before the underlined words", "default": "Find the" },
+    { "type": "text", "id": "heading_mark", "label": "Underlined words", "default": "right meal" },
+    { "type": "text", "id": "heading_after", "label": "Heading, after", "default": "for your" },
+    { "type": "text", "id": "dog_word", "label": "Last word for dogs", "default": "dog" },
+    { "type": "text", "id": "cat_word", "label": "Last word for cats", "default": "cat" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "finder", "info": "Links to /#finder scroll here." },
+    { "type": "header", "content": "Suggested recipe" },
+    { "type": "collection", "id": "dog_collection", "label": "Dog recipes collection", "info": "The first product is suggested in the plan." },
+    { "type": "collection", "id": "cat_collection", "label": "Cat recipes collection" },
+    { "type": "text", "id": "fallback_dog", "label": "Suggestion without a dog collection", "default": "our recipes" },
+    { "type": "text", "id": "fallback_cat", "label": "Suggestion without a cat collection", "default": "our recipes" },
+    { "type": "text", "id": "result_about", "label": "Result, before the amount", "default": "About" },
+    { "type": "text", "id": "result_one", "label": "Result, one pack a day", "default": "a day. That is one [pack] pack of [recipe] most days.", "info": "[pack] and [recipe] are filled in." },
+    { "type": "text", "id": "result_many", "label": "Result, more than 1 kg a day", "default": "a day. That is about [count] packs of 1 kg of [recipe] a day." },
+    { "type": "text", "id": "note", "label": "Note under the result", "default": "A starting point, not vet advice. Weigh your pet every two weeks and adjust by about 10 %." },
+    { "type": "header", "content": "Fields" },
+    { "type": "text", "id": "age_label", "label": "Age", "default": "Age in months" },
+    { "type": "text", "id": "age_placeholder", "label": "Age placeholder", "default": "e.g. 36" },
+    { "type": "text", "id": "weight_label", "label": "Weight", "default": "Weight in kg" },
+    { "type": "text", "id": "weight_placeholder", "label": "Weight placeholder", "default": "e.g. 20" },
+    { "type": "text", "id": "activity_label", "label": "Activity", "default": "Activity" },
+    { "type": "text", "id": "activity_low", "label": "Low", "default": "Low" },
+    { "type": "text", "id": "activity_medium", "label": "Medium", "default": "Medium" },
+    { "type": "text", "id": "activity_high", "label": "High", "default": "High" },
+    { "type": "text", "id": "neutered_label", "label": "Neutered", "default": "Neutered" },
+    { "type": "text", "id": "yes", "label": "Yes", "default": "Yes" },
+    { "type": "text", "id": "no", "label": "No", "default": "No" },
+    { "type": "text", "id": "see_label", "label": "Button", "default": "See my plan" },
+    { "type": "header", "content": "Email the plan (Formgong)", "info": "Shown once a Formgong access key is set in Theme settings → Formgong." },
+    { "type": "text", "id": "subject", "label": "Email subject", "default": "Meal plan request" },
+    { "type": "text", "id": "email_label", "label": "Label", "default": "Email me this plan" },
+    { "type": "text", "id": "email_placeholder", "label": "Placeholder", "default": "you@example.com" },
+    { "type": "text", "id": "email_button", "label": "Button", "default": "Email me this plan" },
+    { "type": "text", "id": "thanks_heading", "label": "Thanks heading", "default": "Thank you." },
+    { "type": "text", "id": "thanks_text", "label": "Thanks text", "default": "We will email the plan to [email].", "info": "[email] is filled in." }
+  ],
+  "presets": [{ "name": "Meal finder" }],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

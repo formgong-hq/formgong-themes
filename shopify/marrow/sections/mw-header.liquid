@@ -1,0 +1,86 @@
+{%- comment -%}
+  Marrow header: menu links on the left, the bowl-and-bone mark in the middle (it folds into the wordmark once you
+  scroll), icons, "Order now" and the round menu button that opens the full-screen menu panel.
+{%- endcomment -%}
+{%- if section.settings.show_wipe -%}<div class="mw-wipe" aria-hidden="true"></div>{%- endif -%}
+<header class="mw-hdr">
+  <nav class="mw-hnav" aria-label="{{ 'marrow.header.main' | t }}">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}"{% if link.current %}{% unless link.url contains '#' %} aria-current="page"{% endunless %}{% endif %}>{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+  <a class="mw-hlogo" href="{{ routes.root_url }}" aria-label="{{ section.settings.logo_label | default: shop.name | escape }}">
+    {%- if settings.logo != blank -%}
+      {{ settings.logo | image_url: width: 300 | image_tag: class: 'mw-h-mark mw-h-logo', alt: '', loading: 'eager' }}
+    {%- else -%}
+      <svg class="mw-h-mark" aria-hidden="true"><use href="#mw-i-mark"/></svg>
+    {%- endif -%}
+    <span class="mw-h-word" aria-hidden="true">{{ section.settings.wordmark | default: shop.name }}</span>
+  </a>
+  <div class="mw-hact">
+    {%- if section.settings.show_finder_icon -%}
+      <a class="mw-ib mw-opt" href="{{ section.settings.finder_link | default: routes.search_url }}" aria-label="{{ section.settings.finder_label | escape }}"><svg aria-hidden="true"><use href="#mw-i-search"/></svg></a>
+    {%- endif -%}
+    {%- if section.settings.show_contact_icon -%}
+      <a class="mw-ib mw-opt" href="{{ section.settings.contact_link | default: routes.account_url }}" aria-label="{{ section.settings.contact_label | escape }}"><svg aria-hidden="true"><use href="#mw-i-user"/></svg></a>
+    {%- endif -%}
+    <a class="mw-ib mw-bag" href="{{ routes.cart_url }}" data-cart-open aria-label="{{ 'marrow.header.cart' | t }}"><svg aria-hidden="true"><use href="#mw-i-bag"/></svg><span class="mw-n" data-bag-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span></a>
+    {%- if section.settings.order_label != blank -%}
+      <a class="mw-pill" href="{{ section.settings.order_link | default: routes.all_products_collection_url }}" data-order>{{ section.settings.order_label }}</a>
+    {%- endif -%}
+    <button class="mw-menu-btn" type="button" aria-expanded="false" aria-controls="mw-menu" aria-label="{{ 'marrow.header.menu' | t }}" data-menu><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="mw-menu" id="mw-menu">
+  <nav aria-label="{{ 'marrow.header.menu' | t }}">
+    {%- for link in section.settings.panel_menu.links -%}
+      <a href="{{ link.url }}"{% if link.current %}{% unless link.url contains '#' %} aria-current="page"{% endunless %}{% endif %}>{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+  {%- if section.blocks.size > 0 -%}
+    <div class="mw-mc">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.link != blank -%}
+          <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</a>
+        {%- else -%}
+          <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Marrow header",
+  "class": "mw-contents",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "wordmark", "label": "Wordmark", "info": "Shown once the page scrolls, in place of the mark. Leave empty to show the store name." },
+    { "type": "text", "id": "logo_label", "label": "Logo link label (screen readers)", "default": "Home" },
+    { "type": "link_list", "id": "menu", "label": "Menu next to the logo", "default": "main-menu" },
+    { "type": "link_list", "id": "panel_menu", "label": "Menu in the full-screen panel", "default": "main-menu" },
+    { "type": "checkbox", "id": "show_finder_icon", "label": "Show the search icon", "default": true },
+    { "type": "url", "id": "finder_link", "label": "Search icon link", "info": "Empty: the store search." },
+    { "type": "text", "id": "finder_label", "label": "Search icon label (screen readers)", "default": "Search" },
+    { "type": "checkbox", "id": "show_contact_icon", "label": "Show the person icon", "default": true },
+    { "type": "url", "id": "contact_link", "label": "Person icon link", "info": "Empty: the customer account." },
+    { "type": "text", "id": "contact_label", "label": "Person icon label (screen readers)", "default": "Account" },
+    { "type": "text", "id": "order_label", "label": "Order button", "default": "Order now", "info": "Opens the cart when it has something in it, otherwise follows the link." },
+    { "type": "url", "id": "order_link", "label": "Order button link" },
+    { "type": "checkbox", "id": "show_wipe", "label": "Colour wipe when a page opens", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "line",
+      "name": "Menu panel line",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Opening hours" },
+        { "type": "url", "id": "link", "label": "Link", "info": "Optional: a page, a tel: or a mailto: link." }
+      ]
+    }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

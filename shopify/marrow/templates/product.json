@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "main": {
+      "type": "s-product",
+      "settings": {
+        "related_heading": "You may also like"
+      },
+      "blocks": {
+        "perks": {
+          "type": "perks",
+          "settings": {
+            "perk_1": "Frozen within hours of making",
+            "perk_2": "Local delivery or pick-up",
+            "perk_3": "Small batches, mixed by hand"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "heading": "Description"
+          }
+        },
+        "c1": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Storing and thawing",
+            "text": "<p>Keep packs in the freezer at −18 °C for up to six months. Thaw one in the fridge overnight and use it within three days. Do not refreeze a thawed pack.</p>"
+          }
+        },
+        "c2": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "How much to feed",
+            "text": "<p>Most adult dogs eat 2 to 3 % of their body weight a day; puppies and kittens eat more. The meal finder on the home page gives you a starting point.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "perks",
+        "description",
+        "c1",
+        "c2"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

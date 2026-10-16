@@ -1,0 +1,66 @@
+{%- comment -%} Lucerna footer: silk light, the big line, link columns (they fold into accordions on phones) and the legal line. {%- endcomment -%}
+<footer class="ftr">
+  <canvas class="silk" data-silk="ink" aria-hidden="true"></canvas>
+  <div class="ftr-content">
+    <p class="ftr-main">{{ section.settings.line }}</p>
+    <div>
+      <div class="ftr-cols">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'menu' -%}
+            <div {{ block.shopify_attributes }}><p class="col-t">{{ block.settings.heading }}</p><ul>{%- for link in block.settings.menu.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul></div>
+          {%- else -%}
+            <div {{ block.shopify_attributes }}><ul>{% if block.settings.email != blank %}<li><a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a></li>{% endif %}{% if block.settings.social_label != blank %}<li><a href="{{ block.settings.social_link | default: routes.root_url }}">{{ block.settings.social_label }}</a></li>{% endif %}{% if block.settings.write_label != blank %}<li><button class="linkish" type="button" data-open="contact">{{ block.settings.write_label }}</button></li>{% endif %}</ul></div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="ftr-acc">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'menu' -%}
+            <div class="acc"><button class="acc-btn" type="button" aria-expanded="false">{{ block.settings.heading }} <i class="acc-ic"></i></button><div class="acc-panel"><div class="acc-in">{%- for link in block.settings.menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}</div></div></div>
+          {%- else -%}
+            <div class="acc"><button class="acc-btn" type="button" aria-expanded="false">{{ block.settings.heading }} <i class="acc-ic"></i></button><div class="acc-panel"><div class="acc-in">{% if block.settings.email != blank %}<a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>{% endif %}{% if block.settings.social_label != blank %}<a href="{{ block.settings.social_link | default: routes.root_url }}">{{ block.settings.social_label }}</a>{% endif %}{% if block.settings.write_label != blank %}<button class="linkish" type="button" data-open="contact">{{ block.settings.write_label }}</button>{% endif %}</div></div></div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="bottom-bar"><span class="copy">{{ section.settings.copyright | default: shop.name }}</span><span class="inst">{%- for link in section.settings.legal_menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}{%- if section.settings.show_credit -%}<a href="https://formgong.com" rel="noopener">Powered by Formgong</a>{%- endif -%}</span></div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "div",
+  "class": "lc-section-contents",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "line", "label": "Big line", "default": "The trust that lights up your projects." },
+    { "type": "text", "id": "copyright", "label": "Copyright line", "info": "Leave empty to show the store name." },
+    { "type": "link_list", "id": "legal_menu", "label": "Legal links", "default": "footer" },
+    { "type": "checkbox", "id": "show_credit", "label": "Show \"Powered by Formgong\"", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Links" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact column",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading on phones", "default": "Contacts" },
+        { "type": "text", "id": "email", "label": "Email" },
+        { "type": "text", "id": "social_label", "label": "Social link label" },
+        { "type": "url", "id": "social_link", "label": "Social link" },
+        { "type": "text", "id": "write_label", "label": "Contact drawer button", "default": "Write to us" }
+      ]
+    }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "mw-header",
+      "settings": {
+        "wordmark": "MARROW",
+        "menu": "marrow-main",
+        "panel_menu": "marrow-menu",
+        "finder_link": "/#finder",
+        "finder_label": "Find the right meal",
+        "contact_link": "/#contact",
+        "contact_label": "Contact and opening hours",
+        "order_link": "/#recipes",
+        "logo_label": "Marrow Kitchen, home"
+      },
+      "blocks": {
+        "b0": {
+          "type": "line",
+          "settings": {
+            "text": "218 Dock Road, Portland, OR",
+            "link": ""
+          }
+        },
+        "b1": {
+          "type": "line",
+          "settings": {
+            "text": "+1 (503) 555-0148",
+            "link": "tel:+15035550148"
+          }
+        },
+        "b2": {
+          "type": "line",
+          "settings": {
+            "text": "hello@marrow.example",
+            "link": "mailto:hello@marrow.example"
+          }
+        },
+        "b3": {
+          "type": "line",
+          "settings": {
+            "text": "Mon–Fri 9–19 · Sat 10–16",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2",
+        "b3"
+      ]
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

@@ -1,0 +1,75 @@
+{%- comment -%}
+  Marrow "why raw" stage: a thick orange band behind a bowl that grows as it scrolls in, four ingredients that drift
+  as you scroll, up to four benefit cards and a button.
+{%- endcomment -%}
+{%- liquid
+  assign floats = 'peas,carrot,blue,pump' | split: ','
+  assign tints = '#a9d18e,#ffb07a,#8e9be6,#ffc46b' | split: ','
+  assign speeds_y = '.18,.12,.22,.15' | split: ','
+  assign speeds_x = '.02,-.03,.03,-.02' | split: ','
+-%}
+<section class="mw-why" id="{{ section.settings.anchor | default: 'why' | handle }}" aria-labelledby="why-h-{{ section.id }}">
+  <div class="mw-wrap" style="text-align:center">
+    <div class="mw-why-ttl"><h2 class="mw-h2" id="why-h-{{ section.id }}">{{ section.settings.heading }} <b>{{ section.settings.heading_bold }}</b></h2><svg class="mw-squig mw-dp mw-one" viewBox="0 0 220 30" aria-hidden="true"><path pathLength="1" d="M4 18c14-12 26-12 34 0s22 12 34 0 24-12 34 0 22 12 34 0 24-12 34 0 22 10 42-2"/></svg></div>
+    {%- if section.settings.intro != blank -%}<p class="mw-intro">{{ section.settings.intro }}</p>{%- endif -%}
+  </div>
+  <div class="mw-stage">
+    <svg class="mw-band" viewBox="0 0 1425 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-80 700C180 760 420 640 600 470S980 140 1180 170 1420 300 1540 210"/></svg>
+    {%- for i in (0..1) -%}
+      {%- assign key = 'float_' | append: floats[i] -%}
+      {%- assign img = section.settings[key] -%}
+      <span class="mw-fl mw-fl-{{ floats[i] }}"><span class="mw-ph" style="--ph:{{ tints[i] }}" data-float data-speed-y="{{ speeds_y[i] }}" data-speed-x="{{ speeds_x[i] }}">{% if img != blank %}{{ img | image_url: width: 400 | image_tag: loading: 'lazy', alt: '' }}{% endif %}</span></span>
+    {%- endfor -%}
+    <div class="mw-bowl"><div class="mw-bowl-in" data-food><div class="mw-ph">
+      {%- if section.settings.bowl != blank -%}{{ section.settings.bowl | image_url: width: 1000 | image_tag: widths: '560, 800, 1000', sizes: '(max-width: 980px) 82vw, 560px', loading: 'lazy', alt: section.settings.bowl.alt }}{%- endif -%}
+    </div></div></div>
+    {%- for i in (2..3) -%}
+      {%- assign key = 'float_' | append: floats[i] -%}
+      {%- assign img = section.settings[key] -%}
+      <span class="mw-fl mw-fl-{{ floats[i] }}"><span class="mw-ph" style="--ph:{{ tints[i] }}" data-float data-speed-y="{{ speeds_y[i] }}" data-speed-x="{{ speeds_x[i] }}">{% if img != blank %}{{ img | image_url: width: 400 | image_tag: loading: 'lazy', alt: '' }}{% endif %}</span></span>
+    {%- endfor -%}
+    {%- if section.blocks.size > 0 -%}
+      <ul class="mw-blurbs" data-blurbs>
+        {%- for block in section.blocks limit: 4 -%}
+          <li class="mw-blurb mw-b{{ forloop.index }}" {{ block.shopify_attributes }}><span class="mw-chk" aria-hidden="true"><svg><use href="#mw-i-check"/></svg></span><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+  {%- if section.settings.button_label != blank -%}
+    <div class="mw-cta-row"><a class="mw-pill mw-big" href="{{ section.settings.button_link | default: '#faq' }}">{{ section.settings.button_label }}</a></div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Why raw stage",
+  "class": "mw-sec",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why raw?" },
+    { "type": "text", "id": "heading_bold", "label": "Heading, bold part", "default": "Here is how we make it." },
+    { "type": "textarea", "id": "intro", "label": "Text", "default": "Tell your customers what goes into every batch and how it is made." },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "why" },
+    { "type": "image_picker", "id": "bowl", "label": "Bowl photo", "info": "A cut-out (transparent) square photo." },
+    { "type": "image_picker", "id": "float_peas", "label": "Ingredient, top left", "info": "Cut-out square photos; the four ingredients drift as the page scrolls." },
+    { "type": "image_picker", "id": "float_carrot", "label": "Ingredient, top right" },
+    { "type": "image_picker", "id": "float_blue", "label": "Ingredient, bottom left" },
+    { "type": "image_picker", "id": "float_pump", "label": "Ingredient, bottom right" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Read the questions" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty: the questions section." }
+  ],
+  "blocks": [
+    {
+      "type": "blurb",
+      "name": "Benefit card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "A short benefit" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "One or two sentences about it." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Why raw stage", "blocks": [{ "type": "blurb" }, { "type": "blurb" }, { "type": "blurb" }, { "type": "blurb" }] }],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

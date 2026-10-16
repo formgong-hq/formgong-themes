@@ -1,0 +1,40 @@
+{%- comment -%} Marrow photo banner: a full-width photo with rounded top corners, a heading and a button. {%- endcomment -%}
+{%- liquid
+  if section.settings.image != blank
+    assign img = section.settings.image | image_url: width: 2400
+  endif
+-%}
+<div class="mw-cta-shell">
+  <section class="mw-cta{% if img == blank %} mw-cta-empty{% endif %}" id="{{ section.settings.anchor | default: 'custom' | handle }}" aria-labelledby="cta-h-{{ section.id }}" data-parallax role="region"{% if img %} style="--mw-cta-img:url('{{ img }}')"{% endif %}>
+    {%- if section.settings.image_description != blank -%}<span class="mw-sr">{{ section.settings.image_description }}</span>{%- endif -%}
+    {%- if img == blank -%}{{ 'lifestyle-1' | placeholder_svg_tag: 'mw-cta-ph' }}{%- endif -%}
+    <div class="mw-cta-in">
+      <h2 id="cta-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.button_label != blank -%}
+        {%- if section.settings.button_link != blank -%}
+          <a class="mw-pill mw-big" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+        {%- elsif settings.formgong_key != blank -%}
+          <button class="mw-pill mw-big" type="button" data-write="{{ section.settings.topic | escape }}">{{ section.settings.button_label }}</button>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Photo banner",
+  "class": "mw-sec",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "text", "id": "image_description", "label": "Photo description (screen readers)" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "A headline about something you make to order." },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Write to us" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Empty: the button opens the write-to-us form with the topic below." },
+    { "type": "text", "id": "topic", "label": "Topic", "default": "Custom recipe" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "custom" }
+  ],
+  "presets": [{ "name": "Photo banner" }],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

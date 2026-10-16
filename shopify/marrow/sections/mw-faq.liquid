@@ -1,0 +1,46 @@
+{%- comment -%} Marrow questions: heading, text and "Ask us" (opens the write-to-us form) beside an accordion. {%- endcomment -%}
+<section class="mw-faq" id="{{ section.settings.anchor | default: 'faq' | handle }}" aria-labelledby="faq-h-{{ section.id }}">
+  <div class="mw-wrap mw-faq-grid">
+    <div class="mw-faq-side">
+      <h2 class="mw-h2" id="faq-h-{{ section.id }}">{{ section.settings.heading }} <b>{{ section.settings.heading_bold }}</b></h2>
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.button_label != blank and settings.formgong_key != blank -%}
+        <button class="mw-pill mw-big" type="button" data-write="{{ section.settings.topic | escape }}">{{ section.settings.button_label }}</button>
+      {%- endif -%}
+    </div>
+    <div class="mw-acc" data-acc>
+      {%- for block in section.blocks -%}
+        {%- assign qid = block.settings.anchor | default: block.id | handle -%}
+        <div class="mw-acc-item mw-open" {{ block.shopify_attributes }}><h3><button class="mw-acc-btn" type="button" aria-expanded="true" aria-controls="faq-{{ qid }}" id="faq-b-{{ qid }}">{{ block.settings.question }}<span class="mw-pm" aria-hidden="true"></span></button></h3><div class="mw-acc-panel" id="faq-{{ qid }}" role="region" aria-labelledby="faq-b-{{ qid }}"><div>{{ block.settings.answer }}</div></div></div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Questions",
+  "class": "mw-sec",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions?" },
+    { "type": "text", "id": "heading_bold", "label": "Heading, bold part", "default": "We have answers." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Answer what customers ask you most." },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "faq" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Ask us", "info": "Opens the write-to-us form (shown once a Formgong key is set)." },
+    { "type": "text", "id": "topic", "label": "Topic the button picks", "default": "Question" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "A question customers ask" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>The answer.</p>" },
+        { "type": "text", "id": "anchor", "label": "Anchor", "info": "Optional: e.g. delivery, then a link to /#faq-delivery opens this answer." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Questions", "blocks": [{ "type": "question" }, { "type": "question" }, { "type": "question" }] }],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

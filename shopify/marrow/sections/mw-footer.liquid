@@ -1,0 +1,137 @@
+{%- comment -%}
+  Marrow footer: logo, contacts and round social buttons, link columns (blocks), the bottom line, and the
+  write-to-us form (a Formgong form in a dialog) that "Ask us", the banner and the footer links open on every page.
+{%- endcomment -%}
+{%- assign key = settings.formgong_key -%}
+<footer class="mw-footer" id="{{ section.settings.anchor | default: 'contact' | handle }}">
+  <div class="mw-wrap">
+    <div class="mw-f-grid">
+      <div class="mw-f-contact">
+        <p class="mw-f-logo"><svg aria-hidden="true"><use href="#mw-i-mark"/></svg>{{ section.settings.logo_text | default: shop.name }}</p>
+        {%- if section.settings.contact_heading != blank -%}<h3 style="margin-top:28px">{{ section.settings.contact_heading }}</h3>{%- endif -%}
+        {%- if section.settings.address != blank -%}<p>{{ section.settings.address }}</p>{%- endif -%}
+        {%- if section.settings.phone != blank -%}<a class="mw-tel" href="tel:{{ section.settings.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}">{{ section.settings.phone }}</a>{%- endif -%}
+        {%- if section.settings.email != blank -%}<p><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></p>{%- endif -%}
+        {%- capture social -%}
+          {%- if settings.social_instagram_link != blank -%}<a href="{{ settings.social_instagram_link }}" aria-label="Instagram" rel="noopener" target="_blank"><svg aria-hidden="true"><use href="#mw-i-camera"/></svg></a>{%- endif -%}
+          {%- if settings.social_youtube_link != blank -%}<a href="{{ settings.social_youtube_link }}" aria-label="YouTube" rel="noopener" target="_blank"><svg aria-hidden="true"><use href="#mw-i-play"/></svg></a>{%- endif -%}
+          {%- if settings.social_tiktok_link != blank -%}<a href="{{ settings.social_tiktok_link }}" aria-label="TikTok" rel="noopener" target="_blank"><svg aria-hidden="true"><use href="#mw-i-play"/></svg></a>{%- endif -%}
+          {%- if settings.social_facebook_link != blank -%}<a href="{{ settings.social_facebook_link }}" aria-label="Facebook" rel="noopener" target="_blank"><svg aria-hidden="true"><use href="#mw-i-chat"/></svg></a>{%- endif -%}
+          {%- if settings.social_x_link != blank -%}<a href="{{ settings.social_x_link }}" aria-label="X" rel="noopener" target="_blank"><svg aria-hidden="true"><use href="#mw-i-chat"/></svg></a>{%- endif -%}
+          {%- if settings.social_pinterest_link != blank -%}<a href="{{ settings.social_pinterest_link }}" aria-label="Pinterest" rel="noopener" target="_blank"><svg aria-hidden="true"><use href="#mw-i-camera"/></svg></a>{%- endif -%}
+          {%- if section.settings.newsletter_link != blank -%}<a href="{{ section.settings.newsletter_link }}" aria-label="{{ section.settings.newsletter_label | escape }}"><svg aria-hidden="true"><use href="#mw-i-mail"/></svg></a>{%- endif -%}
+        {%- endcapture -%}
+        {%- if social != blank -%}<div class="mw-social">{{ social }}</div>{%- endif -%}
+      </div>
+      {%- for col in section.blocks -%}
+        {%- if col.type == 'column' -%}
+          <div {{ col.shopify_attributes }}><h3>{{ col.settings.heading }}</h3><ul>
+            {%- assign started = false -%}{%- assign col_index = forloop.index0 -%}
+            {%- for block in section.blocks -%}
+              {%- if forloop.index0 == col_index -%}{%- assign started = true -%}{%- continue -%}{%- endif -%}
+              {%- if started -%}
+                {%- if block.type == 'column' -%}{%- break -%}{%- endif -%}
+                <li {{ block.shopify_attributes }}>
+                  {%- if block.type == 'text' -%}
+                    {{ block.settings.text }}
+                  {%- elsif block.settings.action == 'write' -%}
+                    {%- if key != blank -%}<button class="mw-linkbtn" type="button" data-write="{{ block.settings.topic | escape }}">{{ block.settings.label }}</button>{%- endif -%}
+                  {%- else -%}
+                    <a href="{{ block.settings.link | default: '#' }}"{% if block.settings.action == 'dog' %} data-set-pet="dog"{% elsif block.settings.action == 'cat' %} data-set-pet="cat"{% endif %}>{{ block.settings.label }}</a>
+                  {%- endif -%}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul></div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="mw-f-bottom"><p>© <span data-year>{{ 'now' | date: '%Y' }}</span> {{ section.settings.bottom_text | default: shop.name }}</p><p>{{ 'marrow.footer.credit_html' | t }}</p></div>
+  </div>
+</footer>
+
+{%- if key != blank -%}
+<dialog class="mw-dialog" id="d-write" aria-labelledby="write-title-{{ section.id }}">
+  <div class="mw-dlg" tabindex="-1" autofocus>
+    <button class="mw-x" type="button" aria-label="{{ 'marrow.dialog.close' | t }}" data-close>×</button>
+    <h2 id="write-title-{{ section.id }}">{{ section.settings.form_heading }}</h2>
+    {%- if section.settings.form_intro != blank -%}<p class="mw-intro">{{ section.settings.form_intro }}</p>{%- endif -%}
+    <form class="mw-form" id="f-write" action="https://formgong.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="{{ key | escape }}">
+      <input type="hidden" name="subject" value="{{ section.settings.subject | escape }}">
+      <div class="mw-hp" aria-hidden="true"><label>{{ 'marrow.form.leave_empty' | t }}<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+      {%- assign topics = section.settings.topics | split: ',' -%}
+      {%- if topics.size > 0 -%}
+        <fieldset class="mw-chips"><legend>{{ section.settings.topic_label }}</legend><div class="mw-opts">
+          {%- for t in topics -%}<label><input type="radio" name="topic" value="{{ t | strip | escape }}"{% if forloop.first %} checked{% endif %}><span>{{ t | strip }}</span></label>{%- endfor -%}
+        </div></fieldset>
+      {%- endif -%}
+      <label class="mw-f"><span>{{ section.settings.name_label }}</span><input name="name" autocomplete="name" required maxlength="100"></label>
+      <label class="mw-f"><span>{{ section.settings.email_label }}</span><input type="email" name="email" autocomplete="email" required maxlength="160"></label>
+      <label class="mw-f mw-full"><span>{{ section.settings.message_label }}</span><textarea name="message" required maxlength="3000" placeholder="{{ section.settings.message_placeholder | escape }}"></textarea></label>
+      <button class="mw-pill mw-big" type="submit">{{ section.settings.submit_label }}</button>
+      <p class="mw-status" data-status role="status" aria-live="polite"></p>
+      <p class="mw-credit">Powered by <a href="https://formgong.com" rel="noopener">Formgong</a></p>
+      <div class="mw-thanks" tabindex="-1">{% render 'mw-thanks-heading', text: section.settings.thanks_heading %}{{ section.settings.thanks_text }} <button type="button" data-again>{{ 'marrow.form.again' | t }}</button></div>
+    </form>
+  </div>
+</dialog>
+{%- elsif request.design_mode -%}
+  <p class="mw-hint mw-hint-foot">{{ 'marrow.form.needs_key' | t }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Marrow footer",
+  "class": "mw-contents",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "logo_text", "label": "Logo text", "info": "Empty: the store name." },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "contact" },
+    { "type": "text", "id": "contact_heading", "label": "Contact heading", "default": "Contact" },
+    { "type": "text", "id": "address", "label": "Address" },
+    { "type": "text", "id": "phone", "label": "Phone" },
+    { "type": "text", "id": "email", "label": "Email" },
+    { "type": "paragraph", "content": "Round social buttons come from Theme settings → Social media." },
+    { "type": "url", "id": "newsletter_link", "label": "Newsletter button link", "info": "Optional: a mail button after the social ones." },
+    { "type": "text", "id": "newsletter_label", "label": "Newsletter button label (screen readers)", "default": "Newsletter" },
+    { "type": "text", "id": "bottom_text", "label": "Bottom line after ©", "info": "Empty: the store name." },
+    { "type": "header", "content": "Write-to-us form (Formgong)", "info": "Shown once a Formgong access key is set in Theme settings → Formgong. Buttons with a topic open it." },
+    { "type": "text", "id": "form_heading", "label": "Heading", "default": "Write to us" },
+    { "type": "textarea", "id": "form_intro", "label": "Text", "default": "A question, a special request or wholesale for your shop." },
+    { "type": "text", "id": "subject", "label": "Email subject", "default": "Message" },
+    { "type": "text", "id": "topic_label", "label": "Topic label", "default": "Topic" },
+    { "type": "text", "id": "topics", "label": "Topics, comma separated", "default": "Question, Custom recipe, Wholesale" },
+    { "type": "text", "id": "name_label", "label": "Name", "default": "Name" },
+    { "type": "text", "id": "email_label", "label": "Email", "default": "Email" },
+    { "type": "text", "id": "message_label", "label": "Message", "default": "Message" },
+    { "type": "text", "id": "message_placeholder", "label": "Message placeholder", "default": "Your pet's age, weight and anything we should know" },
+    { "type": "text", "id": "submit_label", "label": "Send button", "default": "Send message" },
+    { "type": "text", "id": "thanks_heading", "label": "Thanks heading", "default": "Thank you, [name].", "info": "[name] is the first name from the form." },
+    { "type": "text", "id": "thanks_text", "label": "Thanks text", "default": "We will write back soon." }
+  ],
+  "blocks": [
+    { "type": "column", "name": "Column", "settings": [{ "type": "text", "id": "heading", "label": "Heading", "default": "Links" }] },
+    {
+      "type": "link",
+      "name": "Link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Link" },
+        { "type": "url", "id": "link", "label": "Link" },
+        {
+          "type": "select", "id": "action", "label": "Also", "default": "none",
+          "options": [
+            { "value": "none", "label": "Nothing" },
+            { "value": "dog", "label": "Switch the page to dogs" },
+            { "value": "cat", "label": "Switch the page to cats" },
+            { "value": "write", "label": "Open the write-to-us form instead of the link" }
+          ]
+        },
+        { "type": "text", "id": "topic", "label": "Topic for the form", "default": "Question" }
+      ]
+    },
+    { "type": "text", "name": "Text line", "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "Opening hours" }] }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

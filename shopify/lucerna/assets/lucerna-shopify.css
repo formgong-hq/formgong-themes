@@ -1,0 +1,34 @@
+/* Lucerna on Shopify: what the template's stylesheet (lucerna.css) needs next to the Scamper base (theme.css). */
+
+/* Section wrappers add no box (the header stays fixed, the sections follow each other as in the template). */
+.lc-section-contents { display: contents; }
+
+/* Scamper's body is a flex column and its base resets give every svg height: auto; the home page is laid out as the
+   template's plain block body, and the symbol sprite takes no room. */
+body.lc-t-index { display: block; min-height: 0; }
+svg[width="0"][height="0"] { height: 0; width: 0; }
+.lc-logo svg, .burger svg, .mm-close svg, .drawer-x svg { height: auto; }
+#MainContent { overflow-x: visible; }
+#MainContent:focus { outline: none; }
+
+/* Scamper's base gives headings their own line height and margins; inside the template's blocks the template's own
+   rules decide (lowest specificity, so every lucerna.css rule still wins). */
+:where(.hero, .sec2, .sec3, .sec4, .sec5, .ftr, .hdr, .mmenu, .lc-drawer) :where(h1, h2, h3, p) { line-height: inherit; }
+
+/* A picture not chosen yet: a quiet placeholder in the picture's place; a slide without a photo gets a dark ground
+   so its white text stays readable. */
+svg.lc-ph { display: block; width: 100%; height: 100%; background: #e4e2dc; fill: #c9c5bc; }
+/* No hero photo yet: a light ground like the demo's photo, so the dark header logo and the dark headline both read. */
+.lc-slide-empty { background-color: #e6e3de; }
+.lc-slide-empty .slide-content { color: var(--ink); }
+
+/* While no Formgong key is set the forms are hidden; the theme editor shows this line in their place. */
+.lc-nokey { margin: 0 0 .75rem; padding: .75rem 1rem; border: 1px dashed var(--muted); border-radius: 1rem; color: var(--ink-2); font-size: .8125rem; }
+
+/* Every other page (cart, search, products, collections, blog, pages, 404): the fixed header sits over the top, so
+   the content starts under it, on the template's page colour and type. */
+.lc-inner { padding-top: 7.5rem; background: var(--bg); color: var(--ink); font-family: Poppins, system-ui, sans-serif; }
+@media (max-width: 1080px) { .lc-inner { padding-top: 5.5rem; } }
+body:not(.lc-t-index) .hdr { background: var(--bg); padding-bottom: 1rem; }
+@media (min-width: 1081px) { body:not(.lc-t-index) .hdr { padding-bottom: 1.25rem; } }
+body:not(.lc-t-index) .ftr { margin-top: 4rem; }

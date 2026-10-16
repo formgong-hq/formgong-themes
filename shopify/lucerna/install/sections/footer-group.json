@@ -1,0 +1,37 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "lc-footer",
+      "settings": {
+        "line": "A short line about your company.",
+        "legal_menu": "footer",
+        "show_credit": true
+      },
+      "blocks": {
+        "links": {
+          "type": "menu",
+          "settings": {
+            "heading": "Links",
+            "menu": "footer"
+          }
+        },
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "heading": "Contacts",
+            "write_label": "Write to us"
+          }
+        }
+      },
+      "block_order": [
+        "links",
+        "contact"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    {% render 'meta-tags' %}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+    {%- else -%}
+      <link rel="icon" href="{{ 'lc-favicon.svg' | asset_url }}" type="image/svg+xml">
+    {%- endif -%}
+
+    {%- comment -%} Poppins, served from the theme (the Latin files Google Fonts serves); the first screen uses 400, 500 and 600. {%- endcomment -%}
+    {{ 'poppins-400.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {{ 'poppins-500.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {{ 'poppins-600.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+
+    {% render 'css-variables' %}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {%- if template.name == 'product' or template.name == 'collection' -%}
+      {{ 'stilla.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+    {{ 'lucerna.css' | asset_url | stylesheet_tag }}
+    {{ 'lucerna-shopify.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.classList.add('js');
+      window.Scamper = {
+        routes: {
+          root: {{ routes.root_url | json }},
+          cart: {{ routes.cart_url | json }},
+          cartAdd: {{ routes.cart_add_url | json }},
+          cartChange: {{ routes.cart_change_url | json }},
+          cartUpdate: {{ routes.cart_update_url | json }},
+          search: {{ routes.search_url | json }},
+          predictiveSearch: {{ routes.predictive_search_url | json }},
+          productRecommendations: {{ routes.product_recommendations_url | json }}
+        },
+        cartType: "page",
+        reveal: false,
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }},
+          cartError: {{ 'cart.general.error' | t | json }},
+          added: {{ 'cart.general.added' | t | json }}
+        }
+      };
+    </script>
+    <script src="{{ 'theme.js' | asset_url }}" type="module" defer></script>
+    {%- if template.name == 'product' or template.name == 'collection' -%}
+    <script>
+      window.StillaStrings = {
+        added: {{ 'stilla.product.added' | t | json }},
+        addToBag: {{ 'stilla.product.add' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        cartError: {{ 'cart.general.error' | t | json }},
+        sending: {{ 'stilla.form.sending' | t | json }},
+        formError: {{ 'stilla.form.error' | t | json }},
+        formOffline: {{ 'stilla.form.offline' | t | json }}
+      };
+    </script>
+    <script src="{{ 'stilla.js' | asset_url }}" defer></script>
+    {%- endif -%}
+    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ScrollSmoother.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'lucerna.js' | asset_url }}" defer></script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="lc-body lc-t-{{ template.name | handleize }}">
+    <a class="skip" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    {%- if template.name == 'index' -%}<div id="smooth-wrapper"><div id="smooth-content">{%- endif -%}
+    <main id="MainContent" tabindex="-1"{% if template.name != 'index' %} class="lc-inner"{% endif %}>
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+    {%- if template.name == 'index' -%}</div></div>{%- endif -%}
+
+    <div class="visually-hidden" role="status" aria-live="polite" id="LiveRegion"></div>
+    {%- if template.name == 'product' or template.name == 'collection' -%}<p class="s-toast" role="status" aria-live="polite"></p>{%- endif -%}
+  </body>
+</html>

@@ -1,0 +1,48 @@
+{%- comment -%}
+  Marrow treats carousel: products of the treats collection with a next button and drag; on desktop an orange "drag"
+  circle follows the mouse over it. "Add to order" adds a one-variant treat straight to the cart.
+{%- endcomment -%}
+{%- liquid
+  assign treats = section.settings.collection
+  assign treats_count = treats.products_count | default: 0
+  assign max_items = section.settings.limit
+-%}
+<section class="mw-treats" id="{{ section.settings.anchor | default: 'treats' | handle }}" aria-labelledby="treats-h-{{ section.id }}">
+  <div class="mw-wrap">
+    <div class="mw-thead">
+      <div class="mw-ttl"><h2 class="mw-h2" id="treats-h-{{ section.id }}">{{ section.settings.heading }}{% if section.settings.heading_bold != blank %}<br><b>{{ section.settings.heading_bold }}</b>{% endif %}</h2><svg class="mw-arrow-d mw-dp" viewBox="0 0 92 70" aria-hidden="true"><path pathLength="1" d="M4 10C34 2 66 14 74 50" style="--d:0s"/><path pathLength="1" d="M60 40l14 14 12-16" style="--d:.35s"/></svg></div>
+      {%- if section.settings.lead != blank -%}<p class="mw-lead">{{ section.settings.lead }}</p>{%- endif -%}
+    </div>
+    <div class="mw-car" data-car data-drag="{{ section.settings.drag_label | escape }}">
+      <ul class="mw-car-track" data-track aria-label="{{ section.settings.heading | escape }}">
+        {%- if treats_count > 0 -%}
+          {%- for product in treats.products limit: max_items -%}{% render 'mw-card', product: product, style: 'pill', label: section.settings.button_label %}{%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..6) -%}{% render 'mw-card', style: 'pill', label: section.settings.button_label %}{%- endfor -%}
+        {%- endif -%}
+      </ul>
+      <button class="mw-circ mw-car-next" type="button" aria-label="{{ section.settings.next_label | escape }}" data-car-next><svg aria-hidden="true"><use href="#mw-i-arrow"/></svg></button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Treats carousel",
+  "class": "mw-sec",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Treats" },
+    { "type": "text", "id": "heading_bold", "label": "Heading, bold second line", "default": "for good days" },
+    { "type": "textarea", "id": "lead", "label": "Text", "default": "Describe your treats in a sentence or two." },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "treats" },
+    { "type": "collection", "id": "collection", "label": "Treats collection" },
+    { "type": "range", "id": "limit", "label": "Products", "min": 4, "max": 16, "step": 1, "default": 8 },
+    { "type": "text", "id": "button_label", "label": "Card button", "default": "Add to order" },
+    { "type": "text", "id": "next_label", "label": "Next button label (screen readers)", "default": "Next treats" },
+    { "type": "text", "id": "drag_label", "label": "Text in the cursor circle", "default": "drag" }
+  ],
+  "presets": [{ "name": "Treats carousel" }],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

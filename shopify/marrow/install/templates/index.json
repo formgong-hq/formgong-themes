@@ -1,0 +1,142 @@
+{
+  "sections": {
+    "hero": {
+      "type": "mw-hero",
+      "settings": {}
+    },
+    "finder": {
+      "type": "mw-finder",
+      "settings": {}
+    },
+    "wave1": {
+      "type": "mw-wave",
+      "settings": {
+        "above": "#eef2fb",
+        "below": "#ffffff"
+      }
+    },
+    "recipes": {
+      "type": "mw-recipes",
+      "settings": {}
+    },
+    "wave2": {
+      "type": "mw-wave",
+      "settings": {
+        "above": "#ffffff",
+        "below": "#fff3e3"
+      }
+    },
+    "why": {
+      "type": "mw-why",
+      "settings": {},
+      "blocks": {
+        "b0": {
+          "type": "blurb",
+          "settings": {}
+        },
+        "b1": {
+          "type": "blurb",
+          "settings": {}
+        },
+        "b2": {
+          "type": "blurb",
+          "settings": {}
+        },
+        "b3": {
+          "type": "blurb",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "wave3": {
+      "type": "mw-wave",
+      "settings": {
+        "above": "#fff3e3",
+        "below": "#ffffff"
+      }
+    },
+    "treats": {
+      "type": "mw-treats",
+      "settings": {}
+    },
+    "wave4": {
+      "type": "mw-wave",
+      "settings": {
+        "above": "#ffffff",
+        "below": "#fff3e3"
+      }
+    },
+    "reviews": {
+      "type": "mw-reviews",
+      "settings": {
+        "ribbon": "Your store name"
+      },
+      "blocks": {
+        "b0": {
+          "type": "review",
+          "settings": {}
+        },
+        "b1": {
+          "type": "review",
+          "settings": {}
+        },
+        "b2": {
+          "type": "review",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2"
+      ]
+    },
+    "faq": {
+      "type": "mw-faq",
+      "settings": {},
+      "blocks": {
+        "b0": {
+          "type": "question",
+          "settings": {}
+        },
+        "b1": {
+          "type": "question",
+          "settings": {}
+        },
+        "b2": {
+          "type": "question",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2"
+      ]
+    },
+    "banner": {
+      "type": "mw-banner",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "finder",
+    "wave1",
+    "recipes",
+    "wave2",
+    "why",
+    "wave3",
+    "treats",
+    "wave4",
+    "reviews",
+    "faq",
+    "banner"
+  ]
+}

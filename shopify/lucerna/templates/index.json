@@ -1,0 +1,291 @@
+{
+  "sections": {
+    "preloader": {
+      "type": "lc-preloader",
+      "settings": {}
+    },
+    "hero": {
+      "type": "lc-hero",
+      "settings": {
+        "anchor": "top"
+      },
+      "blocks": {
+        "s1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-hero-1.webp",
+            "heading": "Light that draws the way forward.",
+            "text": "Every project is a chance to turn your idea into light. We walk the whole route with you."
+          }
+        },
+        "s2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-hero-2.webp",
+            "heading": "Together, we light up what comes next.",
+            "text": "Efficient lighting where new technology, low energy use, fair cost and lasting quality meet."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2"
+      ]
+    },
+    "highlights": {
+      "type": "lc-highlights",
+      "settings": {
+        "small": "Highlights",
+        "heading": "The right file, right when you need it.",
+        "text": "Quick access to technical sheets, catalogues and news. Clear, tidy documents make your work easier and help you decide fast and well.",
+        "anchor": "highlights"
+      },
+      "blocks": {
+        "docs": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-docs.webp",
+            "title": "Technical sheets",
+            "text": "Browse our newest catalogues.",
+            "link": "#highlights",
+            "span": "span4",
+            "ratio": "460/250",
+            "bottom": true,
+            "tall_text": false
+          }
+        },
+        "p1": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-prod-street.webp",
+            "name": "ARGO high-bay",
+            "spec_1": "60/80/100 W",
+            "spec_2": "3CCT",
+            "link": "#projects",
+            "tablet_full": false
+          }
+        },
+        "stat": {
+          "type": "stat",
+          "settings": {
+            "number": "148",
+            "label": "Shops across the country",
+            "palette": "sun",
+            "bottom": true
+          }
+        },
+        "dealers": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-dealers.webp",
+            "title": "Dealers",
+            "text": "Your trade area, with every file in one place.",
+            "link": "#highlights",
+            "span": "span3",
+            "ratio": "340/250",
+            "bottom": true,
+            "tall_text": true
+          }
+        },
+        "p2": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-prod-flood.webp",
+            "name": "TERA 3CCT",
+            "spec_1": "Dimmable 0–10 V",
+            "spec_2": "160 lm/W",
+            "link": "#projects",
+            "tablet_full": false
+          }
+        },
+        "cat": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-catalogue.webp",
+            "title": "Catalogue 2026",
+            "text": "Our whole range in one book.",
+            "link": "#highlights",
+            "span": "span6",
+            "ratio": "710/340",
+            "bottom": false,
+            "tall_text": false
+          }
+        },
+        "p3": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-prod-ring.webp",
+            "name": "CIRA 3CCT",
+            "spec_1": "IP54 panel",
+            "spec_2": "UGR < 19",
+            "link": "#projects",
+            "tablet_full": true
+          }
+        }
+      },
+      "block_order": [
+        "docs",
+        "p1",
+        "stat",
+        "dealers",
+        "p2",
+        "cat",
+        "p3"
+      ]
+    },
+    "projects": {
+      "type": "lc-projects",
+      "settings": {
+        "badge": "DRAG TO SEE MORE GREAT PROJECTS ·",
+        "small": "Projects",
+        "heading": "Ideas that light the way.",
+        "text": "Explore tailored lighting, planned to answer exactly what each space and each client needs.",
+        "anchor": "projects"
+      },
+      "blocks": {
+        "a": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-proj-1.webp",
+            "alt": "Meeting room under a suspended frame of light",
+            "dots": "30 | 16 | VEGA 3CCT | Linear profile\n68 | 22 | T connector for VEGA | Accessory"
+          }
+        },
+        "b": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-proj-2.webp",
+            "alt": "Boutique with lines of light in the ceiling",
+            "dots": "44 | 12 | NOVA 13 W 3CCT | Recessed line\n22 | 50 | Wall line 24 V | Profile"
+          }
+        },
+        "c": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-proj-3.webp",
+            "alt": "Restaurant with warm pendant and cove lights",
+            "dots": "28 | 34 | ORB pendant | Decorative\n62 | 40 | Strip 24 V COB | 130 lm/W"
+          }
+        },
+        "d": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/lucerna-proj-4.webp",
+            "alt": "Open office under ring pendants",
+            "dots": "48 | 18 | HALO 3CCT | Ring pendant"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ]
+    },
+    "about": {
+      "type": "lc-about",
+      "settings": {
+        "small": "About Us",
+        "heading": "Committed to excellence",
+        "text": "For over ten years a name builders trust: solid engineering, plain talk and lighting shaped around what our partners and clients really ask for.",
+        "button_label": "Learn more",
+        "button_link": "#values",
+        "anchor": "about",
+        "image_off": "shopify://shop_images/lucerna-house-off.webp",
+        "image_on": "shopify://shop_images/lucerna-house-on.webp",
+        "alt": "A modern house at dusk with garden and carport",
+        "switches_title": "Switches",
+        "zone_1": "Zone 1",
+        "zone_2": "Zone 2",
+        "zone_3": "Zone 3",
+        "zone_4": "Zone 4",
+        "zone_5": "Zone 5",
+        "zone_1_aria": "Zone 1, upper floor",
+        "zone_2_aria": "Zone 2, living room",
+        "zone_3_aria": "Zone 3, garden",
+        "zone_4_aria": "Zone 4, carport",
+        "zone_5_aria": "Zone 5, eaves"
+      }
+    },
+    "values": {
+      "type": "lc-values",
+      "settings": {
+        "label": "Our values",
+        "anchor": "values"
+      },
+      "blocks": {
+        "t0": {
+          "type": "tab",
+          "settings": {
+            "title": "Innovation",
+            "heading": "For people who ask more of their lighting",
+            "text": "Fulgor turns light into ideas that change a room. We look ahead and back technology that gives you the light you need today, and the light you did not know you needed yet. Function, efficiency and output, made for demanding people.",
+            "image_1": "shopify://shop_images/lucerna-val-1.webp",
+            "image_2": "shopify://shop_images/lucerna-val-2.webp",
+            "bg": "#1d2230"
+          }
+        },
+        "t1": {
+          "type": "tab",
+          "settings": {
+            "title": "Quality",
+            "heading": "For people who never settle",
+            "text": "We hold ourselves to real quality. Every product is tested, certified and built with care for lifespan, safety and reliability, so it keeps the same output today and for years to come.",
+            "image_1": "shopify://shop_images/lucerna-val-3.webp",
+            "image_2": "shopify://shop_images/lucerna-val-4.webp",
+            "bg": "#232b45"
+          }
+        },
+        "t2": {
+          "type": "tab",
+          "settings": {
+            "title": "Efficiency",
+            "heading": "For people who value every resource",
+            "text": "Our LED lighting gets the most from every watt, cutting energy use and running costs. Efficiency means savings and a lighter footprint: a smart choice that keeps paying back.",
+            "image_1": "shopify://shop_images/lucerna-val-2.webp",
+            "image_2": "shopify://shop_images/lucerna-val-3.webp",
+            "bg": "#27345e"
+          }
+        },
+        "t3": {
+          "type": "tab",
+          "settings": {
+            "title": "Expertise",
+            "heading": "For people who want the right hands on the job",
+            "text": "Our team brings know-how, experience and care to deliver lighting you can count on. We do not only know what to do, we know how to do it, with rigour at every step.",
+            "image_1": "shopify://shop_images/lucerna-val-4.webp",
+            "image_2": "shopify://shop_images/lucerna-val-1.webp",
+            "bg": "#2a3d7d"
+          }
+        },
+        "t4": {
+          "type": "tab",
+          "settings": {
+            "title": "Sustainability",
+            "heading": "For people who see sustainability as a principle, not a trend",
+            "text": "We work responsibly, with products and habits that respect the planet and leave a greener future.",
+            "image_1": "shopify://shop_images/lucerna-val-1.webp",
+            "image_2": "shopify://shop_images/lucerna-val-3.webp",
+            "bg": "#1f4fe0"
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    }
+  },
+  "order": [
+    "preloader",
+    "hero",
+    "highlights",
+    "projects",
+    "about",
+    "values"
+  ]
+}

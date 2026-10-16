@@ -1,0 +1,15 @@
+{%- comment -%} Marrow wave divider: the colour above bends into the colour below as you scroll. {%- endcomment -%}
+<div class="mw-wave" style="--below:{{ section.settings.below }}"><canvas data-color="{{ section.settings.above }}" aria-hidden="true"></canvas></div>
+
+{% schema %}
+{
+  "name": "Wave divider",
+  "class": "mw-sec",
+  "settings": [
+    { "type": "color", "id": "above", "label": "Colour above (the section before)", "default": "#ffffff" },
+    { "type": "color", "id": "below", "label": "Colour below (the section after)", "default": "#fff3e3" }
+  ],
+  "presets": [{ "name": "Wave divider" }],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

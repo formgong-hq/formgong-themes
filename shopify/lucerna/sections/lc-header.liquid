@@ -1,0 +1,201 @@
+{%- comment -%}
+  Lucerna header: the template's symbols, the fixed bar (wordmark, the frosted menu pill, Contact, the search circle,
+  the trade-area circle with its form), the mega menu, the phone panel and the contact drawer with its form.
+  The first menu link opens the mega menu on wide screens (in the phone panel it is a plain link, as in the template).
+  Both forms post to Formgong with the key from Theme settings → Formgong and stay hidden while no key is set.
+{%- endcomment -%}
+{%- liquid
+  assign menu = section.settings.menu
+  assign key = settings.formgong_key
+  assign cats = section.blocks | where: 'type', 'category'
+  assign spaces = section.blocks | where: 'type', 'spaces' | first
+  assign featured = section.blocks | where: 'type', 'featured' | first
+  assign first_cat = cats | first
+-%}
+{% render 'lc-sprite', wordmark: section.settings.wordmark, dot: section.settings.dot %}
+<header class="hdr" id="hdr">
+  <a class="lc-logo" href="{{ routes.root_url }}" aria-label="{{ section.settings.wordmark | default: shop.name | escape }}, {{ 'lucerna.header.home' | t }}"><svg viewBox="0 0 236 60"><use href="#wordmark"/></svg></a>
+  <nav class="menu" aria-label="{{ 'lucerna.header.main' | t }}">
+    {%- for link in menu.links -%}
+      {%- if forloop.first and section.settings.first_opens_mega and cats.size > 0 -%}
+        <button class="menu-link has-mega" type="button" aria-expanded="false" aria-controls="mega">{{ link.title }} <svg class="ic"><use href="#chev"/></svg></button>
+      {%- else -%}
+        <a class="menu-link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  </nav>
+  <div class="extra">
+    <button class="btn-contact" type="button" data-open="contact">{{ section.settings.contact_label }} <svg class="ic"><use href="#arrow"/></svg></button>
+    <div class="search-bar" id="searchBar">
+      <input class="search-input" id="q" type="search" placeholder="{{ section.settings.search_placeholder | escape }}" aria-label="{{ section.settings.search_placeholder | escape }}" autocomplete="off" tabindex="-1" data-search-url="{{ routes.search_url }}">
+      <button class="circ" type="button" id="searchBtn" aria-label="{{ 'lucerna.header.search' | t }}" aria-expanded="false"><svg class="ic"><use href="#search"/></svg></button>
+      <ul class="lc-results" id="results" hidden></ul>
+    </div>
+    <div class="login" id="login">
+      <button class="login-bar is-collapsed" type="button" id="loginBtn" aria-expanded="false" aria-controls="tradeWrap"><span class="login-label">{{ section.settings.trade_label }}</span><span class="login-avatar"><svg class="ic"><use href="#user"/></svg></span></button>
+      <div class="login-form-wrap" id="tradeWrap"><div class="login-form-inner">
+        <div class="login-card">
+          <p class="login-h">{{ section.settings.trade_heading }}</p>
+          {%- if key != blank -%}
+          <form class="fg" action="https://formgong.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="{{ key | escape }}">
+            <input type="hidden" name="subject" value="{{ section.settings.trade_subject | escape }}">
+            <div aria-hidden="true" class="hp"><label>{{ 'lucerna.form.honeypot' | t }}<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+            <div class="fg-fields">
+              <input class="inp" name="name" autocomplete="name" placeholder="{{ 'lucerna.form.name' | t }}" aria-label="{{ 'lucerna.form.name' | t }}" required>
+              <input class="inp" name="email" type="email" autocomplete="email" placeholder="{{ 'lucerna.form.work_email' | t }}" aria-label="{{ 'lucerna.form.work_email' | t }}" required>
+              <input class="inp" name="company" autocomplete="organization" placeholder="{{ 'lucerna.form.company' | t }}" aria-label="{{ 'lucerna.form.company' | t }}" required>
+              <button class="btn-wide" type="submit"><span data-label>{{ section.settings.trade_button }}</span></button>
+              <p class="fg-status" data-status role="status" aria-live="polite"></p>
+            </div>
+            <div class="fg-sent" tabindex="-1"><p class="fg-sent-h">{{ 'lucerna.form.thanks_html' | t }}</p><p>{{ section.settings.trade_thanks }}</p><button class="link-u" type="button" data-again>{{ 'lucerna.form.again' | t }}</button></div>
+          </form>
+          {%- elsif request.design_mode -%}
+          <p class="lc-nokey">{{ 'lucerna.form.no_key' | t }}</p>
+          {%- endif -%}
+          {%- if section.settings.show_credit -%}<p class="credit">Powered by <a href="https://formgong.com" rel="noopener">Formgong</a></p>{%- endif -%}
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <button class="burger" type="button" aria-label="{{ 'lucerna.header.open_menu' | t }}" aria-expanded="false" aria-controls="mmenu"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+
+  <div class="mega" id="mega">
+    <div class="mega-in">
+      <div class="mega-left">
+        {%- for b in cats -%}
+          <button class="mega-cat{% if forloop.first %} is-on{% endif %}" type="button" data-cat="{{ forloop.index0 }}" data-h="{{ b.settings.heading | escape }}" data-items="{{ b.settings.items | newline_to_br | strip_newlines | escape }}" data-link="{{ b.settings.link | default: '#projects' }}" {{ b.shopify_attributes }}>{{ b.settings.name }}</button>
+        {%- endfor -%}
+        {%- if section.settings.all_label != blank -%}<a class="btn-out sm" href="{{ section.settings.all_link | default: '#highlights' }}">{{ section.settings.all_label }} <svg class="ic"><use href="#arrow"/></svg></a>{%- endif -%}
+      </div>
+      <div class="mega-mid" data-mega-body>
+        {%- if first_cat -%}
+        <div class="mega-group"><p class="mega-h" data-mega-h>{{ first_cat.settings.heading }}</p><ul data-mega-a>
+          {%- assign items = first_cat.settings.items | newline_to_br | split: '<br />' -%}
+          {%- for it in items -%}{%- assign t = it | strip -%}{%- if t != blank -%}<li><a href="{{ first_cat.settings.link | default: '#projects' }}">{{ t }}</a></li>{%- endif -%}{%- endfor -%}</ul>
+          <a class="btn-out sm" href="{{ first_cat.settings.link | default: '#projects' }}">{{ 'lucerna.header.see_all_in' | t }} <span data-mega-name>{{ first_cat.settings.name }}</span> <svg class="ic"><use href="#arrow"/></svg></a></div>
+        {%- endif -%}
+        {%- if spaces -%}
+        <div class="mega-group" {{ spaces.shopify_attributes }}><p class="mega-h">{{ spaces.settings.heading }}</p><ul>
+          {%- assign items = spaces.settings.items | newline_to_br | split: '<br />' -%}
+          {%- for it in items -%}{%- assign t = it | strip -%}{%- if t != blank -%}<li><a href="{{ spaces.settings.link | default: '#projects' }}">{{ t }}</a></li>{%- endif -%}{%- endfor -%}</ul></div>
+        {%- endif -%}
+      </div>
+      {%- if featured -%}
+      <div class="mega-right" data-mega-feat {{ featured.shopify_attributes }}>
+        <p class="mega-h">{{ featured.settings.heading }}</p>
+        <a class="mega-card" href="{{ featured.settings.link | default: '#projects' }}">{% render 'lc-img', image: featured.settings.image, width: 600, alt: '' %}<span>{{ featured.settings.label }}</span></a>
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+<div class="mega-backdrop"></div>
+
+<div class="mmenu" id="mmenu" aria-hidden="true">
+  <div class="mm-overlay"></div>
+  <div class="mm-panel" role="dialog" aria-modal="true" aria-label="{{ 'lucerna.header.menu' | t }}">
+    <button class="mm-close" type="button" aria-label="{{ 'lucerna.header.close_menu' | t }}"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <nav class="mm-content" aria-label="{{ 'lucerna.header.mobile' | t }}">
+      {%- for link in menu.links -%}
+        <a class="mm-btn" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+      <button class="mm-bottom" type="button" data-open="contact"><span>{{ section.settings.contact_label }}</span><svg viewBox="0 0 41 41" width="40" height="40" fill="none"><rect x="2.5" y="2.5" width="36" height="36" rx="18" stroke="#fff"/><path d="M15 26 26 15M17 15h9v9" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+    </nav>
+  </div>
+</div>
+
+<div class="scrim"></div>
+<aside class="lc-drawer" id="contact" role="dialog" aria-modal="true" aria-labelledby="contact-h" aria-hidden="true">
+  <div class="drawer-head"><p id="contact-h">{{ section.settings.contact_heading }}</p><button class="drawer-x" type="button" aria-label="{{ 'lucerna.header.close' | t }}"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+  <div class="drawer-body">
+    {%- if key != blank -%}
+    <form class="fg" action="https://formgong.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="{{ key | escape }}">
+      <input type="hidden" name="subject" value="{{ section.settings.contact_subject | escape }}">
+      <div aria-hidden="true" class="hp"><label>{{ 'lucerna.form.honeypot' | t }}<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+      <div class="fg-fields">
+        <label class="fld"><span>{{ 'lucerna.form.name' | t }}</span><input class="inp" name="name" autocomplete="name" required></label>
+        <label class="fld"><span>{{ 'lucerna.form.email' | t }}</span><input class="inp" name="email" type="email" autocomplete="email" required></label>
+        <label class="fld"><span>{{ 'lucerna.form.company' | t }} <i>{{ 'lucerna.form.optional' | t }}</i></span><input class="inp" name="company" autocomplete="organization"></label>
+        {%- assign kinds = section.settings.project_types | newline_to_br | split: '<br />' -%}
+        {%- if section.settings.project_types != blank -%}
+        <label class="fld"><span>{{ 'lucerna.form.project' | t }}</span><select class="inp" name="project">{%- for k in kinds -%}{%- assign t = k | strip -%}{%- if t != blank -%}<option>{{ t }}</option>{%- endif -%}{%- endfor -%}</select></label>
+        {%- endif -%}
+        <label class="fld"><span>{{ 'lucerna.form.message' | t }}</span><textarea class="inp" name="message" rows="5" required></textarea></label>
+        <button class="btn-wide" type="submit"><span data-label>{{ 'lucerna.form.send' | t }}</span></button>
+        <p class="fg-status" data-status role="status" aria-live="polite"></p>
+      </div>
+      <div class="fg-sent" tabindex="-1"><p class="fg-sent-h">{{ 'lucerna.form.thanks_html' | t }}</p><p>{{ section.settings.contact_thanks }}</p><button class="link-u" type="button" data-again>{{ 'lucerna.form.again' | t }}</button></div>
+    </form>
+    {%- elsif request.design_mode -%}
+    <p class="lc-nokey">{{ 'lucerna.form.no_key' | t }}</p>
+    {%- endif -%}
+    {%- if section.settings.show_credit -%}<p class="credit">Powered by <a href="https://formgong.com" rel="noopener">Formgong</a></p>{%- endif -%}
+  </div>
+</aside>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "lc-section-contents",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "wordmark", "label": "Wordmark", "default": "fulgor", "info": "Drawn in Poppins with the dot after it. Leave empty to use the store name." },
+    { "type": "color", "id": "dot", "label": "Wordmark dot", "default": "#ffb800" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu", "info": "Shown in the frosted pill and in the phone panel." },
+    { "type": "checkbox", "id": "first_opens_mega", "label": "First menu link opens the mega menu", "default": true, "info": "On wide screens. Needs at least one category block." },
+    { "type": "text", "id": "contact_label", "label": "Contact button", "default": "Contact" },
+    { "type": "text", "id": "search_placeholder", "label": "Search placeholder", "default": "Search products" },
+    { "type": "header", "content": "Trade area" },
+    { "type": "text", "id": "trade_label", "label": "Label", "default": "Trade area" },
+    { "type": "text", "id": "trade_heading", "label": "Form heading", "default": "Ask for a trade account" },
+    { "type": "text", "id": "trade_button", "label": "Button", "default": "Request access" },
+    { "type": "text", "id": "trade_subject", "label": "Subject of the message", "default": "Trade account request" },
+    { "type": "text", "id": "trade_thanks", "label": "Thank-you text", "default": "We will check your details and get back to you." },
+    { "type": "header", "content": "Contact drawer" },
+    { "type": "text", "id": "contact_heading", "label": "Heading", "default": "Tell us about your project" },
+    { "type": "text", "id": "contact_subject", "label": "Subject of the message", "default": "New project enquiry" },
+    { "type": "textarea", "id": "project_types", "label": "Types of project", "info": "One per line. Leave empty to hide the field.", "default": "Home\nShop or restaurant\nOffice\nOutdoor or street\nIndustry" },
+    { "type": "text", "id": "contact_thanks", "label": "Thank-you text", "default": "We got your message and will answer soon." },
+    { "type": "checkbox", "id": "show_credit", "label": "Show \"Powered by Formgong\" under the forms", "default": true },
+    { "type": "header", "content": "Mega menu" },
+    { "type": "text", "id": "all_label", "label": "Button under the categories", "default": "See all categories" },
+    { "type": "url", "id": "all_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Mega menu category",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "Category" },
+        { "type": "text", "id": "heading", "label": "Heading of its list", "default": "Category" },
+        { "type": "textarea", "id": "items", "label": "Items", "info": "One per line." },
+        { "type": "url", "id": "link", "label": "Link of the items" }
+      ]
+    },
+    {
+      "type": "spaces",
+      "name": "Mega menu second list",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Lighting by space" },
+        { "type": "textarea", "id": "items", "label": "Items", "info": "One per line." },
+        { "type": "url", "id": "link", "label": "Link of the items" }
+      ]
+    },
+    {
+      "type": "featured",
+      "name": "Mega menu featured card",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Featured" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Featured product" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

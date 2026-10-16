@@ -1,0 +1,150 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "mw-footer",
+      "settings": {
+        "logo_text": "MARROW",
+        "address": "218 Dock Road, Portland, OR 97209",
+        "phone": "+1 (503) 555-0148",
+        "email": "hello@marrow.example",
+        "newsletter_link": "/#contact",
+        "bottom_text": "Marrow Kitchen · sample site",
+        "form_heading": "Write to the kitchen",
+        "form_intro": "A question, a recipe made for your pet, or wholesale for your shop. We answer within one working day.",
+        "thanks_text": "We will write back within one working day."
+      },
+      "blocks": {
+        "b0": {
+          "type": "column",
+          "settings": {
+            "heading": "Recipes"
+          }
+        },
+        "b1": {
+          "type": "link",
+          "settings": {
+            "label": "For dogs",
+            "link": "/#recipes",
+            "action": "dog"
+          }
+        },
+        "b2": {
+          "type": "link",
+          "settings": {
+            "label": "For cats",
+            "link": "/#recipes",
+            "action": "cat"
+          }
+        },
+        "b3": {
+          "type": "link",
+          "settings": {
+            "label": "Treats",
+            "link": "/#treats",
+            "action": "none"
+          }
+        },
+        "b4": {
+          "type": "link",
+          "settings": {
+            "label": "Meal finder",
+            "link": "/#finder",
+            "action": "none"
+          }
+        },
+        "b5": {
+          "type": "column",
+          "settings": {
+            "heading": "Help"
+          }
+        },
+        "b6": {
+          "type": "link",
+          "settings": {
+            "label": "Why raw",
+            "link": "/#why",
+            "action": "none"
+          }
+        },
+        "b7": {
+          "type": "link",
+          "settings": {
+            "label": "Questions",
+            "link": "/#faq",
+            "action": "none"
+          }
+        },
+        "b8": {
+          "type": "link",
+          "settings": {
+            "label": "Delivery",
+            "link": "/#faq-5",
+            "action": "none"
+          }
+        },
+        "b9": {
+          "type": "link",
+          "settings": {
+            "label": "Wholesale",
+            "action": "write",
+            "topic": "Wholesale"
+          }
+        },
+        "b10": {
+          "type": "link",
+          "settings": {
+            "label": "Write to us",
+            "action": "write",
+            "topic": "Question"
+          }
+        },
+        "b11": {
+          "type": "column",
+          "settings": {
+            "heading": "Hours"
+          }
+        },
+        "b12": {
+          "type": "text",
+          "settings": {
+            "text": "Mon–Fri 9:00–19:00"
+          }
+        },
+        "b13": {
+          "type": "text",
+          "settings": {
+            "text": "Sat 10:00–16:00"
+          }
+        },
+        "b14": {
+          "type": "text",
+          "settings": {
+            "text": "Sun closed"
+          }
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9",
+        "b10",
+        "b11",
+        "b12",
+        "b13",
+        "b14"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

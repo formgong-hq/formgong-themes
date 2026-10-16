@@ -1,0 +1,19 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "mw-header",
+      "settings": {
+        "wordmark": "",
+        "menu": "main-menu",
+        "panel_menu": "main-menu"
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

@@ -1,0 +1,87 @@
+{% doc %}
+  Cart line items, shared by the cart drawer and the cart page.
+  @param {string} section_id - Id of the section that renders it
+{% enddoc %}
+<ul class="cart-lines" role="list">
+  {%- for item in cart.items -%}
+    <li class="cart-line">
+      <a class="cart-line__media" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+        {%- if item.image -%}
+          {{ item.image | image_url: width: 240 | image_tag: widths: '120, 180, 240', sizes: '88px', alt: '' }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </a>
+
+      <div>
+        <a class="cart-line__title" href="{{ item.url }}">{{ item.product.title | escape }}</a>
+        <div class="cart-line__meta">
+          {%- unless item.product.has_only_default_variant -%}
+            {%- for option in item.options_with_values -%}
+              <span>{{ option.name }}: {{ option.value }}</span>
+            {%- endfor -%}
+          {%- endunless -%}
+          {%- for property in item.properties -%}
+            {%- assign first_char = property.first | slice: 0 -%}
+            {%- if property.last != blank and first_char != '_' -%}
+              <span>{{ property.first }}: {{ property.last }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if item.selling_plan_allocation -%}
+            <span>{{ item.selling_plan_allocation.selling_plan.name }}</span>
+          {%- endif -%}
+          <span>
+            {%- if item.original_price != item.final_price -%}
+              <s>{{ item.original_price | money }}</s>
+            {%- endif %}
+            {{ item.final_price | money }}
+          </span>
+          {%- if item.unit_price_measurement -%}
+            <span>
+              {{ item.unit_price | money }}/
+              {%- if item.unit_price_measurement.reference_value != 1 -%}
+                {{- item.unit_price_measurement.reference_value -}}
+              {%- endif -%}
+              {{ item.unit_price_measurement.reference_unit }}
+            </span>
+          {%- endif -%}
+        </div>
+        {%- if item.line_level_discount_allocations != blank -%}
+          <ul class="cart-line__discounts" role="list">
+            {%- for allocation in item.line_level_discount_allocations -%}
+              <li>{{ allocation.discount_application.title }} (−{{ allocation.amount | money }})</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="cart-line__actions">
+          <div class="qty">
+            <button type="button" data-qty-step="-1" aria-label="{{ 'accessibility.decrease_quantity' | t: product: item.product.title | escape }}">
+              {% render 'icon', name: 'minus' %}
+            </button>
+            <input
+              type="number"
+              id="Quantity-{{ section_id }}-{{ forloop.index }}"
+              name="updates[]"
+              form="CartForm-{{ section_id }}"
+              value="{{ item.quantity }}"
+              min="0"
+              {% if item.variant.quantity_rule.max %}max="{{ item.variant.quantity_rule.max }}"{% endif %}
+              step="{{ item.variant.quantity_rule.increment | default: 1 }}"
+              data-line="{{ forloop.index }}"
+              aria-label="{{ 'accessibility.quantity_for' | t: product: item.product.title | escape }}"
+            >
+            <button type="button" data-qty-step="1" aria-label="{{ 'accessibility.increase_quantity' | t: product: item.product.title | escape }}">
+              {% render 'icon', name: 'plus' %}
+            </button>
+          </div>
+          <a class="cart-line__remove" href="{{ item.url_to_remove }}" data-remove-line="{{ forloop.index }}" aria-label="{{ 'accessibility.remove_item' | t: product: item.product.title | escape }}">
+            {{- 'cart.general.remove' | t -}}
+          </a>
+        </div>
+      </div>
+
+      <div class="cart-line__total">{{ item.final_line_price | money }}</div>
+    </li>
+  {%- endfor -%}
+</ul>

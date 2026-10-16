@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "main": {
+      "type": "s-product",
+      "settings": {
+        "related_heading": "You may also like"
+      },
+      "blocks": {
+        "perks": {
+          "type": "perks",
+          "settings": {
+            "perk_1": "",
+            "perk_2": "",
+            "perk_3": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "heading": "Description"
+          }
+        },
+        "fit": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Fit and care",
+            "text": "<p>How it fits and how to wash it.</p>"
+          }
+        },
+        "delivery": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Delivery and returns",
+            "text": "<p>Say when orders ship and how returns and exchanges work.</p>"
+          }
+        },
+        "ask": {
+          "type": "ask",
+          "settings": {
+            "heading": "Not sure about the size?",
+            "text": "Tell us your usual size and height and we will answer by email.",
+            "request": "Size question",
+            "thanks": "Thanks, your question is sent. We will answer by email."
+          }
+        }
+      },
+      "block_order": [
+        "perks",
+        "description",
+        "fit",
+        "delivery",
+        "ask"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

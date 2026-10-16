@@ -1,0 +1,49 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "mw-footer",
+      "settings": {},
+      "blocks": {
+        "b0": {
+          "type": "column",
+          "settings": {
+            "heading": "Shop"
+          }
+        },
+        "b1": {
+          "type": "link",
+          "settings": {
+            "label": "All products",
+            "link": "/collections/all",
+            "action": "none"
+          }
+        },
+        "b2": {
+          "type": "column",
+          "settings": {
+            "heading": "Help"
+          }
+        },
+        "b3": {
+          "type": "link",
+          "settings": {
+            "label": "Write to us",
+            "action": "write",
+            "topic": "Question"
+          }
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2",
+        "b3"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

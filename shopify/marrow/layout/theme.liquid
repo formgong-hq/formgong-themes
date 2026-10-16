@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="{% unless template.name == 'index' %}mwr-solid mwr-inner{% endunless %}">
+  <head>
+    {% render 'meta-tags' %}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+    {%- else -%}
+      <link rel="icon" type="image/svg+xml" href="{{ 'marrow-favicon.svg' | asset_url }}">
+    {%- endif -%}
+    <meta name="theme-color" content="{{ settings.mw_hero }}">
+    {{ 'mw-figtree-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {{ 'mw-unbounded-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+
+    {% render 'css-variables' %}
+    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'stilla.css' | asset_url | stylesheet_tag }}
+    {{ 'marrow.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      :root {
+        --mw-hero: {{ settings.mw_hero }};
+        --mw-accent-dark: {{ settings.mw_accent_dark }};
+        --mw-cream: {{ settings.mw_cream }};
+        --mw-ink-2: {{ settings.mw_ink_2 }};
+      }
+    {% endstyle %}
+
+    <script>
+      document.documentElement.className += " mwr-js" + (matchMedia("(prefers-reduced-motion: reduce)").matches ? "" : " mwr-motion");
+      window.Scamper = {
+        routes: {
+          root: {{ routes.root_url | json }},
+          cart: {{ routes.cart_url | json }},
+          cartAdd: {{ routes.cart_add_url | json }},
+          cartChange: {{ routes.cart_change_url | json }},
+          cartUpdate: {{ routes.cart_update_url | json }},
+          search: {{ routes.search_url | json }},
+          predictiveSearch: {{ routes.predictive_search_url | json }},
+          productRecommendations: {{ routes.product_recommendations_url | json }}
+        },
+        cartType: "page",
+        reveal: false,
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }},
+          cartError: {{ 'cart.general.error' | t | json }},
+          added: {{ 'cart.general.added' | t | json }}
+        }
+      };
+      window.StillaStrings = {
+        added: {{ 'stilla.product.added' | t | json }},
+        addToBag: {{ 'stilla.product.add' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        cartError: {{ 'cart.general.error' | t | json }},
+        sending: {{ 'stilla.form.sending' | t | json }},
+        formError: {{ 'stilla.form.error' | t | json }},
+        formOffline: {{ 'stilla.form.offline' | t | json }}
+      };
+      window.MarrowStrings = {
+        sending: {{ 'marrow.form.sending' | t | json }},
+        formError: {{ 'marrow.form.error' | t | json }},
+        formOffline: {{ 'marrow.form.offline' | t | json }},
+        cartError: {{ 'cart.general.error' | t | json }},
+        menu: {{ 'marrow.header.menu' | t | json }},
+        closeMenu: {{ 'marrow.header.close_menu' | t | json }},
+        perDay: {{ 'marrow.finder.per_day' | t | json }},
+        perDayMany: {{ 'marrow.finder.per_day_many' | t | json }},
+        stars: {{ 'marrow.reviews.stars' | t | json }},
+        customer: {{ 'marrow.reviews.customer' | t | json }},
+        reviewsLabel: {{ 'marrow.reviews.label' | t | json }},
+        ago: {{ 'marrow.reviews.ago' | t | json }}
+      };
+    </script>
+    <script src="{{ 'theme.js' | asset_url }}" type="module" defer></script>
+    <script src="{{ 'stilla.js' | asset_url }}" defer></script>
+    <script src="{{ 'marrow.js' | asset_url }}" defer></script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="color-{{ settings.color_schemes.first.id }} mwb">
+    <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+    {% render 'mw-sprite' %}
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {% section 'mw-cart' %}
+    {% render 'mw-quick' %}
+
+    <div class="visually-hidden" role="status" aria-live="polite" id="LiveRegion"></div>
+    <p class="s-toast" role="status" aria-live="polite"></p>
+  </body>
+</html>

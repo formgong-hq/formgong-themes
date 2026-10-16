@@ -1,0 +1,56 @@
+
+/* ---------- Shopify port: section wrappers, inner pages, cart, quick add, editor hints ---------- */
+body { letter-spacing: normal; } /* the base stylesheet tightens body text; Marrow does not */
+/* Header and footer groups render inside a section wrapper: it must not box the fixed header (as Stilla's s-section-contents) */
+.mw-contents { display: contents; }
+.mwr-inner #MainContent { padding-top: 104px; }
+@media (max-width: 980px) { .mwr-inner #MainContent { padding-top: 84px; } }
+/* Without the hero (removed in the editor, or an inner page) the finder is not pulled up under it */
+@media (min-width: 981px) { html.mwr-motion:not(:has(.mw-hero-pin)) .mw-finder { padding-top: 120px; transform: none; opacity: 1; } }
+.mw-h-logo { object-fit: contain; }
+.mw-bag { position: relative; }
+.mw-n { position: absolute; top: 2px; right: 0; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--accent); color: var(--ink); font: 700 11px/18px var(--sans); text-align: center; }
+.mw-n[hidden] { display: none; }
+.mw-hero-ph { position: absolute; inset: 0; }
+.mw-hero-ph svg { width: 100%; height: 100%; opacity: .25; fill: #fff; }
+.mw-cta-ph { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .25; fill: #fff; }
+.mw-card h3 a { color: inherit; }
+.mw-was { margin-right: 6px; color: var(--ink-2); font-weight: 400; }
+.mw-sold { font: 700 12px/1 var(--sans); letter-spacing: 1px; text-transform: uppercase; color: var(--ink-2); }
+.mw-res-txt a { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.mw-hint { padding: 14px 18px; border: 2px dashed var(--line); border-radius: 16px; font-size: 14px; color: var(--ink-2); }
+.mw-hint-foot { margin: 0; border-radius: 0; background: var(--ink); color: #fff; text-align: center; }
+.mw-chips input:disabled + span { opacity: .4; text-decoration: line-through; cursor: not-allowed; }
+.mw-q-price { font: 600 22px/1.3 var(--display); color: var(--accent-dark); }
+/* Cart drawer */
+.mw-lines { margin: 18px 0 8px; border-top: 1px solid var(--line); }
+.mw-line { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.mw-line-img { width: 72px; height: 72px; border-radius: 16px; background: var(--mist); overflow: hidden; }
+.mw-line-img img { width: 100%; height: 100%; object-fit: contain; }
+.mw-line-main { display: grid; gap: 2px; min-width: 0; }
+.mw-line-title { font-weight: 700; line-height: 1.3; }
+.mw-line-var { font-size: 14px; color: var(--ink-2); }
+.mw-line-qty { display: inline-flex; align-items: center; gap: 12px; margin-top: 6px; }
+.mw-line-qty button { display: grid; place-items: center; width: 32px; height: 32px; border: 2px solid var(--line); border-radius: 50%; background: #fff; font-size: 18px; line-height: 1; }
+.mw-line-qty button:hover { border-color: var(--ink); }
+.mw-line-price { font-weight: 600; color: var(--accent-dark); }
+.mw-subtotal { display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; font-size: 18px; }
+.mw-subtotal b { font: 600 20px/1.3 var(--display); }
+.mw-cartbox .mw-note { margin: 4px 0 20px; }
+.mw-cart-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.mw-cart-link { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.mw-cartbox .mw-intro + .mw-pill { margin-bottom: 6px; }
+
+/* ---------- Product, collection and other pages: the base theme sections in Marrow's type and colours ---------- */
+.s-btn { min-height: 56px; padding: 0 40px; border: 0; border-radius: 50px; background: var(--accent); color: var(--ink); font: 700 13px/1 var(--sans); letter-spacing: 1px; text-transform: uppercase; transition: background-color .3s, color .3s; }
+.s-btn:hover { background: var(--ink); color: #fff; }
+.s-btn.s-ghost { border: 2px solid var(--ink); }
+.s-card .s-ph { aspect-ratio: 1; border-radius: 30px; background: var(--mist); }
+.s-card .s-ph img { object-fit: contain; }
+.s-card h3 { font: 700 17px/1.3 var(--sans); }
+.s-price { font-size: 15px; font-weight: 600; color: var(--accent-dark); }
+.s-info .s-price { font: 600 22px/1.3 var(--display); color: var(--accent-dark); }
+.s-chip { border-radius: 50px; }
+.s-badge { border-radius: 50px; background: #fff; color: var(--ink); font: 700 11px/1 var(--sans); letter-spacing: .8px; text-transform: uppercase; }
+.s-quick { border-radius: 50px; background: var(--accent); color: var(--ink); }
+.mw-social { flex-wrap: wrap; }

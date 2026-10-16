@@ -1,0 +1,55 @@
+{% doc %}
+  Outputs font faces, global design tokens and one class per color scheme.
+  Every section adds `color-<scheme id>` to its wrapper to pick a scheme.
+{% enddoc %}
+{%- liquid
+  assign heading_font = settings.type_heading_font
+  assign body_font = settings.type_body_font
+  assign body_bold = body_font | font_modify: 'weight', 'bold'
+  assign body_italic = body_font | font_modify: 'style', 'italic'
+  assign body_bold_italic = body_bold | font_modify: 'style', 'italic'
+  assign body_medium = body_font | font_modify: 'weight', '+100'
+-%}
+{% style %}
+  {{ heading_font | font_face: font_display: 'swap' }}
+  {{ body_font | font_face: font_display: 'swap' }}
+  {{ body_bold | font_face: font_display: 'swap' }}
+  {{ body_italic | font_face: font_display: 'swap' }}
+  {{ body_bold_italic | font_face: font_display: 'swap' }}
+  {{ body_medium | font_face: font_display: 'swap' }}
+
+  :root {
+    --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    --font-heading-weight: {{ heading_font.weight }};
+    --font-heading-style: {{ heading_font.style }};
+    --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+    --font-body-weight: {{ body_font.weight }};
+    --font-body-weight-medium: {{ body_medium.weight | default: 500 }};
+    --font-body-weight-bold: {{ body_bold.weight | default: 700 }};
+    --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
+    --body-scale: {{ settings.body_scale | divided_by: 100.0 }};
+    --page-width: {{ settings.page_width }};
+    --radius: {{ settings.corner_radius }}px;
+    --radius-sm: {{ settings.corner_radius | times: 0.7 | round }}px;
+    --button-radius: {{ settings.button_shape }};
+    --card-ratio: {{ settings.card_image_ratio }};
+  }
+
+  {% for scheme in settings.color_schemes %}
+    {%- if forloop.first %}:root,{% endif %}
+    .color-{{ scheme.id }} {
+      --color-bg: {{ scheme.settings.background }};
+      --color-bg-rgb: {{ scheme.settings.background.red }}, {{ scheme.settings.background.green }}, {{ scheme.settings.background.blue }};
+      --color-text: {{ scheme.settings.text }};
+      --color-text-rgb: {{ scheme.settings.text.red }}, {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }};
+      --color-muted: {{ scheme.settings.muted }};
+      --color-surface: {{ scheme.settings.surface }};
+      --color-surface-text: {{ scheme.settings.surface_text }};
+      --color-button: {{ scheme.settings.button }};
+      --color-button-label: {{ scheme.settings.button_label }};
+      --color-accent: {{ scheme.settings.accent }};
+      --color-border: {{ scheme.settings.border }};
+      --color-line: rgba({{ scheme.settings.text.red }}, {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }}, 0.14);
+    }
+  {% endfor %}
+{% endstyle %}

@@ -1,0 +1,63 @@
+{%- comment -%} About us next to the house at dusk; five switches each light their own part of the picture (the lit photo, masked per zone). {%- endcomment -%}
+<section class="sec5" id="{{ section.settings.anchor | default: 'about' | handleize }}">
+  <div class="sec5-text">
+    {%- if section.settings.small != blank -%}<p class="small">{{ section.settings.small }}</p>{%- endif -%}
+    <h2 class="primary">{{ section.settings.heading }}</h2>
+    {%- if section.settings.text != blank -%}<p class="secondary">{{ section.settings.text }}</p>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}<a class="btn-out" href="{{ section.settings.button_link | default: '#values' }}">{{ section.settings.button_label }} <svg class="ic"><use href="#arrow"/></svg></a>{%- endif -%}
+  </div>
+  <div class="img-container">
+    <div class="img-wrap">
+      <div class="img-inner">
+        <div class="scene">{% render 'lc-img', image: section.settings.image_off, width: 2400, alt: section.settings.alt %}</div>
+        {%- for i in (1..5) -%}
+          <div class="layer z{{ i }}" data-z="{{ i }}">{% render 'lc-img', image: section.settings.image_on, width: 2400, alt: '' %}</div>
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="controls" aria-hidden="true">
+      <div class="controls-in">
+        <p class="controls-title">{{ section.settings.switches_title }}</p>
+        <div class="switch-row">
+          {%- for i in (1..5) -%}
+            {%- capture lk -%}zone_{{ i }}{%- endcapture -%}
+            {%- capture ak -%}zone_{{ i }}_aria{%- endcapture -%}
+            <div class="switch-col"><button class="toggle" type="button" role="switch" aria-checked="false" data-z="{{ i }}" aria-label="{{ section.settings[ak] | escape }}"><span class="knob"><svg width="14" height="14"><use href="#power"/></svg></span></button><span class="sw-label">{{ section.settings[lk] }}</span></div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About and light zones",
+  "tag": "div",
+  "class": "lc-section-contents",
+  "settings": [
+    { "type": "text", "id": "small", "label": "Small line", "default": "About Us" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Committed to excellence" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "A short paragraph about your company." },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Learn more" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "about" },
+    { "type": "header", "content": "Picture" },
+    { "type": "image_picker", "id": "image_off", "label": "Lights off", "info": "2:1. The zones light the same picture with the lights on." },
+    { "type": "image_picker", "id": "image_on", "label": "Lights on", "info": "The same view with every light on." },
+    { "type": "text", "id": "alt", "label": "Description of the picture" },
+    { "type": "text", "id": "switches_title", "label": "Switches heading", "default": "Switches" },
+    { "type": "text", "id": "zone_1", "label": "Zone 1 label", "default": "Zone 1" },
+    { "type": "text", "id": "zone_1_aria", "label": "Zone 1 name for screen readers", "default": "Zone 1, upper floor" },
+    { "type": "text", "id": "zone_2", "label": "Zone 2 label", "default": "Zone 2" },
+    { "type": "text", "id": "zone_2_aria", "label": "Zone 2 name for screen readers", "default": "Zone 2, living room" },
+    { "type": "text", "id": "zone_3", "label": "Zone 3 label", "default": "Zone 3" },
+    { "type": "text", "id": "zone_3_aria", "label": "Zone 3 name for screen readers", "default": "Zone 3, garden" },
+    { "type": "text", "id": "zone_4", "label": "Zone 4 label", "default": "Zone 4" },
+    { "type": "text", "id": "zone_4_aria", "label": "Zone 4 name for screen readers", "default": "Zone 4, carport" },
+    { "type": "text", "id": "zone_5", "label": "Zone 5 label", "default": "Zone 5" },
+    { "type": "text", "id": "zone_5_aria", "label": "Zone 5 name for screen readers", "default": "Zone 5, eaves" }
+  ],
+  "presets": [{ "name": "About and light zones" }]
+}
+{% endschema %}

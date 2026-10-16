@@ -1,0 +1,17 @@
+{%- comment -%}
+  A picture of a Lucerna section, or the placeholder while none is chosen.
+  Accepts: image, width (largest width served), alt, loading ('lazy' or 'eager'), draggable (false for the drag strip)
+{%- endcomment -%}
+{%- liquid
+  assign w = width | default: 1400
+  assign l = loading | default: 'lazy'
+-%}
+{%- if image != blank -%}
+  {%- if draggable == false -%}
+    {{ image | image_url: width: w | image_tag: alt: alt, loading: l, draggable: 'false', widths: '400, 800, 1200, 1600, 2400' }}
+  {%- else -%}
+    {{ image | image_url: width: w | image_tag: alt: alt, loading: l, widths: '400, 800, 1200, 1600, 2400' }}
+  {%- endif -%}
+{%- else -%}
+  {{ 'image' | placeholder_svg_tag: 'lc-ph' }}
+{%- endif -%}

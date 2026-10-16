@@ -1,0 +1,63 @@
+{% doc %}
+  A Marrow product card (recipes grid and treats carousel): photo, name, price from Shopify and the button that opens
+  the quick add (pack sizes) or, for a product with one variant, adds it to the cart straight away.
+  Without a product (empty store, theme editor) it shows the template's soft placeholder shape.
+
+  @param {object} [product] - the product
+  @param {string} [style] - 'circle' (recipes: round arrow) or 'pill' (treats: "Add to order")
+  @param {string} [label] - the pill button text
+  @param {string} [tint] - placeholder colour
+{% enddoc %}
+<li class="mw-card mw-rv">
+  {%- if product -%}
+    {%- for tag in product.tags -%}
+      {%- assign tag_start = tag | slice: 0, 6 | downcase -%}
+      {%- if tag_start == 'label:' -%}<span class="mw-tag">{{ tag | remove_first: 'label:' | remove_first: 'Label:' | strip }}</span>{%- break -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  <div class="mw-pack mw-ph"{% if tint != blank %} style="--ph:{{ tint }}"{% endif %}>
+    {%- if product.featured_media -%}
+      {%- assign alt = product.featured_media.alt | default: product.title -%}
+      {{ product.featured_media | image_url: width: 800 | image_tag: widths: '400, 600, 800', sizes: '(max-width: 669px) 85vw, (max-width: 980px) 460px, 400px', loading: 'lazy', alt: alt, draggable: 'false' }}
+    {%- endif -%}
+  </div>
+  <div class="mw-cbody">
+    <div>
+      <h3>{% if product %}<a href="{{ product.url }}">{{ product.title }}</a>{% else %}{{ 'marrow.card.placeholder' | t }}{% endif %}</h3>
+      {%- if product -%}
+        <p class="mw-price">
+          {%- if product.compare_at_price > product.price -%}<s class="mw-was">{{ product.compare_at_price | money }}</s> {% endif -%}
+          {%- if product.price_varies -%}{{ product.price_min | money }} – {{ product.price_max | money }}{%- else -%}{{ product.price | money }}{%- endif -%}
+        </p>
+      {%- endif -%}
+    </div>
+    {%- if product -%}
+      {%- if product.available -%}
+        {%- if style == 'pill' -%}
+          <button class="mw-pill" type="button" data-quick>{{ label }}<span class="mw-sr"> {{ product.title }}</span></button>
+        {%- else -%}
+          <button class="mw-circ" type="button" data-quick aria-label="{{ 'marrow.card.add' | t: product: product.title }}"><svg aria-hidden="true"><use href="#mw-i-arrow"/></svg></button>
+        {%- endif -%}
+        <script type="application/json" data-product-json>
+          {
+            "title": {{ product.title | json }},
+            "url": {{ product.url | json }},
+            "option": {{ product.options.first | json }},
+            "single": {{ product.has_only_default_variant | json }},
+            "variants": [
+              {%- for v in product.variants -%}
+                { "id": {{ v.id }}, "title": {{ v.title | json }}, "price": {{ v.price | money | json }}, "available": {{ v.available | json }} }{% unless forloop.last %},{% endunless %}
+              {%- endfor -%}
+            ]
+          }
+        </script>
+      {%- else -%}
+        <span class="mw-sold">{{ 'products.product.sold_out' | t }}</span>
+      {%- endif -%}
+    {%- elsif style == 'pill' -%}
+      <span class="mw-pill" aria-hidden="true">{{ label }}</span>
+    {%- else -%}
+      <span class="mw-circ" aria-hidden="true"><svg><use href="#mw-i-arrow"/></svg></span>
+    {%- endif -%}
+  </div>
+</li>

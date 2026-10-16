@@ -17,8 +17,8 @@ the plugin holds, so messages reach your Formgong inbox, email and Telegram.
 | [Soglia](https://formgong.com/en/website-templates/soglia/) (designer windows and doors) | [soglia-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/soglia-wordpress-1.0.0) | in progress |
 | [Halftone](https://formgong.com/en/website-templates/halftone/) (architecture studio) | [halftone-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/halftone-wordpress-1.0.0) | in progress |
 | [Ocra](https://formgong.com/en/website-templates/ocra/) (ceramics shop) | [ocra-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/ocra-wordpress-1.0.0) | in progress |
-| [Lucerna](https://formgong.com/en/website-templates/lucerna/) (lighting maker) | [lucerna-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/lucerna-wordpress-1.0.0) | in progress |
-| [Marrow](https://formgong.com/en/website-templates/marrow/) (raw pet-food kitchen) | [marrow-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/marrow-wordpress-1.0.0) | in progress |
+| [Lucerna](https://formgong.com/en/website-templates/lucerna/) (lighting maker) | [lucerna-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/lucerna-wordpress-1.0.0) | [Lucerna-1.0.0.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/lucerna-shopify-1.0.0) |
+| [Marrow](https://formgong.com/en/website-templates/marrow/) (raw pet-food kitchen) | [marrow-wordpress.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/marrow-wordpress-1.0.0) | [Marrow-1.0.0.zip](https://github.com/formgong-hq/formgong-themes/releases/tag/marrow-shopify-1.0.0) |
 
 More templates are on the way.
 

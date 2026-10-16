@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "main": {
+      "type": "s-product",
+      "settings": {
+        "related_heading": "You may also like"
+      },
+      "blocks": {
+        "perks": {
+          "type": "perks",
+          "settings": {
+            "perk_1": "",
+            "perk_2": "",
+            "perk_3": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "heading": "Description"
+          }
+        },
+        "c1": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Storage",
+            "text": "<p>How to store and serve it.</p>"
+          }
+        },
+        "c2": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Delivery",
+            "text": "<p>Say how and when orders are delivered.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "perks",
+        "description",
+        "c1",
+        "c2"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

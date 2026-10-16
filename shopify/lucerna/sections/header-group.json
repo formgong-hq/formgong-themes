@@ -1,0 +1,113 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "lc-header",
+      "settings": {
+        "wordmark": "fulgor",
+        "menu": "lucerna-main",
+        "first_opens_mega": true,
+        "contact_label": "Contact",
+        "search_placeholder": "Search products",
+        "trade_label": "Trade area",
+        "trade_heading": "Ask for a trade account",
+        "trade_button": "Request access",
+        "trade_subject": "Trade account request",
+        "trade_thanks": "We will check your details and send your login within two working days.",
+        "contact_heading": "Tell us about your project",
+        "contact_subject": "New project enquiry",
+        "contact_thanks": "We got your message and will answer within one working day.",
+        "show_credit": true,
+        "all_label": "See all categories",
+        "all_link": "#highlights"
+      },
+      "blocks": {
+        "cat0": {
+          "type": "category",
+          "settings": {
+            "name": "Indoor",
+            "heading": "Indoor lighting",
+            "items": "Downlights\nTracklights\nDecorative\nPanels\nBattens",
+            "link": "#projects"
+          }
+        },
+        "cat1": {
+          "type": "category",
+          "settings": {
+            "name": "Outdoor",
+            "heading": "Outdoor lighting",
+            "items": "Street lights\nFloodlights\nBollards\nWall lights\nIn-ground",
+            "link": "#projects"
+          }
+        },
+        "cat2": {
+          "type": "category",
+          "settings": {
+            "name": "LED strips & Neon",
+            "heading": "Strips & Neon",
+            "items": "24 V strips\nCOB strips\nNeon flex\nProfiles\nDrivers",
+            "link": "#projects"
+          }
+        },
+        "cat3": {
+          "type": "category",
+          "settings": {
+            "name": "Lamps & Trims",
+            "heading": "Lamps & Trims",
+            "items": "GU10 lamps\nE27 bulbs\nFixed trims\nTilting trims",
+            "link": "#projects"
+          }
+        },
+        "cat4": {
+          "type": "category",
+          "settings": {
+            "name": "Industry & Emergency",
+            "heading": "Industry & Emergency",
+            "items": "High-bays\nLinear IP65\nExit signs\nEmergency kits",
+            "link": "#projects"
+          }
+        },
+        "cat5": {
+          "type": "category",
+          "settings": {
+            "name": "Smart Control",
+            "heading": "Smart Control",
+            "items": "Wi-Fi drivers\nRemotes\nSensors\nDALI",
+            "link": "#projects"
+          }
+        },
+        "spaces": {
+          "type": "spaces",
+          "settings": {
+            "heading": "Lighting by space",
+            "items": "Retail\nBedrooms\nBathrooms\nKitchen\nLiving room\nGarage",
+            "link": "#projects"
+          }
+        },
+        "featured": {
+          "type": "featured",
+          "settings": {
+            "heading": "Featured",
+            "image": "shopify://shop_images/lucerna-prod-line.webp",
+            "label": "VEGA linear",
+            "link": "#projects"
+          }
+        }
+      },
+      "block_order": [
+        "cat0",
+        "cat1",
+        "cat2",
+        "cat3",
+        "cat4",
+        "cat5",
+        "spaces",
+        "featured"
+      ]
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

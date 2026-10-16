@@ -1,0 +1,57 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "lc-footer",
+      "settings": {
+        "line": "The trust that lights up your projects.",
+        "copyright": "FULGOR © 2026. All rights reserved.",
+        "legal_menu": "lucerna-legal",
+        "show_credit": true
+      },
+      "blocks": {
+        "res": {
+          "type": "menu",
+          "settings": {
+            "heading": "Resources",
+            "menu": "lucerna-resources"
+          }
+        },
+        "info": {
+          "type": "menu",
+          "settings": {
+            "heading": "Information",
+            "menu": "lucerna-information"
+          }
+        },
+        "cats": {
+          "type": "menu",
+          "settings": {
+            "heading": "Categories",
+            "menu": "lucerna-categories"
+          }
+        },
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "heading": "Contacts",
+            "email": "hello@fulgor.example",
+            "social_label": "Instagram",
+            "social_link": "#top",
+            "write_label": "Write to us"
+          }
+        }
+      },
+      "block_order": [
+        "res",
+        "info",
+        "cats",
+        "contact"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

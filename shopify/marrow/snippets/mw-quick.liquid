@@ -1,0 +1,18 @@
+{% doc %}
+  Marrow quick add: one dialog in the template's form style, filled by marrow.js from the product card that opened
+  it (pack sizes as chips, quantity, price from Shopify), adding to the cart through the Ajax Cart API.
+{% enddoc %}
+<dialog class="mw-dialog" id="mw-quick" aria-labelledby="mw-quick-title">
+  <div class="mw-dlg" tabindex="-1" autofocus>
+    <button class="mw-x" type="button" aria-label="{{ 'marrow.dialog.close' | t }}" data-close>×</button>
+    <h2 id="mw-quick-title" data-q-title></h2>
+    <p class="mw-intro mw-q-price" data-q-price></p>
+    <form class="mw-form" data-q-form>
+      <fieldset class="mw-chips"><legend data-q-option>{{ 'marrow.quick.pack' | t }}</legend><div class="mw-opts" data-q-opts></div></fieldset>
+      <label class="mw-f mw-qty"><span>{{ 'marrow.quick.quantity' | t }}</span><input type="number" name="quantity" min="1" max="99" step="1" value="1" required></label>
+      <button class="mw-pill mw-big" type="submit">{{ 'marrow.quick.add' | t }}</button>
+      <p class="mw-status" data-status role="status" aria-live="polite"></p>
+      <p class="mw-credit"><a href="#" data-q-link>{{ 'marrow.quick.details' | t }}</a></p>
+    </form>
+  </div>
+</dialog>

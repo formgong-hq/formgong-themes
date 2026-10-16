@@ -1,0 +1,51 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "lc-header",
+      "settings": {
+        "wordmark": "",
+        "menu": "main-menu",
+        "first_opens_mega": true,
+        "contact_label": "Contact",
+        "search_placeholder": "Search products",
+        "trade_label": "Trade area",
+        "trade_heading": "Ask for a trade account",
+        "trade_button": "Request access",
+        "trade_subject": "Trade account request",
+        "trade_thanks": "We will check your details and get back to you.",
+        "contact_heading": "Tell us about your project",
+        "contact_subject": "New project enquiry",
+        "contact_thanks": "We got your message and will answer soon.",
+        "show_credit": true,
+        "all_label": "See all categories",
+        "all_link": "#highlights"
+      },
+      "blocks": {
+        "cat0": {
+          "type": "category",
+          "settings": {
+            "name": "Category",
+            "heading": "Category",
+            "items": "First item\nSecond item"
+          }
+        },
+        "featured": {
+          "type": "featured",
+          "settings": {
+            "heading": "Featured",
+            "label": "Featured product"
+          }
+        }
+      },
+      "block_order": [
+        "cat0",
+        "featured"
+      ]
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

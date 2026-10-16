@@ -1,0 +1,190 @@
+<div class="reading-progress" aria-hidden="true"></div>
+<article class="section color-{{ section.settings.color_scheme }}">
+  <div class="page-width post">
+    <header class="post__head">
+      <p class="post__meta">
+        {{ article.published_at | time_tag: format: 'date' }}
+        {%- if section.settings.show_author and article.author != blank %} · {{ 'blog.by_author' | t: author: article.author }}{% endif -%}
+      </p>
+      <h1>{{ article.title }}</h1>
+    </header>
+    {%- if article.image -%}
+      <div class="post__image">
+        {{ article.image | image_url: width: 2000 | image_tag: widths: '600, 900, 1200, 1600, 2000', sizes: '(min-width: 1320px) 1240px, 100vw', fetchpriority: 'high', alt: article.image.alt | default: article.title }}
+      </div>
+    {%- endif -%}
+    <div class="rte post__body">{{ article.content }}</div>
+
+    {%- if article.tags.size > 0 -%}
+      <p class="post__tags">
+        {{ 'blog.tagged' | t }}:
+        {%- for tag in article.tags %}
+          <a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a>{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      </p>
+    {%- endif -%}
+
+    {%- if blog.comments_enabled? -%}
+      <section class="post__comments" aria-labelledby="Comments-{{ section.id }}">
+        <h2 class="h3" id="Comments-{{ section.id }}">{{ 'blog.comments.count' | t: count: article.comments_count }}</h2>
+        {%- paginate article.comments by 10 -%}
+          <ul class="comments" role="list">
+            {%- for comment in article.comments -%}
+              <li class="comment">
+                <div class="rte">{{ comment.content }}</div>
+                <p class="comment__meta">{{ comment.author }} · {{ comment.created_at | time_tag: format: 'date' }}</p>
+              </li>
+            {%- endfor -%}
+          </ul>
+          {%- if paginate.pages > 1 -%}{% render 'pagination', paginate: paginate %}{%- endif -%}
+        {%- endpaginate -%}
+
+        {%- form 'new_comment', article, class: 'comment-form' -%}
+          <h3 class="h4">{{ 'blog.comments.form_title' | t }}</h3>
+          {%- if form.posted_successfully? -%}
+            <p class="form-message" role="status">
+              {%- if blog.moderated? -%}{{ 'blog.comments.success_moderated' | t }}{%- else -%}{{ 'blog.comments.success' | t }}{%- endif -%}
+            </p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <div class="form-message form-message--error" role="alert">{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+          <div class="comment-form__row">
+            <div class="field">
+              <label for="CommentAuthor-{{ section.id }}">{{ 'blog.comments.name' | t }}</label>
+              <input class="input" id="CommentAuthor-{{ section.id }}" type="text" name="comment[author]" value="{{ form.author }}" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="CommentEmail-{{ section.id }}">{{ 'blog.comments.email' | t }}</label>
+              <input class="input" id="CommentEmail-{{ section.id }}" type="email" name="comment[email]" value="{{ form.email }}" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="CommentBody-{{ section.id }}">{{ 'blog.comments.message' | t }}</label>
+            <textarea class="textarea" id="CommentBody-{{ section.id }}" name="comment[body]" required>{{ form.body }}</textarea>
+          </div>
+          {%- if blog.moderated? -%}<p class="comment-form__note">{{ 'blog.comments.moderated' | t }}</p>{%- endif -%}
+          <button class="button" type="submit">{{ 'blog.comments.post' | t }}</button>
+        {%- endform -%}
+      </section>
+    {%- endif -%}
+
+    <p class="post__back"><a class="link-arrow" href="{{ blog.url }}">{% render 'icon', name: 'arrow-left' %} {{ 'blog.back' | t: blog: blog.title }}</a></p>
+  </div>
+</article>
+
+{% stylesheet %}
+  .post {
+    padding-block: 40px 72px;
+    max-width: 920px;
+  }
+
+  .post__head {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .post__meta {
+    color: var(--color-muted);
+    font-weight: var(--font-body-weight-medium);
+  }
+
+  /* The whole photo, never cropped: wide photos fill the width, tall ones fit the screen height */
+  .post__image {
+    margin-bottom: 36px;
+  }
+
+  .post__image img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    margin-inline: auto;
+    border-radius: var(--radius);
+  }
+
+  .post__body {
+    font-size: 1.1rem;
+    max-width: 68ch;
+  }
+
+  .post__tags {
+    margin-top: 28px;
+    color: var(--color-muted);
+  }
+
+  .post__comments {
+    display: grid;
+    gap: 22px;
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .comments {
+    display: grid;
+    gap: 14px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .comment {
+    padding: 18px;
+    border-radius: calc(var(--radius) * 0.7);
+    background: var(--color-surface);
+    color: var(--color-surface-text);
+  }
+
+  .comment__meta {
+    margin-top: 8px;
+    font-size: 0.88rem;
+  }
+
+  .comment-form {
+    display: grid;
+    gap: 14px;
+  }
+
+  .comment-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .comment-form__note {
+    font-size: 0.88rem;
+    color: var(--color-muted);
+  }
+
+  .comment-form .button {
+    justify-self: start;
+  }
+
+  .post__back {
+    margin-top: 40px;
+  }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media (max-width: 599px) {
+    .comment-form__row {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Blog post",
+  "class": "section-main-article",
+  "settings": [
+    { "type": "checkbox", "id": "show_author", "label": "Show author", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

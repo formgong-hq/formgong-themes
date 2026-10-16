@@ -1,0 +1,305 @@
+{
+  "sections": {
+    "hero": {
+      "type": "mw-hero",
+      "settings": {
+        "heading": "Marrow, fresh raw food for dogs and cats",
+        "wordmark": "MARROW",
+        "dog_image": "shopify://shop_images/marrow-hero-dog.webp",
+        "cat_image": "shopify://shop_images/marrow-hero-cat.webp",
+        "dog_alt": "A happy dog waiting for dinner",
+        "cat_alt": "A cat waiting for dinner",
+        "dog_text": "Raw meals for dogs",
+        "cat_text": "Raw meals for cats",
+        "link": "/#recipes"
+      }
+    },
+    "finder": {
+      "type": "mw-finder",
+      "settings": {
+        "heading_before": "Find the",
+        "heading_mark": "right meal",
+        "heading_after": "for your",
+        "dog_collection": "dog-recipes",
+        "cat_collection": "cat-recipes",
+        "thanks_heading": "Your plan is on its way.",
+        "thanks_text": "We will email it to [email] today, with the packs that fit."
+      }
+    },
+    "wave1": {
+      "type": "mw-wave",
+      "settings": {
+        "above": "#eef2fb",
+        "below": "#ffffff"
+      }
+    },
+    "recipes": {
+      "type": "mw-recipes",
+      "settings": {
+        "heading": "Made fresh,",
+        "heading_bold": "frozen fast.",
+        "lead": "Six recipes for dogs and three for cats. Human-grade meat, organs and ground bone with vegetables, mixed by hand in small batches and frozen the same day.",
+        "dog_collection": "dog-recipes",
+        "cat_collection": "cat-recipes",
+        "limit": 6
+      }
+    },
+    "wave2": {
+      "type": "mw-wave",
+      "settings": {
+        "above": "#ffffff",
+        "below": "#fff3e3"
+      }
+    },
+    "why": {
+      "type": "mw-why",
+      "settings": {
+        "heading": "Why raw?",
+        "heading_bold": "Your dog will show you.",
+        "intro": "Raw meals are what a dog's body is built for: muscle meat, organs, ground bone and a little fruit and veg. We make every batch by hand in our Portland kitchen, freeze it within hours and bring it to your door. Many owners notice the difference within a few weeks.",
+        "bowl": "shopify://shop_images/marrow-bowl.webp",
+        "float_peas": "shopify://shop_images/marrow-peas.webp",
+        "float_carrot": "shopify://shop_images/marrow-carrot.webp",
+        "float_blue": "shopify://shop_images/marrow-blueberries.webp",
+        "float_pump": "shopify://shop_images/marrow-pumpkin.webp",
+        "button_label": "Read the raw-feeding guide",
+        "button_link": "/#faq"
+      },
+      "blocks": {
+        "b0": {
+          "type": "blurb",
+          "settings": {
+            "title": "More energy, longer walks",
+            "text": "Many owners notice more bounce on walks within a few weeks."
+          }
+        },
+        "b1": {
+          "type": "blurb",
+          "settings": {
+            "title": "Smaller, firmer stools",
+            "text": "No fillers means less waste, and it is the first thing most owners spot."
+          }
+        },
+        "b2": {
+          "type": "blurb",
+          "settings": {
+            "title": "A coat that shines",
+            "text": "Many owners notice a softer, glossier coat after a month or two."
+          }
+        },
+        "b3": {
+          "type": "blurb",
+          "settings": {
+            "title": "Fewer itchy days",
+            "text": "One protein per recipe makes it easier to avoid what your dog reacts to."
+          }
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "wave3": {
+      "type": "mw-wave",
+      "settings": {
+        "above": "#fff3e3",
+        "below": "#ffffff"
+      }
+    },
+    "treats": {
+      "type": "mw-treats",
+      "settings": {
+        "heading": "Treats that keep",
+        "heading_bold": "the tail going",
+        "lead": "Single-ingredient chews and crisps, slow-dried in our oven. No salt, no sugar, nothing else.",
+        "collection": "treats",
+        "limit": 8,
+        "button_label": "Add to order"
+      }
+    },
+    "wave4": {
+      "type": "mw-wave",
+      "settings": {
+        "above": "#ffffff",
+        "below": "#fff3e3"
+      }
+    },
+    "reviews": {
+      "type": "mw-reviews",
+      "settings": {
+        "label": "Sample reviews",
+        "heading_1": "Dogs who cleaned the bowl,",
+        "heading_2": "owners who",
+        "heading_3": "wrote back.",
+        "ribbon": "MARROW ✱ raw food, done properly",
+        "form_intro": "Tell other owners how it went. Your review appears here once the kitchen has read it.",
+        "thanks_text": "Your review will appear here once the kitchen has read it."
+      },
+      "blocks": {
+        "b0": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "Our lab used to pick at his kibble. Now he waits by the fridge at six. Two months in and his coat is softer than it has been in years.",
+            "name": "Jenna R.",
+            "initials": "JR",
+            "when": "2 months ago"
+          }
+        },
+        "b1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "I sent the order request on Sunday and picked it up on Tuesday. They asked for Pepper's weight and age and wrote back with a plan. Simple.",
+            "name": "Marcus T.",
+            "initials": "MT",
+            "when": "3 weeks ago"
+          }
+        },
+        "b2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "My cat is the fussiest eater I know and she finishes the rabbit every time. The packs thaw overnight in the fridge without any mess.",
+            "name": "Priya S.",
+            "initials": "PS",
+            "when": "1 month ago"
+          }
+        },
+        "b3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "We switched over ten days like the FAQ says. No upset stomach, and the yard clean-up got a lot smaller.",
+            "name": "Owen B.",
+            "initials": "OB",
+            "when": "2 months ago"
+          }
+        },
+        "b4": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "text": "Duck and apple sits well with our sensitive terrier and she licks the bowl clean. I wish the 250 g packs came in a bigger box.",
+            "name": "Lucy M.",
+            "initials": "LM",
+            "when": "5 months ago"
+          }
+        },
+        "b5": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "Sardine crisps are the only treat that gets our greyhound's attention at the park. Honest ingredients and fair prices.",
+            "name": "Daniel K.",
+            "initials": "DK",
+            "when": "6 months ago"
+          }
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ]
+    },
+    "faq": {
+      "type": "mw-faq",
+      "settings": {
+        "heading": "Questions?",
+        "heading_bold": "We have answers.",
+        "text": "Switching food is a big step for you and your pet. Here is what people ask us most. If your question is not here, write to the kitchen and a real person answers.",
+        "button_label": "Ask us",
+        "topic": "Question"
+      },
+      "blocks": {
+        "b0": {
+          "type": "question",
+          "settings": {
+            "question": "What is raw feeding?",
+            "answer": "<p>Raw feeding means meals made from raw muscle meat, organ meat, ground bone, vegetables and a little fruit, instead of cooked kibble. Our recipes are complete meals: you thaw a pack and serve it, nothing to add.</p>",
+            "anchor": ""
+          }
+        },
+        "b1": {
+          "type": "question",
+          "settings": {
+            "question": "How do I switch from kibble?",
+            "answer": "<p>Most dogs switch over 7 to 10 days. Start with a quarter of the meal raw and the rest the old food, and raise the raw part every two or three days. Keep the portion size the same and slow down if stools get soft. Cats often take longer: mix in a spoonful at a time.</p>",
+            "anchor": ""
+          }
+        },
+        "b2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I store and thaw the packs?",
+            "answer": "<p>Keep packs in the freezer at −18 °C for up to six months. Thaw one in the fridge overnight and use it within three days. Do not thaw in the microwave or in hot water, and do not refreeze a thawed pack.</p>",
+            "anchor": ""
+          }
+        },
+        "b3": {
+          "type": "question",
+          "settings": {
+            "question": "How much should I feed?",
+            "answer": "<p>Most adult dogs eat 2 to 3 % of their body weight a day; puppies and kittens eat more. The meal finder above gives you a starting point. Weigh your pet every two weeks and adjust by about 10 %, and ask your vet if your pet has a health condition.</p>",
+            "anchor": ""
+          }
+        },
+        "b4": {
+          "type": "question",
+          "settings": {
+            "question": "Do you deliver?",
+            "answer": "<p>We deliver around Portland on Tuesdays and Fridays in insulated boxes with ice packs, or you can pick up at the kitchen on Dock Road. Order online and we confirm the delivery day by email or text.</p>",
+            "anchor": "5"
+          }
+        },
+        "b5": {
+          "type": "question",
+          "settings": {
+            "question": "Is raw food safe to handle?",
+            "answer": "<p>Handle it like the raw meat you cook for yourself: wash hands, bowls and surfaces with hot soapy water after serving, and keep raw food away from small children. Every batch is frozen within hours of making and stays frozen until it reaches you.</p>",
+            "anchor": ""
+          }
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ]
+    },
+    "banner": {
+      "type": "mw-banner",
+      "settings": {
+        "image": "shopify://shop_images/marrow-cta-dog.webp",
+        "image_description": "Photo: a person sitting on a living-room floor, hugging a big dog.",
+        "heading": "Want a recipe made for your dog? We have every ingredient.",
+        "button_label": "Build a recipe",
+        "topic": "Custom recipe"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "finder",
+    "wave1",
+    "recipes",
+    "wave2",
+    "why",
+    "wave3",
+    "treats",
+    "wave4",
+    "reviews",
+    "faq",
+    "banner"
+  ]
+}

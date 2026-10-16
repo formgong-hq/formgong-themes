@@ -1,0 +1,48 @@
+{%- comment -%}
+  Marrow cart drawer, in the template's dialog style (a bottom sheet on phones). Rendered in the layout and refreshed
+  by marrow.js through the Section Rendering API (?section_id=mw-cart) after every change.
+{%- endcomment -%}
+<dialog class="mw-dialog mw-cartbox" id="mw-cart" aria-labelledby="mw-cart-title">
+  <div class="mw-dlg" tabindex="-1" autofocus data-cart-body>
+    <button class="mw-x" type="button" aria-label="{{ 'marrow.dialog.close' | t }}" data-close>×</button>
+    <h2 id="mw-cart-title">{{ 'marrow.cart.title' | t }}</h2>
+    {%- if cart.item_count == 0 -%}
+      <p class="mw-intro">{{ 'marrow.cart.empty' | t }}</p>
+      <a class="mw-pill mw-big" href="{{ routes.root_url }}#recipes" data-close-link>{{ 'marrow.cart.shop' | t }}</a>
+    {%- else -%}
+      <ul class="mw-lines">
+        {%- for item in cart.items -%}
+          <li class="mw-line">
+            <a class="mw-line-img mw-ph" href="{{ item.url }}" tabindex="-1">{% if item.image %}{{ item.image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{% endif %}</a>
+            <div class="mw-line-main">
+              <a class="mw-line-title" href="{{ item.url }}">{{ item.product.title }}</a>
+              {%- unless item.product.has_only_default_variant -%}<span class="mw-line-var">{{ item.variant.title }}</span>{%- endunless -%}
+              <div class="mw-line-qty">
+                <button type="button" data-line="{{ forloop.index }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="{{ 'marrow.cart.less' | t: product: item.product.title | escape }}">−</button>
+                <span>{{ item.quantity }}</span>
+                <button type="button" data-line="{{ forloop.index }}" data-qty="{{ item.quantity | plus: 1 }}" aria-label="{{ 'marrow.cart.more' | t: product: item.product.title | escape }}">+</button>
+              </div>
+            </div>
+            <span class="mw-line-price">{{ item.final_line_price | money }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <p class="mw-subtotal"><span>{{ 'marrow.cart.subtotal' | t }}</span><b>{{ cart.total_price | money_with_currency }}</b></p>
+      <p class="mw-note">{{ 'marrow.cart.taxes' | t }}</p>
+      <form class="mw-cart-actions" action="{{ routes.cart_url }}" method="post">
+        <button class="mw-pill mw-big" type="submit" name="checkout">{{ 'marrow.cart.checkout' | t }}</button>
+        <a class="mw-cart-link" href="{{ routes.cart_url }}">{{ 'marrow.cart.view' | t }}</a>
+      </form>
+    {%- endif -%}
+    <p class="mw-status" data-status role="status" aria-live="polite"></p>
+  </div>
+</dialog>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "class": "mw-contents",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

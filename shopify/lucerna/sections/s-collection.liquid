@@ -1,0 +1,134 @@
+{%- comment -%}
+  Stilla collection page: a split banner, a toolbar (count, grid size, Filter & sort), the product grid with optional
+  lifestyle tiles, and a filter drawer. Filters are Shopify's storefront filters (set them up in the Search & Discovery
+  app); the drawer is a plain GET form, so it works without JavaScript too.
+{%- endcomment -%}
+{%- liquid
+  assign hero_image = collection.image | default: section.settings.image
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+  assign active_count = 0
+  for filter in collection.filters
+    assign active_count = active_count | plus: filter.active_values.size
+    if filter.type == 'price_range'
+      if filter.min_value.value != null or filter.max_value.value != null
+        assign active_count = active_count | plus: 1
+      endif
+    endif
+  endfor
+-%}
+<div class="s-col-hero">
+  <div class="s-split-img">
+    {%- if hero_image != blank -%}
+      {{ hero_image | image_url: width: 1600 | image_tag: widths: '480, 960, 1600', sizes: '(max-width: 900px) 100vw, 50vw', loading: 'eager', alt: hero_image.alt | default: '' }}
+    {%- else -%}
+      {{ 'collection-1' | placeholder_svg_tag: 's-placeholder' }}
+    {%- endif -%}
+  </div>
+  <div class="s-col-hero-tx">
+    <nav class="s-crumbs" aria-label="{{ 'stilla.breadcrumb' | t }}"><ol><li><a href="{{ routes.root_url }}">{{ 'stilla.home' | t }}</a></li><li><span aria-current="page">{{ collection.title }}</span></li></ol></nav>
+    <h1>{{ collection.title }}</h1>
+    {%- if section.settings.menu.links.size > 0 -%}
+      <nav class="s-tabs" aria-label="{{ 'stilla.intro.links' | t }}">
+        {%- for link in section.settings.menu.links -%}<a href="{{ link.url }}"{% if link.url == collection.url %} aria-current="page"{% endif %}>{{ link.title }}</a>{%- endfor -%}
+      </nav>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- paginate collection.products by section.settings.per_page -%}
+  <div class="s-toolbar">
+    <span>{{ 'stilla.collection.count' | t: count: collection.products_count }}</span>
+    <div class="s-tools">
+      <div class="s-view" role="group" aria-label="{{ 'stilla.collection.grid_size' | t }}">
+        <button type="button" data-view="large" aria-pressed="true"><span class="s-sr">{{ 'stilla.collection.grid_large' | t }}</span>{% render 's-icon', name: 'grid-large' %}</button>
+        <button type="button" data-view="dense" aria-pressed="false"><span class="s-sr">{{ 'stilla.collection.grid_small' | t }}</span>{% render 's-icon', name: 'grid-small' %}</button>
+      </div>
+      <button class="s-fbtn" type="button" data-open-filters aria-controls="s-filters" aria-expanded="false">{% render 's-icon', name: 'filter' %}{{ 'stilla.collection.filter_sort' | t }}{% if active_count > 0 %} ({{ active_count }}){% endif %}</button>
+    </div>
+  </div>
+  <div class="s-grid" id="s-grid">
+    {%- for product in collection.products -%}
+      {%- if paginate.current_page == 1 and active_count == 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.after == forloop.parentloop.index0 -%}
+            <figure class="s-tile{% if block.settings.right %} s-right{% endif %}" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1600 | image_tag: widths: '480, 960, 1600', sizes: '(max-width: 900px) 100vw, 50vw', loading: 'lazy', alt: block.settings.image.alt | default: '' }}
+              {%- else -%}
+                {{ 'lifestyle-2' | placeholder_svg_tag: 's-placeholder' }}
+              {%- endif -%}
+              {%- if block.settings.caption != blank %}<figcaption>{{ block.settings.caption }}</figcaption>{% endif -%}
+            </figure>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {% render 's-card', product: product %}
+    {%- else -%}
+      <p class="s-empty">{{ 'stilla.collection.empty' | t }}</p>
+    {%- endfor -%}
+  </div>
+  {%- if paginate.pages > 1 -%}
+    <nav class="s-pagination" aria-label="{{ 'stilla.collection.pages' | t }}">
+      {%- if paginate.previous %}<a href="{{ paginate.previous.url }}">{{ 'stilla.collection.previous' | t }}</a>{% endif -%}
+      {%- for part in paginate.parts -%}
+        {%- if part.is_link %}<a href="{{ part.url }}">{{ part.title }}</a>{% elsif part.title == paginate.current_page %}<span aria-current="page">{{ part.title }}</span>{% else %}<span>{{ part.title }}</span>{% endif -%}
+      {%- endfor -%}
+      {%- if paginate.next %}<a href="{{ paginate.next.url }}">{{ 'stilla.collection.next' | t }}</a>{% endif -%}
+    </nav>
+  {%- endif -%}
+{%- endpaginate -%}
+
+<aside class="s-drawer" id="s-filters" inert aria-labelledby="filters-{{ section.id }}">
+  <form action="{{ collection.url }}" method="get" style="display:contents">
+    <div class="s-dr-head"><h2 id="filters-{{ section.id }}">{{ 'stilla.collection.filter_sort' | t }}</h2><button class="s-ico" type="button" data-close-filters><span class="s-sr">{{ 'stilla.collection.close_filters' | t }}</span>{% render 's-icon', name: 'close' %}</button></div>
+    <div class="s-dr-body">
+      <fieldset>
+        <legend><label for="sort-{{ section.id }}">{{ 'stilla.collection.sort' | t }}</label></legend>
+        <select class="s-sel" id="sort-{{ section.id }}" name="sort_by">
+          {%- for option in collection.sort_options -%}<option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name }}</option>{%- endfor -%}
+        </select>
+      </fieldset>
+      {%- for filter in collection.filters -%}
+        <fieldset>
+          <legend>{{ filter.label }}</legend>
+          {%- if filter.type == 'price_range' -%}
+            {%- assign max_price = filter.range_max | money_without_currency | remove: ',' -%}
+            <div class="s-range">
+              <label>{{ 'collections.filters.from' | t }} ({{ cart.currency.symbol }})<input type="number" inputmode="decimal" min="0" max="{{ max_price }}" name="{{ filter.min_value.param_name }}" placeholder="0"{% if filter.min_value.value != null %} value="{{ filter.min_value.value | money_without_currency | remove: ',' }}"{% endif %}></label>
+              <label>{{ 'collections.filters.to' | t }} ({{ cart.currency.symbol }})<input type="number" inputmode="decimal" min="0" max="{{ max_price }}" name="{{ filter.max_value.param_name }}" placeholder="{{ max_price }}"{% if filter.max_value.value != null %} value="{{ filter.max_value.value | money_without_currency | remove: ',' }}"{% endif %}></label>
+            </div>
+          {%- else -%}
+            {%- assign filter_label = filter.label | downcase -%}
+            <div class="s-opts">
+              {%- for value in filter.values -%}
+                <label class="s-chip"><input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}><span>{%- if filter_label == 'colour' or filter_label == 'color' or value.swatch.color -%}<i style="background:{% render 's-swatch', value: value %}"></i>{%- endif -%}{{ value.label }}</span></label>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </fieldset>
+      {%- endfor -%}
+    </div>
+    <div class="s-dr-foot"><a class="s-btn s-ghost" href="{{ collection.url }}">{{ 'stilla.collection.clear' | t }}</a><button class="s-btn" type="submit">{{ 'stilla.collection.show' | t }}</button></div>
+  </form>
+</aside>
+<div class="s-scrim" data-close-filters></div>
+
+{% schema %}
+{
+  "name": "Product grid",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Banner image", "info": "Used when the collection has no image of its own." },
+    { "type": "link_list", "id": "menu", "label": "Collection links", "info": "Shown under the title, for example All products, Tops, Tights." },
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 24 }
+  ],
+  "blocks": [
+    { "type": "tile", "name": "Lifestyle tile", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "caption", "label": "Caption" },
+      { "type": "range", "id": "after", "label": "Show before product number", "min": 0, "max": 23, "step": 1, "default": 4, "info": "0 puts it first. Tiles show on the first page when no filter is on." },
+      { "type": "checkbox", "id": "right", "label": "Right side", "default": false }
+    ] }
+  ]
+}
+{% endschema %}

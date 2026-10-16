@@ -1,0 +1,7 @@
+{% doc %}
+  The bold first line of a form's thanks: [name] becomes the first name the visitor typed (filled in by marrow.js).
+
+  @param {string} text - e.g. "Thank you, [name]."
+{% enddoc %}
+{%- assign parts = text | split: '[name]' -%}
+<strong>{{ parts[0] }}{% if text contains '[name]' %}<span data-name>{{ 'marrow.form.there' | t }}</span>{{ parts[1] }}{% endif %}</strong>

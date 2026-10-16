@@ -1,0 +1,62 @@
+{
+  "current": "Lucerna",
+  "presets": {
+    "Lucerna": {
+      "logo_width": 120,
+      "type_heading_font": "poppins_n5",
+      "type_body_font": "poppins_n4",
+      "heading_scale": 100,
+      "body_scale": 100,
+      "page_width": "1290px",
+      "corner_radius": 20,
+      "button_shape": "999px",
+      "cart_show_note": true,
+      "card_image_ratio": "0.8",
+      "card_show_second_image": true,
+      "card_show_rating": false,
+      "card_show_quick_add": true,
+      "card_swatches": "Black: #151313\nEspresso: #3b2a24\nCharcoal: #4a4a4c\nOat: #d8cbb6\nGrey: #a7a5a3\nWhite: #f4f2f0\nSand: #e3d5c0",
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#F7F6F3",
+            "text": "#1D2230",
+            "muted": "#6B7080",
+            "surface": "#FFFFFF",
+            "surface_text": "#1D2230",
+            "button": "#1F4FE0",
+            "button_label": "#FFFFFF",
+            "accent": "#1F4FE0",
+            "border": "#E4E2DC"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#FFFFFF",
+            "text": "#1D2230",
+            "muted": "#6B7080",
+            "surface": "#F7F6F3",
+            "surface_text": "#1D2230",
+            "button": "#1D2230",
+            "button_label": "#FFFFFF",
+            "accent": "#1F4FE0",
+            "border": "#E4E2DC"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#1D2230",
+            "text": "#FFFFFF",
+            "muted": "#C9CDD8",
+            "surface": "#232B45",
+            "surface_text": "#FFFFFF",
+            "button": "#FFB800",
+            "button_label": "#1D2230",
+            "accent": "#FFB800",
+            "border": "#3A4152"
+          }
+        }
+      }
+    }
+  }
+}

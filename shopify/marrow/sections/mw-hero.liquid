@@ -1,0 +1,62 @@
+{%- comment -%}
+  Marrow hero: a rounded card with the giant wordmark, a cut-out photo of the animal in front of it, two white strokes
+  that draw themselves, the pill link and the dog/cat switch. The switch also swaps the recipes and the meal finder.
+{%- endcomment -%}
+<div class="mw-hero-pin" data-hero-pin>
+  <section class="mw-hero" aria-label="{{ section.settings.heading | escape }}">
+    <div class="mw-hero-card">
+      <h1 class="mw-sr">{{ section.settings.heading }}</h1>
+      <div class="mw-hero-word" aria-hidden="true"><span>{{ section.settings.wordmark | default: shop.name }}</span></div>
+      <div class="mw-hero-media" role="img" aria-label="{{ section.settings.dog_alt | escape }}" data-hero-media data-dog-alt="{{ section.settings.dog_alt | escape }}" data-cat-alt="{{ section.settings.cat_alt | escape }}">
+        {%- if section.settings.dog_image != blank -%}
+          {{ section.settings.dog_image | image_url: width: 1500 | image_tag: widths: '750, 1000, 1500', sizes: '(max-width: 600px) 175vw, (max-width: 980px) 130vw, 76vh', alt: '', loading: 'eager', fetchpriority: 'high', data-still: 'dog' }}
+        {%- else -%}
+          <div class="mw-hero-ph" data-still="dog">{{ 'image' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+        {%- if section.settings.show_switch -%}
+          {%- if section.settings.cat_image != blank -%}
+            {%- assign cat_src = section.settings.cat_image | image_url: width: 1500 -%}
+            <img data-still="cat" data-src="{{ cat_src }}" alt="" width="{{ section.settings.cat_image.width }}" height="{{ section.settings.cat_image.height }}">
+          {%- else -%}
+            <div class="mw-hero-ph" data-still="cat">{{ 'image' | placeholder_svg_tag }}</div>
+          {%- endif -%}
+        {%- endif -%}
+        <svg class="mw-strokes" viewBox="0 0 130 110" aria-hidden="true"><path pathLength="1" d="M14 64C26 40 42 22 64 8"/><path pathLength="1" d="M40 98c22-14 48-22 80-24"/></svg>
+      </div>
+      <a class="mw-hero-cta" href="{{ section.settings.link | default: '#recipes' }}"><span data-pet-text data-dog="{{ section.settings.dog_text | escape }}" data-cat="{{ section.settings.cat_text | escape }}">{{ section.settings.dog_text }}</span><span class="mw-circ" aria-hidden="true"><svg><use href="#mw-i-arrow"/></svg></span></a>
+      {%- if section.settings.show_switch -%}
+        <div class="mw-pet-switch" role="group" aria-label="{{ section.settings.switch_label | escape }}">
+          <span class="mw-hl" aria-hidden="true"></span>
+          <button type="button" data-pet="dog" aria-pressed="true" aria-label="{{ section.settings.dog_label | escape }}"><svg aria-hidden="true"><use href="#mw-i-dog"/></svg></button>
+          <button type="button" data-pet="cat" aria-pressed="false" aria-label="{{ section.settings.cat_label | escape }}"><svg aria-hidden="true"><use href="#mw-i-cat"/></svg></button>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Hero with wordmark",
+  "class": "mw-sec",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Page heading (screen readers and search engines)", "default": "Fresh raw food for dogs and cats" },
+    { "type": "text", "id": "wordmark", "label": "Giant wordmark", "info": "Sized to fill the card. Short words work best. Leave empty to show the store name." },
+    { "type": "image_picker", "id": "dog_image", "label": "Dog photo", "info": "A cut-out (transparent) photo, 3:2, the animal centred at the bottom." },
+    { "type": "text", "id": "dog_alt", "label": "Dog photo description", "default": "A dog waiting for dinner" },
+    { "type": "text", "id": "dog_text", "label": "Pill text for dogs", "default": "Meals for dogs" },
+    { "type": "url", "id": "link", "label": "Pill link", "info": "Empty: the recipes section." },
+    { "type": "header", "content": "Dog / cat switch" },
+    { "type": "checkbox", "id": "show_switch", "label": "Show the switch", "default": true },
+    { "type": "image_picker", "id": "cat_image", "label": "Cat photo" },
+    { "type": "text", "id": "cat_alt", "label": "Cat photo description", "default": "A cat waiting for dinner" },
+    { "type": "text", "id": "cat_text", "label": "Pill text for cats", "default": "Meals for cats" },
+    { "type": "text", "id": "switch_label", "label": "Switch label (screen readers)", "default": "Show food for" },
+    { "type": "text", "id": "dog_label", "label": "Dog button label (screen readers)", "default": "Dogs" },
+    { "type": "text", "id": "cat_label", "label": "Cat button label (screen readers)", "default": "Cats" }
+  ],
+  "presets": [{ "name": "Hero with wordmark" }],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

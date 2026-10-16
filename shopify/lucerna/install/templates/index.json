@@ -1,0 +1,223 @@
+{
+  "sections": {
+    "preloader": {
+      "type": "lc-preloader",
+      "settings": {}
+    },
+    "hero": {
+      "type": "lc-hero",
+      "settings": {
+        "anchor": "top"
+      },
+      "blocks": {
+        "s0": {
+          "type": "slide",
+          "settings": {
+            "heading": "Your headline here.",
+            "text": "A short line about what you make."
+          }
+        },
+        "s1": {
+          "type": "slide",
+          "settings": {
+            "heading": "A second headline.",
+            "text": "Another short line."
+          }
+        }
+      },
+      "block_order": [
+        "s0",
+        "s1"
+      ]
+    },
+    "highlights": {
+      "type": "lc-highlights",
+      "settings": {
+        "small": "Highlights",
+        "heading": "Your most useful links.",
+        "text": "A short paragraph about your documents, catalogues and news.",
+        "anchor": "highlights"
+      },
+      "blocks": {
+        "c0": {
+          "type": "card",
+          "settings": {
+            "title": "Photo card",
+            "text": "A short line.",
+            "span": "span4",
+            "ratio": "460/250",
+            "bottom": true
+          }
+        },
+        "p0": {
+          "type": "product",
+          "settings": {
+            "name": "Product name",
+            "spec_1": "Spec"
+          }
+        },
+        "s0": {
+          "type": "stat",
+          "settings": {
+            "number": "100",
+            "label": "A short label",
+            "palette": "sun",
+            "bottom": true
+          }
+        },
+        "c1": {
+          "type": "card",
+          "settings": {
+            "title": "Photo card",
+            "text": "A short line.",
+            "span": "span3",
+            "ratio": "340/250",
+            "bottom": true,
+            "tall_text": true
+          }
+        },
+        "p1": {
+          "type": "product",
+          "settings": {
+            "name": "Product name",
+            "spec_1": "Spec"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "title": "Photo card",
+            "text": "A short line.",
+            "span": "span6",
+            "ratio": "710/340"
+          }
+        },
+        "p2": {
+          "type": "product",
+          "settings": {
+            "name": "Product name",
+            "spec_1": "Spec",
+            "tablet_full": true
+          }
+        }
+      },
+      "block_order": [
+        "c0",
+        "p0",
+        "s0",
+        "c1",
+        "p1",
+        "c2",
+        "p2"
+      ]
+    },
+    "projects": {
+      "type": "lc-projects",
+      "settings": {
+        "badge": "DRAG TO SEE MORE PROJECTS ·",
+        "small": "Projects",
+        "heading": "Your projects.",
+        "text": "A short paragraph about your projects.",
+        "anchor": "projects"
+      },
+      "blocks": {
+        "slide0": {
+          "type": "slide",
+          "settings": {}
+        },
+        "slide1": {
+          "type": "slide",
+          "settings": {}
+        },
+        "slide2": {
+          "type": "slide",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "slide0",
+        "slide1",
+        "slide2"
+      ]
+    },
+    "about": {
+      "type": "lc-about",
+      "settings": {
+        "small": "About Us",
+        "heading": "About your company",
+        "text": "A short paragraph about your company.",
+        "button_label": "Learn more",
+        "anchor": "about"
+      }
+    },
+    "values": {
+      "type": "lc-values",
+      "settings": {
+        "label": "Our values",
+        "anchor": "values"
+      },
+      "blocks": {
+        "t0": {
+          "type": "tab",
+          "settings": {
+            "title": "Value 1",
+            "heading": "A heading for this value",
+            "text": "A short paragraph about this value.",
+            "bg": "#1d2230"
+          }
+        },
+        "t1": {
+          "type": "tab",
+          "settings": {
+            "title": "Value 2",
+            "heading": "A heading for this value",
+            "text": "A short paragraph about this value.",
+            "bg": "#232b45"
+          }
+        },
+        "t2": {
+          "type": "tab",
+          "settings": {
+            "title": "Value 3",
+            "heading": "A heading for this value",
+            "text": "A short paragraph about this value.",
+            "bg": "#27345e"
+          }
+        },
+        "t3": {
+          "type": "tab",
+          "settings": {
+            "title": "Value 4",
+            "heading": "A heading for this value",
+            "text": "A short paragraph about this value.",
+            "bg": "#2a3d7d"
+          }
+        },
+        "t4": {
+          "type": "tab",
+          "settings": {
+            "title": "Value 5",
+            "heading": "A heading for this value",
+            "text": "A short paragraph about this value.",
+            "bg": "#1f4fe0"
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    }
+  },
+  "order": [
+    "preloader",
+    "hero",
+    "highlights",
+    "projects",
+    "about",
+    "values"
+  ]
+}
