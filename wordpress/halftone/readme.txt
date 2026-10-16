@@ -3,7 +3,7 @@ Contributors: formgong
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: MIT
 License URI: https://opensource.org/license/mit
 
@@ -51,6 +51,9 @@ Install and activate the Formgong plugin, then paste your access key under Setti
 Yes. Remove the form block from the Home: contact pattern, or replace it with another form plugin's block.
 
 == Changelog ==
+
+= 1.0.1 =
+* WordPress no longer offers to "update" this theme to the unrelated Halftone theme on WordPress.org (Update URI: false). If you saw that offer, don't accept it.
 
 = 1.0.0 =
 * First WordPress release, from the Halftone website template.
