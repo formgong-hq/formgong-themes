@@ -1,0 +1,133 @@
+/*
+ * WordPress additions to the Lucerna stylesheet (assets/css/lucerna.css, the template's own CSS as it is).
+ * This file styles what WordPress renders itself (the two Navigation blocks, pages, posts, lists, search and 404)
+ * and resets the gaps WordPress adds between blocks.
+ */
+
+/* Template parts, the smooth-scroll wrappers, <main> and the patterns follow each other with no gap. */
+:where(.wp-site-blocks, .lc-smooth, .lc-main, .hdr, .mmenu, .mm-panel) > * { margin-block: 0; }
+.lc-part { display: contents; }
+main:focus { outline: none; }
+.wp-site-blocks { padding: 0; }
+/* WordPress's flow layout zeroes the last child's bottom margin (.is-layout-flow > :last-child); the values section
+   is the last pattern in <main> and keeps the template's gap above the footer. */
+.lc-main > .sec3 { margin-bottom: 6.25rem; }
+@media (max-width: 768px) { .lc-main > .sec3 { margin-bottom: 2.5rem; } }
+
+/* WordPress's global link style underlines links; the template's links have no underline. */
+body a:where(:not(.wp-element-button)) { color: inherit; text-decoration: none; }
+
+/* The admin bar pushes the fixed header down for signed-in editors. */
+.admin-bar .hdr { top: var(--wp-admin--admin-bar--height, 32px); }
+
+/* ---------- Header pill: the Navigation block drawn as the original .menu / .menu-link ---------- */
+.hdr nav.lc-menu {
+	display: flex; align-items: center; justify-content: center; gap: 4px; height: 2.25rem; padding: 0 2.5rem;
+	border-radius: 6.25rem; background: linear-gradient(90.48deg, rgba(255,255,255,.64) -4.41%, rgba(244,244,244,.64) 100.38%);
+	-webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+	font-size: inherit; line-height: inherit;
+}
+.hdr nav.lc-menu > ul.wp-block-navigation__container { display: contents; }
+.hdr nav.lc-menu li.wp-block-navigation-item { display: flex; margin: 0; padding: 0; }
+.hdr nav.lc-menu li.lc-mm-only { display: none; }
+.hdr nav.lc-menu a.wp-block-navigation-item__content {
+	display: flex; align-items: center; gap: 8px; height: 2rem; padding: 0 .875rem; border-radius: 1.25rem;
+	font-size: .875rem; line-height: 1.125rem; color: var(--ink); white-space: nowrap;
+	transition: color .12s ease-in-out, background-color .1s ease-in-out;
+}
+.hdr nav.lc-menu a.wp-block-navigation-item__content:hover,
+.hdr nav.lc-menu a.wp-block-navigation-item__content[aria-expanded=true],
+.hdr nav.lc-menu a.wp-block-navigation-item__content[aria-current=page] { background: #e6e4de; }
+/* The chevron of "Products & Applications" (the original's svg.ic with #chev). */
+.hdr nav.lc-menu li.lc-mega > a::after {
+	content: ""; width: 14px; height: 14px; flex: none; background: currentColor; transition: transform .3s ease;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m7 10 5 5 5-5' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m7 10 5 5 5-5' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+.hdr nav.lc-menu li.lc-mega > a[aria-expanded=true]::after { transform: rotate(180deg); }
+@media (min-width: 1081px) and (max-width: 1350px) {
+	.hdr nav.lc-menu { padding: 0 1.25rem; }
+	.hdr nav.lc-menu a.wp-block-navigation-item__content { padding: 0 .5rem; }
+}
+@media (max-width: 1080px) { .hdr nav.lc-menu { display: none; } }
+
+/* ---------- Phone panel: the same menu drawn as the original .mm-content / .mm-btn / .mm-bottom ---------- */
+.mm-panel nav.lc-mm {
+	display: flex; flex-direction: column; align-items: stretch; gap: 10px; margin-top: 20px;
+	font-size: inherit; line-height: inherit;
+}
+.mm-panel nav.lc-mm > ul.wp-block-navigation__container { display: contents; }
+.mm-panel nav.lc-mm li.wp-block-navigation-item { display: block; width: 100%; margin: 0; padding: 0; }
+.mm-panel nav.lc-mm a.wp-block-navigation-item__content {
+	display: block; width: 100%; padding: .625rem 1rem; border-radius: 999px;
+	font-size: 1.25rem; font-weight: 300; line-height: 1.2; color: #000; transition: background-color .2s ease-out;
+}
+.mm-panel nav.lc-mm a.wp-block-navigation-item__content:hover,
+.mm-panel nav.lc-mm a.wp-block-navigation-item__content[aria-current=page] { background: #efeded; }
+/* Contact: the blue bar under the links (an item of the same menu, class lc-mm-only lc-mm-contact). */
+.mm-panel nav.lc-mm li.lc-mm-contact { margin: 10px 0 20px; }
+.mm-panel nav.lc-mm li.lc-mm-contact > a.wp-block-navigation-item__content {
+	display: flex; align-items: center; justify-content: space-between; height: 3.25rem; padding: 0 .375rem 0 1.5rem;
+	border-radius: 3.125rem; background: linear-gradient(90deg, var(--cobalt), #4f7dff, var(--cobalt)); color: #fff;
+	font-size: 1.375rem; font-weight: 300; line-height: 1.6;
+}
+.mm-panel nav.lc-mm li.lc-mm-contact > a::after {
+	content: ""; width: 40px; height: 40px; flex: none; transition: transform .4s ease;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 41 41' fill='none'%3E%3Crect x='2.5' y='2.5' width='36' height='36' rx='18' stroke='%23fff'/%3E%3Cpath d='M15 26 26 15M17 15h9v9' stroke='%23fff' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+.mm-panel nav.lc-mm li.lc-mm-contact > a:hover::after { transform: rotate(45deg); }
+.mm-panel nav.lc-mm li.lc-mm-contact > a:hover { background: linear-gradient(90deg, var(--cobalt), #4f7dff, var(--cobalt)); }
+
+/* The note for admins while no Formgong key is saved (the forms stay hidden). */
+.lc-nokey { margin: 0; padding: .75rem 1rem; border: 1px dashed var(--muted); border-radius: 1rem; color: var(--ink-2); font-size: .8125rem; }
+
+/* ---------- Pages, posts, lists, search and 404: the template's type, colours and grid ---------- */
+/* The column grid of the highlights section (sec2-in: max 1290px, 1.5rem sides; 4.6875rem on wide screens). */
+.lc-page { max-width: 1290px; margin: 0 auto; padding: 9rem 1.5rem 6rem; min-height: 70vh; }
+@media (min-width: 1081px) { .lc-page { padding: 11rem 4.6875rem 7.5rem; max-width: none; } }
+.lc-kicker { display: block; margin: 0 0 .25rem; }
+.lc-kicker a { color: inherit; }
+.lc-title { max-width: 18em; margin: 0 0 2.5rem; font-size: clamp(1.75rem, 5vw, 2.75rem); }
+.lc-lead { max-width: 40em; margin: -1.5rem 0 2.5rem; }
+.lc-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.lc-meta { color: var(--muted); font-size: .875rem; line-height: 1.6; display: flex; flex-direction: column; gap: .25rem; }
+.lc-meta:empty { display: block; }
+.lc-meta a { color: inherit; }
+.lc-content { min-width: 0; max-width: 46rem; }
+.lc-img { margin: 0 0 2rem; }
+.lc-img img { width: 100%; height: auto; border-radius: 1.25rem; }
+.lc-prose { color: var(--ink-2); font-size: 1rem; line-height: 1.7; }
+.lc-prose > * + * { margin-top: 1.1em; }
+.lc-prose :is(h2, h3, h4) { color: var(--ink); font-weight: 500; line-height: 1.25; letter-spacing: -.02em; margin-top: 2em; }
+.lc-prose h2 { font-size: 1.625rem; }
+.lc-prose h3 { font-size: 1.25rem; }
+.lc-prose a { color: var(--cobalt); text-decoration: underline; text-underline-offset: 3px; }
+.lc-prose :is(ul, ol) { list-style: revert; padding-left: 1.25em; }
+.lc-prose img { border-radius: 1.25rem; height: auto; }
+.lc-prose blockquote { margin-left: 0; padding-left: 1.25rem; border-left: 3px solid var(--sun); color: var(--ink); }
+.lc-prose :is(.wp-block-button__link, .wp-element-button) { display: inline-flex; align-items: center; height: 2.25rem; padding: 0 1.125rem; border-radius: 1.25rem; background: var(--cobalt); color: #fff; text-decoration: none; font-size: .875rem; }
+.lc-posts { display: flex; flex-direction: column; gap: 2.5rem; margin: 0; padding: 0; list-style: none; }
+.lc-card-title { margin: 0 0 .5rem; font-size: 1.375rem; font-weight: 500; line-height: 1.25; letter-spacing: -.02em; }
+.lc-card-title a:hover { color: var(--cobalt); }
+.lc-card-sum p { margin: 0; }
+.lc-card-sum .wp-block-post-excerpt__more-text { margin-top: .5rem; }
+.lc-empty { margin: 0; }
+.lc-pagination { margin-top: 3rem; gap: .5rem; font-size: .875rem; }
+.lc-pagination :is(a, span) { display: inline-flex; align-items: center; height: 2.25rem; padding: 0 1rem; border: 1px solid var(--ink); border-radius: 1.25rem; }
+.lc-pagination .current { background: var(--ink); color: #fff; }
+.lc-search { margin: 0 0 2.5rem; max-width: 30rem; }
+.lc-content .lc-search { margin: 1.5rem 0 0; }
+.lc-search .wp-block-search__inside-wrapper { gap: .5rem; border: 0; padding: 0; }
+.lc-search .wp-block-search__input { height: 2.375rem; padding: 0 .875rem; border: 1px solid var(--line); border-radius: 999px; background: #fff; font: inherit; font-size: .8125rem; color: var(--ink); }
+.lc-search .wp-block-search__button { height: 2.375rem; margin: 0; padding: 0 1.125rem; border: 0; border-radius: 1.25rem; background: var(--cobalt); color: #fff; font: inherit; font-size: .875rem; cursor: pointer; }
+/* Comments: an empty group (comments closed, none left) keeps no margin. */
+.lc-comments:empty { display: none; }
+.lc-comments { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.lc-comments :is(h2, h3) { font-size: 1.375rem; font-weight: 500; margin: 0 0 1.25rem; }
+.lc-comments :is(input, textarea) { width: 100%; padding: .625rem .875rem; border: 1px solid var(--line); border-radius: .75rem; background: #fff; font: inherit; }
+.lc-comments .wp-block-comment-template { list-style: none; padding: 0; }
+.lc-comments .wp-element-button, .lc-comments input[type=submit] { width: auto; height: 2.25rem; padding: 0 1.125rem; border: 0; border-radius: 1.25rem; background: var(--cobalt); color: #fff; cursor: pointer; }
+@media (max-width: 768px) {
+	.lc-body { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+	.lc-page { padding-top: 7.5rem; }
+}

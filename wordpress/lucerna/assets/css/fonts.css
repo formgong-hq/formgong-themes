@@ -1,0 +1,10 @@
+/*
+ * Poppins, served from the theme: the same Latin files Google Fonts serves the Lucerna demo (the hinted
+ * Linux/Windows files of https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600, latin subset,
+ * from fonts.gstatic.com/s/poppins/v24). Licence: SIL Open Font License 1.1 (see readme.txt).
+ */
+@font-face{font-family:Poppins;font-style:normal;font-weight:200;font-display:swap;src:url(../fonts/poppins-200.woff2) format("woff2")}
+@font-face{font-family:Poppins;font-style:normal;font-weight:300;font-display:swap;src:url(../fonts/poppins-300.woff2) format("woff2")}
+@font-face{font-family:Poppins;font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/poppins-400.woff2) format("woff2")}
+@font-face{font-family:Poppins;font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/poppins-500.woff2) format("woff2")}
+@font-face{font-family:Poppins;font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/poppins-600.woff2) format("woff2")}
