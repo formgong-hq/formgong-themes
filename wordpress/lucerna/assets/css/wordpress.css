@@ -131,3 +131,6 @@ body a:where(:not(.wp-element-button)) { color: inherit; text-decoration: none; 
 	.lc-body { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 	.lc-page { padding-top: 7.5rem; }
 }
+
+/* Forms send through the Formgong plugin (1.1.0+); without it they could not send, so they stay hidden. */
+form[data-formgong]:not([data-formgong-custom]) { display: none; }

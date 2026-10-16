@@ -97,3 +97,6 @@
 	.oc-body { grid-template-columns: 1fr; gap: 12px; }
 	.oc-prose, .oc-card-sum { font-size: 16px; }
 }
+
+/* Forms send through the Formgong plugin (1.1.0+); without it they could not send, so they stay hidden. */
+form[data-formgong]:not([data-formgong-custom]) { display: none; }

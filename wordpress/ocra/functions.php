@@ -1,7 +1,6 @@
 <?php
 /**
- * Ocra theme setup: styles, the page script, editor styles, the pattern category, the Formgong key for the forms and
- * small front-end helpers.
+ * Ocra theme setup: styles, the page script, editor styles, the pattern category and small front-end helpers.
  *
  * @package Ocra
  */
@@ -20,7 +19,7 @@ add_action( 'after_setup_theme', 'ocra_setup' );
 
 /**
  * Front-end styles (the fonts, the Ocra stylesheet, then the WordPress additions) and the template's script (the
- * forms: steps, files, sending to Formgong, "thank you" only on success: true; then the wordmarks, reveals, turning
+ * forms: steps, files, "thank you" only on the Formgong plugin's formgong:sent; then the wordmarks, reveals, turning
  * slices and the floating order button; it honours reduced motion).
  */
 function ocra_assets() {
@@ -53,45 +52,6 @@ function ocra_pattern_category() {
 	register_block_pattern_category( 'ocra', array( 'label' => __( 'Ocra', 'ocra' ) ) );
 }
 add_action( 'init', 'ocra_pattern_category' );
-
-/**
- * The Formgong access key, from the Formgong plugin's settings (Settings → Formgong). The theme stores no key.
- *
- * @return string The key, or '' when none is saved.
- */
-function ocra_formgong_key() {
-	$settings = get_option( 'formgong_settings' );
-	if ( is_array( $settings ) && ! empty( $settings['access_key'] ) && is_string( $settings['access_key'] ) ) {
-		return trim( $settings['access_key'] );
-	}
-	return '';
-}
-
-/**
- * The template's forms post straight to Formgong (https://formgong.com/submit) with a hidden access_key field that
- * the patterns leave empty. At render time the key from the Formgong plugin goes into it. While no key is saved the
- * forms are left out (a form without a key cannot send) and signed-in admins see one line in their place.
- *
- * @param string $content The rendered block.
- * @param array  $block   The block.
- * @return string
- */
-function ocra_formgong_forms( $content, $block ) {
-	if ( empty( $block['blockName'] ) || 'core/html' !== $block['blockName'] || false === strpos( $content, 'name="access_key"' ) ) {
-		return $content;
-	}
-	$key = ocra_formgong_key();
-	if ( '' !== $key ) {
-		return str_replace( 'name="access_key" value=""', 'name="access_key" value="' . esc_attr( $key ) . '"', $content );
-	}
-	$note = '';
-	if ( current_user_can( 'manage_options' ) ) {
-		$note = '<p class="oc-nokey">' . esc_html__( 'Add your Formgong key in Settings → Formgong', 'ocra' ) . '</p>';
-	}
-	$out = preg_replace( '#<form\b[^>]*\bclass="fgk\b[^"]*"[^>]*>.*?</form>#s', $note, $content );
-	return null === $out ? '' : $out;
-}
-add_filter( 'render_block', 'ocra_formgong_forms', 10, 2 );
 
 /**
  * Mark the menu link of the page being viewed (aria-current), as Orrery does. The menu links are custom URLs, which

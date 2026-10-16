@@ -3,11 +3,11 @@ Contributors: formgong
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: MIT
 License URI: https://opensource.org/license/mit
 
-A one-page block theme for a small ceramics studio that sells by message: a citrus-slice wordmark, product cards with orange price tags, and seven forms that send to Formgong.
+A one-page block theme for a small ceramics studio that sells by message: a citrus-slice wordmark, product cards with orange price tags, and seven forms sent by the Formgong plugin.
 
 == Description ==
 
@@ -30,9 +30,9 @@ Ocra is the WordPress version of the free Ocra website template (https://formgon
 
 = The forms and your Formgong key =
 
-The seven forms (order, workshop booking, commission with files, wholesale, feedback, write to us, newsletter) are the template's own forms in Custom HTML blocks. They post straight to https://formgong.com/submit and show "thank you" only when Formgong answers that the message was stored.
+The seven forms (order, workshop booking, commission with files, wholesale, feedback, write to us, newsletter) are the template's own form markup in Custom HTML blocks, each inside the Formgong plugin's "Formgong custom form" block. The theme sends nothing itself: the free Formgong plugin (version 1.1.0 or later) adds the address, your access key and the spam trap to each form and sends it, and the theme shows "thank you" only when Formgong answers that the message was stored.
 
-The Formgong plugin holds the access key; the theme stores none. Install the free Formgong plugin and paste your access key under Settings → Formgong: the theme puts it into every form when the page is drawn. Until a key is saved the forms are not shown, and signed-in administrators see "Add your Formgong key in Settings → Formgong" in each form's place. Do not type a key into the patterns.
+Install the Formgong plugin and paste your access key under Settings → Formgong. Until a key is saved the forms are not shown, and signed-in administrators see a reminder in each form's place. Without the plugin the forms stay hidden, because nothing could send them.
 
 = Make it yours =
 
@@ -46,13 +46,16 @@ The pieces, prices and the order form's list of pieces are in the Home: the kiln
 
 = The forms do not show =
 
-Install and activate the Formgong plugin, then paste your access key under Settings → Formgong.
+Install and activate the Formgong plugin (1.1.0 or later), then paste your access key under Settings → Formgong.
 
 = Can I use the theme without Formgong? =
 
 Yes. Remove the form patterns from the home page, or put another form plugin's block in their place.
 
 == Changelog ==
+
+= 1.1.0 =
+* The forms are sent by the Formgong plugin's custom form block (plugin 1.1.0 or later); the theme no longer reads the plugin's settings or posts anything itself.
 
 = 1.0.0 =
 * First WordPress release, from the Ocra website template.

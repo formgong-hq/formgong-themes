@@ -128,3 +128,6 @@ dialog .mw-nokey { margin-top: 20px; }
 	.mw-page > .mw-comments { border-radius: 28px; }
 	.mw-prose, .mw-card-sum { font-size: 16px; }
 }
+
+/* Forms send through the Formgong plugin (1.1.0+); without it they could not send, so they stay hidden. */
+form[data-formgong]:not([data-formgong-custom]) { display: none; }

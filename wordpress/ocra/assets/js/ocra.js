@@ -79,39 +79,34 @@
       if (steps.length) show(0);
     }
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
+    var firstName = "";
+    form.addEventListener("formgong:sending", function () {
       form.dataset.state = "sending";
       if (button) button.disabled = true;
       say(form.hasAttribute("data-keep") ? "" : "Sending…");
       var nameField = form.querySelector('[name="name"]');
-      var firstName = nameField ? nameField.value.trim().split(/\s+/)[0] : "";
-      fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) })
-        .then(function (res) { return res.json().catch(function () { return null; }); })
-        .then(function (result) {
-          if (result && result.success === true) {
-            form.querySelectorAll("[data-sent-name]").forEach(function (node) { node.textContent = firstName || "there"; });
-            form.dataset.state = "sent";
-            say("");
-            clear();
-            if (form.hasAttribute("data-keep")) {
-              say("Sent. The price list is on its way to your inbox.");
-              setTimeout(function () { if (form.dataset.state === "sent") form.dataset.state = "idle"; }, 3200);
-            } else {
-              form.classList.add("is-sent");
-              var sent = form.querySelector(".fgk-sent");
-              if (sent) sent.focus();
-            }
-          } else {
-            form.dataset.state = "error";
-            say((result && result.message) || "Could not send. Please try again.", true);
-          }
-        })
-        .catch(function () {
-          form.dataset.state = "error";
-          say("Could not send. Check your connection and try again.", true);
-        })
-        .then(function () { if (button) button.disabled = false; });
+      firstName = nameField ? nameField.value.trim().split(/\s+/)[0] : "";
+    });
+    form.addEventListener("formgong:sent", function () {
+      form.querySelectorAll("[data-sent-name]").forEach(function (node) { node.textContent = firstName || "there"; });
+      form.dataset.state = "sent";
+      say("");
+      clear();
+      if (form.hasAttribute("data-keep")) {
+        say("Sent. The price list is on its way to your inbox.");
+        setTimeout(function () { if (form.dataset.state === "sent") form.dataset.state = "idle"; }, 3200);
+      } else {
+        form.classList.add("is-sent");
+        var sent = form.querySelector(".fgk-sent");
+        if (sent) sent.focus();
+      }
+      if (button) button.disabled = false;
+    });
+    form.addEventListener("formgong:error", function (event) {
+      form.dataset.state = "error";
+      var detail = event.detail || {};
+      say(detail.network ? "Could not send. Check your connection and try again." : (detail.message || "Could not send. Please try again."), true);
+      if (button) button.disabled = false;
     });
 
     form.querySelectorAll("[data-again]").forEach(function (again) {

@@ -421,18 +421,19 @@
   /* ---------- Formgong forms: success only when the server answers success: true ---------- */
   $$("form.fg").forEach(function (form) {
     var send = $("button[type=submit]", form), label = $("[data-label]", form), status = $("[data-status]", form), text = label.textContent;
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+    var first = "";
+    form.addEventListener("formgong:sending", function () {
       send.disabled = true; label.textContent = "Sending…"; status.textContent = ""; status.classList.remove("err");
-      var first = ((form.elements.namedItem("name") || {}).value || "").trim().split(/\s+/)[0];
-      fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) })
-        .then(function (r) { return r.json().catch(function () { return null; }); })
-        .then(function (res) {
-          if (res && res.success === true) { $("[data-name]", form).textContent = first || "there"; form.reset(); form.classList.add("is-sent"); $(".fg-sent", form).focus(); }
-          else { status.textContent = (res && res.message) || "Could not send. Please try again."; status.classList.add("err"); }
-        })
-        .catch(function () { status.textContent = "Could not send. Check your connection and try again."; status.classList.add("err"); })
-        .finally(function () { send.disabled = false; label.textContent = text; });
+      first = ((form.elements.namedItem("name") || {}).value || "").trim().split(/\s+/)[0];
+    });
+    form.addEventListener("formgong:sent", function () {
+      $("[data-name]", form).textContent = first || "there"; form.reset(); form.classList.add("is-sent"); $(".fg-sent", form).focus();
+      send.disabled = false; label.textContent = text;
+    });
+    form.addEventListener("formgong:error", function (e) {
+      var d = e.detail || {};
+      status.textContent = d.network ? "Could not send. Check your connection and try again." : (d.message || "Could not send. Please try again."); status.classList.add("err");
+      send.disabled = false; label.textContent = text;
     });
     $("[data-again]", form).addEventListener("click", function () { form.classList.remove("is-sent"); form.elements.namedItem("name").focus(); });
   });

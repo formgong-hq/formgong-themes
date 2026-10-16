@@ -4,12 +4,13 @@
  * Slug: ocra/form-feedback
  * Categories: ocra
  * Inserter: yes
- * Description: Five faces, a comment and the order email. Sends to Formgong with the key from the Formgong plugin.
+ * Description: Five faces, a comment and the order email. Sent by the Formgong plugin (1.1.0 or later).
  *
  * @package Ocra
  */
 
 ?>
+<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <article class="row" id="feedback">
       <div class="info">
@@ -18,10 +19,8 @@
         <p>Every parcel is packed by hand. Tell us how yours arrived and how you are using it. We read every answer.</p>
       </div>
       <div class="card">
-        <form id="f-feedback" class="fgk fgk-rating" action="https://formgong.com/submit" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="access_key" value="">
+        <form id="f-feedback" class="fgk fgk-rating" data-formgong>
           <input type="hidden" name="request" value="Feedback">
-          <div class="fgk-hp" aria-hidden="true"><label>Leave this field empty<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
           <fieldset>
             <legend>How was your order?</legend>
             <div class="fgk-faces">
@@ -42,3 +41,4 @@
       </div>
     </article>
 <!-- /wp:html -->
+<!-- /wp:formgong/custom-form -->

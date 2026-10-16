@@ -331,11 +331,8 @@
   });
 
   // Approved reviews from Formgong replace the sample cards (same contract as the Goldleaf template).
-  var key = need($("[data-reviews-key]"), "input").value;
-  if (/^fk_[A-Za-z0-9_]+$/.test(key) && key.indexOf("your_access") === -1 && window.fetch) {
-    fetch("https://formgong.com/reviews/" + key + ".json")
-      .then(function (res) { return res.ok ? res.json() : null; })
-      .then(function (data) {
+  // The Formgong plugin loads them (the review form's block asks for them) and fires formgong:reviews.
+  function showReviews(data) {
         if (!data || !(data.count > 0) || !data.reviews || !data.reviews.length) return;
         rvTrack.textContent = "";
         data.reviews.forEach(function (rv) {
@@ -355,9 +352,10 @@
         });
         var avg = (+data.average || 0).toFixed(1).replace(/\.0$/, "");
         need($("[data-rv-label]")).textContent = "Reviews · " + avg + " out of 5 from " + data.count + (data.count === 1 ? " owner" : " owners");
-      })
-      .catch(function () {});
   }
+  document.addEventListener("formgong:reviews", function (e) { showReviews(e.detail && e.detail.data); });
+  var rvForm = $("form[data-formgong-reviews]");
+  if (rvForm && rvForm.formgongReviews) showReviews(rvForm.formgongReviews);
   function ago(v) {
     var t = Date.parse(v); if (!t) return v ? String(v) : "";
     var days = Math.max(0, Math.round((Date.now() - t) / 864e5));
@@ -485,25 +483,21 @@
     var button = $('button[type="submit"]', f), label = button.textContent, status = $("[data-status]", f);
     function say(text, bad) { status.textContent = text; status.classList.toggle("err", !!bad); }
     f.addEventListener("submit", function (event) {
-      event.preventDefault();
-      if (!f.checkValidity()) { f.reportValidity(); return; }
-      var data = new FormData(f);
-      button.disabled = true; button.textContent = "Sending…"; say("");
-      fetch(f.action, { method: "POST", headers: { Accept: "application/json" }, body: data })
-        .then(function (res) { return res.json().catch(function () { return null; }); })
-        .then(function (result) {
-          if (result && result.success === true) {
-            var nm = f.elements.namedItem("name"), first = nm && nm.value ? nm.value.trim().split(/\s+/)[0] : "";
-            $$("[data-name]", f).forEach(function (n) { n.textContent = first || "there"; });
-            if (afterSent) afterSent(); else f.reset();
-            f.classList.add("is-sent");
-            $(".thanks", f).focus();
-          } else {
-            say((result && result.message) || "Could not send. Please try again.", true);
-          }
-        })
-        .catch(function () { say("Could not send. Check your connection and try again.", true); })
-        .then(function () { button.disabled = false; button.textContent = label; });
+      if (!f.checkValidity()) { event.preventDefault(); f.reportValidity(); }
+    });
+    f.addEventListener("formgong:sending", function () { button.disabled = true; button.textContent = "Sending…"; say(""); });
+    f.addEventListener("formgong:sent", function () {
+      var nm = f.elements.namedItem("name"), first = nm && nm.value ? nm.value.trim().split(/\s+/)[0] : "";
+      $$("[data-name]", f).forEach(function (n) { n.textContent = first || "there"; });
+      if (afterSent) afterSent(); else f.reset();
+      f.classList.add("is-sent");
+      $(".thanks", f).focus();
+      button.disabled = false; button.textContent = label;
+    });
+    f.addEventListener("formgong:error", function (event) {
+      var d = event.detail || {};
+      say(d.network ? "Could not send. Check your connection and try again." : (d.message || "Could not send. Please try again."), true);
+      button.disabled = false; button.textContent = label;
     });
     $("[data-again]", f).addEventListener("click", function () {
       f.classList.remove("is-sent"); say("");

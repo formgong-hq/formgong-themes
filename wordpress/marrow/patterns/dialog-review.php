@@ -4,22 +4,21 @@
  * Slug: marrow/dialog-review
  * Categories: marrow
  * Inserter: no
- * Description: Star rating, name, review and email. Its key also loads the approved reviews into the reviews slider. Sends to Formgong with the key from the Formgong plugin.
+ * Description: Star rating, name, review and email. Its block also asks the Formgong plugin for the approved reviews of the slider. Sent by the Formgong plugin (1.1.0 or later).
  *
  * @package Marrow
  */
 
 ?>
+<!-- wp:formgong/custom-form {"reviews":true} -->
 <!-- wp:html -->
 <dialog id="d-review" aria-labelledby="review-title">
   <div class="dlg" tabindex="-1" autofocus>
     <button class="x" type="button" aria-label="Close" data-close>×</button>
     <h2 id="review-title">Leave a review</h2>
     <p class="intro">Tell other owners how it went. Your review appears here once the kitchen has read it.</p>
-    <form class="form" id="f-review" action="https://formgong.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="" data-reviews-key>
+    <form class="form" id="f-review" data-formgong>
       <input type="hidden" name="subject" value="New review">
-      <div class="hp" aria-hidden="true"><label>Leave this field empty<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
       <fieldset class="rate">
         <legend>Your rating</legend>
         <div class="pick">
@@ -41,3 +40,4 @@
   </div>
 </dialog>
 <!-- /wp:html -->
+<!-- /wp:formgong/custom-form -->

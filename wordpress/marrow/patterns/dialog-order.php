@@ -4,22 +4,21 @@
  * Slug: marrow/dialog-order
  * Categories: marrow
  * Inserter: no
- * Description: Recipe or treat, pack chips, quantity, delivery or pick-up, contact details. The recipe and treat buttons and Order now open it. Sends to Formgong with the key from the Formgong plugin.
+ * Description: Recipe or treat, pack chips, quantity, delivery or pick-up, contact details. The recipe and treat buttons and Order now open it. Sent by the Formgong plugin (1.1.0 or later).
  *
  * @package Marrow
  */
 
 ?>
+<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <dialog id="d-order" aria-labelledby="order-title">
   <div class="dlg" tabindex="-1" autofocus>
     <button class="x" type="button" aria-label="Close" data-close>×</button>
     <h2 id="order-title">Order request</h2>
     <p class="intro">Pick a recipe and a pack size. We confirm the total and the delivery day by email or text. Nothing to pay now.</p>
-    <form class="form" id="f-order" action="https://formgong.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="">
+    <form class="form" id="f-order" data-formgong>
       <input type="hidden" name="subject" value="Order request">
-      <div class="hp" aria-hidden="true"><label>Leave this field empty<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
       <label class="f full"><span>Recipe or treat</span>
         <select name="item" required data-item>
           <optgroup label="Dog recipes"><option>Chicken &amp; Pumpkin</option><option>Beef &amp; Kale</option><option>Lamb &amp; Carrot</option><option>Turkey &amp; Blueberry</option><option>Duck &amp; Apple</option><option>Salmon &amp; Sweet Potato</option></optgroup>
@@ -52,3 +51,4 @@
   </div>
 </dialog>
 <!-- /wp:html -->
+<!-- /wp:formgong/custom-form -->

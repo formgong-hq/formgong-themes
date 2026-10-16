@@ -4,22 +4,21 @@
  * Slug: marrow/home-finder
  * Categories: marrow
  * Inserter: yes
- * Description: Find the right meal: age, weight, activity and neutered, See my plan, then the daily grams and the Email me this plan form (sends to Formgong with the key from the Formgong plugin).
+ * Description: Find the right meal: age, weight, activity and neutered, See my plan, then the daily grams and the Email me this plan form (sent by the Formgong plugin, 1.1.0 or later).
  *
  * @package Marrow
  */
 
 ?>
+<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <section class="finder" aria-labelledby="finder-h" data-next>
     <div class="wrap" id="finder">
       <h2 class="h2" id="finder-h">Find the <span class="uline"><b>right meal</b><svg class="dp one" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 13C48 5 128 3 197 11"/></svg></span> for your <span data-pet-word>dog</span></h2>
-      <form class="plan" id="f-plan" action="https://formgong.com/submit" method="POST" novalidate>
-        <input type="hidden" name="access_key" value="">
+      <form class="plan" id="f-plan" novalidate data-formgong>
         <input type="hidden" name="subject" value="Meal plan request">
         <input type="hidden" name="pet" value="dog" data-pet-field>
         <input type="hidden" name="daily_grams" value="" data-grams-field>
-        <div class="hp" aria-hidden="true"><label>Leave this field empty<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
         <div class="bar">
           <label class="fld"><span>Age in months</span><input name="age_months" type="number" inputmode="numeric" min="1" max="300" step="1" placeholder="e.g. 36" required></label>
           <label class="fld"><span>Weight in kg</span><input name="weight_kg" type="number" inputmode="decimal" min="0.5" max="100" step="0.1" placeholder="e.g. 20" required></label>
@@ -51,3 +50,4 @@
     </div>
   </section>
 <!-- /wp:html -->
+<!-- /wp:formgong/custom-form -->

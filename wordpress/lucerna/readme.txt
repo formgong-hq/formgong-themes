@@ -3,7 +3,7 @@ Contributors: formgong
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: MIT
 License URI: https://opensource.org/license/mit
 
@@ -28,7 +28,7 @@ Lucerna is the WordPress version of the free Lucerna website template (https://f
 
 = The forms and the Formgong plugin =
 
-The two forms are the template's own: "Ask for a trade account" (the person icon in the header) and "Tell us about your project" (Contact, in a drawer from the right; "Write to us" in the footer and Contact in the phone menu open it too). They post straight to Formgong. The theme holds no key: the free Formgong plugin holds it. Install the plugin and paste your access key under Settings → Formgong; the theme puts that key into both forms when the page is drawn. While no key is saved the forms stay hidden, and signed-in admins see "Add your Formgong key in Settings → Formgong" in their place. "Thank you" shows only when Formgong answers that the message was stored.
+The two forms are the template's own: "Ask for a trade account" (the person icon in the header) and "Tell us about your project" (Contact, in a drawer from the right; "Write to us" in the footer and Contact in the phone menu open it too). Each sits in the Formgong plugin's "Formgong custom form" block: the theme sends nothing itself. The free Formgong plugin (version 1.1.0 or later) adds the address, your access key and the spam trap and sends the form. Install the plugin and paste your access key under Settings → Formgong. While no key is saved the forms stay hidden, and signed-in admins see a reminder in their place; without the plugin they stay hidden too. "Thank you" shows only when Formgong answers that the message was stored.
 
 = Make it yours =
 
@@ -46,13 +46,16 @@ A link to another page of your site is marked as the current page there (the gre
 
 = The forms do not show =
 
-Install and activate the Formgong plugin, then paste your access key under Settings → Formgong.
+Install and activate the Formgong plugin (1.1.0 or later), then paste your access key under Settings → Formgong.
 
 = Can I use the theme without Formgong? =
 
 Yes. Remove the forms from the Header pattern, or put another form plugin's block in their place.
 
 == Changelog ==
+
+= 1.1.0 =
+* The forms are sent by the Formgong plugin's custom form block (plugin 1.1.0 or later); the theme no longer reads the plugin's settings or posts anything itself.
 
 = 1.0.0 =
 * First WordPress release, from the Lucerna website template.

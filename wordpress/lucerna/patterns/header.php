@@ -29,6 +29,7 @@
 <a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Fulgor, home"><svg viewBox="0 0 236 60"><use href="#wordmark"/></svg></a>
 <!-- /wp:html -->
 <!-- wp:navigation {"overlayMenu":"never","className":"lc-menu","layout":{"type":"flex","flexWrap":"nowrap"}} /-->
+<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <div class="extra">
     <button class="btn-contact" type="button" data-open="contact">Contact <svg class="ic"><use href="#arrow"/></svg></button>
@@ -42,10 +43,8 @@
       <div class="login-form-wrap" id="tradeWrap"><div class="login-form-inner">
         <div class="login-card">
           <p class="login-h">Ask for a trade account</p>
-                    <form class="fg" action="https://formgong.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="">
+                    <form class="fg" data-formgong>
             <input type="hidden" name="subject" value="Trade account request">
-            <div aria-hidden="true" class="hp"><label>Leave this field empty<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
             <div class="fg-fields">
               <input class="inp" name="name" autocomplete="name" placeholder="Name" aria-label="Name" required>
               <input class="inp" name="email" type="email" autocomplete="email" placeholder="Work email" aria-label="Work email" required>
@@ -84,6 +83,7 @@
     </div>
   </div>
 <!-- /wp:html -->
+<!-- /wp:formgong/custom-form -->
 </header>
 <!-- /wp:group -->
 <!-- wp:html -->
@@ -104,15 +104,14 @@
 <!-- /wp:group -->
 </div>
 <!-- /wp:group -->
+<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <div class="scrim"></div>
 <aside class="drawer" id="contact" role="dialog" aria-modal="true" aria-labelledby="contact-h" aria-hidden="true">
   <div class="drawer-head"><p id="contact-h">Tell us about your project</p><button class="drawer-x" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
   <div class="drawer-body">
-        <form class="fg" action="https://formgong.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="">
+        <form class="fg" data-formgong>
       <input type="hidden" name="subject" value="New project enquiry">
-      <div aria-hidden="true" class="hp"><label>Leave this field empty<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
       <div class="fg-fields">
         <label class="fld"><span>Name</span><input class="inp" name="name" autocomplete="name" required></label>
         <label class="fld"><span>Email</span><input class="inp" name="email" type="email" autocomplete="email" required></label>
@@ -128,3 +127,4 @@
   </div>
 </aside>
 <!-- /wp:html -->
+<!-- /wp:formgong/custom-form -->

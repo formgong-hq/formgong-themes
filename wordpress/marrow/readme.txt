@@ -3,11 +3,11 @@ Contributors: formgong
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: MIT
 License URI: https://opensource.org/license/mit
 
-A bright one-page block theme for a raw pet-food kitchen: a giant MARROW wordmark over a cut-out dog photo, a meal calculator, dog and cat recipes, treats, reviews and four forms that send to Formgong.
+A bright one-page block theme for a raw pet-food kitchen: a giant MARROW wordmark over a cut-out dog photo, a meal calculator, dog and cat recipes, treats, reviews and four forms sent by the Formgong plugin.
 
 == Description ==
 
@@ -30,11 +30,11 @@ Marrow is the WordPress version of the free Marrow website template (https://for
 
 = The forms and your Formgong key =
 
-The four forms (the meal plan in the finder, the order request, the review and write to us) are the template's own forms in Custom HTML blocks. They post straight to https://formgong.com/submit and show "thank you" only when Formgong answers that the message was stored.
+The four forms (the meal plan in the finder, the order request, the review and write to us) are the template's own form markup in Custom HTML blocks, each inside the Formgong plugin's "Formgong custom form" block. The theme sends nothing itself: the free Formgong plugin (version 1.1.0 or later) adds the address, your access key and the spam trap and sends each form, and the theme shows "thank you" only when Formgong answers that the message was stored.
 
-The Formgong plugin holds the access key; the theme stores none. Install the free Formgong plugin and paste your access key under Settings → Formgong: the theme puts it into every form when the page is drawn. Until a key is saved the forms are not shown, and signed-in administrators see "Add your Formgong key in Settings → Formgong" in each form's place. Do not type a key into the patterns.
+Install the Formgong plugin and paste your access key under Settings → Formgong. Until a key is saved the forms are not shown, and signed-in administrators see a reminder in each form's place. Without the plugin the forms stay hidden, because nothing could send them.
 
-Reviews: use a Formgong form with Reviews switched on. Its key also loads the reviews you approved in Formgong into the reviews slider, in place of the sample cards.
+Reviews: use a Formgong form with Reviews switched on. The review form's block asks the Formgong plugin for the reviews you approved in Formgong, and the slider shows them in place of the sample cards.
 
 = Make it yours =
 
@@ -48,13 +48,16 @@ The recipes, treats and the order form's list are in the Home: recipes, Home: tr
 
 = The forms do not show =
 
-Install and activate the Formgong plugin, then paste your access key under Settings → Formgong.
+Install and activate the Formgong plugin (1.1.0 or later), then paste your access key under Settings → Formgong.
 
 = Can I use the theme without Formgong? =
 
 Yes. Remove the meal finder pattern and the three dialog patterns from the footer part, or put another form plugin's block in their place.
 
 == Changelog ==
+
+= 1.1.0 =
+* The forms and the approved reviews go through the Formgong plugin's custom form block (plugin 1.1.0 or later); the theme no longer reads the plugin's settings or calls Formgong itself.
 
 = 1.0.0 =
 * First WordPress release, from the Marrow website template.

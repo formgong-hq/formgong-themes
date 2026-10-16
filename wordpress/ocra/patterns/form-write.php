@@ -4,12 +4,13 @@
  * Slug: ocra/form-write
  * Categories: ocra
  * Inserter: yes
- * Description: Floating labels on the dark card. Sends to Formgong with the key from the Formgong plugin.
+ * Description: Floating labels on the dark card. Sent by the Formgong plugin (1.1.0 or later).
  *
  * @package Ocra
  */
 
 ?>
+<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <article class="row" id="write">
       <div class="info">
@@ -18,10 +19,8 @@
         <p>Questions about glazes, care, or a piece you saw at a market. A short note is fine.</p>
       </div>
       <div class="card dark">
-        <form id="f-write" class="fgk fgk-float" action="https://formgong.com/submit" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="access_key" value="">
+        <form id="f-write" class="fgk fgk-float" data-formgong>
           <input type="hidden" name="request" value="Message">
-          <div class="fgk-hp" aria-hidden="true"><label>Leave this field empty<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
           <label class="fgk-fl"><input name="name" autocomplete="name" placeholder=" " required><span>Name</span></label>
           <label class="fgk-fl"><input type="email" name="email" autocomplete="email" placeholder=" " required><span>Email</span></label>
           <label class="fgk-fl"><textarea name="message" rows="2" placeholder=" " required data-autosize></textarea><span>Message</span></label>
@@ -32,3 +31,4 @@
       </div>
     </article>
 <!-- /wp:html -->
+<!-- /wp:formgong/custom-form -->
