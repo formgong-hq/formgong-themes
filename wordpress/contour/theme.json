@@ -1,0 +1,91 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": false,
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1600px"
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "paper",
+          "name": "Paper",
+          "color": "#f4f4f0"
+        },
+        {
+          "slug": "paper-2",
+          "name": "Paper 2",
+          "color": "#ecece6"
+        },
+        {
+          "slug": "ink",
+          "name": "Ink",
+          "color": "#0e0e0d"
+        },
+        {
+          "slug": "muted",
+          "name": "Muted",
+          "color": "#65655f"
+        },
+        {
+          "slug": "cobalt",
+          "name": "Cobalt",
+          "color": "#2f5bff"
+        }
+      ],
+      "defaultPalette": false,
+      "defaultGradients": false
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "geist",
+          "name": "Geist",
+          "fontFamily": "Geist, ui-sans-serif, system-ui, sans-serif"
+        },
+        {
+          "slug": "geist-mono",
+          "name": "Geist Mono",
+          "fontFamily": "\"Geist Mono\", ui-monospace, monospace"
+        }
+      ],
+      "defaultFontSizes": false
+    },
+    "spacing": {
+      "defaultSpacingSizes": false
+    },
+    "useRootPaddingAwareAlignments": false
+  },
+  "styles": {
+    "color": {
+      "background": "var(--bg)",
+      "text": "var(--ink)"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|geist"
+    },
+    "spacing": {
+      "blockGap": "0",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    }
+  },
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
+  ]
+}

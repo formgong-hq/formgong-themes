@@ -1,0 +1,59 @@
+/* Contour: WordPress-only rules. The template's own stylesheet is contour.css, untouched. */
+.wp-site-blocks > * { margin-block-start: 0; }
+.wp-site-blocks { padding: 0; }
+:where(.wp-site-blocks) :where(.section, .hero, .site-footer, .site-header) { margin-block: 0; }
+
+/* Header menu: the Navigation block drawn as the template's numbered links. CSS counters stand in for the 01–04 notes,
+   and a text-shadow copy in the accent rolls up on hover like the template's data-label copy. */
+.site-header .ct-nav { counter-reset: ct; }
+.site-header .ct-nav .wp-block-navigation__container { gap: clamp(1rem, 2.4vw, 2.5rem); }
+.site-header .ct-nav .wp-block-navigation-item { counter-increment: ct; }
+.site-header .ct-nav .wp-block-navigation-item__content { display: inline-flex; align-items: baseline; gap: .4rem; font-size: .95rem; padding: 0; }
+.site-header .ct-nav .wp-block-navigation-item__content::before { content: "0" counter(ct); font-family: var(--font-mono); font-size: .72rem; line-height: 1.4; letter-spacing: .02em; color: var(--muted); }
+.site-header .ct-nav [aria-current] .wp-block-navigation-item__content::before { color: var(--accent-text); }
+.site-header .ct-nav .wp-block-navigation-item__label { display: inline-block; overflow: hidden; line-height: 1.2; vertical-align: bottom; }
+.site-header .ct-nav .wp-block-navigation-item__label { text-shadow: 0 1.2em 0 var(--accent-text); transition: transform var(--dur-1) var(--ease-in-out); }
+.site-header .ct-nav .wp-block-navigation-item__content:hover .wp-block-navigation-item__label { transform: translateY(-1.2em); }
+.site-header .ct-nav .ct-mm-only { display: none !important; }
+@media (max-width: 960px) { .site-header .ct-nav { display: none; } }
+
+/* Admin-only hint while no Formgong key is saved. */
+.ct-key-hint { font-family: var(--font-mono); font-size: .72rem; line-height: 1.4; text-transform: uppercase; border: 1px dashed var(--accent); color: var(--accent-text); padding: 1rem; grid-column: 7 / -1; }
+@media (max-width: 767px) { .ct-key-hint { grid-column: 1 / -1; } }
+
+/* Plain layouts: pages, posts, lists, search, 404 in the template's type, colours and grid. */
+.ct-plain { padding: 9rem 0 0; min-height: 60vh; }
+.ct-plain .ct-plain-in { padding: 0 var(--gutter); }
+.ct-plain .ct-plain-head { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line-strong); padding-top: .75rem; margin-bottom: clamp(48px, 7vw, 112px); font-family: var(--font-mono); font-size: .72rem; line-height: 1.4; text-transform: uppercase; letter-spacing: .02em; color: var(--muted); }
+.ct-plain .ct-plain-head span:first-child { color: var(--ink); }
+.ct-plain .wp-block-post-title, .ct-plain .ct-plain-title { font-size: var(--step-4); font-weight: 500; line-height: .9; letter-spacing: -.05em; margin: 0 0 3rem; }
+.ct-plain .wp-block-post-content { max-width: 760px; margin-left: calc(100% / 12 * 4); font-size: var(--step-0); line-height: 1.6; }
+.ct-plain .wp-block-post-content > * + * { margin-top: 1.2em; }
+.ct-plain .wp-block-post-content h2, .ct-plain .wp-block-post-content h3 { font-weight: 500; letter-spacing: -.03em; line-height: 1.05; margin-top: 2em; }
+.ct-plain .wp-block-post-content h2 { font-size: var(--step-2); }
+.ct-plain .wp-block-post-content h3 { font-size: var(--step-1); }
+.ct-plain .wp-block-post-content a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
+.ct-plain .wp-block-post-content img { border-radius: 4px; }
+.ct-plain .wp-block-post-date, .ct-plain .wp-block-post-terms { font-family: var(--font-mono); font-size: .72rem; line-height: 1.4; text-transform: uppercase; color: var(--muted); }
+.ct-plain .wp-block-post-template { list-style: none; padding: 0; margin: 0; border-bottom: 1px solid var(--line); }
+.ct-plain .wp-block-post-template > li { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: baseline; padding: 1.6rem 0; border-top: 1px solid var(--line); margin: 0; }
+.ct-plain .wp-block-post-template > li > .wp-block-post-date { grid-column: 1 / span 2; }
+.ct-plain .wp-block-post-template .wp-block-post-title { grid-column: 3 / span 7; font-size: var(--step-2); line-height: 1.05; letter-spacing: -.03em; margin: 0; }
+.ct-plain .wp-block-post-excerpt { grid-column: 3 / span 7; color: var(--muted); margin: .4rem 0 0; }
+.ct-plain .wp-block-query-pagination { margin-top: 2rem; font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; gap: 1.5rem; }
+.ct-plain .wp-block-search__inside-wrapper { border: 0; border-bottom: 1px solid var(--control-line); padding: 0; max-width: 40rem; }
+.ct-plain .wp-block-search__input { background: transparent; border: 0; font-size: var(--step-1); padding: .55rem 0; color: var(--ink); }
+.ct-plain .wp-block-search__button { background: var(--ink); color: var(--bg); border: 0; border-radius: 999px; padding: 0 1.4rem; font-weight: 500; }
+.ct-plain .ct-404-mark { font-size: var(--step-5); font-weight: 500; line-height: .86; letter-spacing: -.055em; margin: 0 0 1rem; }
+.ct-plain .wp-block-comments:empty, .ct-comments:empty { display: none; margin: 0; }
+.ct-plain .wp-block-comments { max-width: 760px; margin: 4rem 0 0 calc(100% / 12 * 4); }
+.ct-plain .comment-form label { display: block; font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; color: var(--muted); margin-bottom: .4rem; }
+.ct-plain .comment-form input:not([type=submit]):not([type=checkbox]), .ct-plain .comment-form textarea { width: 100%; border: 0; border-bottom: 1px solid var(--control-line); background: transparent; padding: .55rem 0; font: inherit; font-size: var(--step-1); color: var(--ink); border-radius: 0; }
+.ct-plain .comment-form textarea { min-height: 7rem; }
+.ct-plain .comment-form input:focus, .ct-plain .comment-form textarea:focus { outline: 0; border-color: var(--accent-text); }
+.ct-plain .comment-form .submit, .ct-plain .wp-block-button__link { background: var(--ink); color: var(--bg); border: 0; border-radius: 999px; height: 3.25rem; padding: 0 1.4rem; font-weight: 500; cursor: pointer; }
+.ct-plain .comment-reply-title { font-size: var(--step-1); font-weight: 500; letter-spacing: -.02em; }
+@media (max-width: 767px) {
+  .ct-plain .wp-block-post-content, .ct-plain .wp-block-comments { margin-left: 0; }
+  .ct-plain .wp-block-post-template > li > * { grid-column: 1 / -1 !important; }
+}
