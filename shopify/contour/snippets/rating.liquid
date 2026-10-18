@@ -1,0 +1,22 @@
+{% doc %}
+  Star rating from Shopify's standard review metafields (reviews.rating and
+  reviews.rating_count), which review apps fill in. Renders nothing otherwise.
+
+  @param {product} product - The product
+{% enddoc %}
+{%- assign rating = product.metafields.reviews.rating.value -%}
+{%- if rating != blank -%}
+  {%- liquid
+    assign rating_value = rating.rating | default: rating
+    assign rating_max = rating.scale_max | default: 5
+    assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+  -%}
+  <div class="rating">
+    <span class="rating__stars" style="--rating: {{ rating_value }}; --rating-max: {{ rating_max }};" aria-hidden="true">★★★★★</span>
+    <span class="visually-hidden">{{ 'accessibility.star_rating' | t: rating: rating_value, max: rating_max }}</span>
+    {%- if rating_count > 0 -%}
+      <span>{{ rating_value | round: 1 }} ({{ rating_count }})</span>
+      <span class="visually-hidden">{{ 'accessibility.rating_count' | t: count: rating_count }}</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -1,0 +1,61 @@
+{%- comment -%}
+  Contour header: monogram and name, numbered menu links with a rolling label, the tools (theme, accent, command
+  palette, cart), the call-to-action and the scroll ruler. On phones the Menu pill opens the command palette, which is
+  built from the menu links plus the extra "palette link" blocks.
+{%- endcomment -%}
+<a class="ct-skip ct-note" href="#MainContent">{{ 'contour.header.skip' | t }}</a>
+<header class="ct-site-header ct-wrap">
+  <a class="ct-brand" href="{{ routes.root_url }}{% if template.name == 'index' %}#top{% endif %}" aria-label="{{ section.settings.name | default: shop.name | escape }}">
+    {%- if section.settings.logo != blank -%}
+      {{ section.settings.logo | image_url: width: 120 | image_tag: class: 'ct-brand-logo', alt: '' }}
+    {%- else -%}
+      {% render 'ct-mark', class_name: 'ct-brand__mark' %}
+    {%- endif -%}
+    <span class="brand__name ct-note ct-note--ink">{{ section.settings.name | default: shop.name }}{%- if section.settings.role != blank -%}<span class="ct-brand__role"> {{ section.settings.role }}</span>{%- endif -%}</span>
+  </a>
+  <nav class="ct-nav" aria-label="{{ 'contour.header.main' | t }}">
+    <ul>
+      {%- for link in section.settings.menu.links -%}
+        <li><a class="ct-nav__link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}><span class="ct-note" aria-hidden="true">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><span class="ct-nav__label" data-label="{{ link.title | escape }}">{{ link.title }}</span></a></li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+  {%- for block in section.blocks -%}<a hidden data-palette-link href="{{ block.settings.link | default: '#contact' }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>{%- endfor -%}
+  <div class="ct-tools">
+    {%- if section.settings.show_theme -%}<button class="ct-tool" type="button" data-action="theme" aria-label="{{ 'contour.header.theme' | t }}"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25"/><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z"/></svg></button>{%- endif -%}
+    {%- if section.settings.show_accent -%}<button class="ct-tool" type="button" data-action="accent" aria-label="{{ 'contour.header.accent' | t }}"><span class="ct-swatch" aria-hidden="true"></span></button>{%- endif -%}
+    <button class="ct-tool ct-tool--kbd ct-note" type="button" data-action="palette" aria-label="{{ 'contour.header.palette' | t }}">⌘K</button>
+    <button class="ct-tool ct-tool--menu ct-note" type="button" data-action="palette" aria-label="{{ 'contour.header.menu' | t }}">{{ 'contour.header.menu_short' | t }}</button>
+    {%- if section.settings.show_cart -%}<a class="ct-tool ct-tool-cart" href="{{ routes.cart_url }}" aria-label="{{ 'contour.header.cart' | t }}"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 6.5h13l-1.2 10h-10.6zM7 6.5a3 3 0 0 1 6 0"/></svg>{%- if cart.item_count > 0 -%}<span class="ct-cart-n">{{ cart.item_count }}</span>{%- endif -%}</a>{%- endif -%}
+    {%- if section.settings.cta_label != blank -%}<a class="ct-btn ct-header-cta" href="{{ section.settings.cta_link | default: '/#contact' }}">{{ section.settings.cta_label }}</a>{%- endif -%}
+  </div>
+  <div class="ct-hd-rule" aria-hidden="true"><span class="ct-hd-rule__fill"><span class="ct-hd-rule__tag ct-note"></span></span></div>
+</header>
+<div class="ct-grid-overlay" aria-hidden="true"><div class="ct-grid-12"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+
+{% schema %}
+{
+  "name": "Contour header",
+  "class": "ct-contents",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Empty: the Contour monogram." },
+    { "type": "text", "id": "name", "label": "Name", "info": "Empty: the store name." },
+    { "type": "text", "id": "role", "label": "Role after the name", "default": "/ web & AI dev" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "show_theme", "label": "Show the light / dark switch", "default": true },
+    { "type": "checkbox", "id": "show_accent", "label": "Show the accent switch", "default": true },
+    { "type": "checkbox", "id": "show_cart", "label": "Show the cart", "default": true },
+    { "type": "text", "id": "cta_label", "label": "Button", "default": "Start a project" },
+    { "type": "url", "id": "cta_link", "label": "Button link", "info": "Empty: the contact section." }
+  ],
+  "blocks": [
+    { "type": "link", "name": "Palette link", "settings": [
+      { "type": "paragraph", "content": "An extra entry for the command palette and the phone menu." },
+      { "type": "text", "id": "label", "label": "Label", "default": "Contact" },
+      { "type": "url", "id": "link", "label": "Link", "info": "Empty: the contact section." }
+    ] }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

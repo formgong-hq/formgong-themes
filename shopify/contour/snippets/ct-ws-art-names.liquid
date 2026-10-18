@@ -1,0 +1,22 @@
+{%- comment -%} Work stage art (names): the case image with the plotted overlay. Param: image. {%- endcomment -%}
+<div class="ct-ws__art" aria-hidden="true">
+          {%- if image != blank -%}<img class="ct-ws__photo" data-b-wipe src="{{ image | image_url: width: 800 }}" srcset="{{ image | image_url: width: 800 }} 800w, {{ image | image_url: width: 1600 }} 1600w" sizes="(min-width: 1024px) 62vw, 100vw" width="800" height="{{ 800 | divided_by: image.aspect_ratio | round }}" alt="" loading="lazy">{%- else -%}{{ 'image' | placeholder_svg_tag: 'ct-ws__photo ct-ph' }}{%- endif -%}
+          <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+            <g class="plot">
+              <path d="M40 60h225v160h-225z" class="ct-wire" pathLength="1"/>
+              <path d="M285 60h225v160h-225z" class="ct-wire" pathLength="1"/>
+              <path d="M530 60h225v160h-225z" class="ct-wire" pathLength="1"/>
+              <text x="40" y="248" class="ct-lbl ct-lbl--a" data-p-in data-b-dim>DSC_2210.jpg</text>
+              <text x="285" y="248" class="ct-lbl ct-lbl--a" data-p-in data-b-dim>DSC_2211.jpg</text>
+              <text x="530" y="248" class="ct-lbl ct-lbl--a" data-p-in data-b-dim>DSC_2212.jpg</text>
+              <text x="40" y="400" class="ct-lbl ct-lbl--a" data-p-in>search data · product page · image model</text>
+              <text x="40" y="428" class="ct-lbl ct-lbl--a" data-p-in>→ file name · alt · tags</text>
+            </g>
+            <g class="ct-live" data-live>
+              <rect x="0" y="0" width="800" height="500" class="ct-veil" data-live-clip/>
+              <rect x="40" y="400" width="420" height="64" rx="8" class="ct-chip"/>
+              <text x="58" y="426" class="ct-lbl ct-lbl--ink">file name</text>
+              <text x="58" y="450" class="ct-lbl ct-lbl--ink ct-lbl--lg" data-ws-f="name">speckled-stoneware-mug-front.webp</text>
+            </g>
+          </svg>
+        </div>

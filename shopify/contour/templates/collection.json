@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "s-collection",
+      "settings": {
+        "per_page": 24
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

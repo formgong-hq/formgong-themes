@@ -1,0 +1,68 @@
+{
+  "current": "Contour",
+  "presets": {
+    "Contour": {
+      "logo_width": 120,
+      "type_heading_font": "inter_n4",
+      "type_body_font": "inter_n4",
+      "heading_scale": 100,
+      "body_scale": 100,
+      "page_width": "1600px",
+      "corner_radius": 4,
+      "button_shape": "50px",
+      "show_reveal": false,
+      "cart_show_note": true,
+      "card_image_ratio": "1",
+      "card_show_second_image": false,
+      "card_show_rating": false,
+      "card_show_quick_add": true,
+      "formgong_key": "",
+      "ct_bg": "#f4f4f0",
+      "ct_bg_2": "#ecece6",
+      "ct_ink": "#0e0e0d",
+      "ct_muted": "#65655f",
+      "ct_accent": "#2f5bff",
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#F4F4F0",
+            "text": "#0E0E0D",
+            "muted": "#5F5F59",
+            "surface": "#ECECE6",
+            "surface_text": "#0E0E0D",
+            "button": "#0E0E0D",
+            "button_label": "#F4F4F0",
+            "accent": "#2F5BFF",
+            "border": "#D2D2CC"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#F4F4F0",
+            "text": "#0E0E0D",
+            "muted": "#5F5F59",
+            "surface": "#ECECE6",
+            "surface_text": "#0E0E0D",
+            "button": "#0E0E0D",
+            "button_label": "#F4F4F0",
+            "accent": "#2F5BFF",
+            "border": "#D2D2CC"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#F4F4F0",
+            "text": "#0E0E0D",
+            "muted": "#5F5F59",
+            "surface": "#ECECE6",
+            "surface_text": "#0E0E0D",
+            "button": "#0E0E0D",
+            "button_label": "#F4F4F0",
+            "accent": "#2F5BFF",
+            "border": "#D2D2CC"
+          }
+        }
+      }
+    }
+  }
+}

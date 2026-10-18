@@ -1,0 +1,80 @@
+<div class="section color-{{ section.settings.color_scheme }}" data-cart-page>
+  <div class="page-width cart-page" data-section-content="main-cart">
+    <h1 class="h2">{{ 'cart.general.title' | t }}</h1>
+
+    {%- if cart.item_count > 0 -%}
+      <div class="cart-page__layout">
+        <form action="{{ routes.cart_url }}" method="post" id="CartForm-{{ section.id }}" class="cart-page__lines" novalidate>
+          {% render 'cart-lines', section_id: section.id %}
+          <noscript><button class="button button--secondary" type="submit" name="update">{{ 'cart.general.update' | t }}</button></noscript>
+        </form>
+        <aside class="cart-page__summary color-{{ section.settings.summary_color_scheme }}">
+          {% render 'cart-summary', section_id: section.id %}
+        </aside>
+      </div>
+    {%- else -%}
+      <div class="empty-state">
+        <p class="h3">{{ 'cart.general.empty' | t }}</p>
+        <p>{{ 'cart.general.empty_text' | t }}</p>
+        <a class="button" href="{{ routes.all_products_collection_url }}" data-profile-link>{{ 'general.continue_shopping' | t }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .cart-page {
+    padding-block: 40px 72px;
+  }
+
+  .cart-page h1 {
+    margin-bottom: 28px;
+  }
+
+  .cart-page__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+  }
+
+  .cart-page .cart-line {
+    grid-template-columns: 120px minmax(0, 1fr) auto;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .cart-page__summary {
+    position: sticky;
+    top: 110px;
+    padding: 24px;
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  @media (max-width: 849px) {
+    .cart-page__layout {
+      grid-template-columns: 1fr;
+    }
+
+    .cart-page .cart-line {
+      grid-template-columns: 88px minmax(0, 1fr) auto;
+    }
+
+    .cart-page__summary {
+      position: static;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Cart",
+  "class": "section-main-cart",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "color_scheme", "id": "summary_color_scheme", "label": "Order summary color scheme", "default": "scheme-5" }
+  ]
+}
+{% endschema %}

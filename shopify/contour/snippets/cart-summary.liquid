@@ -1,0 +1,46 @@
+{% doc %}
+  Cart totals, discounts, note, taxes notice and checkout buttons.
+  Used by the cart drawer and the cart page. Must sit inside the cart form.
+  @param {string} section_id - Id of the section that renders it
+{% enddoc %}
+<div class="cart-summary">
+  {%- if settings.cart_show_note -%}
+    <details class="cart-note"{% if cart.note != blank %} open{% endif %}>
+      <summary>{{ 'cart.general.note' | t }}</summary>
+      <label class="visually-hidden" for="CartNote-{{ section_id }}">{{ 'cart.general.note' | t }}</label>
+      <textarea class="textarea" id="CartNote-{{ section_id }}" name="note" form="CartForm-{{ section_id }}">{{ cart.note }}</textarea>
+    </details>
+  {%- endif -%}
+
+  {%- if cart.cart_level_discount_applications != blank -%}
+    <ul class="cart-summary__discounts" role="list" aria-label="{{ 'cart.general.discounts' | t }}">
+      {%- for discount in cart.cart_level_discount_applications -%}
+        <li class="cart-summary__row">
+          <span>{{ discount.title }}</span>
+          <span>−{{ discount.total_allocated_amount | money }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
+  <div class="cart-summary__row cart-summary__total">
+    <span>{{ 'cart.general.total' | t }}</span>
+    <span>{{ cart.total_price | money_with_currency }}</span>
+  </div>
+
+  <p class="cart-summary__note">
+    {%- if cart.taxes_included -%}
+      {{ 'cart.general.taxes_included_and_shipping' | t }}
+    {%- else -%}
+      {{ 'cart.general.taxes_and_shipping' | t }}
+    {%- endif -%}
+  </p>
+
+  <button class="button button--full" type="submit" name="checkout" form="CartForm-{{ section_id }}">
+    {{ 'cart.general.checkout' | t }}
+  </button>
+
+  {%- if additional_checkout_buttons -%}
+    <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
+  {%- endif -%}
+</div>

@@ -1,0 +1,31 @@
+{%- comment -%} Contour process: a claim revealed line by line, a drawn line and the steps with dots. {%- endcomment -%}
+<section class="ct-section ct-wrap" id="process" aria-labelledby="h-{{ section.id }}">
+  <header class="ct-section-head"><span class="ct-note ct-note--ink">{{ section.settings.label }}</span><span class="ct-note">{{ section.settings.note }}</span></header>
+  <h2 class="ct-h2 ct-process__claim" id="h-{{ section.id }}" data-reveal="lines">{{ section.settings.heading }}</h2>
+  <div class="ct-process__line" data-draw></div>
+  <ol class="ct-process ct-grid-12">
+    {%- for block in section.blocks -%}
+    <li class="ct-step" data-reveal="up" {{ block.shopify_attributes }}><span class="ct-step__dot" aria-hidden="true"></span><span class="ct-note">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><h3 class="ct-step__title">{{ block.settings.title }}</h3><p class="ct-step__body">{{ block.settings.text }}</p></li>
+    {%- endfor -%}
+  </ol>
+</section>
+{% schema %}
+{
+  "name": "Contour process",
+  "class": "ct-contents",
+  "tag": "div",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "[04] Process" },
+    { "type": "text", "id": "note", "label": "Note on the right" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Clear steps, no surprises." }
+  ],
+  "blocks": [
+    { "type": "step", "name": "Step", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Step" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "What happens in this step." }
+    ] }
+  ],
+  "presets": [{ "name": "Contour process", "blocks": [{ "type": "step" }, { "type": "step" }, { "type": "step" }, { "type": "step" }] }]
+}
+{% endschema %}

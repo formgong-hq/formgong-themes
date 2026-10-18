@@ -1,0 +1,15 @@
+{% doc %}
+  Stilla's line icons (from the Stilla template). Decorative: the caller gives the accessible name.
+
+  @param {string} name - menu, search, bag, account, filter, grid-large, grid-small, close
+{% enddoc %}
+{%- case name -%}
+  {%- when 'menu' -%}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  {%- when 'search' -%}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+  {%- when 'bag' -%}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+  {%- when 'account' -%}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.6-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
+  {%- when 'filter' -%}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+  {%- when 'grid-large' -%}<svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><rect width="6" height="6"/><rect x="8" width="6" height="6"/><rect y="8" width="6" height="6"/><rect x="8" y="8" width="6" height="6"/></svg>
+  {%- when 'grid-small' -%}<svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><rect width="3" height="3"/><rect y="5.5" width="3" height="3"/><rect y="11" width="3" height="3"/><rect x="5.5" width="3" height="3"/><rect x="5.5" y="5.5" width="3" height="3"/><rect x="5.5" y="11" width="3" height="3"/><rect x="11" width="3" height="3"/><rect x="11" y="5.5" width="3" height="3"/><rect x="11" y="11" width="3" height="3"/></svg>
+  {%- when 'close' -%}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg>
+{%- endcase -%}

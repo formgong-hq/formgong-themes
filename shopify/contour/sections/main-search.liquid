@@ -1,0 +1,145 @@
+{%- liquid
+  assign has_filters = false
+  if search.performed and search.filters.size > 0 and section.settings.enable_filtering
+    assign has_filters = true
+  endif
+-%}
+<div class="section color-{{ section.settings.color_scheme }}">
+  <div class="page-width collection search-page" data-collection-section data-section-id="{{ section.id }}">
+    <header class="collection__head">
+      <div class="collection__intro">
+        <h1>{{ 'search.title' | t }}</h1>
+        <form action="{{ routes.search_url }}" method="get" role="search" class="search-page__form">
+          <label class="visually-hidden" for="SearchPageInput">{{ 'search.placeholder' | t }}</label>
+          <input class="input" id="SearchPageInput" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}">
+          <input type="hidden" name="options[prefix]" value="last">
+          <button class="button" type="submit">{% render 'icon', name: 'search' %} {{ 'search.submit' | t }}</button>
+        </form>
+      </div>
+    </header>
+
+    {%- if search.performed -%}
+      {%- paginate search.results by section.settings.results_per_page -%}
+        <div class="collection__layout{% unless has_filters %} collection__layout--full{% endunless %}">
+          {%- if has_filters -%}
+            <aside class="collection__filters" aria-label="{{ 'collections.filters.title' | t }}">
+              <dialog class="drawer drawer--left filters-drawer" id="FiltersDrawer-{{ section.id }}" aria-label="{{ 'collections.filters.title' | t }}" data-scroll-lock>
+                <div class="drawer__inner">
+                  <div class="drawer__head">
+                    <h2 class="h3">{{ 'collections.filters.title' | t }}</h2>
+                    <button class="icon-button" type="button" data-close-dialog aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'close' %}</button>
+                  </div>
+                  <div class="drawer__body">{% render 'facets', results: search, section_id: section.id, show_sort: true %}</div>
+                  <div class="drawer__foot">
+                    <button class="button button--full" type="button" data-close-dialog>{{ 'collections.filters.show_results' | t }}</button>
+                  </div>
+                </div>
+              </dialog>
+            </aside>
+          {%- endif -%}
+
+          <div class="collection__main">
+            <div class="collection__toolbar">
+              {%- if has_filters -%}
+                <button class="button button--secondary collection__filter-button" type="button" data-open-dialog="FiltersDrawer-{{ section.id }}" aria-haspopup="dialog">
+                  {% render 'icon', name: 'filter' %} {{ 'collections.filters.title' | t }}
+                </button>
+              {%- endif -%}
+              <p class="collection__count" data-results-count role="status">
+                {%- if search.results_count > 0 -%}
+                  {{ 'search.results_count' | t: count: search.results_count }} · {{ 'search.results_for' | t: terms: search.terms }}
+                {%- else -%}
+                  {{ 'search.no_results' | t: terms: search.terms }}
+                {%- endif -%}
+              </p>
+            </div>
+
+            <div data-collection-results>
+            <h2 class="visually-hidden">{{ 'search.products' | t }}</h2>
+              {%- if search.results_count > 0 -%}
+                <ul class="product-grid" role="list" style="--columns-desktop: 3; --columns-tablet: 2; --columns-mobile: 2;">
+                  {%- for item in search.results -%}
+                    {%- case item.object_type -%}
+                      {%- when 'product' -%}
+                        {% render 'product-card', product: item, sizes: '(min-width: 990px) 22vw, 50vw' %}
+                      {%- when 'article' -%}
+                        <li class="result-card">
+                          {%- if item.image -%}
+                            <div class="result-card__media">{{ item.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '(min-width: 990px) 22vw, 50vw', alt: item.image.alt | default: item.title }}</div>
+                          {%- endif -%}
+                          <p class="result-card__type">{{ 'search.articles' | t }}</p>
+                          <h3 class="card__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                          <p class="result-card__excerpt">{{ item.excerpt_or_content | strip_html | truncatewords: 20 }}</p>
+                        </li>
+                      {%- when 'page' -%}
+                        <li class="result-card">
+                          <p class="result-card__type">{{ 'search.pages' | t }}</p>
+                          <h3 class="card__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                          <p class="result-card__excerpt">{{ item.content | strip_html | truncatewords: 20 }}</p>
+                        </li>
+                    {%- endcase -%}
+                  {%- endfor -%}
+                </ul>
+                {%- if paginate.pages > 1 -%}{% render 'pagination', paginate: paginate %}{%- endif -%}
+              {%- else -%}
+                <div class="empty-state">
+                  <p class="h3">{{ 'search.no_results' | t: terms: search.terms }}</p>
+                  <a class="button" href="{{ routes.all_products_collection_url }}">{{ 'general.continue_shopping' | t }}</a>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endpaginate -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .result-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    color: var(--color-surface-text);
+  }
+
+  .result-card__media {
+    border-radius: calc(var(--radius) * 0.7);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 6px;
+  }
+
+  .result-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .result-card__type {
+    font-size: 0.78rem;
+    font-weight: var(--font-body-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .result-card__excerpt {
+    font-size: 0.92rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Search results",
+  "class": "section-main-search",
+  "settings": [
+    { "type": "range", "id": "results_per_page", "label": "Results per page", "min": 8, "max": 36, "step": 4, "default": 16 },
+    { "type": "checkbox", "id": "enable_filtering", "label": "Enable filtering", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

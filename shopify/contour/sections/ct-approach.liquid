@@ -1,0 +1,32 @@
+{%- comment -%} Contour approach: three outline lines that fill with ink on scroll, the dimension notes and a lead. {%- endcomment -%}
+<section class="ct-section ct-wrap manifesto" data-wireframe aria-labelledby="h-{{ section.id }}">
+  <header class="ct-section-head"><span class="ct-note ct-note--ink">{{ section.settings.label }}</span><span class="ct-note" data-wf-note>{{ section.settings.note }}</span></header>
+  <h2 class="ct-wf" id="h-{{ section.id }}">
+    {%- assign dims = '↤ 12 col ↦|size: var(--step-4)|tracking −0.05em' | split: '|' -%}
+    {%- for i in (1..3) -%}
+      {%- capture key %}line_{{ i }}{% endcapture -%}
+      {%- assign line = section.settings[key] -%}
+      {%- if line != blank -%}
+      <span class="ct-wf-row"><span class="ct-wf-line ct-h1"><span class="ct-outline-text" aria-hidden="true">{{ line }}</span><span class="ct-wf-solid" data-wf-solid><span class="ct-wf-solid__inner">{{ line }}</span></span></span>{%- if section.settings.show_notes -%}<span class="ct-wf-dim ct-note" data-wf-note aria-hidden="true">{{ dims[forloop.index0] }}</span>{%- endif -%}</span>
+      {%- endif -%}
+    {%- endfor -%}
+  </h2>
+  {%- if section.settings.text != blank -%}<div class="ct-manifesto__body ct-grid-12"><div class="ct-lead" data-reveal="up">{{ section.settings.text }}</div></div>{%- endif -%}
+</section>
+{% schema %}
+{
+  "name": "Contour approach",
+  "class": "ct-contents",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "[01] Approach" },
+    { "type": "text", "id": "note", "label": "Note on the right", "default": "fig. 01 · sketch → shipped" },
+    { "type": "text", "id": "line_1", "label": "Line 1", "default": "Hold the vision." },
+    { "type": "text", "id": "line_2", "label": "Line 2", "default": "Cut what slows" },
+    { "type": "text", "id": "line_3", "label": "Line 3", "default": "the launch." },
+    { "type": "checkbox", "id": "show_notes", "label": "Show the dimension notes", "default": true },
+    { "type": "richtext", "id": "text", "label": "Text" }
+  ],
+  "presets": [{ "name": "Contour approach" }]
+}
+{% endschema %}

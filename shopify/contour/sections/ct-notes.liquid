@@ -1,0 +1,46 @@
+{%- comment -%}
+  Contour field notes: the latest articles of a blog as rows (date, title, first tag). With no articles yet, the
+  "note" blocks are shown instead (or nothing).
+{%- endcomment -%}
+{%- assign blog = section.settings.blog -%}
+<section class="ct-section ct-wrap" id="notes" aria-labelledby="h-{{ section.id }}">
+  <header class="ct-section-head"><h2 class="ct-note ct-note--ink" id="h-{{ section.id }}">{{ section.settings.label }}</h2>{%- if blog != blank and blog.articles_count > 0 -%}<a class="ct-note ct-link" href="{{ blog.url }}">{{ section.settings.all_label }}</a>{%- else -%}<span class="ct-note">{{ section.settings.note }}</span>{%- endif -%}</header>
+  <ul class="ct-posts">
+    {%- if blog != blank and blog.articles_count > 0 -%}
+      {%- for article in blog.articles limit: section.settings.count -%}
+        <li data-reveal="up"><a class="ct-post ct-grid-12" href="{{ article.url }}"><span class="ct-post__date ct-note">{{ article.published_at | date: '%d %b %Y' }}</span><span class="ct-post__title ct-h3">{{ article.title }}</span><span class="ct-post__pillar ct-note">{{ article.tags.first }}</span></a></li>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for block in section.blocks -%}
+        <li data-reveal="up" {{ block.shopify_attributes }}><a class="ct-post ct-grid-12" href="{{ block.settings.link | default: '#notes' }}"><span class="ct-post__date ct-note">{{ block.settings.date }}</span><span class="ct-post__title ct-h3">{{ block.settings.title }}</span><span class="ct-post__pillar ct-note">{{ block.settings.tag }}</span></a></li>
+      {%- endfor -%}
+    {%- endif -%}
+  </ul>
+</section>
+{% schema %}
+{
+  "name": "Contour notes",
+  "class": "ct-contents",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "[05] Field notes" },
+    { "type": "text", "id": "note", "label": "Note on the right", "default": "Short write-ups" },
+    { "type": "text", "id": "all_label", "label": "Link to the blog", "default": "All notes →" },
+    { "type": "blog", "id": "blog", "label": "Blog" },
+    { "type": "range", "id": "count", "label": "Articles", "min": 1, "max": 8, "step": 1, "default": 3 }
+  ],
+  "blocks": [
+    {
+      "type": "note",
+      "name": "Note (no blog)",
+      "settings": [
+        { "type": "text", "id": "date", "label": "Date", "default": "01 Jan 2026" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Note title" },
+        { "type": "text", "id": "tag", "label": "Tag", "default": "Tag" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Contour notes" }]
+}
+{% endschema %}

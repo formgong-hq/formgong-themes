@@ -1,0 +1,32 @@
+<div class="section color-{{ section.settings.color_scheme }}">
+  <div class="page-width page-content">
+    <h1>{{ page.title }}</h1>
+    <div class="rte page-content__body">{{ page.content }}</div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .page-content {
+    padding-block: 40px 72px;
+    max-width: 920px;
+  }
+
+  .page-content h1 {
+    margin-bottom: 28px;
+  }
+
+  .page-content__body {
+    font-size: 1.08rem;
+    max-width: 68ch;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Page",
+  "class": "section-main-page",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

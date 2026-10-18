@@ -1,0 +1,38 @@
+{%- comment -%} Contour services: big rows that fill with ink on hover (number, title, text, tags, arrow). {%- endcomment -%}
+<section class="ct-section ct-wrap" id="services" aria-labelledby="h-{{ section.id }}">
+  <header class="ct-section-head"><h2 class="ct-note ct-note--ink" id="h-{{ section.id }}">{{ section.settings.label }}</h2>{%- if section.settings.link_label != blank -%}<a class="ct-note ct-link" href="{{ section.settings.link | default: '#contact' }}">{{ section.settings.link_label }}</a>{%- endif -%}</header>
+  <ol class="ct-services">
+    {%- for block in section.blocks -%}
+    {%- assign b = block.settings -%}
+    <li class="ct-service" data-reveal="up" {{ block.shopify_attributes }}><a class="ct-service__link ct-grid-12" href="{{ b.link | default: '#contact' }}" data-fill>
+      <span class="ct-service__n ct-note" aria-hidden="true">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+      <span class="ct-service__title ct-h2">{{ b.title }}</span>
+      <span class="ct-service__body">{{ b.text }}</span>
+      <span class="ct-service__tags">{%- assign tags = b.tags | split: ',' -%}{%- for t in tags -%}<span class="ct-note">{{ t | strip }}</span>{%- endfor -%}</span>
+      <span class="ct-service__arrow" aria-hidden="true">→</span>
+    </a></li>
+    {%- endfor -%}
+  </ol>
+</section>
+{% schema %}
+{
+  "name": "Contour services",
+  "class": "ct-contents",
+  "tag": "div",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "[03] Services" },
+    { "type": "text", "id": "link_label", "label": "Link on the right", "default": "Ask for a quote →" },
+    { "type": "url", "id": "link", "label": "Link", "info": "Empty: the contact section." }
+  ],
+  "blocks": [
+    { "type": "service", "name": "Service", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Service" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "What it includes, in one or two sentences." },
+      { "type": "text", "id": "tags", "label": "Tags", "info": "Separate with commas." },
+      { "type": "url", "id": "link", "label": "Link", "info": "Empty: the contact section." }
+    ] }
+  ],
+  "presets": [{ "name": "Contour services", "blocks": [{ "type": "service" }, { "type": "service" }, { "type": "service" }] }]
+}
+{% endschema %}

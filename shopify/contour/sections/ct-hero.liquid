@@ -1,0 +1,64 @@
+{%- comment -%}
+  Contour hero: the plotter preloader, a meta line, the hand-set headline that fills from outline to ink, the
+  subline that is generated word by word, the legend, the lead and two buttons. On desktops with a mouse a WebGL
+  contour map rises under the pointer (added by contour.js).
+{%- endcomment -%}
+{%- if section.settings.show_loader -%}
+<div class="ct-preloader" aria-hidden="true">
+  <div class="ct-preloader__meta ct-note"><span>{{ section.settings.loader_word }}</span><span>rev. {{ 'now' | date: '%Y' }}</span></div>
+  {% render 'ct-mark', class_name: 'ct-preloader__mark' %}
+  <div class="ct-preloader__meta ct-note"><span>{{ section.settings.loader_note }}</span><span class="ct-preloader__count"></span></div>
+</div>
+{%- endif -%}
+<section class="ct-hero ct-wrap" id="top" data-hero>
+  <div class="ct-hero__top ct-note">
+    {%- if section.settings.meta_1 != blank -%}<span>{{ section.settings.meta_1 }}</span>{%- endif -%}
+    {%- if section.settings.meta_2 != blank -%}<span class="ct-hide-sm">{{ section.settings.meta_2 }}</span>{%- endif -%}
+    {%- if section.settings.meta_3 != blank -%}<span>{{ section.settings.meta_3 }}</span>{%- endif -%}
+  </div>
+  <h1 class="ct-hero__title">
+    <span class="ct-hero__human ct-display" data-hero-human data-bp="h1.human">{{ section.settings.heading }}</span>
+    {%- if section.settings.subheading != blank -%} <span class="ct-hero__machine ct-h2" data-hero-generate data-bp="h1.machine">{{ section.settings.subheading }}</span>{%- endif -%}
+  </h1>
+  {%- if section.settings.show_legend -%}
+  <div class="ct-hero__notes">
+    <p class="ct-note" data-hero-fade><span class="ct-note--accent">●</span> {{ section.settings.legend_1 }}</p>
+    <p class="ct-note" data-hero-fade><span class="ct-note--accent">◆</span> {{ section.settings.legend_2 }} · <span data-gen-tokens>{{ section.settings.subheading | split: ' ' | size }}</span> {{ 'contour.hero.tokens' | t }} · <span data-gen-ms>0</span> ms</p>
+    {%- if section.settings.legend_3 != blank -%}<p class="ct-note ct-hero__terrain" aria-hidden="true"><span class="ct-note--accent">▲</span> {{ section.settings.legend_3 }}</p>{%- endif -%}
+  </div>
+  {%- endif -%}
+  <div class="ct-hero__foot">
+    {%- if section.settings.lead != blank -%}<p class="ct-hero__intro ct-lead" data-hero-fade data-bp="p.lead">{{ section.settings.lead }}</p>{%- endif -%}
+    <div class="ct-hero__ctas" data-hero-fade data-bp="nav.cta">
+      {%- if section.settings.button_1 != blank -%}<a class="ct-btn" href="{{ section.settings.link_1 | default: '#contact' }}">{{ section.settings.button_1 }} <span class="ct-arrow" aria-hidden="true">→</span></a>{%- endif -%}
+      {%- if section.settings.button_2 != blank -%}<a class="ct-btn ct-btn--ghost" href="{{ section.settings.link_2 | default: '#work' }}">{{ section.settings.button_2 }}</a>{%- endif -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Contour hero",
+  "class": "ct-contents",
+  "tag": "div",
+  "settings": [
+    { "type": "checkbox", "id": "show_loader", "label": "Show the preloader", "default": true },
+    { "type": "text", "id": "loader_word", "label": "Preloader word", "default": "Surveying the site" },
+    { "type": "text", "id": "loader_note", "label": "Preloader note", "default": "Human + machine" },
+    { "type": "text", "id": "meta_1", "label": "Top line, left" },
+    { "type": "text", "id": "meta_2", "label": "Top line, middle" },
+    { "type": "text", "id": "meta_3", "label": "Top line, right" },
+    { "type": "text", "id": "heading", "label": "Headline", "default": "I build it." },
+    { "type": "text", "id": "subheading", "label": "Generated line", "default": "Websites and tools, built carefully." },
+    { "type": "checkbox", "id": "show_legend", "label": "Show the legend", "default": true },
+    { "type": "text", "id": "legend_1", "label": "Legend: headline", "default": "human · set by hand" },
+    { "type": "text", "id": "legend_2", "label": "Legend: generated line", "default": "machine · generated" },
+    { "type": "text", "id": "legend_3", "label": "Legend: relief", "default": "relief · move the pointer to lift the ground" },
+    { "type": "text", "id": "lead", "label": "Short text" },
+    { "type": "text", "id": "button_1", "label": "Button 1", "default": "Start a project" },
+    { "type": "url", "id": "link_1", "label": "Button 1 link", "info": "Empty: the contact section." },
+    { "type": "text", "id": "button_2", "label": "Button 2", "default": "See the work" },
+    { "type": "url", "id": "link_2", "label": "Button 2 link", "info": "Empty: the work section." }
+  ],
+  "presets": [{ "name": "Contour hero" }]
+}
+{% endschema %}
