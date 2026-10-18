@@ -1,0 +1,105 @@
+{
+  "sections": {
+    "hero": {
+      "type": "ct-hero",
+      "settings": {}
+    },
+    "approach": {
+      "type": "ct-approach",
+      "settings": {}
+    },
+    "work": {
+      "type": "ct-work",
+      "settings": {},
+      "blocks": {
+        "c1": {
+          "type": "case",
+          "settings": {}
+        },
+        "c2": {
+          "type": "case",
+          "settings": {}
+        },
+        "c3": {
+          "type": "case",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ]
+    },
+    "services": {
+      "type": "ct-services",
+      "settings": {},
+      "blocks": {
+        "s1": {
+          "type": "service",
+          "settings": {}
+        },
+        "s2": {
+          "type": "service",
+          "settings": {}
+        },
+        "s3": {
+          "type": "service",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "process": {
+      "type": "ct-process",
+      "settings": {},
+      "blocks": {
+        "p1": {
+          "type": "step",
+          "settings": {}
+        },
+        "p2": {
+          "type": "step",
+          "settings": {}
+        },
+        "p3": {
+          "type": "step",
+          "settings": {}
+        },
+        "p4": {
+          "type": "step",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ]
+    },
+    "notes": {
+      "type": "ct-notes",
+      "settings": {
+        "blog": "news"
+      }
+    },
+    "contact": {
+      "type": "ct-contact",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "approach",
+    "work",
+    "services",
+    "process",
+    "notes",
+    "contact"
+  ]
+}

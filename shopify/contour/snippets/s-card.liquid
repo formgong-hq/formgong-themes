@@ -1,0 +1,66 @@
+{% doc %}
+  A Stilla product card: photo with the second image on hover, a badge, name, price, colour swatches and quick add.
+  Without a product (empty store, theme editor) it shows a placeholder card.
+
+  @param {object} [product] - the product
+  @param {string} [sizes] - the image sizes attribute
+{% enddoc %}
+{%- liquid
+  assign sizes = sizes | default: '(max-width: 900px) 50vw, 25vw'
+  assign colour_index = -1
+  if product
+    for option in product.options_with_values
+      assign option_name = option.name | downcase
+      if option_name == 'colour' or option_name == 'color'
+        assign colour_index = forloop.index0
+      endif
+    endfor
+  endif
+-%}
+<article class="s-card">
+  <div class="s-ph">
+    {%- if product.featured_media -%}
+      {{ product.featured_media | image_url: width: 960 | image_tag: widths: '480, 720, 960, 1200', sizes: sizes, loading: 'lazy', alt: product.featured_media.alt | default: product.title }}
+      {%- if settings.card_show_second_image and product.media.size > 1 -%}
+        {{ product.media[1] | image_url: width: 960 | image_tag: widths: '480, 720, 960', sizes: sizes, loading: 'lazy', alt: '', class: 's-alt' }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-apparel-1' | placeholder_svg_tag: 's-placeholder' }}
+    {%- endif -%}
+    {%- liquid
+      assign badge = ''
+      if product.compare_at_price > product.price
+        assign badge = 'products.badge.sale' | t
+      elsif product.tags contains 'new'
+        assign badge = 'products.badge.new' | t
+      elsif product.tags contains 'bestseller'
+        assign badge = 'products.badge.bestseller' | t
+      elsif product.available == false and product != blank
+        assign badge = 'products.product.sold_out' | t
+      endif
+    -%}
+    {%- if badge != blank %}<span class="s-badge">{{ badge }}</span>{% endif -%}
+    {%- if settings.card_show_quick_add and product != blank and product.available -%}
+      {%- if product.has_only_default_variant -%}
+        <button class="s-quick" type="button" data-quick-add="{{ product.selected_or_first_available_variant.id }}">{{ 'products.card.quick_add' | t }}<span class="s-sr"> {{ product.title }}</span></button>
+      {%- else -%}
+        <a class="s-quick s-quick-link" href="{{ product.url }}" tabindex="-1" aria-hidden="true">{{ 'products.card.choose' | t }}</a>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+  <div class="s-meta">
+    <h3><a href="{{ product.url | default: '#' }}">{{ product.title | default: 'Product name' }}</a></h3>
+    <p class="s-price" style="margin:0">
+      {%- if product.compare_at_price > product.price -%}
+        <s><span class="s-sr">{{ 'products.product.price.regular' | t }}</span>{{ product.compare_at_price | money }}</s><span class="s-sr">{{ 'products.product.price.sale' | t }}</span>
+      {%- endif -%}
+      {%- if product.price_varies -%}{%- assign from_money = product.price_min | money -%}{{ 'products.product.price.from_price_html' | t: price: from_money }}{% else %}{{ product.price | default: 1900 | money }}{% endif -%}
+    </p>
+    {%- if colour_index >= 0 -%}
+      {%- assign option = product.options_with_values[colour_index] -%}
+      <span class="s-sw"><span class="s-sr">{{ option.name }}: {{ option.values | map: 'name' | join: ', ' }}</span>
+        {%- for value in option.values limit: 6 -%}<i style="background:{% render 's-swatch', value: value %}" title="{{ value.name | escape }}"></i>{%- endfor -%}
+      </span>
+    {%- endif -%}
+  </div>
+</article>

@@ -1,0 +1,39 @@
+<div class="section color-{{ section.settings.color_scheme }}">
+  <div class="page-width section-pad" style="--pad-top: 40px; --pad-bottom: 72px;">
+    <div class="section-heading"><h1>{{ section.settings.heading }}</h1></div>
+    {%- paginate collections by 24 -%}
+      <ul class="tiles tiles--3" role="list">
+        {%- for collection in collections -%}
+          <li class="tile">
+            <a class="tile__link" href="{{ collection.url }}" data-profile-link>
+              {%- if collection.featured_image -%}
+                {{ collection.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360, 540, 720, 900', sizes: '(min-width: 990px) 33vw, 100vw', alt: collection.featured_image.alt | default: collection.title }}
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              <span class="tile__label">
+                <span>
+                  <span class="tile__title">{{ collection.title }}</span>
+                  <span class="tile__subtitle">{{ 'collections.general.items_count' | t: count: collection.products_count }}</span>
+                </span>
+                <span class="tile__arrow" aria-hidden="true">{% render 'icon', name: 'arrow-right' %}</span>
+              </span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+      {%- if paginate.pages > 1 -%}{% render 'pagination', paginate: paginate %}{%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "class": "section-list-collections",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Collections" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,34 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "ct-header",
+      "settings": {
+        "name": "",
+        "role": "",
+        "menu": "main-menu",
+        "show_theme": true,
+        "show_accent": true,
+        "show_cart": true,
+        "cta_label": "Start a project",
+        "cta_link": ""
+      },
+      "blocks": {
+        "b1": {
+          "type": "link",
+          "settings": {
+            "label": "Contact",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

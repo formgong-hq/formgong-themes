@@ -1,0 +1,133 @@
+<div class="section color-{{ section.settings.color_scheme }}">
+  <div class="page-width section-pad" style="--pad-top: 40px; --pad-bottom: 72px;">
+    <div class="section-heading">
+      <h1>{{ blog.title }}</h1>
+      {%- if blog.all_tags.size > 0 -%}
+        <ul class="blog-tags" role="list">
+          <li><a href="{{ blog.url }}"{% unless current_tags %} aria-current="page"{% endunless %}>{{ 'blog.all' | t }}</a></li>
+          {%- for tag in blog.all_tags -%}
+            <li><a href="{{ blog.url }}/tagged/{{ tag | handleize }}"{% if current_tags contains tag %} aria-current="page"{% endif %}>{{ tag }}</a></li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+    {%- paginate blog.articles by section.settings.per_page -%}
+      <ul class="articles" role="list">
+        {%- for article in blog.articles -%}
+          <li class="article-card reveal">
+            <a class="article-card__media" href="{{ article.url }}" tabindex="-1" aria-hidden="true">
+              {%- if article.image -%}
+                {%- liquid
+                  assign focal = 'object-position: 50% 0%'
+                  if article.image.presentation.focal_point
+                    assign focal = 'object-position: ' | append: article.image.presentation.focal_point
+                  endif
+                -%}
+                {{ article.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360, 540, 720, 900', sizes: '(min-width: 990px) 33vw, 100vw', alt: '', style: focal }}
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </a>
+            {%- if section.settings.show_date -%}
+              <p class="article-card__meta">{{ article.published_at | time_tag: format: 'date' }}</p>
+            {%- endif -%}
+            <h2 class="h3 article-card__title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+            <p class="article-card__excerpt">{{ article.excerpt_or_content | strip_html | truncatewords: 26 }}</p>
+          </li>
+        {%- else -%}
+          <li class="empty-state"><p class="h3">{{ blog.title }}</p></li>
+        {%- endfor -%}
+      </ul>
+      {%- if paginate.pages > 1 -%}{% render 'pagination', paginate: paginate %}{%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .blog-tags a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 16px;
+    border: 2px solid var(--color-line);
+    border-radius: 999px;
+    font-weight: var(--font-body-weight-bold);
+    text-decoration: none;
+  }
+
+  .blog-tags a[aria-current="page"] {
+    background: var(--color-button);
+    border-color: var(--color-button);
+    color: var(--color-button-label);
+  }
+
+  .articles {
+    display: grid;
+    /* At most three per row, so three posts fill the row instead of leaving a fourth slot empty */
+    grid-template-columns: repeat(auto-fill, minmax(max(280px, calc((100% - 44px) / 3)), 1fr));
+    gap: 32px 22px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .article-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .article-card__media {
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--color-surface);
+    margin-bottom: 6px;
+  }
+
+  .article-card__media img,
+  .article-card__media .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .article-card:hover .article-card__media img {
+    transform: scale(1.05);
+  }
+
+  .article-card__meta {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+
+  .article-card__title a {
+    text-decoration: none;
+  }
+
+  .article-card__excerpt {
+    color: var(--color-muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Blog posts",
+  "class": "section-main-blog",
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "Posts per page", "min": 3, "max": 24, "step": 3, "default": 9 },
+    { "type": "checkbox", "id": "show_date", "label": "Show date", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

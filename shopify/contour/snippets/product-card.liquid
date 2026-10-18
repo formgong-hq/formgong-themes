@@ -1,0 +1,75 @@
+{% doc %}
+  Product card used in grids, sliders, search and recommendations.
+
+  @param {product} product - The product
+  @param {string} [sizes] - The sizes attribute for the image
+  @param {boolean} [lazy] - Lazy-load the image (default true)
+  @param {string} [tag] - Wrapper tag, defaults to li
+{% enddoc %}
+{%- liquid
+  assign wrapper = tag | default: 'li'
+  assign sizes = sizes | default: '(min-width: 990px) 25vw, 50vw'
+  assign variant = product.selected_or_first_available_variant
+  assign loading = 'lazy'
+  if lazy == false
+    assign loading = 'eager'
+  endif
+  assign tags_list = ''
+  for t in product.tags
+    assign tag_handle = t | handleize
+    assign tags_list = tags_list | append: tag_handle | append: '|'
+  endfor
+-%}
+<{{ wrapper }} class="card reveal" data-tags="{{ tags_list }}">
+  <div class="card__media">
+    {%- if product.featured_media -%}
+      {{
+        product.featured_media.preview_image
+        | image_url: width: 900
+        | image_tag:
+          loading: loading,
+          widths: '240, 360, 480, 600, 750, 900',
+          sizes: sizes,
+          alt: product.featured_media.alt | default: product.title
+      }}
+      {%- if settings.card_show_second_image and product.media[1] -%}
+        {{
+          product.media[1].preview_image
+          | image_url: width: 900
+          | image_tag: loading: 'lazy', widths: '240, 360, 480, 600, 750, 900', sizes: sizes, alt: ''
+        }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+
+    <div class="card__badges">
+      {%- if product.available == false -%}
+        <span class="badge badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
+      {%- elsif product.compare_at_price_max > product.price -%}
+        <span class="badge badge--sale">{{ 'products.product.on_sale' | t }}</span>
+      {%- endif -%}
+    </div>
+
+    {%- if settings.card_show_quick_add and product.available -%}
+      {%- if product.has_only_default_variant -%}
+        {%- form 'product', product, data-product-form: '', data-ajax: '', class: 'card__quick-form' -%}
+          <input type="hidden" name="id" value="{{ variant.id }}">
+          <button class="card__quick" type="submit" aria-label="{{ 'products.product.quick_add' | t: product: product.title | escape }}">
+            {% render 'icon', name: 'plus' %}
+          </button>
+        {%- endform -%}
+      {%- else -%}
+        <a class="card__quick" href="{{ product.url }}" aria-label="{{ 'products.product.choose_options' | t: product: product.title | escape }}">
+          {% render 'icon', name: 'arrow-right' %}
+        </a>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  <h3 class="card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+  {%- if settings.card_show_rating -%}
+    {% render 'rating', product: product %}
+  {%- endif -%}
+  {% render 'price', product: product, show_range: true %}
+</{{ wrapper }}>

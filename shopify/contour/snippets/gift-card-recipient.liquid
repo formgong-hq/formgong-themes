@@ -1,0 +1,41 @@
+{% doc %}
+  Lets customers send a gift card straight to someone else.
+  Field names follow Shopify's gift card recipient properties.
+
+  @param {object} form - The product form object
+  @param {string} section_id - The section id
+{% enddoc %}
+<details class="recipient"{% if form.email != blank %} open{% endif %}>
+  <summary class="recipient__toggle">
+    <input
+      type="checkbox"
+      id="Recipient-checkbox-{{ section_id }}"
+      name="properties[__shopify_send_gift_card_to_recipient]"
+      value="on"
+      {% if form.email != blank %}checked{% endif %}
+      tabindex="-1"
+      aria-hidden="true"
+    >
+    {{ 'products.product.gift_card.send_to_recipient' | t }}
+  </summary>
+  <div class="recipient__fields">
+    <div class="field">
+      <label for="Recipient-email-{{ section_id }}">{{ 'products.product.gift_card.email_label' | t }}</label>
+      <input class="input" id="Recipient-email-{{ section_id }}" type="email" name="properties[Recipient email]" value="{{ form.email }}" autocomplete="email">
+    </div>
+    <div class="field">
+      <label for="Recipient-name-{{ section_id }}">{{ 'products.product.gift_card.name_label' | t }}</label>
+      <input class="input" id="Recipient-name-{{ section_id }}" type="text" name="properties[Recipient name]" value="{{ form.name }}" autocomplete="name">
+    </div>
+    <div class="field">
+      <label for="Recipient-message-{{ section_id }}">{{ 'products.product.gift_card.message_label' | t }}</label>
+      <textarea class="textarea" id="Recipient-message-{{ section_id }}" name="properties[Message]" maxlength="200" aria-describedby="Recipient-message-hint-{{ section_id }}">{{ form.message }}</textarea>
+      <small id="Recipient-message-hint-{{ section_id }}">{{ 'products.product.gift_card.max_characters' | t: max_chars: 200 }}</small>
+    </div>
+    <div class="field">
+      <label for="Recipient-send-on-{{ section_id }}">{{ 'products.product.gift_card.send_on_label' | t }}</label>
+      <input class="input" id="Recipient-send-on-{{ section_id }}" type="date" name="properties[Send on]" value="{{ form.send_on }}" pattern="\d{4}-\d{2}-\d{2}">
+    </div>
+    <input type="hidden" name="properties[__shopify_offset]" value="" data-timezone-offset>
+  </div>
+</details>

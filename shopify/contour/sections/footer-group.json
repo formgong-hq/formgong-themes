@@ -1,0 +1,44 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "ct-footer",
+      "settings": {
+        "heading": "Have a project in mind?",
+        "link_label": "Let's talk.",
+        "link": "",
+        "mark": "",
+        "show_stats": false,
+        "stats_note": "Privacy spec",
+        "stats_link": "",
+        "credit_line": "",
+        "show_hint": true,
+        "legal_menu": "footer"
+      },
+      "blocks": {
+        "f1": {
+          "type": "column",
+          "settings": {
+            "heading": "Site",
+            "menu": "main-menu"
+          }
+        },
+        "f2": {
+          "type": "column",
+          "settings": {
+            "heading": "Elsewhere",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

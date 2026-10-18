@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="ct-no-js{% unless template.name == 'index' %} ct-inner{% endunless %}">
+  <head>
+    {% render 'meta-tags' %}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+    {%- else -%}
+      <link rel="icon" type="image/svg+xml" href="{{ 'contour-favicon.svg' | asset_url }}">
+    {%- endif -%}
+    <meta name="theme-color" content="{{ settings.ct_bg }}">
+    {{ 'ct-geist-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {{ 'ct-geist-mono-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+
+    {% render 'css-variables' %}
+    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'stilla.css' | asset_url | stylesheet_tag }}
+    {{ 'contour.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      :root:not([data-theme=dark]) {
+        --ct-bg: {{ settings.ct_bg }};
+        --ct-bg-raised: {{ settings.ct_bg_2 }};
+        --ct-ink: {{ settings.ct_ink }};
+        --ct-muted: {{ settings.ct_muted }};
+      }
+      :root:not([data-accent]):not([data-theme=dark]) { --ct-accent: {{ settings.ct_accent }}; --ct-accent-text: {{ settings.ct_accent }}; }
+    {% endstyle %}
+
+    <script>
+      document.documentElement.classList.remove("ct-no-js"); document.documentElement.classList.add("ct-js");
+      (function (d) { try { var t = localStorage.getItem("ct-theme"), a = localStorage.getItem("ct-accent"); if (t) d.dataset.theme = t; if (a) d.dataset.accent = a; if (sessionStorage.getItem("ct-preloaded")) d.dataset.preloaded = "yes"; } catch (e) {} })(document.documentElement);
+      window.Scamper = {
+        routes: {
+          root: {{ routes.root_url | json }},
+          cart: {{ routes.cart_url | json }},
+          cartAdd: {{ routes.cart_add_url | json }},
+          cartChange: {{ routes.cart_change_url | json }},
+          cartUpdate: {{ routes.cart_update_url | json }},
+          search: {{ routes.search_url | json }},
+          predictiveSearch: {{ routes.predictive_search_url | json }},
+          productRecommendations: {{ routes.product_recommendations_url | json }}
+        },
+        cartType: "page",
+        reveal: false,
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }},
+          cartError: {{ 'cart.general.error' | t | json }},
+          added: {{ 'cart.general.added' | t | json }}
+        }
+      };
+      window.StillaStrings = {
+        added: {{ 'stilla.product.added' | t | json }},
+        addToBag: {{ 'stilla.product.add' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        cartError: {{ 'cart.general.error' | t | json }},
+        sending: {{ 'stilla.form.sending' | t | json }},
+        formError: {{ 'stilla.form.error' | t | json }},
+        formOffline: {{ 'stilla.form.offline' | t | json }}
+      };
+    </script>
+    <script src="{{ 'theme.js' | asset_url }}" type="module" defer></script>
+    <script src="{{ 'stilla.js' | asset_url }}" defer></script>
+    <script src="{{ 'ct-gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ct-scrolltrigger.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ct-splittext.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ct-lenis.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'contour.js' | asset_url }}" defer></script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="ct-frame color-{{ settings.color_schemes.first.id }}">
+    {% sections 'header-group' %}
+
+    <main id="MainContent" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    <div class="visually-hidden" role="status" aria-live="polite" id="LiveRegion"></div>
+    <p class="s-toast" role="status" aria-live="polite"></p>
+  </body>
+</html>

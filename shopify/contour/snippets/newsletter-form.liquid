@@ -1,0 +1,32 @@
+{% doc %}
+  Newsletter signup using Shopify's customer form with email marketing consent.
+
+  @param {string} id - Unique id for the form fields
+{% enddoc %}
+{%- assign form_id = 'Newsletter-' | append: id -%}
+{%- form 'customer', id: form_id, class: 'newsletter-form' -%}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  <div class="newsletter-form__row">
+    <label class="visually-hidden" for="NewsletterEmail-{{ id }}">{{ 'newsletter.label' | t }}</label>
+    <input
+      class="newsletter-form__input"
+      id="NewsletterEmail-{{ id }}"
+      type="email"
+      name="contact[email]"
+      value="{{ form.email }}"
+      autocomplete="email"
+      placeholder="{{ 'newsletter.placeholder' | t }}"
+      required
+      {% if form.errors %}aria-invalid="true" aria-describedby="NewsletterError-{{ id }}"{% endif %}
+    >
+    <button class="button newsletter-form__submit" type="submit">
+      <span class="newsletter-form__label">{{ 'newsletter.button' | t }}</span>
+      {%- render 'icon', name: 'arrow-right', class: 'newsletter-form__arrow' -%}
+    </button>
+  </div>
+  {%- if form.errors -%}
+    <p class="form-message form-message--error" id="NewsletterError-{{ id }}">{{ 'newsletter.error' | t }}</p>
+  {%- elsif form.posted_successfully? -%}
+    <p class="form-message" role="status">{{ 'newsletter.success' | t }}</p>
+  {%- endif -%}
+{%- endform -%}

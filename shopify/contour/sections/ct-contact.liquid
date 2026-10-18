@@ -1,0 +1,119 @@
+{%- comment -%}
+  Contour contact: the big call, two buttons (to the form and to email), a short text and the brief form. The form posts to Formgong with
+  the key from Theme settings → Formgong; while there is no key it stays hidden (the theme editor shows a hint).
+{%- endcomment -%}
+{%- assign key = settings.formgong_key -%}
+<section class="ct-section ct-wrap cta" id="contact" aria-labelledby="h-{{ section.id }}">
+  <header class="ct-section-head"><span class="ct-note ct-note--ink">{{ section.settings.label }}</span><span class="ct-note">{{ section.settings.note }}</span></header>
+  <h2 class="ct-display ct-cta__title" id="h-{{ section.id }}" data-reveal="lines">{{ section.settings.heading }}</h2>
+  <div class="ct-cta__actions" data-reveal="up">
+    {%- if key != blank -%}<a class="ct-btn" href="#brief">{{ section.settings.button_1 }} <span class="ct-arrow" aria-hidden="true">↓</span></a>{%- endif -%}
+    {%- if section.settings.email != blank -%}<a class="ct-btn ct-btn--ghost" href="mailto:{{ section.settings.email }}">{{ 'contour.form.write_to' | t }} {{ section.settings.email }}</a>{%- endif -%}
+  </div>
+  <div class="ct-cta__form ct-grid-12" id="brief">
+    {%- if section.settings.lead != blank -%}<p class="ct-cta__lead ct-lead" data-reveal="up">{{ section.settings.lead }}</p>{%- endif -%}
+    {%- if key != blank -%}
+      <form class="ct-fg" action="https://formgong.com/submit" method="POST" data-reveal="up">
+        <input type="hidden" name="access_key" value="{{ key | escape }}">
+        <input type="hidden" name="subject" value="{{ section.settings.subject | escape }}">
+        <div aria-hidden="true" class="ct-hp"><label>{{ 'contour.form.honeypot' | t }}<input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+        <div class="ct-fg-fields">
+          <label class="ct-fld"><span class="ct-note">{{ 'contour.form.name' | t }}</span><input name="name" autocomplete="name" required></label>
+          <label class="ct-fld"><span class="ct-note">{{ 'contour.form.email' | t }}</span><input name="email" type="email" autocomplete="email" required></label>
+          <label class="ct-fld"><span class="ct-note">{{ 'contour.form.company' | t }} {{ 'contour.form.optional' | t }}</span><input name="company" autocomplete="organization"></label>
+          {%- if section.settings.budgets != blank -%}
+            <label class="ct-fld"><span class="ct-note">{{ 'contour.form.budget' | t }}</span><select name="budget">{%- assign opts = section.settings.budgets | split: ',' -%}{%- for o in opts -%}<option>{{ o | strip }}</option>{%- endfor -%}</select></label>
+          {%- endif -%}
+          <label class="ct-fld ct-fld-wide"><span class="ct-note">{{ 'contour.form.message' | t }}</span><textarea name="message" rows="4" required></textarea></label>
+          <div class="ct-fld-wide ct-fg-row"><button class="ct-btn" type="submit"><span data-label>{{ section.settings.button }}</span> <span class="ct-arrow" aria-hidden="true">→</span></button><p class="ct-fg-status" data-status role="status" aria-live="polite"></p></div>
+        </div>
+        <div class="ct-fg-sent" tabindex="-1"><p class="ct-fg-sent-h ct-h3">{{ 'contour.form.thanks' | t }}, <span data-name>{{ 'contour.form.there' | t }}</span>.</p><p>{{ section.settings.thanks }}</p><button class="ct-btn ct-btn--ghost" type="button" data-again>{{ 'contour.form.again' | t }}</button></div>
+        <p class="ct-credit ct-note">{{ 'contour.form.credit' | t }} <a class="ct-link ct-link--inline" href="https://formgong.com" rel="noopener">Formgong</a></p>
+      </form>
+    {%- elsif request.design_mode -%}
+      <p class="ct-key-hint">{{ 'contour.form.no_key' | t }}</p>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Contour contact",
+  "class": "ct-contents",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "[06] Next"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note on the right"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tell me what you're making."
+    },
+    {
+      "type": "text",
+      "id": "button_1",
+      "label": "Button to the form",
+      "default": "Send a short brief"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email for the second button",
+      "info": "Empty: no email button."
+    },
+    {
+      "type": "text",
+      "id": "lead",
+      "label": "Short text",
+      "default": "What it is, when it has to launch and which part worries you."
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "paragraph",
+      "content": "The form sends to your Formgong inbox. Paste your access key in Theme settings → Formgong; without it the form stays hidden."
+    },
+    {
+      "type": "text",
+      "id": "subject",
+      "label": "Subject of the message",
+      "default": "New project brief"
+    },
+    {
+      "type": "text",
+      "id": "budgets",
+      "label": "Budget choices",
+      "info": "Separate with commas. Empty: no budget field.",
+      "default": "Small, Medium, Large, Not sure yet"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button",
+      "default": "Send the brief"
+    },
+    {
+      "type": "text",
+      "id": "thanks",
+      "label": "Thank-you text",
+      "default": "Your message is in."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contour contact"
+    }
+  ]
+}
+{% endschema %}
