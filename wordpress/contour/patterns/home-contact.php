@@ -33,6 +33,7 @@
           <div class="fld-wide fg-row"><button class="btn" type="submit"><span data-label>Send the brief</span> <span class="arrow" aria-hidden="true">→</span></button><p class="fg-status" data-status role="status" aria-live="polite"></p></div>
         </div>
         <div class="fg-sent" tabindex="-1"><p class="fg-sent-h h3">Thanks, <span data-name>there</span>.</p><p>Your brief is in. I will reply within one working day.</p><button class="btn btn--ghost" type="button" data-again>Send another</button></div>
+        <?php $contour_privacy = get_privacy_policy_url(); if ( $contour_privacy ) : ?><p class="fg-privacy note"><?php esc_html_e( 'I use your details only to reply to you.', 'contour' ); ?> <a class="link link--inline" href="<?php echo esc_url( $contour_privacy ); ?>"><?php esc_html_e( 'Privacy policy', 'contour' ); ?></a></p><?php endif; ?>
         <p class="credit note">Forms by <a class="link link--inline" href="https://formgong.com" rel="noopener">Formgong</a></p>
       </form>
     </div>

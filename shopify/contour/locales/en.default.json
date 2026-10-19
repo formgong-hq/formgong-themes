@@ -377,7 +377,9 @@
       "again": "Send another",
       "credit": "Forms by",
       "write_to": "Or write to",
-      "no_key": "Add your Formgong access key in Theme settings → Formgong to show this form."
+      "no_key": "Add your Formgong access key in Theme settings → Formgong to show this form.",
+      "privacy": "We use your details only to reply to you.",
+      "privacy_link": "Privacy policy"
     },
     "footer": {
       "cookies": "Cookies",

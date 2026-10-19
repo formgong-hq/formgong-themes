@@ -4,6 +4,8 @@
 (function () {
   "use strict";
   var doc = document, root = doc.documentElement;
+  // The skip link's target: tabindex set here, not in the block markup, so core/group stays valid in the editor.
+  (function () { var m = document.getElementById("main"); if (m && !m.hasAttribute("tabindex")) m.setAttribute("tabindex", "-1"); })();
   var $ = function (s, c) { return (c || doc).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || doc).querySelectorAll(s)); };
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -249,7 +251,8 @@
       g.add(function () { caret.classList.add("is-idle"); });
       tl.add(g, bp ? 1.6 : "-=0.7");
     }
-    tl.from("[data-hero-fade]", { clipPath: "inset(0% 0% 100% 0%)", y: 16, duration: 1, ease: EXPO, stagger: .08, clearProps: "clipPath" }, "-=0.6");
+    // The lead and the buttons rise while the subline types, so the call to action is there within ~3.5 s.
+    tl.from("[data-hero-fade]", { clipPath: "inset(0% 0% 100% 0%)", y: 16, duration: 1, ease: EXPO, stagger: .08, clearProps: "clipPath" }, bp ? 1.9 : 1.1);
     if (bp) tl.to(bp.labels, { opacity: 0, duration: .4, stagger: .03 }, "+=0.2")
       .to(bp.boxes, { opacity: 0, duration: .6, stagger: .04 }, "<0.1")
       .to(bp.gh, { scaleX: 0, transformOrigin: "right center", duration: .9, ease: "expo.inOut", stagger: .03 }, "<")

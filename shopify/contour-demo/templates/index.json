@@ -1,0 +1,235 @@
+{
+  "sections": {
+    "hero": {
+      "type": "ct-hero",
+      "settings": {
+        "meta_1": "Ada Ferrer · independent web & AI developer",
+        "meta_2": "Base camp · 38.72° N, 9.14° W · Lisbon",
+        "meta_3": "Booking from March",
+        "heading": "I build it.",
+        "subheading": "Front-end and AI builds for design studios, when the concept is hard to ship.",
+        "lead": "Turning difficult designs into fast, stable websites since 2011. These days the toolkit includes AI.",
+        "button_1": "Bring me the tricky part",
+        "link_1": "#contact",
+        "button_2": "See the projects",
+        "link_2": "#work"
+      }
+    },
+    "approach": {
+      "type": "ct-approach",
+      "settings": {
+        "text": "<p>Studios bring the concept. I make sure it survives production. If an uneven grid is what makes a page feel alive, I change the code to fit the grid, not the other way round.</p>"
+      }
+    },
+    "work": {
+      "type": "ct-work",
+      "settings": {
+        "label": "[02] Selected projects",
+        "note": "Field notes · client names kept private",
+        "intro": "Most client work is under NDA. So each case shows how it was built rather than who it was for."
+      },
+      "blocks": {
+        "c1": {
+          "type": "case",
+          "settings": {
+            "image": "shopify://shop_images/contour-work-1.webp",
+            "art": "angle",
+            "year": "2026",
+            "stack": "WordPress · GSAP · Lenis",
+            "title": "A shop site built on one angle",
+            "sub": "Retail · via a branding studio",
+            "text": "Every slanted edge on the site uses the 22° angle from the store's shelving, from the wide desktop layout down to the phone. The slider shows a hint of the next colour just before it changes.",
+            "button": "",
+            "link": ""
+          }
+        },
+        "c2": {
+          "type": "case",
+          "settings": {
+            "image": "shopify://shop_images/contour-work-2.webp",
+            "art": "names",
+            "year": "2026",
+            "stack": "Python · Vision · Search data",
+            "title": "Product photos that name themselves",
+            "sub": "Ceramics maker · Shopify",
+            "text": "Search data and an image model decide how each product photo is named, described and tagged. Several hundred photos a day go through it, and nobody renames files by hand any more.",
+            "button": "",
+            "link": ""
+          }
+        },
+        "c3": {
+          "type": "case",
+          "settings": {
+            "image": "shopify://shop_images/contour-work-3.webp",
+            "art": "relief",
+            "year": "2025",
+            "stack": "Astro · WebGL · Mapbox",
+            "title": "An outdoor guide you can tilt",
+            "sub": "Travel publisher · via an agency",
+            "text": "Routes drawn on a live 3D relief, with pages that load in under a second on hotel wifi. Lighthouse on mobile: 97 on the home page and 99 on route pages.",
+            "button": "Ask about this build",
+            "link": "#contact"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ]
+    },
+    "services": {
+      "type": "ct-services",
+      "settings": {
+        "label": "[03] Services",
+        "link_label": "Ask for a quote →",
+        "link": "#contact"
+      },
+      "blocks": {
+        "s1": {
+          "type": "service",
+          "settings": {
+            "title": "Websites for studios",
+            "text": "Motion-rich sites and CMS builds, made side by side with your designers and handed over so your team can run them.",
+            "tags": "Astro, GSAP, WordPress, Shopify",
+            "link": "#contact"
+          }
+        },
+        "s2": {
+          "type": "service",
+          "settings": {
+            "title": "AI for your team",
+            "text": "Practical workshops on coding assistants, then the small tools and workflows your team actually needs, plus a plain list of what not to automate.",
+            "tags": "Workshops, Agents, Workflows",
+            "link": "#contact"
+          }
+        },
+        "s3": {
+          "type": "service",
+          "settings": {
+            "title": "AI inside products",
+            "text": "Assistants and search that answer from your client's own content, tested on real user questions and showing their sources.",
+            "tags": "RAG, Search, Evals",
+            "link": "#contact"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "process": {
+      "type": "ct-process",
+      "settings": {
+        "label": "[04] Working with studios",
+        "note": "Quiet by default · white-label on request",
+        "heading": "Your design on the surface. My code underneath."
+      },
+      "blocks": {
+        "p1": {
+          "type": "step",
+          "settings": {
+            "title": "Brief",
+            "text": "A call, your deck and the limits. I come back with questions and a first sense of scope."
+          }
+        },
+        "p2": {
+          "type": "step",
+          "settings": {
+            "title": "Prototype",
+            "text": "The hardest interaction runs in a browser before anyone gets attached to a static mock-up."
+          }
+        },
+        "p3": {
+          "type": "step",
+          "settings": {
+            "title": "Build",
+            "text": "A staging link from day one and a written log of decisions. No surprise reveal at the end."
+          }
+        },
+        "p4": {
+          "type": "step",
+          "settings": {
+            "title": "Handover",
+            "text": "Docs, a short CMS session for your team and a tidy repository."
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ]
+    },
+    "notes": {
+      "type": "ct-notes",
+      "settings": {
+        "label": "[05] Field notes",
+        "note": "Short write-ups",
+        "blog": "",
+        "count": 3
+      },
+      "blocks": {
+        "n1": {
+          "type": "note",
+          "settings": {
+            "date": "02 Feb 2026",
+            "title": "Scroll-linked motion that stays smooth on a five-year-old phone",
+            "tag": "Motion",
+            "link": "#notes"
+          }
+        },
+        "n2": {
+          "type": "note",
+          "settings": {
+            "date": "14 Dec 2025",
+            "title": "What a studio should ask before adding a chatbot to a client site",
+            "tag": "AI in practice",
+            "link": "#notes"
+          }
+        },
+        "n3": {
+          "type": "note",
+          "settings": {
+            "date": "30 Oct 2025",
+            "title": "Handing over a WordPress block theme that editors cannot break",
+            "tag": "CMS",
+            "link": "#notes"
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3"
+      ]
+    },
+    "contact": {
+      "type": "ct-contact",
+      "settings": {
+        "label": "[06] Next",
+        "note": "Reply within one working day",
+        "heading": "Tell me what you're making.",
+        "button_1": "Send a short brief",
+        "email": "hello@example.com",
+        "lead": "What it is, when it has to launch and which part worries you. Rough notes are fine.",
+        "subject": "New project brief",
+        "budgets": "Under €5k, €5k – €15k, €15k – €40k, Over €40k, Not sure yet",
+        "button": "Send the brief",
+        "thanks": "Your brief is in. I will reply within one working day."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "approach",
+    "work",
+    "services",
+    "process",
+    "notes",
+    "contact"
+  ]
+}

@@ -317,6 +317,9 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 .fg.is-sent .fg-sent{display:block}
 .fg-sent-h{margin-bottom:1rem}
 .fg-sent p:not(.fg-sent-h){color:var(--muted);margin-bottom:1.5rem}
+.fg-privacy{margin-top:1.5rem}
+.fg.is-sent .fg-privacy{display:none}
+.fg-privacy + .credit{margin-top:.5rem}
 .credit{margin-top:1.5rem}
 
 /* footer */

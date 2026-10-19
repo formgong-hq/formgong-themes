@@ -1,6 +1,6 @@
 /* Contour for Shopify, from the Contour website template (contour.formgong.com). Every class carries the ct- prefix
    so it never collides with Scamper's theme.css and stilla.css. Fonts: Geist and Geist Mono, Copyright 2024 The Geist
-   Project Authors (https://github.com/vercel/geist-font), SIL Open Font License 1.1. */
+   Project Authors (https://github.com/vercel/geist-font.git), SIL Open Font License 1.1. */
 /* Contour — Formgong template. Tokens live in :root; every size comes from the fluid type scale. */
 @font-face{font-family:"Geist";src:url(ct-geist-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Geist Mono";src:url(ct-geist-mono-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
@@ -321,6 +321,9 @@ html:not(.ct-fill-js) .ct-service__link:hover .ct-service__arrow,.ct-service__li
 .ct-fg.ct-is-sent .ct-fg-sent{display:block}
 .ct-fg-sent-h{margin-bottom:1rem}
 .ct-fg-sent p:not(.ct-fg-sent-h){color:var(--ct-muted);margin-bottom:1.5rem}
+.ct-fg-privacy{margin-top:1.5rem}
+.ct-fg.is-sent .ct-fg-privacy{display:none}
+.ct-fg-privacy + .ct-credit{margin-top:.5rem}
 .ct-credit{margin-top:1.5rem}
 
 /* footer */

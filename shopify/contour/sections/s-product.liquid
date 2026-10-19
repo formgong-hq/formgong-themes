@@ -66,9 +66,11 @@
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when 'perks' -%}
+          {%- if request.design_mode or block.settings.perk_1 != blank or block.settings.perk_2 != blank or block.settings.perk_3 != blank -%}
           <ul class="s-perks" {{ block.shopify_attributes }}>
             {%- for i in (1..3) -%}{%- assign key = 'perk_' | append: i -%}{%- if block.settings[key] != blank %}<li>{{ block.settings[key] }}</li>{% endif -%}{%- endfor -%}
           </ul>
+          {%- endif -%}
         {%- when 'description', 'collapsible' -%}
           {%- comment -%} All accordion blocks render together where the first one stands, so they share one list. {%- endcomment -%}
           {%- unless accordion_done -%}

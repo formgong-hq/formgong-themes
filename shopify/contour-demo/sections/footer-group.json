@@ -1,0 +1,52 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "ct-footer",
+      "settings": {
+        "heading": "Have a brief that needs to move?",
+        "link_label": "Let's talk.",
+        "link": "#contact",
+        "mark": "I build it.",
+        "show_stats": true,
+        "stats_note": "Privacy spec · rev. 2026",
+        "stats_link": "/policies/privacy-policy",
+        "credit_line": "Designed and built in Lisbon",
+        "show_hint": true,
+        "legal_menu": "contour-legal"
+      },
+      "blocks": {
+        "col1": {
+          "type": "column",
+          "settings": {
+            "heading": "Site",
+            "menu": "contour-main"
+          }
+        },
+        "col2": {
+          "type": "column",
+          "settings": {
+            "heading": "Elsewhere",
+            "menu": "contour-elsewhere"
+          }
+        },
+        "col3": {
+          "type": "column",
+          "settings": {
+            "heading": "Contact",
+            "menu": "contour-contact"
+          }
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

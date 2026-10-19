@@ -1,0 +1,22 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "ct-header",
+      "settings": {
+        "name": "Ada Ferrer",
+        "role": "/ web & AI dev",
+        "menu": "contour-main",
+        "show_theme": true,
+        "show_accent": true,
+        "show_cart": false,
+        "cta_label": "Start a project",
+        "cta_link": "#contact"
+      }
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

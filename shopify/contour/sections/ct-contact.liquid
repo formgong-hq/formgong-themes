@@ -28,6 +28,7 @@
           <div class="ct-fld-wide ct-fg-row"><button class="ct-btn" type="submit"><span data-label>{{ section.settings.button }}</span> <span class="ct-arrow" aria-hidden="true">→</span></button><p class="ct-fg-status" data-status role="status" aria-live="polite"></p></div>
         </div>
         <div class="ct-fg-sent" tabindex="-1"><p class="ct-fg-sent-h ct-h3">{{ 'contour.form.thanks' | t }}, <span data-name>{{ 'contour.form.there' | t }}</span>.</p><p>{{ section.settings.thanks }}</p><button class="ct-btn ct-btn--ghost" type="button" data-again>{{ 'contour.form.again' | t }}</button></div>
+        {%- if shop.privacy_policy != blank -%}<p class="ct-fg-privacy ct-note">{{ 'contour.form.privacy' | t }} <a class="ct-link ct-link--inline" href="{{ shop.privacy_policy.url }}">{{ 'contour.form.privacy_link' | t }}</a></p>{%- endif -%}
         <p class="ct-credit ct-note">{{ 'contour.form.credit' | t }} <a class="ct-link ct-link--inline" href="https://formgong.com" rel="noopener">Formgong</a></p>
       </form>
     {%- elsif request.design_mode -%}

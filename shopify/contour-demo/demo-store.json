@@ -1,0 +1,82 @@
+{
+  "theme_files": [
+    {
+      "name": "contour-work-1.webp",
+      "file": "img/work-1-1600.webp"
+    },
+    {
+      "name": "contour-work-2.webp",
+      "file": "img/work-2-1600.webp"
+    },
+    {
+      "name": "contour-work-3.webp",
+      "file": "img/work-3-1600.webp"
+    }
+  ],
+  "menus": [
+    {
+      "handle": "contour-main",
+      "title": "Contour main",
+      "items": [
+        {
+          "title": "Work",
+          "url": "/#work"
+        },
+        {
+          "title": "Services",
+          "url": "/#services"
+        },
+        {
+          "title": "Process",
+          "url": "/#process"
+        },
+        {
+          "title": "Notes",
+          "url": "/#notes"
+        }
+      ]
+    },
+    {
+      "handle": "contour-elsewhere",
+      "title": "Contour elsewhere",
+      "items": [
+        {
+          "title": "LinkedIn",
+          "url": "/#top"
+        },
+        {
+          "title": "GitHub",
+          "url": "/#top"
+        },
+        {
+          "title": "RSS",
+          "url": "/#top"
+        }
+      ]
+    },
+    {
+      "handle": "contour-contact",
+      "title": "Contour contact",
+      "items": [
+        {
+          "title": "Send a brief",
+          "url": "/#contact"
+        },
+        {
+          "title": "Write an email",
+          "url": "mailto:hello@example.com"
+        }
+      ]
+    },
+    {
+      "handle": "contour-legal",
+      "title": "Contour legal",
+      "items": [
+        {
+          "title": "Privacy",
+          "url": "/policies/privacy-policy"
+        }
+      ]
+    }
+  ]
+}

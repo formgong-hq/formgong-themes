@@ -3,7 +3,7 @@ Contributors: formgong
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,7 +38,7 @@ honeypot, and shows thanks only when Formgong answers success: true.
 Contour WordPress theme, (C) 2026 Formgong. Contour is distributed under the terms of the GNU GPL v2 or later.
 
 Geist and Geist Mono fonts (assets/fonts):
-Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font)
+Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font.git)
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 
 GSAP 3.13 with ScrollTrigger and SplitText (assets/js/vendor), GreenSock standard no-charge license, see
@@ -48,6 +48,12 @@ Images (assets/img): generated for this template with FLUX 1.1 [pro] ultra (Blac
 the theme.
 
 == Changelog ==
+
+= 1.0.1 =
+* A short privacy line under the brief form links to the site's privacy policy page (Settings → Privacy), shown only when one is set.
+* The hero lead and buttons rise while the subline types (the call to action is there sooner).
+* The front page group block is valid in the editor again (tabindex moved to the script).
+* Two unused images removed; font credit copied word for word.
 
 = 1.0.0 =
 * First release.
