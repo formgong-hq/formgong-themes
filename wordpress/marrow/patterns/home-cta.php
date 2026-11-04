@@ -13,10 +13,10 @@
 <!-- wp:html -->
 <div class="cta-shell">
   <section class="cta" id="custom" aria-labelledby="cta-h" data-parallax role="region">
-    <span class="sr">Photo: a person sitting on a living-room floor, hugging a big dog.</span>
+    <span class="sr"><?php esc_html_e( 'Photo: a person sitting on a living-room floor, hugging a big dog.', 'marrow' ); ?></span>
     <div class="cta-in">
-      <h2 id="cta-h">Want a recipe made for your dog? We have every ingredient.</h2>
-      <button class="pill big" type="button" data-write="Custom recipe">Build a recipe</button>
+      <h2 id="cta-h"><?php esc_html_e( 'Want a recipe made for your dog? We have every ingredient.', 'marrow' ); ?></h2>
+      <button class="pill big" type="button" data-write="Custom recipe"><?php esc_html_e( 'Build a recipe', 'marrow' ); ?></button>
     </div>
   </section>
   </div>

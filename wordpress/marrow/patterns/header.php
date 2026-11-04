@@ -31,18 +31,18 @@
 <header class="wp-block-group hdr">
 <!-- wp:navigation {"overlayMenu":"never","className":"hnav","layout":{"type":"flex","flexWrap":"nowrap"}} /-->
 <!-- wp:html -->
-<a class="hlogo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Marrow Kitchen, home">
+<a class="hlogo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php esc_attr_e( 'Marrow Kitchen, home', 'marrow' ); ?>">
     <svg class="h-mark" aria-hidden="true"><use href="#i-mark"/></svg>
-    <span class="h-word" aria-hidden="true">MARROW</span>
+    <span class="h-word" aria-hidden="true"><?php esc_html_e( 'MARROW', 'marrow' ); ?></span>
   </a>
 <!-- /wp:html -->
 <!-- wp:html -->
 <div class="hact">
-    <a class="ib opt" href="<?php echo esc_url( home_url( '/#finder' ) ); ?>" aria-label="Find the right meal"><svg aria-hidden="true"><use href="#i-search"/></svg></a>
-    <a class="ib opt" href="#contact" aria-label="Contact and opening hours"><svg aria-hidden="true"><use href="#i-user"/></svg></a>
-    <button class="ib" type="button" data-order aria-label="Open your order request"><svg aria-hidden="true"><use href="#i-bag"/></svg></button>
-    <button class="pill" type="button" data-order>Order now</button>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" data-menu><i></i><i></i></button>
+    <a class="ib opt" href="<?php echo esc_url( home_url( '/#finder' ) ); ?>" aria-label="<?php esc_attr_e( 'Find the right meal', 'marrow' ); ?>"><svg aria-hidden="true"><use href="#i-search"/></svg></a>
+    <a class="ib opt" href="#contact" aria-label="<?php esc_attr_e( 'Contact and opening hours', 'marrow' ); ?>"><svg aria-hidden="true"><use href="#i-user"/></svg></a>
+    <button class="ib" type="button" data-order aria-label="<?php esc_attr_e( 'Open your order request', 'marrow' ); ?>"><svg aria-hidden="true"><use href="#i-bag"/></svg></button>
+    <button class="pill" type="button" data-order><?php esc_html_e( 'Order now', 'marrow' ); ?></button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="<?php esc_attr_e( 'Menu', 'marrow' ); ?>" data-menu><i></i><i></i></button>
   </div>
 <!-- /wp:html -->
 </header>

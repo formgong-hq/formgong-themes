@@ -14,28 +14,28 @@
 <!-- wp:html -->
 <dialog id="d-review" aria-labelledby="review-title">
   <div class="dlg" tabindex="-1" autofocus>
-    <button class="x" type="button" aria-label="Close" data-close>×</button>
-    <h2 id="review-title">Leave a review</h2>
-    <p class="intro">Tell other owners how it went. Your review appears here once the kitchen has read it.</p>
+    <button class="x" type="button" aria-label="<?php esc_attr_e( 'Close', 'marrow' ); ?>" data-close>×</button>
+    <h2 id="review-title"><?php esc_html_e( 'Leave a review', 'marrow' ); ?></h2>
+    <p class="intro"><?php esc_html_e( 'Tell other owners how it went. Your review appears here once the kitchen has read it.', 'marrow' ); ?></p>
     <form class="form" id="f-review" data-formgong>
       <input type="hidden" name="subject" value="New review">
       <fieldset class="rate">
-        <legend>Your rating</legend>
+        <legend><?php esc_html_e( 'Your rating', 'marrow' ); ?></legend>
         <div class="pick">
-          <input type="radio" id="r5" name="rating" value="5" required><label for="r5" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
-          <input type="radio" id="r4" name="rating" value="4"><label for="r4" aria-label="4 stars"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
-          <input type="radio" id="r3" name="rating" value="3"><label for="r3" aria-label="3 stars"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
-          <input type="radio" id="r2" name="rating" value="2"><label for="r2" aria-label="2 stars"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
-          <input type="radio" id="r1" name="rating" value="1"><label for="r1" aria-label="1 star"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
+          <input type="radio" id="r5" name="rating" value="5" required><label for="r5" aria-label="<?php esc_attr_e( '5 stars', 'marrow' ); ?>"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
+          <input type="radio" id="r4" name="rating" value="4"><label for="r4" aria-label="<?php esc_attr_e( '4 stars', 'marrow' ); ?>"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
+          <input type="radio" id="r3" name="rating" value="3"><label for="r3" aria-label="<?php esc_attr_e( '3 stars', 'marrow' ); ?>"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
+          <input type="radio" id="r2" name="rating" value="2"><label for="r2" aria-label="<?php esc_attr_e( '2 stars', 'marrow' ); ?>"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
+          <input type="radio" id="r1" name="rating" value="1"><label for="r1" aria-label="<?php esc_attr_e( '1 star', 'marrow' ); ?>"><svg aria-hidden="true"><use href="#i-star"/></svg></label>
         </div>
       </fieldset>
-      <label class="f full"><span>Name</span><input name="name" autocomplete="name" required maxlength="100"></label>
-      <label class="f full"><span>Your review</span><textarea name="review" required maxlength="2000" placeholder="What does your pet think? What could be better?"></textarea></label>
-      <label class="f full"><span>Email (optional, not shown)</span><input type="email" name="email" autocomplete="email" maxlength="160"></label>
-      <button class="pill big" type="submit">Send review</button>
+      <label class="f full"><span><?php esc_html_e( 'Name', 'marrow' ); ?></span><input name="name" autocomplete="name" required maxlength="100"></label>
+      <label class="f full"><span><?php esc_html_e( 'Your review', 'marrow' ); ?></span><textarea name="review" required maxlength="2000" placeholder="<?php esc_attr_e( 'What does your pet think? What could be better?', 'marrow' ); ?>"></textarea></label>
+      <label class="f full"><span><?php esc_html_e( 'Email (optional, not shown)', 'marrow' ); ?></span><input type="email" name="email" autocomplete="email" maxlength="160"></label>
+      <button class="pill big" type="submit"><?php esc_html_e( 'Send review', 'marrow' ); ?></button>
       <p class="status" data-status role="status" aria-live="polite"></p>
-      <p class="credit">Reviews powered by <a href="https://formgong.com" rel="noopener">Formgong</a></p>
-      <div class="thanks" tabindex="-1"><strong>Thank you, <span data-name>there</span>.</strong>Your review will appear here once the kitchen has read it. <button type="button" data-again>Send another</button></div>
+      <p class="credit"><?php esc_html_e( 'Reviews powered by', 'marrow' ); ?> <a href="https://formgong.com" rel="noopener"><?php esc_html_e( 'Formgong', 'marrow' ); ?></a></p>
+      <div class="thanks" tabindex="-1"><strong><?php esc_html_e( 'Thank you,', 'marrow' ); ?> <span data-name><?php esc_html_e( 'there', 'marrow' ); ?></span>.</strong><?php esc_html_e( 'Your review will appear here once the kitchen has read it.', 'marrow' ); ?> <button type="button" data-again><?php esc_html_e( 'Send another', 'marrow' ); ?></button></div>
     </form>
   </div>
 </dialog>
