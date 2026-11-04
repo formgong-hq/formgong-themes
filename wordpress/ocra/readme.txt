@@ -1,9 +1,9 @@
 === Ocra ===
 Contributors: formgong
-Requires at least: 6.5
+Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: MIT
 License URI: https://opensource.org/license/mit
 
@@ -54,6 +54,9 @@ Yes. Remove the form patterns from the home page, or put another form plugin's b
 
 == Changelog ==
 
+= 1.2.0 =
+* Ready for the WordPress.org theme directory: all pattern text is translatable (text domain ocra), readable CSS instead of the minified copy, requires WordPress 6.6 (theme.json version 3).
+
 = 1.1.0 =
 * The forms are sent by the Formgong plugin's custom form block (plugin 1.1.0 or later); the theme no longer reads the plugin's settings or posts anything itself.
 
@@ -71,4 +74,4 @@ License: SIL Open Font License 1.1, https://openfontlicense.org
 Inter Tight font, Copyright 2022 The Inter Project Authors (https://github.com/rsms/inter-tight)
 License: SIL Open Font License 1.1, https://openfontlicense.org
 
-Photos: from the Ocra website template (images in assets/img), generated for the template with ChatGPT image generation (OpenAI); you may use them in your own site. The citrus slices are drawn in SVG. Replace them with photos of your own work before launch, keeping the file names.
+Photos (assets/img/*.webp, screenshot.jpg): Copyright 2026 Formgong, generated for the Ocra template with ChatGPT image generation (OpenAI), whose terms assign the output to Formgong. License: MIT, the same as the theme, https://opensource.org/license/mit The citrus slices are drawn in SVG. Replace them with photos of your own work before launch, keeping the file names.

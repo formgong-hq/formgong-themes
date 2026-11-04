@@ -11,5 +11,5 @@
 
 ?>
 <!-- wp:html -->
-<a class="float-order" href="#order" data-float-order><i></i>Order a piece</a>
+<a class="float-order" href="#order" data-float-order><i></i><?php esc_html_e( 'Order a piece', 'ocra' ); ?></a>
 <!-- /wp:html -->

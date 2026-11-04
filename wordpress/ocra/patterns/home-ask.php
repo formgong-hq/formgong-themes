@@ -12,7 +12,7 @@
 ?>
 <!-- wp:html -->
 <header class="section-head" id="ask">
-    <h2>Ask us</h2>
-    <p>There is no cart here. Everything works by message, and a person answers within a working day.</p>
+    <h2><?php esc_html_e( 'Ask us', 'ocra' ); ?></h2>
+    <p><?php esc_html_e( 'There is no cart here. Everything works by message, and a person answers within a working day.', 'ocra' ); ?></p>
   </header>
 <!-- /wp:html -->

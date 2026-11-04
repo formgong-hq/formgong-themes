@@ -30,15 +30,15 @@
 <!-- wp:group {"className":"bar","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
 <div class="wp-block-group bar">
 <!-- wp:html -->
-<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#slice"/></svg>Ocra</a>
+<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#slice"/></svg><?php esc_html_e( 'Ocra', 'ocra' ); ?></a>
 <!-- /wp:html -->
 <!-- wp:navigation {"overlayMenu":"never","className":"nav","style":{"spacing":{"blockGap":"4px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} /-->
 </div>
 <!-- /wp:group -->
 <!-- wp:html -->
 <div class="meta">
-    <p>Ocra ceramics<br><span>Made by hand on the coast</span></p>
-    <p class="r">New firing<br><span>every month</span></p>
+    <p><?php esc_html_e( 'Ocra ceramics', 'ocra' ); ?><br><span><?php esc_html_e( 'Made by hand on the coast', 'ocra' ); ?></span></p>
+    <p class="r"><?php esc_html_e( 'New firing', 'ocra' ); ?><br><span><?php esc_html_e( 'every month', 'ocra' ); ?></span></p>
   </div>
 <!-- /wp:html -->
 </header>

@@ -13,8 +13,8 @@
 <!-- wp:html -->
 <div class="band" aria-hidden="true">
     <div class="band-track">
-      <p><span>New firing every month</span><span>Ships across Europe</span><span>Made by two people</span><span>Saturday classes</span></p>
-      <p><span>New firing every month</span><span>Ships across Europe</span><span>Made by two people</span><span>Saturday classes</span></p>
+      <p><span><?php esc_html_e( 'New firing every month', 'ocra' ); ?></span><span><?php esc_html_e( 'Ships across Europe', 'ocra' ); ?></span><span><?php esc_html_e( 'Made by two people', 'ocra' ); ?></span><span><?php esc_html_e( 'Saturday classes', 'ocra' ); ?></span></p>
+      <p><span><?php esc_html_e( 'New firing every month', 'ocra' ); ?></span><span><?php esc_html_e( 'Ships across Europe', 'ocra' ); ?></span><span><?php esc_html_e( 'Made by two people', 'ocra' ); ?></span><span><?php esc_html_e( 'Saturday classes', 'ocra' ); ?></span></p>
     </div>
   </div>
 <!-- /wp:html -->
