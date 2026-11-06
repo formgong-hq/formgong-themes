@@ -4,7 +4,7 @@
  * Slug: marrow/home-reviews
  * Categories: marrow
  * Inserter: yes
- * Description: The wave, then the reviews: the running ribbon and the cards (approved Formgong reviews replace the samples once a key is saved); Leave a review opens the review form.
+ * Description: The wave, then the reviews: the running ribbon and the sample review cards; Leave a review opens the review form.
  *
  * @package Marrow
  */

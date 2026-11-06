@@ -4,20 +4,19 @@
  * Slug: marrow/dialog-order
  * Categories: marrow
  * Inserter: no
- * Description: Recipe or treat, pack chips, quantity, delivery or pick-up, contact details. The recipe and treat buttons and Order now open it. Sent by the Formgong plugin (1.1.0 or later).
+ * Description: Recipe or treat, pack chips, quantity, delivery or pick-up, contact details. The recipe and treat buttons and Order now open it. A layout from the template: it does not send by itself. Set the form's action or replace it with a form plugin's block.
  *
  * @package Marrow
  */
 
 ?>
-<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <dialog id="d-order" aria-labelledby="order-title">
   <div class="dlg" tabindex="-1" autofocus>
     <button class="x" type="button" aria-label="<?php esc_attr_e( 'Close', 'marrow' ); ?>" data-close>×</button>
     <h2 id="order-title"><?php esc_html_e( 'Order request', 'marrow' ); ?></h2>
     <p class="intro"><?php esc_html_e( 'Pick a recipe and a pack size. We confirm the total and the delivery day by email or text. Nothing to pay now.', 'marrow' ); ?></p>
-    <form class="form" id="f-order" data-formgong>
+    <form class="form" id="f-order" method="post">
       <input type="hidden" name="subject" value="Order request">
       <label class="f full"><span><?php esc_html_e( 'Recipe or treat', 'marrow' ); ?></span>
         <select name="item" required data-item>
@@ -45,10 +44,8 @@
       <label class="f full"><span><?php esc_html_e( 'Note (optional)', 'marrow' ); ?></span><textarea name="note" maxlength="2000" placeholder="<?php esc_attr_e( 'Allergies, a delivery time, a gate code…', 'marrow' ); ?>"></textarea></label>
       <button class="pill big" type="submit"><?php esc_html_e( 'Send order request', 'marrow' ); ?></button>
       <p class="status" data-status role="status" aria-live="polite"></p>
-      <p class="credit"><?php esc_html_e( 'Powered by', 'marrow' ); ?> <a href="https://formgong.com" rel="noopener"><?php esc_html_e( 'Formgong', 'marrow' ); ?></a></p>
       <div class="thanks" tabindex="-1"><strong><?php esc_html_e( 'Thank you,', 'marrow' ); ?> <span data-name><?php esc_html_e( 'there', 'marrow' ); ?></span>.</strong><?php esc_html_e( 'We will confirm your order, the total and the day by email within one working day.', 'marrow' ); ?> <button type="button" data-again><?php esc_html_e( 'Send another', 'marrow' ); ?></button></div>
     </form>
   </div>
 </dialog>
 <!-- /wp:html -->
-<!-- /wp:formgong/custom-form -->

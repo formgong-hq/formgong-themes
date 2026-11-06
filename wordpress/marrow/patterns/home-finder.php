@@ -4,18 +4,17 @@
  * Slug: marrow/home-finder
  * Categories: marrow
  * Inserter: yes
- * Description: Find the right meal: age, weight, activity and neutered, See my plan, then the daily grams and the Email me this plan form (sent by the Formgong plugin, 1.1.0 or later).
+ * Description: Find the right meal: age, weight, activity and neutered, See my plan, then the daily grams and the Email me this plan form. A layout from the template: it does not send by itself. Set the form's action or replace it with a form plugin's block.
  *
  * @package Marrow
  */
 
 ?>
-<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <section class="finder" aria-labelledby="finder-h" data-next>
     <div class="wrap" id="finder">
       <h2 class="h2" id="finder-h"><?php esc_html_e( 'Find the', 'marrow' ); ?> <span class="uline"><b><?php esc_html_e( 'right meal', 'marrow' ); ?></b><svg class="dp one" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 13C48 5 128 3 197 11"/></svg></span> <?php esc_html_e( 'for your', 'marrow' ); ?> <span data-pet-word><?php esc_html_e( 'dog', 'marrow' ); ?></span></h2>
-      <form class="plan" id="f-plan" novalidate data-formgong>
+      <form class="plan" id="f-plan" novalidate method="post">
         <input type="hidden" name="subject" value="Meal plan request">
         <input type="hidden" name="pet" value="dog" data-pet-field>
         <input type="hidden" name="daily_grams" value="" data-grams-field>
@@ -45,9 +44,7 @@
             </div>
           </div>
         </div>
-        <p class="plan-credit credit"><?php esc_html_e( 'Powered by', 'marrow' ); ?> <a href="https://formgong.com" rel="noopener"><?php esc_html_e( 'Formgong', 'marrow' ); ?></a></p>
       </form>
     </div>
   </section>
 <!-- /wp:html -->
-<!-- /wp:formgong/custom-form -->

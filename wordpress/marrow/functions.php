@@ -20,7 +20,7 @@ add_action( 'after_setup_theme', 'marrow_setup' );
 /**
  * Front-end styles (the fonts, the Marrow stylesheet, then the WordPress additions) and the template's script (the
  * pet switch, the giant wordmark, the menu, the scroll motion, the carousels, the dialogs, the meal calculator and the
- * forms: "thank you" only when Formgong answers success: true; it honours reduced motion).
+ * form layouts' field checks; it honours reduced motion). The script's messages are passed in translated (marrowL10n).
  */
 function marrow_assets() {
 	$version = wp_get_theme()->get( 'Version' );
@@ -28,6 +28,34 @@ function marrow_assets() {
 	wp_enqueue_style( 'marrow', get_theme_file_uri( 'assets/css/marrow.css' ), array( 'marrow-fonts' ), $version );
 	wp_enqueue_style( 'marrow-wordpress', get_theme_file_uri( 'assets/css/wordpress.css' ), array( 'marrow' ), $version );
 	wp_enqueue_script( 'marrow', get_theme_file_uri( 'assets/js/marrow.js' ), array(), $version, true );
+	wp_localize_script(
+		'marrow',
+		'marrowL10n',
+		array(
+			'petTextDog'       => __( 'Raw meals for dogs', 'marrow' ),
+			'petTextCat'       => __( 'Raw meals for cats', 'marrow' ),
+			'petWordDog'       => __( 'dog', 'marrow' ),
+			'petWordCat'       => __( 'cat', 'marrow' ),
+			'heroDog'          => __( 'A happy dog waiting for dinner', 'marrow' ),
+			'heroCat'          => __( 'A cat waiting for dinner', 'marrow' ),
+			'menu'             => __( 'Menu', 'marrow' ),
+			'closeMenu'        => __( 'Close menu', 'marrow' ),
+			/* translators: shown next to the mouse pointer over the treats carousel. */
+			'drag'             => __( 'drag', 'marrow' ),
+			'postcode'         => __( 'Postcode', 'marrow' ),
+			'postcodeOptional' => __( 'Postcode (optional for pick-up)', 'marrow' ),
+			'recipeDog'        => __( 'Chicken & Pumpkin', 'marrow' ),
+			'recipeCat'        => __( 'Chicken & Liver', 'marrow' ),
+			/* translators: %s: a weight in grams, for example 420. */
+			'grams'            => __( '%s g', 'marrow' ),
+			'kg'               => __( '1 kg', 'marrow' ),
+			/* translators: 1: daily amount, for example 420 g; 2: pack size, for example 500 g; 3: recipe name. */
+			'planOne'          => __( 'About %1$s a day. That is one %2$s pack of %3$s most days.', 'marrow' ),
+			/* translators: 1: daily amount, for example 2400 g; 2: number of 1 kg packs; 3: recipe name. */
+			'planMany'         => __( 'About %1$s a day. That is about %2$s packs of 1 kg of %3$s a day.', 'marrow' ),
+			'notConnected'     => __( 'This form is not connected yet, so nothing was sent. Please contact us another way.', 'marrow' ),
+		)
+	);
 }
 add_action( 'wp_enqueue_scripts', 'marrow_assets' );
 

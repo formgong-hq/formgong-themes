@@ -10,6 +10,8 @@
   // WordPress: a missing part (removed in the Site Editor, or not on this page) gets a detached stand-in.
   var spare = document.createElement("div");
   var need = function (el, tag) { if (el) return el; var n = document.createElement(tag || "div"); spare.appendChild(n); return n; };
+  var L = window.marrowL10n || {};
+  var fmt = function (text) { var args = arguments, n = 0; return String(text || "").replace(/%(?:(\d)\$)?s/g, function (m, k) { return args[k ? Number(k) : ++n]; }); };
   $$("[data-year]").forEach(function (n) { n.textContent = new Date().getFullYear(); });
 
   // ---------- Image boxes: drop the placeholder colour once the picture is there, hide broken icons ----------
@@ -37,12 +39,12 @@
     pet = p;
     root.classList.toggle("pet-cat", p === "cat");
     $$("[data-pet]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.pet === p)); });
-    $$("[data-pet-text]").forEach(function (n) { n.textContent = "Raw meals for " + p + "s"; });
-    $$("[data-pet-word]").forEach(function (n) { n.textContent = p; });
+    $$("[data-pet-text]").forEach(function (n) { n.textContent = p === "cat" ? L.petTextCat : L.petTextDog; });
+    $$("[data-pet-word]").forEach(function (n) { n.textContent = p === "cat" ? L.petWordCat : L.petWordDog; });
     need($("[data-pet-field]"), "input").value = p;
     if (planOpen) calc();
     if (!changed) return;
-    media.setAttribute("aria-label", p === "cat" ? "A cat waiting for dinner" : "A happy dog waiting for dinner");
+    media.setAttribute("aria-label", p === "cat" ? L.heroCat : L.heroDog);
     if (p === "cat" && !catImg.getAttribute("src")) catImg.src = catImg.dataset.src;
     clearTimeout(swapTimer);
     media.classList.add("fade");
@@ -71,7 +73,7 @@
   function setMenu(open) {
     root.classList.toggle("menu-open", open);
     menuBtn.setAttribute("aria-expanded", String(open));
-    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Menu");
+    menuBtn.setAttribute("aria-label", open ? L.closeMenu : L.menu);
     if (open) setTimeout(function () { $("a", menu).focus({ preventScroll: true }); }, 50);
   }
   menuBtn.addEventListener("click", function () { setMenu(!root.classList.contains("menu-open")); });
@@ -300,7 +302,7 @@
   // Cursor follower with "drag" over the carousel (desktop mouse only).
   if (!still && desk.matches && !("ontouchstart" in window) && matchMedia("(hover: hover) and (pointer: fine)").matches) {
     var cur = document.createElement("div"), dot = document.createElement("b");
-    cur.className = "cursor"; cur.setAttribute("aria-hidden", "true"); dot.textContent = "drag"; cur.appendChild(dot); body.appendChild(cur);
+    cur.className = "cursor"; cur.setAttribute("aria-hidden", "true"); dot.textContent = L.drag; cur.appendChild(dot); body.appendChild(cur);
     root.classList.add("has-cursor");
     var tx = -200, ty = -200, cx = -200, cy = -200, cRaf = null;
     function cStep() {
@@ -329,42 +331,6 @@
     if (rvTrack.scrollLeft <= 4) rvTrack.scrollTo({ left: rvTrack.scrollWidth });
     else rvTrack.scrollBy({ left: -rvStep() });
   });
-
-  // Approved reviews from Formgong replace the sample cards (same contract as the Goldleaf template).
-  // The Formgong plugin loads them (the review form's block asks for them) and fires formgong:reviews.
-  function showReviews(data) {
-        if (!data || !(data.count > 0) || !data.reviews || !data.reviews.length) return;
-        rvTrack.textContent = "";
-        data.reviews.forEach(function (rv) {
-          var n = Math.max(0, Math.min(5, Math.round(+rv.rating || 0)));
-          var li = document.createElement("li"); li.className = "rcard";
-          var st = document.createElement("div"); st.className = "stars"; st.setAttribute("aria-label", n + " out of 5 stars");
-          for (var i = 0; i < 5; i++) st.insertAdjacentHTML("beforeend", '<svg aria-hidden="true"' + (i >= n ? ' style="opacity:.25"' : "") + '><use href="#i-star"/></svg>');
-          var p = document.createElement("p"); p.textContent = rv.body || ""; p.setAttribute("dir", "auto");
-          var who = document.createElement("div"); who.className = "who";
-          var av = document.createElement("span"); av.className = "av"; av.setAttribute("aria-hidden", "true");
-          var name = (rv.author || "A customer").trim();
-          av.textContent = name.split(/\s+/).map(function (w) { return w.charAt(0); }).join("").slice(0, 2).toUpperCase();
-          var d = document.createElement("div"), b = document.createElement("b"), s = document.createElement("span");
-          b.textContent = name; s.textContent = ago(rv.date);
-          d.appendChild(b); d.appendChild(s); who.appendChild(av); who.appendChild(d);
-          li.appendChild(st); li.appendChild(p); li.appendChild(who); rvTrack.appendChild(li);
-        });
-        var avg = (+data.average || 0).toFixed(1).replace(/\.0$/, "");
-        need($("[data-rv-label]")).textContent = "Reviews · " + avg + " out of 5 from " + data.count + (data.count === 1 ? " owner" : " owners");
-  }
-  document.addEventListener("formgong:reviews", function (e) { showReviews(e.detail && e.detail.data); });
-  var rvForm = $("form[data-formgong-reviews]");
-  if (rvForm && rvForm.formgongReviews) showReviews(rvForm.formgongReviews);
-  function ago(v) {
-    var t = Date.parse(v); if (!t) return v ? String(v) : "";
-    var days = Math.max(0, Math.round((Date.now() - t) / 864e5));
-    if (days < 1) return "today";
-    if (days < 14) return days + (days === 1 ? " day ago" : " days ago");
-    if (days < 60) return Math.round(days / 7) + " weeks ago";
-    if (days < 365) return Math.round(days / 30) + " months ago";
-    var y = Math.round(days / 365); return y + (y === 1 ? " year ago" : " years ago");
-  }
 
   // CTA photo: load it when the section is about a screen away.
   if ("IntersectionObserver" in window) {
@@ -409,7 +375,7 @@
     else if (!checked || checked.value === "One pouch") $('input[name="pack"][value="500 g"]', fOrder).checked = true;
     var del = $('input[name="delivery"]:checked', fOrder), local = !del || del.value === "Local delivery";
     postcode.required = local;
-    pcLabel.textContent = local ? "Postcode" : "Postcode (optional for pick-up)";
+    pcLabel.textContent = local ? L.postcode : L.postcodeOptional;
   }
   itemSel.addEventListener("change", syncOrder);
   $$('input[name="delivery"]', fOrder).forEach(function (r) { r.addEventListener("change", syncOrder); });
@@ -443,7 +409,7 @@
   function planFields(on) { planEmail.disabled = !on; planSubmit.disabled = !on; }
   planFields(false);
   var PACKS = [250, 500, 750, 1000];
-  function packName(g) { return g === 1000 ? "1 kg" : g + " g"; }
+  function packName(g) { return g === 1000 ? L.kg : fmt(L.grams, g); }
   function dailyGrams(p, age, kg, activity, neutered) {
     var act = { low: 0, medium: 1, high: 2 }[activity] || 0, r;
     if (p === "cat") r = age < 12 ? .06 : [.03, .035, .04][act];
@@ -454,15 +420,15 @@
   calc = function () {
     var age = parseFloat(ageEl.value), kg = parseFloat(String(kgEl.value).replace(",", "."));
     var g = dailyGrams(pet, age, kg, fPlan.elements.namedItem("activity").value, fPlan.elements.namedItem("neutered").value);
-    var recipe = pet === "cat" ? "Chicken & Liver" : "Chicken & Pumpkin", pack = null;
+    var recipe = pet === "cat" ? L.recipeCat : L.recipeDog, pack = null;
     for (var i = 0; i < PACKS.length; i++) if (PACKS[i] >= g) { pack = PACKS[i]; break; }
     gramsField.value = String(g);
     resTxt.textContent = "";
-    resTxt.appendChild(document.createTextNode("About "));
-    var b = document.createElement("b"); b.textContent = g + " g"; resTxt.appendChild(b);
-    resTxt.appendChild(document.createTextNode(pack
-      ? " a day. That is one " + packName(pack) + " pack of " + recipe + " most days."
-      : " a day. That is about " + Math.ceil(g / 1000) + " packs of 1 kg of " + recipe + " a day."));
+    // The sentence is one translatable string; %1$s (the grams) is drawn in bold.
+    var tpl = String((pack ? L.planOne : L.planMany) || "").split("%1$s"), packs = pack ? packName(pack) : Math.ceil(g / 1000);
+    resTxt.appendChild(document.createTextNode(fmt(tpl[0], "", packs, recipe)));
+    var b = document.createElement("b"); b.textContent = fmt(L.grams, g); resTxt.appendChild(b);
+    resTxt.appendChild(document.createTextNode(fmt(tpl.slice(1).join(""), "", packs, recipe)));
   }
   $("[data-see]").addEventListener("click", function () {
     if (!ageEl.reportValidity() || !kgEl.reportValidity()) return;
@@ -478,26 +444,15 @@
   });
   }
 
-  // ---------- Forms: thanks only when Formgong answers success: true ----------
-  function wire(f, afterSent, afterAgain) {
-    var button = $('button[type="submit"]', f), label = button.textContent, status = $("[data-status]", f);
+  // ---------- Forms: layouts; one with no action says it is not connected instead of submitting ----------
+  function wire(f, afterAgain) {
+    var status = $("[data-status]", f);
     function say(text, bad) { status.textContent = text; status.classList.toggle("err", !!bad); }
     f.addEventListener("submit", function (event) {
-      if (!f.checkValidity()) { event.preventDefault(); f.reportValidity(); }
-    });
-    f.addEventListener("formgong:sending", function () { button.disabled = true; button.textContent = "Sending…"; say(""); });
-    f.addEventListener("formgong:sent", function () {
-      var nm = f.elements.namedItem("name"), first = nm && nm.value ? nm.value.trim().split(/\s+/)[0] : "";
-      $$("[data-name]", f).forEach(function (n) { n.textContent = first || "there"; });
-      if (afterSent) afterSent(); else f.reset();
-      f.classList.add("is-sent");
-      $(".thanks", f).focus();
-      button.disabled = false; button.textContent = label;
-    });
-    f.addEventListener("formgong:error", function (event) {
-      var d = event.detail || {};
-      say(d.network ? "Could not send. Check your connection and try again." : (d.message || "Could not send. Please try again."), true);
-      button.disabled = false; button.textContent = label;
+      if (!f.checkValidity()) { event.preventDefault(); f.reportValidity(); return; }
+      if (f.getAttribute("action")) return;
+      event.preventDefault();
+      say(L.notConnected, true);
     });
     $("[data-again]", f).addEventListener("click", function () {
       f.classList.remove("is-sent"); say("");
@@ -506,11 +461,8 @@
       if (first) first.focus();
     });
   }
-  if (fPlan) wire(fPlan, function () {
-    $("[data-mail]", fPlan).textContent = planEmail.value || "you";
-    planEmail.value = "";
-  });
-  if (fOrder) wire(fOrder, function () { var keep = itemSel.value; fOrder.reset(); itemSel.value = keep; syncOrder(); });
+  if (fPlan) wire(fPlan);
+  if (fOrder) wire(fOrder);
   if (fReview) wire(fReview);
-  if (fWrite) wire(fWrite, function () { var t = $('input[name="topic"]:checked', fWrite); var v = t && t.value; fWrite.reset(); if (v) $$('input[name="topic"]', fWrite).forEach(function (r) { r.checked = r.value === v; }); });
+  if (fWrite) wire(fWrite);
 })();

@@ -4,20 +4,19 @@
  * Slug: marrow/dialog-review
  * Categories: marrow
  * Inserter: no
- * Description: Star rating, name, review and email. Its block also asks the Formgong plugin for the approved reviews of the slider. Sent by the Formgong plugin (1.1.0 or later).
+ * Description: Star rating, name, review and email. A layout from the template: it does not send by itself. Set the form's action or replace it with a form plugin's block.
  *
  * @package Marrow
  */
 
 ?>
-<!-- wp:formgong/custom-form {"reviews":true} -->
 <!-- wp:html -->
 <dialog id="d-review" aria-labelledby="review-title">
   <div class="dlg" tabindex="-1" autofocus>
     <button class="x" type="button" aria-label="<?php esc_attr_e( 'Close', 'marrow' ); ?>" data-close>×</button>
     <h2 id="review-title"><?php esc_html_e( 'Leave a review', 'marrow' ); ?></h2>
     <p class="intro"><?php esc_html_e( 'Tell other owners how it went. Your review appears here once the kitchen has read it.', 'marrow' ); ?></p>
-    <form class="form" id="f-review" data-formgong>
+    <form class="form" id="f-review" method="post">
       <input type="hidden" name="subject" value="New review">
       <fieldset class="rate">
         <legend><?php esc_html_e( 'Your rating', 'marrow' ); ?></legend>
@@ -34,10 +33,8 @@
       <label class="f full"><span><?php esc_html_e( 'Email (optional, not shown)', 'marrow' ); ?></span><input type="email" name="email" autocomplete="email" maxlength="160"></label>
       <button class="pill big" type="submit"><?php esc_html_e( 'Send review', 'marrow' ); ?></button>
       <p class="status" data-status role="status" aria-live="polite"></p>
-      <p class="credit"><?php esc_html_e( 'Reviews powered by', 'marrow' ); ?> <a href="https://formgong.com" rel="noopener"><?php esc_html_e( 'Formgong', 'marrow' ); ?></a></p>
       <div class="thanks" tabindex="-1"><strong><?php esc_html_e( 'Thank you,', 'marrow' ); ?> <span data-name><?php esc_html_e( 'there', 'marrow' ); ?></span>.</strong><?php esc_html_e( 'Your review will appear here once the kitchen has read it.', 'marrow' ); ?> <button type="button" data-again><?php esc_html_e( 'Send another', 'marrow' ); ?></button></div>
     </form>
   </div>
 </dialog>
 <!-- /wp:html -->
-<!-- /wp:formgong/custom-form -->
