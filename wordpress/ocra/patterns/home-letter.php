@@ -4,17 +4,16 @@
  * Slug: ocra/home-letter
  * Categories: ocra
  * Inserter: yes
- * Description: The orange strip One letter per firing with the sign-up form (sent by the Formgong plugin, 1.1.0 or later).
+ * Description: The orange strip One letter per firing with the sign-up form. A layout from the template: it does not send by itself. Set the form's action or replace it with a form plugin's block.
  *
  * @package Ocra
  */
 
 ?>
-<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <section class="letter" aria-labelledby="letter-title">
     <h2 id="letter-title"><?php esc_html_e( 'One letter', 'ocra' ); ?><br><?php esc_html_e( 'per firing.', 'ocra' ); ?></h2>
-    <form id="f-letter" class="fgk fgk-inline" data-formgong>
+    <form id="f-letter" class="fgk fgk-inline" method="post">
       <input type="hidden" name="request" value="Newsletter">
       <div class="fgk-pill">
         <label class="fgk-sr" for="letter-email"><?php esc_html_e( 'Email', 'ocra' ); ?></label>
@@ -27,4 +26,3 @@
     </form>
   </section>
 <!-- /wp:html -->
-<!-- /wp:formgong/custom-form -->

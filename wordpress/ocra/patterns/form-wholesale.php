@@ -4,13 +4,12 @@
  * Slug: ocra/form-wholesale
  * Categories: ocra
  * Inserter: yes
- * Description: Shop, cafe or hotel cards and a button that shows sending and done. Sent by the Formgong plugin (1.1.0 or later).
+ * Description: Shop, cafe or hotel cards and a button that shows sending and done. A layout from the template: it does not send by itself. Set the form's action or replace it with a form plugin's block.
  *
  * @package Ocra
  */
 
 ?>
-<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <article class="row" id="wholesale">
       <div class="info">
@@ -19,7 +18,7 @@
         <p><?php esc_html_e( 'We keep a few pieces back from every firing for places that sell or use them. Ask for the price list.', 'ocra' ); ?></p>
       </div>
       <div class="card">
-        <form id="f-wholesale" class="fgk fgk-loading" data-keep data-formgong>
+        <form id="f-wholesale" class="fgk fgk-loading" data-keep method="post">
           <input type="hidden" name="request" value="Wholesale">
           <fieldset>
             <legend><?php esc_html_e( 'You are a…', 'ocra' ); ?></legend>
@@ -41,4 +40,3 @@
       </div>
     </article>
 <!-- /wp:html -->
-<!-- /wp:formgong/custom-form -->

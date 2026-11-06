@@ -4,13 +4,12 @@
  * Slug: ocra/form-commission
  * Categories: ocra
  * Inserter: yes
- * Description: A growing text box with a counter and a drop zone for up to three files. Sent by the Formgong plugin (1.1.0 or later).
+ * Description: A growing text box with a counter and a drop zone for up to three files. A layout from the template: it does not send by itself. Set the form's action or replace it with a form plugin's block.
  *
  * @package Ocra
  */
 
 ?>
-<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <article class="row" id="commission">
       <div class="info">
@@ -19,7 +18,7 @@
         <p><?php esc_html_e( 'A set for a restaurant, a vase to match a room. Send a sketch or a photo and we will tell you what is possible.', 'ocra' ); ?></p>
       </div>
       <div class="card">
-        <form id="f-commission" class="fgk" data-formgong>
+        <form id="f-commission" class="fgk" method="post">
           <input type="hidden" name="request" value="Commission">
           <label class="fgk-field"><?php esc_html_e( 'What would you like?', 'ocra' ); ?><textarea name="message" rows="3" maxlength="800" placeholder="<?php esc_attr_e( 'Twelve plates for a small restaurant, in the orange glaze…', 'ocra' ); ?>" required data-autosize></textarea></label>
           <div class="fgk-meta"><span data-count="message">0 / 800</span></div>
@@ -41,4 +40,3 @@
       </div>
     </article>
 <!-- /wp:html -->
-<!-- /wp:formgong/custom-form -->

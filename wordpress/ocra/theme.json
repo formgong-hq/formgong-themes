@@ -14,7 +14,7 @@
 				{ "slug": "ink", "color": "#1e1a16", "name": "Ink" },
 				{ "slug": "paper", "color": "#fbf8f3", "name": "Paper" },
 				{ "slug": "sand", "color": "#f2ece4", "name": "Sand" },
-				{ "slug": "muted", "color": "#8b8176", "name": "Muted" }
+				{ "slug": "muted", "color": "#6b6158", "name": "Muted" }
 			]
 		},
 		"typography": {

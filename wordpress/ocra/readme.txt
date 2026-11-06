@@ -3,11 +3,11 @@ Contributors: formgong
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: MIT
 License URI: https://opensource.org/license/mit
 
-A one-page block theme for a small ceramics studio that sells by message: a citrus-slice wordmark, product cards with orange price tags, and seven forms sent by the Formgong plugin.
+A one-page block theme for a small ceramics studio that sells by message: a citrus-slice wordmark, product cards with orange price tags, and seven form layouts.
 
 == Description ==
 
@@ -28,37 +28,43 @@ Ocra is the WordPress version of the free Ocra website template (https://formgon
   - Settings → Reading → Your homepage displays: A static page, Homepage: Home, Posts page: leave it on "— Select —" (or choose a page of your own for a blog). The Home page stays empty; the theme draws the home page.
 * Motion (the wordmark, entrances, turning slices, the drifting hero photo, the band) stops when the visitor asks for reduced motion.
 
-= The forms and your Formgong key =
+= The form layouts =
 
-The seven forms (order, workshop booking, commission with files, wholesale, feedback, write to us, newsletter) are the template's own form markup in Custom HTML blocks, each inside the Formgong plugin's "Formgong custom form" block. The theme sends nothing itself: the free Formgong plugin (version 1.1.0 or later) adds the address, your access key and the spam trap to each form and sends it, and the theme shows "thank you" only when Formgong answers that the message was stored.
-
-Install the Formgong plugin and paste your access key under Settings → Formgong. Until a key is saved the forms are not shown, and signed-in administrators see a reminder in each form's place. Without the plugin the forms stay hidden, because nothing could send them.
+The seven forms (order, workshop booking, commission with files, wholesale, feedback, write to us, newsletter) are the template's form layouts in Custom HTML blocks, with the steps, counters and file checks working. The theme does not send them: sending forms is the job of a plugin. To take messages, either replace a form pattern with the block of the form plugin you use, or set the form's action attribute to the address your form service gives you. Until then, pressing the form's button shows "This form is not connected yet" and nothing is sent.
 
 = Make it yours =
 
 The header, the patterns and the footer carry sample details of a fictional studio. Edit them in Appearance → Editor (Patterns and Templates). The logo "Ocra" and the two lines under the bar ("Ocra ceramics / Made by hand on the coast", "New firing / every month") are in the header pattern.
 
-The menu is one Navigation block in the bar. Its items, in order: Shop, Workshops, Commissions, Visit, then Order with the CSS class oc-order (Advanced → Additional CSS class): the black pill. On phones (760px and narrower) only the oc-order item shows, as in the template; there is no menu button.
+The menu is one Navigation block in the bar. Its items, in order: Shop, Workshops, Commissions, Visit, then Order with the CSS class oc-order (Advanced → Additional CSS class): the black pill. On phones (narrower than 600px) the menu folds into the Navigation block's menu button, so every link stays reachable.
 
 The pieces, prices and the order form's list of pieces are in the Home: the kiln and Form: Order a piece patterns: keep each "Order this" button's data-piece equal to an option of the order form.
 
 == Frequently Asked Questions ==
 
-= The forms do not show =
+= How do I make the forms send? =
 
-Install and activate the Formgong plugin (1.1.0 or later), then paste your access key under Settings → Formgong.
+Replace the form pattern with your form plugin's block (Appearance → Editor), or set the form's action to your form service's address. The theme itself sends nothing.
 
-= Can I use the theme without Formgong? =
+= Can I remove the forms? =
 
-Yes. Remove the form patterns from the home page, or put another form plugin's block in their place.
+Yes. Remove the form patterns from the home page in Appearance → Editor.
 
 == Changelog ==
+
+= 1.3.0 =
+* No plugin dependency: the seven forms are plain layouts in core blocks (the plugin block, the CSS that hid forms without the plugin, the plugin's script events and the footer credit are gone). A form that is not connected says so instead of submitting.
+* All visible text is translatable: the skip links, 404, blog and "nothing found" text moved from the templates into patterns, and the script's messages (steps, file checks) come from wp_localize_script().
+* The 404 page links home with home_url().
+* Contrast to WCAG AA (4.5:1): darker muted grey, darker placeholders and face icons, dark text on the orange price tags, band and hover states, darker orange step numbers.
+* Phones get the Navigation block's menu button, so every menu link is reachable (before, only "Order" showed).
+* The e-commerce tag is gone (the theme has no cart or checkout), and so is the deprecated light tag.
 
 = 1.2.0 =
 * Ready for the WordPress.org theme directory: all pattern text is translatable (text domain ocra), readable CSS instead of the minified copy, requires WordPress 6.6 (theme.json version 3).
 
 = 1.1.0 =
-* The forms are sent by the Formgong plugin's custom form block (plugin 1.1.0 or later); the theme no longer reads the plugin's settings or posts anything itself.
+* The theme no longer posts form data itself.
 
 = 1.0.0 =
 * First WordPress release, from the Ocra website template.

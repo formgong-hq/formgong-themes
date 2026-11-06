@@ -4,13 +4,12 @@
  * Slug: ocra/form-order
  * Categories: ocra
  * Inserter: yes
- * Description: Pick a piece and how many; the product cards fill the piece in. Sent by the Formgong plugin (1.1.0 or later).
+ * Description: Pick a piece and how many; the product cards fill the piece in. A layout from the template: it does not send by itself. Set the form's action or replace it with a form plugin's block.
  *
  * @package Ocra
  */
 
 ?>
-<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <article class="row" id="order">
       <div class="info">
@@ -19,7 +18,7 @@
         <p><?php esc_html_e( 'Pick a piece and how many. We check it is still on the shelf, then send you shipping and a payment link.', 'ocra' ); ?></p>
       </div>
       <div class="card">
-        <form id="f-order" class="fgk fgk-order" data-formgong>
+        <form id="f-order" class="fgk fgk-order" method="post">
           <input type="hidden" name="request" value="Order">
           <label class="fgk-field"><?php esc_html_e( 'Piece', 'ocra' ); ?>
 
@@ -49,4 +48,3 @@
       </div>
     </article>
 <!-- /wp:html -->
-<!-- /wp:formgong/custom-form -->

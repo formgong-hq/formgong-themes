@@ -1,6 +1,8 @@
 /* Ocra: the template's script, adapted for WordPress (see build_ocra.py). */
-/* Forms: every form on the page sends to Formgong and shows "thank you" only when the answer is success: true. */
+/* Forms: steps, counters and file checks. The forms are layouts: one with no action says so instead of submitting. */
 (function () {
+  var L = window.ocraL10n || {};
+  function fmt(text) { var args = arguments, n = 0; return String(text || "").replace(/%(?:(\d)\$)?s/g, function (m, k) { return args[k ? Number(k) : ++n]; }); }
   function setup(form) {
     var button = form.querySelector('button[type="submit"]');
     var status = form.querySelector("[data-status]");
@@ -31,7 +33,7 @@
       steps.forEach(function (step, k) { step.hidden = k !== index; });
       form.style.setProperty("--fgk-progress", String((index + 1) / steps.length));
       var label = form.querySelector("[data-step-label]");
-      if (label) label.textContent = "Step " + (index + 1) + " of " + steps.length;
+      if (label) label.textContent = fmt(L.step, index + 1, steps.length);
     }
     if (steps.length) {
       show(0);
@@ -53,7 +55,7 @@
       list.textContent = "";
       Array.prototype.forEach.call(input.files, function (file) {
         var item = document.createElement("li");
-        item.textContent = file.name + " · " + (file.size / 1048576).toFixed(1) + " MB";
+        item.textContent = file.name + " · " + fmt(L.size, (file.size / 1048576).toFixed(1));
         list.appendChild(item);
       });
     }
@@ -63,8 +65,8 @@
       input.addEventListener("change", function () {
         var files = Array.prototype.slice.call(input.files);
         var bad = files.filter(function (f) { return !f.size || f.size > mb * 1048576; })[0];
-        if (files.length > max) { input.value = ""; say("Up to " + max + " files, please.", true); }
-        else if (bad) { input.value = ""; say(bad.name + (bad.size ? " is over " + mb + " MB." : " is empty."), true); }
+        if (files.length > max) { input.value = ""; say(fmt(L.tooMany, max), true); }
+        else if (bad) { input.value = ""; say(bad.size ? fmt(L.tooBig, bad.name, mb) : fmt(L.empty, bad.name), true); }
         else say("");
         listFiles(input);
       });
@@ -79,34 +81,10 @@
       if (steps.length) show(0);
     }
 
-    var firstName = "";
-    form.addEventListener("formgong:sending", function () {
-      form.dataset.state = "sending";
-      if (button) button.disabled = true;
-      say(form.hasAttribute("data-keep") ? "" : "Sending…");
-      var nameField = form.querySelector('[name="name"]');
-      firstName = nameField ? nameField.value.trim().split(/\s+/)[0] : "";
-    });
-    form.addEventListener("formgong:sent", function () {
-      form.querySelectorAll("[data-sent-name]").forEach(function (node) { node.textContent = firstName || "there"; });
-      form.dataset.state = "sent";
-      say("");
-      clear();
-      if (form.hasAttribute("data-keep")) {
-        say("Sent. The price list is on its way to your inbox.");
-        setTimeout(function () { if (form.dataset.state === "sent") form.dataset.state = "idle"; }, 3200);
-      } else {
-        form.classList.add("is-sent");
-        var sent = form.querySelector(".fgk-sent");
-        if (sent) sent.focus();
-      }
-      if (button) button.disabled = false;
-    });
-    form.addEventListener("formgong:error", function (event) {
-      form.dataset.state = "error";
-      var detail = event.detail || {};
-      say(detail.network ? "Could not send. Check your connection and try again." : (detail.message || "Could not send. Please try again."), true);
-      if (button) button.disabled = false;
+    form.addEventListener("submit", function (event) {
+      if (form.getAttribute("action")) return;
+      event.preventDefault();
+      say(L.notConnected, true);
     });
 
     form.querySelectorAll("[data-again]").forEach(function (again) {

@@ -19,8 +19,8 @@ add_action( 'after_setup_theme', 'ocra_setup' );
 
 /**
  * Front-end styles (the fonts, the Ocra stylesheet, then the WordPress additions) and the template's script (the
- * forms: steps, files, "thank you" only on the Formgong plugin's formgong:sent; then the wordmarks, reveals, turning
- * slices and the floating order button; it honours reduced motion).
+ * form layouts: steps, counters, file checks; then the wordmarks, reveals, turning slices and the floating order
+ * button; it honours reduced motion). The script's messages are passed in translated (ocraL10n).
  */
 function ocra_assets() {
 	$version = wp_get_theme()->get( 'Version' );
@@ -28,6 +28,23 @@ function ocra_assets() {
 	wp_enqueue_style( 'ocra', get_theme_file_uri( 'assets/css/ocra.css' ), array( 'ocra-fonts' ), $version );
 	wp_enqueue_style( 'ocra-wordpress', get_theme_file_uri( 'assets/css/wordpress.css' ), array( 'ocra' ), $version );
 	wp_enqueue_script( 'ocra', get_theme_file_uri( 'assets/js/ocra.js' ), array(), $version, true );
+	wp_localize_script(
+		'ocra',
+		'ocraL10n',
+		array(
+			/* translators: 1: current step number, 2: number of steps. */
+			'step'         => __( 'Step %1$s of %2$s', 'ocra' ),
+			/* translators: %s: file size in megabytes, for example 1.2. */
+			'size'         => __( '%s MB', 'ocra' ),
+			/* translators: %s: the most files the form takes. */
+			'tooMany'      => __( 'Up to %s files, please.', 'ocra' ),
+			/* translators: 1: file name, 2: size limit in megabytes. */
+			'tooBig'       => __( '%1$s is over %2$s MB.', 'ocra' ),
+			/* translators: %s: file name. */
+			'empty'        => __( '%s is empty.', 'ocra' ),
+			'notConnected' => __( 'This form is not connected yet, so nothing was sent. Please contact us another way.', 'ocra' ),
+		)
+	);
 }
 add_action( 'wp_enqueue_scripts', 'ocra_assets' );
 

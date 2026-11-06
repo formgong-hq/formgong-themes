@@ -32,7 +32,7 @@
 <!-- wp:html -->
 <a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#slice"/></svg><?php esc_html_e( 'Ocra', 'ocra' ); ?></a>
 <!-- /wp:html -->
-<!-- wp:navigation {"overlayMenu":"never","className":"nav","style":{"spacing":{"blockGap":"4px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} /-->
+<!-- wp:navigation {"overlayMenu":"mobile","className":"nav","style":{"spacing":{"blockGap":"4px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} /-->
 </div>
 <!-- /wp:group -->
 <!-- wp:html -->

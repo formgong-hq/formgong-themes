@@ -4,13 +4,12 @@
  * Slug: ocra/form-workshop
  * Categories: ocra
  * Inserter: yes
- * Description: Three steps with a progress bar: slot and date, experience and people, name and email. Sent by the Formgong plugin (1.1.0 or later).
+ * Description: Three steps with a progress bar: slot and date, experience and people, name and email. A layout from the template: it does not send by itself. Set the form's action or replace it with a form plugin's block.
  *
  * @package Ocra
  */
 
 ?>
-<!-- wp:formgong/custom-form -->
 <!-- wp:html -->
 <article class="row" id="workshop">
       <div class="info">
@@ -20,7 +19,7 @@
         <p><?php esc_html_e( 'Three hours at the wheel, six people at most. You take home two pieces after the next firing.', 'ocra' ); ?></p>
       </div>
       <div class="card">
-        <form id="f-workshop" class="fgk fgk-steps" data-formgong>
+        <form id="f-workshop" class="fgk fgk-steps" method="post">
           <input type="hidden" name="request" value="Workshop">
           <div class="fgk-top"><div class="fgk-bar"><i></i></div><p class="fgk-steplabel" data-step-label><?php esc_html_e( 'Step 1 of 3', 'ocra' ); ?></p></div>
           <div data-step>
@@ -61,4 +60,3 @@
       </div>
     </article>
 <!-- /wp:html -->
-<!-- /wp:formgong/custom-form -->
