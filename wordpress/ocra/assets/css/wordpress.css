@@ -106,6 +106,7 @@
 .oc-content .oc-search { margin-top: 28px; }
 .oc-search .wp-block-search__inside-wrapper { align-items: center; gap: 8px; padding: 5px 5px 5px 16px; background: #fff; border: 1px solid #e2d9cd; border-radius: 999px; }
 .oc-search input { flex: 1; min-width: 0; padding: 8px 0; font: inherit; font-size: 15px; color: var(--ink); background: transparent; border: 0; outline: none; }
+.oc-search .wp-block-search__inside-wrapper:focus-within { outline: 2px solid var(--ink); outline-offset: 2px; }
 .oc-search button { flex: none; margin: 0; padding: 9px 18px; font: inherit; font-size: 15px; font-weight: 500; color: #fff; background: var(--ink); border: 0; border-radius: 999px; cursor: pointer; }
 .oc-search button:hover { color: var(--ink); background: var(--orange); }
 
@@ -113,3 +114,6 @@
 	.oc-body { grid-template-columns: 1fr; gap: 12px; }
 	.oc-prose, .oc-card-sum { font-size: 16px; }
 }
+
+/* The skip links land on <main> (tabindex="-1", see functions.php); it takes focus without showing a ring. */
+main[tabindex="-1"]:focus { outline: none; }

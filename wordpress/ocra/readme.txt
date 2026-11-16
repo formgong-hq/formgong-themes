@@ -3,7 +3,7 @@ Contributors: formgong
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: MIT
 License URI: https://opensource.org/license/mit
 
@@ -52,6 +52,11 @@ Yes. Remove the form patterns from the home page in Appearance → Editor.
 
 == Changelog ==
 
+= 1.3.1 =
+* The search field shows a visible focus ring (on the field's pill) for keyboard users.
+* The skip links move keyboard focus into the content: the page's main area takes focus (tabindex="-1").
+* The SIL Open Font License text ships next to the fonts (assets/fonts/OFL.txt).
+
 = 1.3.0 =
 * No plugin dependency: the seven forms are plain layouts in core blocks (the plugin block, the CSS that hid forms without the plugin, the plugin's script events and the footer credit are gone). A form that is not connected says so instead of submitting.
 * All visible text is translatable: the skip links, 404, blog and "nothing found" text moved from the templates into patterns, and the script's messages (steps, file checks) come from wp_localize_script().
@@ -75,9 +80,9 @@ Ocra WordPress theme, Copyright 2026 Formgong.
 Ocra is distributed under the terms of the MIT License.
 
 Inter font, Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
-License: SIL Open Font License 1.1, https://openfontlicense.org
+License: SIL Open Font License 1.1, https://openfontlicense.org (full text in assets/fonts/OFL.txt)
 
 Inter Tight font, Copyright 2022 The Inter Project Authors (https://github.com/rsms/inter-tight)
-License: SIL Open Font License 1.1, https://openfontlicense.org
+License: SIL Open Font License 1.1, https://openfontlicense.org (full text in assets/fonts/OFL.txt)
 
 Photos (assets/img/*.webp, screenshot.jpg): Copyright 2026 Formgong, generated for the Ocra template with ChatGPT image generation (OpenAI), whose terms assign the output to Formgong. License: MIT, the same as the theme, https://opensource.org/license/mit The citrus slices are drawn in SVG. Replace them with photos of your own work before launch, keeping the file names.

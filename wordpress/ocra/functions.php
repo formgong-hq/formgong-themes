@@ -79,3 +79,24 @@ function ocra_current_menu_link() {
 	wp_print_inline_script_tag( "document.querySelectorAll('.top .nav li > a[href]').forEach(function(a){if(a.origin===location.origin&&a.pathname===location.pathname&&!a.hash){a.setAttribute('aria-current','page');}});" );
 }
 add_action( 'wp_footer', 'ocra_current_menu_link' );
+
+/**
+ * The skip links point at the page's <main> (#main, or #top on the home page). A <main> cannot take focus by itself,
+ * so the keyboard would stay where it was: tabindex="-1" lets the skip link move focus into the content. It is added
+ * when the template's main group block renders, so the block markup in the templates stays valid in the editor.
+ *
+ * @param string $block_content The rendered group block.
+ * @param array  $block         The block, with its attributes.
+ * @return string
+ */
+function ocra_focusable_main( $block_content, $block ) {
+	if ( empty( $block['attrs']['tagName'] ) || 'main' !== $block['attrs']['tagName'] ) {
+		return $block_content;
+	}
+	$tags = new WP_HTML_Tag_Processor( $block_content );
+	if ( $tags->next_tag( 'main' ) && null === $tags->get_attribute( 'tabindex' ) ) {
+		$tags->set_attribute( 'tabindex', '-1' );
+	}
+	return $tags->get_updated_html();
+}
+add_filter( 'render_block_core/group', 'ocra_focusable_main', 10, 2 );
